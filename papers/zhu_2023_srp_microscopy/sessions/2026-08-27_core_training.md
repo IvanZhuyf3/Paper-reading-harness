@@ -14,7 +14,7 @@
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
 **Current state:** EVIDENCE
-**Resume cursor:** `EVIDENCE.M3.awaiting_application_performance_link`
+**Resume cursor:** `EVIDENCE.M3.awaiting_feature_recognition_validity`
 **Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`, `CLAIMS_EXPAND_H-C3.5_SPEED`, `CLAIMS_FINISH_OR_ADD`, `CLAIMS_FINISH`, `EVIDENCE_M1_THERMOMETRY_VALIDITY`, `EVIDENCE_M1_THERMOMETRY_CONFOUNDS`, `EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION`, `EVIDENCE_M2_MATCHED_SENSITIVITY_COMPARISON`, `EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION`, `EVIDENCE_M3_APPLICATION_PERFORMANCE_LINK`
 
 ## Disclosure note
@@ -562,4 +562,24 @@ Structural operation: this is recorded explicitly as the human's simplified algo
 
 Current pending prompt:
 
-> 在 application figure 中，怎样设计 comparison，才能让它支持“性能提升”而不只是“这个样品可以成像”？
+> feature recognition 容易变成主观判断；你会怎样把它 operationalize，或者用什么 blind/control 让比较可复现？
+
+Event 24 — `EVIDENCE_M3_APPLICATION_PERFORMANCE_LINK`
+
+Human response:
+
+> 最好是同样品同FoV同参数测量，直接head2head比较image quality，包括SNR、resolution、feature recognization
+
+Human-designed evidence structure under paper M3:
+
+```text
+same sample + same FoV + same/matched acquisition parameters
+→ head-to-head image-quality comparison
+→ SNR + resolution + feature recognition
+```
+
+Structural operation: SNR and resolution are recorded as operational comparison dimensions. Feature recognition remains open because the human response does not define a reproducible operationalization; no paper result is added.
+
+Current pending prompt:
+
+> feature recognition 容易变成主观判断；你会怎样把它 operationalize，或者用什么 blind/control 让比较可复现？

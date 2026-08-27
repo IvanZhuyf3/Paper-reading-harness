@@ -163,6 +163,13 @@ The harness now compiles and persists an auditable paper model before runner que
 - Unique next interaction cursor: `EVIDENCE.M3.awaiting_application_performance_link`.
 - Pending prompt ID: `EVIDENCE_M3_APPLICATION_PERFORMANCE_LINK`.
 
+## Current session checkpoint — event 24
+
+- Canonical session-state audit: PASS — 15/15 checks.
+- Event sequence: contiguous through event 24.
+- Unique next interaction cursor: `EVIDENCE.M3.awaiting_feature_recognition_validity`.
+- Pending prompt ID: `EVIDENCE_M3_FEATURE_RECOGNITION_VALIDITY`.
+
 ## Code checks
 
 - PASS — both validator scripts compile under Python 3.12.
