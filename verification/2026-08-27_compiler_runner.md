@@ -54,7 +54,7 @@ The harness now compiles and persists an auditable paper model before runner que
 - Completed-stage prefix: PASS.
 - Revealed paper-claim references: PASS.
 - Human-node parent graph: PASS.
-- Unique next interaction cursor: `EVIDENCE.M1.awaiting_bleach_control_implementation`.
+- Unique next interaction cursor: `EVIDENCE.M2.awaiting_matched_sensitivity_comparison`.
 
 ## Current session checkpoint — event 8
 
@@ -141,6 +141,13 @@ The harness now compiles and persists an auditable paper model before runner que
 - Event sequence: contiguous through event 20.
 - Unique next interaction cursor: `EVIDENCE.M1.awaiting_bleach_control_implementation`.
 - Pending prompt ID: `EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION`.
+
+## Current session checkpoint — event 21
+
+- Canonical session-state audit: PASS — 15/15 checks.
+- Event sequence: contiguous through event 21.
+- Unique next interaction cursor: `EVIDENCE.M2.awaiting_matched_sensitivity_comparison`.
+- Pending prompt ID: `EVIDENCE_M2_MATCHED_SENSITIVITY_COMPARISON`.
 
 ## Code checks
 
