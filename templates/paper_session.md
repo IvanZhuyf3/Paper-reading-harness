@@ -1,48 +1,108 @@
-# Paper Session
+# Training Session
 
-**Paper:**  
-**Mode:** FOUNDATION / CORE / ADVANCED / EFFICIENT_READING  
-**Curated reference:** YES / NO
+**Paper:**
+**Identifier / source:**
+**Runner:** TRAINING
+**Level:** FOUNDATION / CORE / ADVANCED
+**Paper-model source:** approved record / fresh reconstruction
+**Human had not read paper at entry:** YES
+**Current state:** KNOWLEDGE / IDEA / CLAIMS / EVIDENCE / INDEPENDENT READING / DELTA / COMPLETE
 
 ## 1. KNOWLEDGE
-Key concepts:
+
+Necessary concepts and relations:
+
 - ...
 
-Gaps / injected pretraining:
+Human explanations:
+
+- ...
+
+Facts checked and corrections/pretraining supplied:
+
 - ...
 
 ## 2. IDEA
-Problem state:
-...
 
-Human proposal(s):
-...
+Paper problem state exposed before rollout:
 
-Author trajectory:
-...
+```text
+established claims
+→ limitation / tension
+→ missing capability / unresolved question
+```
 
-Comparison:
-...
+Human proposal(s), recorded without agent analysis:
+
+- ...
+
+**Human declared rollout complete:** YES / SKIPPED FOR FOUNDATION
+
+Paper idea / normalized title claim revealed after rollout:
+
+- AUTHOR CLAIM: ...
+- SOURCE ANCHOR: ...
+- AGENT INTERPRETATION, if materially different: ...
+
+Descriptive structural juxtaposition:
+
+- ...
+
+**CLAIMS re-anchored to paper title claim:** YES
 
 ## 3. CLAIMS
-Human claim tree:
-...
 
-Reference claim tree:
-...
+Human tree produced interactively:
 
-Important differences:
-...
+```text
+T0 — ...
+└── ...
+```
+
+**Human declared rollout complete:** YES
+
+Paper tree revealed after rollout:
+
+```text
+T0 — ... [anchor]
+└── ... [anchor]
+```
+
+Descriptive structural diff:
+
+- ALIGNED / OVERLAPPING: ...
+- HUMAN-ONLY: ...
+- PAPER-ONLY: ...
+- DIFFERENT LINKS: ...
+
+**EVIDENCE re-anchored to paper claim tree:** YES
 
 ## 4. EVIDENCE
-Human evidence design:
-...
 
-Paper evidence:
-...
+Human evidence/proof design, attached to paper claims:
 
-Important differences:
-...
+- CLAIM ... → HUMAN DESIGN ...
 
-## 5. What's the delta?
+**Human declared rollout complete:** YES
+
+Paper proof architecture revealed after rollout, without result interpretation:
+
+- CLAIM ... → EXPERIMENT/PROOF TYPE ... → CONTROL ROLE ... → SOURCE ANCHOR ...
+
+Descriptive structural diff:
+
+- ALIGNED / OVERLAPPING: ...
+- HUMAN-ONLY: ...
+- PAPER-ONLY: ...
+- DIFFERENT MAPPINGS: ...
+
+## 5. Independent reading
+
+**Human directed to read paper details and figures:** YES
+**Human returned to session:** YES / NO
+
+## 6. What's the delta?
+
+Human response, preserved without agent interpretation:
+
 ...

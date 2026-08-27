@@ -1,74 +1,99 @@
-# Claim Tree Protocol
+# Unified Claim-Tree Protocol
 
-The same language should work from paper learning through project management and writing:
-
-```text
-TITLE CLAIM
-├── MAJOR CLAIM
-│   ├── SUBCLAIM
-│   └── SUBCLAIM
-└── MAJOR CLAIM
-```
-
-Evidence attaches to claims.
-
-## Evidence
-
-Prefer traceable references:
+The project uses one continuous claim structure for the paper:
 
 ```text
-FIG-2A
-doi:...
-EXP-...
-SIM-...
+established / background claims
+            ↓ converge
+limitation → tension → gap
+            ↓
+normalized TITLE CLAIM
+            ↓ expand
+major claims
+            ↓
+subclaims
+            ↓
+evidence / proof
 ```
 
-Special states:
+The Introduction region converges on why the title claim is significant. The Results region expands what supports it. These are regions of one model, not separate ontologies.
+
+## Title claim
+
+`TITLE CLAIM` is the normalized central scientific claim reconstructed from the title, abstract, Introduction, Results, and other relevant paper text.
+
+It is not required to reproduce the title literally or fit in one sentence. A complex claim may include a short explanation when needed to preserve scope, conditions, or meaning.
+
+Always retain the original paper title separately.
+
+## Paper-side claim node
+
+Every important paper-side node must contain:
 
 ```text
-EXPERIENCE: ...
-HYPOTHESIS
-CONTRADICTS: ...
-Derived from: ...
+ID: T0 / I1 / M1 / S1.1 / ...
+ROLE: background / limitation / gap / title / major / subclaim
+AUTHOR CLAIM: author's own concise formulation or source excerpts
+SOURCE ANCHOR: page + section/paragraph, or another precise locator
+AGENT INTERPRETATION: required when materially different from AUTHOR CLAIM
+PARENT / CHILD LINKS: ...
 ```
 
-Avoid elaborate confidence scores.
+If the claim is distributed across passages, preserve the relevant author excerpts rather than fabricating a unified author sentence. If the agent paraphrases, compresses several passages, adds an implicit condition, combines claims, or otherwise departs materially from the author's formulation, show `AUTHOR CLAIM` and `AGENT INTERPRETATION` side by side. Never present the latter as author text.
 
-## Instrument + application papers
+## Evidence node
 
-A common structure:
+Evidence attaches to the claim it is intended to support:
 
 ```text
-T0 — The new method enables an important new measurement/science regime.
-
-├── M1 — The design is a meaningful new instrument/capability.
-│   ├── S1.1 — Design principle / architecture is appropriate.
-│   ├── S1.2 — The implementation realizes intended performance.
-│   └── S1.3 — Performance improves over the relevant baseline.
-│
-└── M2 — The capability enables an important application/scientific result.
+ID: E1 / FIG-2A / TABLE-1 / SIM-1 / ...
+TARGET CLAIM: ...
+EVIDENCE / PROOF TYPE: ...
+CONTROL ROLE: ...
+SOURCE ANCHOR: ...
+RESULT DETAIL: internally available; withheld during TRAINING until independent reading
 ```
 
-A setup schematic participates in the claim tree when it establishes why the architecture realizes the proposed principle.
+Use precise anchors such as figure panels, tables, equations, result subsections, methods sections, or supplement items. A DOI or whole-paper citation is not a sufficient node-level anchor.
 
-## Introduction / problem framing
+## Human rollout tree
 
-Before IDEA rollout, represent:
+The human supplies the scientific content. The agent supplies only the interaction structure:
 
 ```text
-important problem
-→ established knowledge
-→ limitation / tension
-→ missing capability / unresolved question
-→ [student generates idea here]
+agent selects or displays current node
+→ asks one generic structural question
+→ human supplies a claim/subclaim/evidence design
+→ agent attaches and renders it
+→ human decides whether to continue
 ```
 
-## Curated trees
+Do not add a hidden paper node to the human tree. Do not create an agent-authored normative tree. The paper tree and human tree are trajectories to be structurally compared, not ranked.
 
-PI-verified trees should include only:
-- title claim;
+## Granularity
+
+Prefer:
+
+- normalized title claim;
 - major claims;
 - important subclaims;
-- decisive evidence.
+- decisive proof links and controls.
 
 Do not exhaustively annotate every sentence or panel.
+
+## Instrument + application pattern
+
+A paper may use a structure such as:
+
+```text
+T0 — The method enables a new measurement or science regime.
+
+├── M1 — The design realizes a meaningful new capability.
+│   ├── S1.1 — The architecture implements the intended principle.
+│   ├── S1.2 — The implementation achieves the relevant performance.
+│   └── S1.3 — Performance differs from the relevant baseline.
+│
+└── M2 — The capability enables the stated application or scientific result.
+```
+
+This is an illustrative structural pattern, not a standard answer to reveal during rollout.

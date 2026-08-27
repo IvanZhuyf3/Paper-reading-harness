@@ -1,94 +1,110 @@
-# Curated Paper Record
+# Approved Curriculum Paper Record
 
-**Curriculum order:**  
-**Field:**  
-**Paper:**  
-**DOI / identifier:**  
-**Year:**  
-**PI verified:** YES  
-**Primary training role:**  
+> HUMAN APPROVED — REUSABLE
 
-## 1. Why this paper is included
+**Curriculum order:**
+**Field:**
+**Primary training role:**
+**Paper title:**
+**Authors:**
+**DOI / identifier:**
+**Year:**
+**Source reviewed:**
+**Reviewer:**
+**Approval date:**
+**Record version:**
+
+## Why this paper is included
+
 ...
 
-## 2. Stage 1 — Knowledge alignment
+## Knowledge alignment
 
-Prerequisite concepts:
+Prerequisite concepts and relations:
+
 - ...
 
-Common gaps:
+Common factual gaps:
+
 - ...
 
-## 3. Stage 2 — Problem state
+Concise pretraining notes:
+
+- ...
+
+## Unified claim tree
 
 ```text
-Established:
-- ...
-
-Limitation / tension:
-- ...
-
-Missing capability / unresolved question:
-- ...
+I1 — established/background claim [anchor]
+└── I2 — limitation/tension/gap [anchor]
+    └── T0 — normalized TITLE CLAIM [anchor]
+        ├── M1 — major claim [anchor]
+        │   └── S1.1 — subclaim [anchor]
+        └── M2 — major claim [anchor]
 ```
 
-Do not reveal the author solution here.
-
-## 4. Author idea
-
-Reveal only after human idea rollout.
-
-One-sentence idea:
-...
-
-Core leverage:
-...
-
-Important assumptions:
-- ...
-
-## 5. PI-verified claim tree
+For each node whose normalized interpretation materially differs from the source:
 
 ```text
-T0 — ...
-
-├── M1 — ...
-│   ├── S1.1 — ...
-│   └── S1.2 — ...
-│
-└── M2 — ...
+AUTHOR CLAIM / SOURCE EXCERPT(S): ...
+SOURCE ANCHOR: ...
+AGENT INTERPRETATION: ...
 ```
 
-## 6. Decisive evidence map
+## Training-stage disclosure
 
-### M1
-- FIG-...
+### Problem state exposed before IDEA
 
-### M2
-- FIG-...
+```text
+established claims
+→ limitation / tension
+→ missing capability / unresolved question
+```
 
-Important controls:
+### Paper idea/title claim revealed after IDEA
+
+- AUTHOR CLAIM: ...
+- SOURCE ANCHOR: ...
+- AGENT INTERPRETATION, if needed: ...
+
+### Claim tree revealed after CLAIMS
+
+...
+
+### Proof architecture revealed after EVIDENCE
+
+Do not include result interpretation in the training disclosure.
+
+| Evidence ID | Target claim | Experiment/proof type | Control role | Source anchor |
+|---|---|---|---|---|
+| E1 | ... | ... | ... | ... |
+
+## Internal result map
+
+Available for model verification and EFFICIENT_READING; withheld during TRAINING until independent reading.
+
+- E1 result: ...
+
+## Level notes
+
+FOUNDATION knowledge emphasis:
+
 - ...
 
-Contradictions / limits:
-- ...
-
-## 7. Training notes
-
-FOUNDATION questions:
-- ...
-
-CORE questions:
-- ...
-
-ADVANCED extra rollouts:
-- ...
-
-Present-day alternatives worth allowing:
-- ...
-
-## 8. Typical useful deltas
-
-Examples only; do not reveal before the session.
+CORE session notes:
 
 - ...
+
+ADVANCED independent IDEA rollout count or constraints:
+
+- ...
+
+## Approval checklist
+
+- [ ] Paper identity checked
+- [ ] Normalized title claim checked
+- [ ] Important claim-tree structure checked
+- [ ] Author/agent formulations distinguished where necessary
+- [ ] Every important paper-side node has a source anchor
+- [ ] Evidence-to-claim mappings checked
+- [ ] Training disclosures checked for spoilers

@@ -1,30 +1,19 @@
-# Curated Curriculum
+# Approved Curriculum
 
-Store PI-verified paper training records here.
+This directory contains only human-reviewed paper models that are approved for automatic reuse.
 
-A mature field curriculum may contain ~50 ordered papers.
+A mature field curriculum may contain approximately 50 ordered exemplary papers, with roughly 30–35 stable core papers and 15–20 frontier papers updated periodically. Order papers by training progression rather than publication date.
 
-The important upgrade is not only paper quality:
+Approval means the reviewer has checked:
 
-> the problem framing, claim tree, and evidence map have been personally verified.
+- paper identity;
+- normalized title claim;
+- unified claim-tree structure;
+- author-claim versus agent-interpretation labels;
+- node-level source anchors;
+- evidence-to-claim mappings;
+- stage disclosure and spoiler safety.
 
-Suggested composition:
+Record reviewer, approval date, and record version. Add the paper to `index.md` only after approval.
 
-```text
-30–35 stable core papers
-15–20 frontier papers
-```
-
-Update the frontier subset roughly yearly.
-
-Suggested filenames:
-
-```text
-01_short_name.md
-...
-50_short_name.md
-```
-
-Order by training progression, not publication date.
-
-Any ordinary paper can still use the same harness; curated papers simply give a more trustworthy reference trajectory.
+Generated but unapproved models belong in `paper_models/pending/`, not here.
