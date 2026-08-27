@@ -65,7 +65,7 @@ Persist the selection seed and every selected node/prompt ID for reproducibility
 
 ### Transferability/reusability filter
 
-Human-open-node eligibility is necessary but not sufficient for a default follow-up. During CLAIMS and EVIDENCE, prefer commonly reusable scientific reasoning primitives, such as how resolution is calibrated, why a fluorescence thermometer can measure temperature, or how a limit of detection (LOD) is defined and calculated. Low-transfer, paper-specific apparatus optimization—such as detailed device architecture or function-module design—should normally be recorded and left closed rather than deepened. Probe such a node only when the human explicitly requests it, when clarification is necessary to make the claim checkable, or when EFFICIENT_READING asks for that expansion.
+Human-open-node eligibility is necessary but not sufficient for a default follow-up. During CLAIMS and EVIDENCE, prefer transferable measurement and claim–evidence relations. Low-transfer, paper-specific apparatus optimization should normally be recorded and left closed rather than deepened. Probe such a node only when the human explicitly requests it, when clarification is necessary to make the claim checkable, or when EFFICIENT_READING asks for that expansion.
 
 ## Required paper model
 

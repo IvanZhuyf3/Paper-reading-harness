@@ -93,7 +93,7 @@ The session stores the model path/version, current stage, selection history, cur
 
 Question selection is rule-governed rather than purely random. KNOWLEDGE may use seeded sampling from eligible prerequisite nodes. IDEA exposes the complete problem state and normally asks only one challenge or clarification, stopping once the proposal is checkable. CLAIMS and EVIDENCE select only from the human's exposed structure and generic structural prompts; they never sample hidden paper nodes.
 
-Question selection also applies a transferability/reusability filter: an open human node is necessary but not sufficient for default deepening. Prefer reusable scientific reasoning primitives—for example, resolution calibration, why a fluorescence thermometer measures temperature, and LOD definition/formula. Record low-transfer, paper-specific apparatus optimization such as device architecture or function-module design without default deep probing, unless the human requests it, clarification is required for checkability, or EFFICIENT_READING requests the expansion.
+Question selection also applies a transferability/reusability filter: an open human node is necessary but not sufficient for default deepening. Prefer transferable measurement and claim–evidence relations. Record low-transfer, paper-specific apparatus optimization without default deep probing, unless the human requests it, clarification is required for checkability, or EFFICIENT_READING requests the expansion.
 
 ## Agent boundary
 

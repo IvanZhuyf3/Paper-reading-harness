@@ -10,14 +10,14 @@ supplement_sha256 = "F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16
 selection_policy_version = "1.2"
 selection_seed = 2026082701
 current_stage = "claims"
-resume_cursor = "CLAIMS.T0.awaiting_next_major_claim"
-asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3"]
+resume_cursor = "CLAIMS.H-C3.2.awaiting_resolution_calibration"
+asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3", "CLAIMS_EXPAND_H-C3.1_LOD", "CLAIMS_EXPAND_H-C3.2_RESOLUTION"]
 verified_knowledge_ids = ["K1", "K2"]
 rollout_complete = false
 completed_stages = ["knowledge", "idea"]
 revealed_paper_claim_ids = ["T0"]
-pending_prompt_id = "CLAIMS_ADD_T0_3"
-pending_prompt_text = "回到 T0：还需要添加哪一条 major claim？"
+pending_prompt_id = "CLAIMS_EXPAND_H-C3.2_RESOLUTION"
+pending_prompt_text = "先展开 H-C3.2：你会怎样用 small-bead measurement 定义并估计显微镜的空间分辨率？"
 human_is_paper_author = true
 spoiler_control_test_valid = false
 
@@ -126,6 +126,55 @@ parents = ["H-C2"]
 status = "open"
 content = "Signal-processing method（信号处理方法）。"
 
+[[human_nodes]]
+id = "H-C3"
+stage = "claims"
+parents = ["T0"]
+status = "decomposed"
+content = "The microscope achieves strong performance（显微镜可以达成很好的性能）。"
+
+[[human_nodes]]
+id = "H-C3.1"
+stage = "claims"
+parents = ["H-C3"]
+status = "decomposed"
+content = "Sensitivity, including low-concentration LoD and small-particle detectability（e.g. 50-nm plastic beads）（灵敏度，包括低浓度 LoD 和小颗粒可检测性，例如 50 nm plastic beads）。"
+
+[[human_nodes]]
+id = "H-C3.1.1"
+stage = "claims"
+parents = ["H-C3.1"]
+status = "closed"
+content = "LoD = 3σ/k, where σ is the baseline standard deviation and k is the calibration-curve slope（σ 是 baseline STD，k 是 calibration curve 的 slope）。"
+
+[[human_nodes]]
+id = "H-C3.2"
+stage = "claims"
+parents = ["H-C3"]
+status = "open"
+content = "Spatial resolution, using small beads（分辨率，用小 beads 测量）。"
+
+[[human_nodes]]
+id = "H-C3.3"
+stage = "claims"
+parents = ["H-C3"]
+status = "open"
+content = "Spectral fidelity, by comparing SRP and Raman on a sample（spectral fidelity，在样品上比较 SRP 和 Raman）。"
+
+[[human_nodes]]
+id = "H-C3.4"
+stage = "claims"
+parents = ["H-C3"]
+status = "conditional"
+content = "Penetration depth, only if there is an improvement（penetration depth，只有在有进步时才作为方向）。"
+
+[[human_nodes]]
+id = "H-C3.5"
+stage = "claims"
+parents = ["H-C3"]
+status = "open"
+content = "Speed（速度）。"
+
 [[human_evidence_candidates]]
 id = "H-E-C1.1.1-ENERGY-DIAGRAM"
 stage = "claims"
@@ -196,3 +245,13 @@ human_response = "第二个major claim是按照这个原理真的能打出来一
 sequence = 10
 prompt_id = "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE"
 human_response = "核心应该是把吸收测量（SRS）转化成散射测量（PT），所以收光侧需要降低NA"
+
+[[events]]
+sequence = 11
+prompt_id = "CLAIMS_ADD_T0_3"
+human_response = "H-C3 显微镜可以达成很好的性能。可能可以做的方向包括：灵敏度（低浓度，测LoD；小particle，测比如50nm plastic beads），分辨率（小beads），spectral fidelity （随便什么样品，比较SRP和Raman），penetration depth （如果有进步的话），speed"
+
+[[events]]
+sequence = 12
+prompt_id = "CLAIMS_EXPAND_H-C3.1_LOD"
+human_response = "3σ/k，σ是baseline STD，k是calibration curve的slope。"

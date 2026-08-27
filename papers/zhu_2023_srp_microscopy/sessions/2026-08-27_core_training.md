@@ -14,8 +14,8 @@
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
 **Current state:** CLAIMS
-**Resume cursor:** `CLAIMS.T0.awaiting_next_major_claim`
-**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`
+**Resume cursor:** `CLAIMS.H-C3.2.awaiting_resolution_calibration`
+**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`
 
 ## Disclosure note
 
@@ -214,6 +214,15 @@ T0 — PAPER TITLE CLAIM
    │           lower NA on the collection side [CLOSED]
    ├─ H-C2.2 — signal characteristics [OPEN]
    └─ H-C2.3 — signal-processing method [OPEN]
+└─ H-C3 — the microscope achieves strong performance [DECOMPOSED]
+   ├─ H-C3.1 — sensitivity: low-concentration LoD and small-particle
+   │           detectability (e.g. 50-nm plastic beads) [DECOMPOSED]
+   │  └─ H-C3.1.1 — LoD = 3σ/k; σ = baseline standard deviation;
+   │                 k = calibration-curve slope [CLOSED]
+   ├─ H-C3.2 — spatial resolution using small beads [OPEN]
+   ├─ H-C3.3 — spectral fidelity by comparing SRP and Raman on a sample [OPEN]
+   ├─ H-C3.4 — penetration depth, only if improved [CONDITIONAL]
+   └─ H-C3.5 — speed [OPEN]
 ```
 
 Structural operation: the human supplied two burdens joined by “且”; they are retained as two immediate subclaims without adding scientific content. The response further decomposed the existence subclaim into the three causal statements above, preserving the human's stated sequence.
@@ -277,3 +286,40 @@ Structural operation: H-C2.1 is recorded as sufficient and closed at the level s
 Current pending prompt:
 
 > 回到 T0：还需要添加哪一条 major claim？
+
+Event 11 — `CLAIMS_ADD_T0_3`
+
+Human response:
+
+> H-C3 显微镜可以达成很好的性能。可能可以做的方向包括：灵敏度（低浓度，测LoD；小particle，测比如50nm plastic beads），分辨率（小beads），spectral fidelity （随便什么样品，比较SRP和Raman），penetration depth （如果有进步的话），speed
+
+Structural operation: the human added H-C3 under T0 and supplied five performance subclaims. H-C3.4 is retained as conditional because the human specified “only if improved.” No paper result or performance value was added. Following the transferability/reusability filter, the next prompt selects the reusable LoD-definition primitive under H-C3.1.
+
+Current human claim tree extension:
+
+```text
+T0 — PAPER TITLE CLAIM
+└─ H-C3 — the microscope achieves strong performance [DECOMPOSED]
+   ├─ H-C3.1 — sensitivity: low-concentration LoD and small-particle
+   │           detectability (e.g. 50-nm plastic beads) [OPEN]
+   ├─ H-C3.2 — spatial resolution using small beads [OPEN]
+   ├─ H-C3.3 — spectral fidelity by comparing SRP and Raman on a sample [OPEN]
+   ├─ H-C3.4 — penetration depth, only if improved [CONDITIONAL]
+   └─ H-C3.5 — speed [OPEN]
+```
+
+Current pending prompt:
+
+> 先展开 H-C3.1 的低浓度灵敏度：你会怎样定义并计算 LoD？
+
+Event 12 — `CLAIMS_EXPAND_H-C3.1_LOD`
+
+Human response:
+
+> 3σ/k，σ是baseline STD，k是calibration curve的slope。
+
+Structural operation: the human supplied a reusable LoD definition and calculation relation. H-C3.1.1 records `LoD = 3σ/k`, with the human's definitions of σ and k, and is marked sufficient/closed without additional scientific explanation.
+
+Current pending prompt:
+
+> 先展开 H-C3.2：你会怎样用 small-bead measurement 定义并估计显微镜的空间分辨率？

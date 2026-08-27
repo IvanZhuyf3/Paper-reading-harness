@@ -15,11 +15,11 @@
 | Supplement hash matches model | PASS | state=F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16023B2, model=F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16023B2 |
 | Current stage is valid | PASS | claims |
 | Completed stages form the prefix before the current stage | PASS | completed=['knowledge', 'idea'], expected=['knowledge', 'idea'] |
-| Asked IDs are unique | PASS | count=13 |
+| Asked IDs are unique | PASS | count=12 |
 | Selection seed is persisted | PASS | 2026082701 |
 | Revealed paper-claim IDs resolve | PASS | missing=[] |
 | Human-node parents resolve | PASS | missing=[] |
-| Unique next interaction is persisted | PASS | cursor=CLAIMS.H-C3.2.awaiting_resolution_calibration, pending_prompt=CLAIMS_EXPAND_H-C3.2_RESOLUTION |
-| Event sequence is contiguous | PASS | events=12 |
+| Unique next interaction is persisted | PASS | cursor=CLAIMS.H-C3.1.awaiting_lod_definition, pending_prompt=CLAIMS_EXPAND_H-C3.1_LOD |
+| Event sequence is contiguous | PASS | events=11 |
 
 The audit verifies that the persisted TOML state can identify its frozen paper model and recover a unique next interaction. It does not evaluate the scientific content of the human rollout.
