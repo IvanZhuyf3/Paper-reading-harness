@@ -10,14 +10,14 @@ supplement_sha256 = "F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16
 selection_policy_version = "1.2"
 selection_seed = 2026082701
 current_stage = "evidence"
-resume_cursor = "EVIDENCE.M1.awaiting_thermometry_validity"
-asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3", "CLAIMS_EXPAND_H-C3.1_LOD", "CLAIMS_EXPAND_H-C3.2_RESOLUTION", "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY", "CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC", "CLAIMS_EXPAND_H-C3.5_SPEED", "CLAIMS_FINISH_OR_ADD", "CLAIMS_FINISH", "EVIDENCE_M1_THERMOMETRY_VALIDITY"]
+resume_cursor = "EVIDENCE.M1.awaiting_thermometry_controls"
+asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3", "CLAIMS_EXPAND_H-C3.1_LOD", "CLAIMS_EXPAND_H-C3.2_RESOLUTION", "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY", "CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC", "CLAIMS_EXPAND_H-C3.5_SPEED", "CLAIMS_FINISH_OR_ADD", "CLAIMS_FINISH", "EVIDENCE_M1_THERMOMETRY_VALIDITY", "EVIDENCE_M1_THERMOMETRY_CONFOUNDS"]
 verified_knowledge_ids = ["K1", "K2"]
 rollout_complete = false
 completed_stages = ["knowledge", "idea", "claims"]
 revealed_paper_claim_ids = ["T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "M3", "S3.1", "S3.2", "S3.3"]
-pending_prompt_id = "EVIDENCE_M1_THERMOMETRY_VALIDITY"
-pending_prompt_text = "针对 M1 的局部温升 claim：为什么 fluorescence thermometer 的 fluorescence change 可以解释为 temperature change？必须先建立哪条 calibration relation？"
+pending_prompt_id = "EVIDENCE_M1_THERMOMETRY_CONFOUNDS"
+pending_prompt_text = "除了温度，还有哪些因素可能改变 Rhodamine B fluorescence？你会用什么 control 排除它们？"
 human_is_paper_author = true
 spoiler_control_test_valid = false
 
@@ -269,6 +269,14 @@ bucket = "application"
 status = "deferred"
 content = "Dynamic sample visibly moving + report frame rate（动态样品在动 + 标 frame rate）。"
 
+[[human_evidence_designs]]
+id = "H-E-M1-THERMOMETRY"
+stage = "evidence"
+target_paper_claims = ["M1"]
+status = "human_designed"
+evidence_type = "fluorescence thermometry"
+content = "Rhodamine B quantum yield/fluorescence negatively correlates with temperature; establish a ΔF/F–ΔT calibration with an approximately −2% per K local slope; use the calibration to infer temperature change from fluorescence change（Rhodamine B 的 quantum yield/fluorescence 与温度负相关；建立 ΔF/F–ΔT calibration，local slope 约 −2%/K；用 calibration 将 fluorescence change 推到 temperature change）。"
+
 [[human_nodes]]
 id = "H-C4"
 stage = "claims"
@@ -416,3 +424,8 @@ human_response = "接下来需要有一些application。一般一个侧重仪器
 sequence = 18
 prompt_id = "CLAIMS_FINISH"
 human_response = "ok，结束rollout"
+
+[[events]]
+sequence = 19
+prompt_id = "EVIDENCE_M1_THERMOMETRY_VALIDITY"
+human_response = "因为很多dye的Quantum yield和温度有负相关，比如rhodamine B，他就有2%/K的fluorescence/temperature 相关。建立这个calibration就能测温度了。"

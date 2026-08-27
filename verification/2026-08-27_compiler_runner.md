@@ -54,7 +54,7 @@ The harness now compiles and persists an auditable paper model before runner que
 - Completed-stage prefix: PASS.
 - Revealed paper-claim references: PASS.
 - Human-node parent graph: PASS.
-- Unique next interaction cursor: `EVIDENCE.M1.awaiting_thermometry_validity`.
+- Unique next interaction cursor: `EVIDENCE.M1.awaiting_thermometry_controls`.
 
 ## Current session checkpoint — event 8
 
@@ -127,6 +127,13 @@ The harness now compiles and persists an auditable paper model before runner que
 - Revealed paper-claim IDs: `T0`, `M1`, `S1.1`, `S1.2`, `S1.3`, `M2`, `S2.1`, `S2.2`, `S2.3`, `M3`, `S3.1`, `S3.2`, `S3.3`.
 - Unique next interaction cursor: `EVIDENCE.M1.awaiting_thermometry_validity`.
 - Pending prompt ID: `EVIDENCE_M1_THERMOMETRY_VALIDITY`.
+
+## Current session checkpoint — event 19
+
+- Canonical session-state audit: PASS — 15/15 checks.
+- Event sequence: contiguous through event 19.
+- Unique next interaction cursor: `EVIDENCE.M1.awaiting_thermometry_controls`.
+- Pending prompt ID: `EVIDENCE_M1_THERMOMETRY_CONFOUNDS`.
 
 ## Code checks
 

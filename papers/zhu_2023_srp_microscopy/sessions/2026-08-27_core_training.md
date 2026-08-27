@@ -14,8 +14,8 @@
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
 **Current state:** EVIDENCE
-**Resume cursor:** `EVIDENCE.M1.awaiting_thermometry_validity`
-**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`, `CLAIMS_EXPAND_H-C3.5_SPEED`, `CLAIMS_FINISH_OR_ADD`, `CLAIMS_FINISH`, `EVIDENCE_M1_THERMOMETRY_VALIDITY`
+**Resume cursor:** `EVIDENCE.M1.awaiting_thermometry_controls`
+**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`, `CLAIMS_EXPAND_H-C3.5_SPEED`, `CLAIMS_FINISH_OR_ADD`, `CLAIMS_FINISH`, `EVIDENCE_M1_THERMOMETRY_VALIDITY`, `EVIDENCE_M1_THERMOMETRY_CONFOUNDS`
 
 ## Disclosure note
 
@@ -472,3 +472,24 @@ EVIDENCE re-anchor: the next task is human evidence/proof design attached to rev
 Current pending prompt:
 
 > 针对 M1 的局部温升 claim：为什么 fluorescence thermometer 的 fluorescence change 可以解释为 temperature change？必须先建立哪条 calibration relation？
+
+Event 19 — `EVIDENCE_M1_THERMOMETRY_VALIDITY`
+
+Human response:
+
+> 因为很多dye的Quantum yield和温度有负相关，比如rhodamine B，他就有2%/K的fluorescence/temperature 相关。建立这个calibration就能测温度了。
+
+Human-designed evidence structure under paper M1:
+
+```text
+Rhodamine B quantum yield/fluorescence negatively correlates with temperature
+→ establish ΔF/F–ΔT calibration
+→ local slope approximately −2% per K
+→ infer temperature change from fluorescence change using the calibration
+```
+
+Structural operation: this records the human's fluorescence-thermometry inference as a human-designed evidence proposal. It does not judge the paper result or add an independent interpretation beyond the supplied calibration relation.
+
+Current pending prompt:
+
+> 除了温度，还有哪些因素可能改变 Rhodamine B fluorescence？你会用什么 control 排除它们？
