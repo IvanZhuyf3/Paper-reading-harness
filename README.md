@@ -77,6 +77,22 @@ The human's divergent trajectory is retained as useful output, but it does not r
 
 The paper is not a unique answer key. It is a high-quality trajectory that survived contact with reality.
 
+## Compile before run
+
+Do not reconstruct the hidden paper structure turn by turn. Before the first runner question:
+
+```text
+source PDF
+→ compile complete paper model
+→ persist model + audit report
+→ validate anchors, visibility, and parseability
+→ start runner from the fixed model version
+```
+
+The session stores the model path/version, current stage, selection history, current human structure, and resume cursor after every turn. This keeps the runner compatible with approved models and makes session compaction recoverable.
+
+Question selection is rule-governed rather than purely random. KNOWLEDGE may use seeded sampling from eligible prerequisite nodes. IDEA exposes the complete problem state. CLAIMS and EVIDENCE select only from the human's exposed structure and generic structural prompts; they never sample hidden paper nodes.
+
 ## Agent boundary
 
 The agent may actively verify prerequisite facts and inject concise knowledge pretraining. During IDEA, CLAIMS, EVIDENCE, and DELTA, its role is structural:
@@ -100,9 +116,10 @@ The FOUNDATION exception follows a simple premise: thinking searches over the gr
 
 ## Paper-model trust lifecycle
 
-- Newly generated models may be saved under `paper_models/pending/`.
+- Newly generated models are saved inside `papers/<paper_slug>/model/` and registered in the pending pool.
 - Pending models are provisional and must not be automatically reused in later sessions.
+- The originating session may use its freshly compiled pending model after validation.
 - A human-approved record enters `curriculum/` and the approved index.
 - An approved record has priority over a fresh agent reconstruction.
 
-See `protocols/` for session behavior, `templates/` for artifacts, `papers/` for isolated source-and-session workspaces, `paper_models/` for the general provisional pool, and `curriculum/` for approved reusable records.
+See `protocols/` for session behavior, `templates/` for artifacts, `scripts/` for reusable validation, `papers/` for isolated source-and-session workspaces, `paper_models/` for the general provisional pool, and `curriculum/` for approved reusable records.

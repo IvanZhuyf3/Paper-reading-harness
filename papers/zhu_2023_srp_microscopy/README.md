@@ -17,6 +17,9 @@
 - **Bytes:** 1,302,540
 - **SHA-256:** `B51735420198D699D8C0F3976617F9CA3DFAA2D8E25EE5B3145A70D884CC8A09`
 - **Copy verified against Zotero source:** YES
+- **Supplement:** `source/Zhu_et_al_2023_SRP_microscopy_supplement.pdf`
+- **Supplement pages:** 30
+- **Supplement SHA-256:** `F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16023B2`
 
 The source PDF is treated as immutable.
 
@@ -31,8 +34,11 @@ The source PDF is treated as immutable.
 
 - Paper identified and copied.
 - Page-delimited text and 12 page renders generated under `artifacts/`.
+- Supplement text and 30 page renders generated under `artifacts/`.
 - Source/render inspection: passed; see `artifacts/inspection_manifest.md`.
-- Paper model: not yet generated.
+- Paper model: `model/paper_model.pending.toml`, version 0.1.1.
+- Paper-model SHA-256: `BEB27FAA21120AF3E9D60C3E2A0B99DAC5EACE01D320C6DAA7BEFDCB0A07366A`.
+- Mechanical/source audit: `model/paper_model.audit.md`, 21/21 checks passed.
 - Human approval: not reviewed.
 - Curriculum status: not approved for reuse.
 - Active saved session: `sessions/2026-08-27_core_training.md`.

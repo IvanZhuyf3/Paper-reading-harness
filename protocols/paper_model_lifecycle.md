@@ -7,16 +7,20 @@ Paper models have two trust states.
 Location:
 
 ```text
-paper_models/pending/
+papers/<paper_slug>/model/paper_model.pending.toml
+papers/<paper_slug>/model/paper_model.audit.md
 ```
 
 A pending model:
 
 - may be generated and saved after a session;
+- should normally be compiled and validated before the originating runner begins;
 - must be visibly labeled `PENDING — NOT HUMAN APPROVED`;
 - may be inspected or edited by a human;
 - must not be automatically selected as a reusable reference in a later session;
 - must not appear in the approved curriculum index.
+
+The originating session may use the freshly compiled pending model when its path, version, source hash, and audit status are pinned in the session record. This is current-session execution, not cross-session reuse.
 
 Pending is a fishing pool for potentially valuable reconstructions, not a trusted cache.
 
@@ -46,7 +50,7 @@ At a new session:
 
 ```text
 approved record exists → use it
-no approved record → reconstruct from the supplied paper for this session
+no approved record → compile, persist, and validate a pending model
 pending record exists → do not auto-reuse; leave it for human review
 ```
 

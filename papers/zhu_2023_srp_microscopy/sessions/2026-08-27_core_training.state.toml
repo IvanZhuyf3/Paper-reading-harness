@@ -1,0 +1,80 @@
+state_version = "1.0"
+session_id = "2026-08-27_core_training"
+runner = "training"
+level = "core"
+paper_model_path = "../model/paper_model.pending.toml"
+paper_model_version = "0.1.1"
+paper_model_sha256 = "BEB27FAA21120AF3E9D60C3E2A0B99DAC5EACE01D320C6DAA7BEFDCB0A07366A"
+main_source_sha256 = "B51735420198D699D8C0F3976617F9CA3DFAA2D8E25EE5B3145A70D884CC8A09"
+supplement_sha256 = "F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16023B2"
+selection_policy_version = "1.0"
+selection_seed = 2026082701
+current_stage = "idea"
+resume_cursor = "IDEA.H-I2.mechanism_confirmed.awaiting_finish"
+asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING"]
+verified_knowledge_ids = ["K1", "K2"]
+rollout_complete = false
+pending_prompt_id = "IDEA_FINISH"
+pending_prompt_text = "Are you ready to end this IDEA rollout?"
+human_is_paper_author = true
+spoiler_control_test_valid = false
+
+[[human_nodes]]
+id = "H-I1"
+stage = "idea"
+parents = []
+status = "withdrawn"
+content = "Convert the measurement modality and combine SRS with a more sensitive photothermal readout."
+
+[[human_nodes]]
+id = "H-I1.1"
+stage = "idea"
+parents = ["H-I1"]
+status = "withdrawn"
+content = "SRS deposits vibrational energy; relaxation produces heat, temperature change, and refractive-index change for PT readout."
+
+[[human_nodes]]
+id = "H-I2"
+stage = "idea"
+parents = []
+status = "active"
+content = "Set the modulation frequency to one-half of the laser repetition rate."
+
+[[human_nodes]]
+id = "H-I2.1"
+stage = "idea"
+parents = ["H-I2"]
+status = "active"
+content = "At f_m = f_rep/2, the f_rep - f_m component coincides with f_m."
+
+[[human_nodes]]
+id = "H-I2.2"
+stage = "idea"
+parents = ["H-I2.1"]
+status = "active"
+content = "Both contributions enter the same lock-in channel coherently, with an expected doubling of demodulated signal intensity."
+
+[[events]]
+sequence = 1
+prompt_id = "K1"
+human_response = "SRL and SRG; normally detect the optical-intensity changes from these processes."
+
+[[events]]
+sequence = 2
+prompt_id = "K2"
+human_response = "Limited modulation depth and shot-noise limit; excessive optical power causes photodamage."
+
+[[events]]
+sequence = 3
+prompt_id = "IDEA_FIXED"
+human_response = "Convert the measurement modality and use a more sensitive modality, for example PT."
+
+[[events]]
+sequence = 4
+prompt_id = "IDEA_CLARIFY_H-I1"
+human_response = "SRS is a real transition that produces heat; PT measures heat to temperature to refractive-index change."
+
+[[events]]
+sequence = 5
+prompt_id = "IDEA_CLARIFY_H-I2_FOLDING"
+human_response = "Confirmed that f_rep - f_m coincides with f_m at half the repetition rate and is coherently read by the same lock-in channel."

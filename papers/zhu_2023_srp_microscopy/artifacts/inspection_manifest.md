@@ -23,6 +23,17 @@
 
 - `extracted_text.txt`: UTF-8, page-delimited extraction produced with `pypdf`.
 - `rendered_pages/page-01.jpg` through `page-12.jpg`: 120-DPI Poppler renders.
+- `supplement_extracted_text.txt`: UTF-8, page-delimited extraction of the 30-page supplement.
+- `supplement_rendered_pages/page-01.jpg` through `page-30.jpg`: 100-DPI Poppler renders.
+
+## Supplement source
+
+- Local source: `source/Zhu_et_al_2023_SRP_microscopy_supplement.pdf`
+- Bytes: 2,323,974
+- SHA-256: `F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16023B2`
+- PDF magic/header: PASS
+- Pages: 30
+- Encrypted: no
 
 ## Visual verification
 
@@ -31,3 +42,5 @@
 - PASS — no clipped pages, black pages, missing figure panels, or unreadable page-level layout were observed.
 - NOTE — Poppler reported missing display-font messages for `Symbol` and `ArialUnicode` during rendering. Visual inspection found the scientific symbols and page content readable in the generated pages.
 - NOTE — embedded text extraction contains abnormal inter-letter spaces in parts of the article. Use the rendered/source PDF, not extracted text alone, when preserving exact author wording.
+- PASS — supplement pages containing Figs. S2–S4, S8–S12, S17–S18, and Table S1 were visually inspected and are readable.
+- NOTE — main-text numerical statements associated with Fig. S18D do not transparently match the ratios obtained from the table values; the pending model preserves both representations without resolving them.

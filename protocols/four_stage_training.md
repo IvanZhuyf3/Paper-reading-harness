@@ -5,9 +5,11 @@ The default human has not read the paper. The agent may inspect the full paper i
 ## Session start
 
 1. Identify the paper and its source.
-2. Use a human-approved curriculum record if available; otherwise reconstruct the model for this session.
-3. Ask explicitly for `FOUNDATION`, `CORE`, or `ADVANCED`.
-4. Do not treat a pending, unapproved model as reusable reference material.
+2. Use a human-approved curriculum record if available; otherwise compile and persist a pending model before asking training questions.
+3. Validate the model and pin its path/version/source hash in the session record.
+4. Ask explicitly for `FOUNDATION`, `CORE`, or `ADVANCED`.
+5. Store a selection seed and persist the session cursor after every turn.
+6. Do not treat a pending, unapproved model as reusable reference material in later sessions.
 
 ## Stage control loop
 

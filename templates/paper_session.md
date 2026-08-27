@@ -4,9 +4,16 @@
 **Identifier / source:**
 **Runner:** TRAINING
 **Level:** FOUNDATION / CORE / ADVANCED
-**Paper-model source:** approved record / fresh reconstruction
+**Paper-model source:** approved record / compiled pending model for originating session
+**Paper-model path:**
+**Paper-model version:**
+**Source SHA-256:**
+**Selection policy version:**
+**Selection seed:**
 **Human had not read paper at entry:** YES
 **Current state:** KNOWLEDGE / IDEA / CLAIMS / EVIDENCE / INDEPENDENT READING / DELTA / COMPLETE
+**Resume cursor:**
+**Asked node/prompt IDs:**
 
 ## 1. KNOWLEDGE
 

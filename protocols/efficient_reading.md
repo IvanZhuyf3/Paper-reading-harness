@@ -5,8 +5,9 @@
 ## Entry
 
 1. Identify the paper.
-2. Load a human-approved model if available; otherwise reconstruct the paper for the current session.
-3. Present a compact unified claim-tree overview.
+2. Load a human-approved model if available; otherwise compile, persist, and validate a pending model for this session.
+3. Pin the model path/version/hash in a recoverable session record.
+4. Present a compact unified claim-tree overview.
 
 ## Default overview
 

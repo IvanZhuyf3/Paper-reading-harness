@@ -1,0 +1,30 @@
+state_version = "1.0"
+session_id = ""
+runner = "training"
+level = "core"
+paper_model_path = ""
+paper_model_version = ""
+paper_model_sha256 = ""
+main_source_sha256 = ""
+supplement_sha256 = ""
+selection_policy_version = "1.0"
+selection_seed = 0
+current_stage = "knowledge"
+resume_cursor = ""
+asked_ids = []
+verified_knowledge_ids = []
+rollout_complete = false
+pending_prompt_id = ""
+pending_prompt_text = ""
+
+[[human_nodes]]
+id = ""
+stage = ""
+parents = []
+status = "active"
+content = ""
+
+[[events]]
+sequence = 1
+prompt_id = ""
+human_response = ""

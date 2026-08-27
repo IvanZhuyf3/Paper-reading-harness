@@ -1,0 +1,427 @@
+===== SUPPLEMENT PDF PAGE 1 =====
+Supplementary Materials for
+Stimulated Raman Photothermal Microscopy Towards Ultrasensitive
+Chemical Imaging
+Yifan Zhu et al.
+Corresponding author: Ji-Xin Cheng, jxcheng@bu.edu
+Sci. Adv. 9, eadi2181 (2023)
+DOI: 10.1126/sciadv.adi2181
+The PDF file includes:
+Supplementary Text
+Figs. S1 to S18
+Table S1
+Legends for movies S1 and S2
+References
+Other Supplementary Material for this manuscript includes the following:
+Movies S1 and S2
+
+===== SUPPLEMENT PDF PAGE 2 =====
+2
+Supplementary Text
+The SRP Ball lens model
+The model is defined in pure liquid under the SRS excitation of pump and Stokes laser pulses
+with photon flux 𝜙 (photon·cm−2·s−1) defined as:
+𝜙 =
+𝑃
+ℎ𝜈∙𝐴 ∙
+1
+𝑓𝑟𝑒𝑝𝜏𝑒𝑥𝑐
+(S1)
+where the P is average laser power, h is the Planck constant, ν is the laser frequency, frep is the
+laser repetition rate, and τexc is the laser pulse width. The number of SRS events (𝑁𝑆𝑅𝑆) induced by
+a single pair of pump and Stokes pulses is given by:
+𝑁𝑆𝑅𝑆 = 𝑁𝑚𝑜𝑙 ∙ 𝜎𝑆𝑅𝑆 ∙ 𝜙𝑝𝑢𝑚𝑝 ∙ 𝜙𝑆𝑡𝑜𝑘𝑒𝑠 ∙ 𝜏𝑒𝑥𝑐 (S2)
+where 𝑁𝑚𝑜𝑙  is the number of Raman active chemical bonds in the laser focus, 𝜎𝑆𝑅𝑆  is the
+stimulated Raman cross -section (unit in cm 4·s·photon−1), and 𝜙𝑝𝑢𝑚𝑝 and 𝜙𝑆𝑡𝑜𝑘𝑒𝑠 are the photon
+flux of pump and Stokes lasers, respectively.
+The energy deposition (𝑄) through the SRS process is then given by:
+𝑄 = ℏ𝜔𝑆𝑅𝑆 ∙ 𝑁𝑆𝑅𝑆 (𝑆3)
+where ℏ is the reduced Planck constant and 𝜔𝑆𝑅𝑆 is the Raman transition energy.
+Under the approximation that SRS excitation creates uniform heating in a spherically symmetric
+region, with its radius (r) defined as half of the lateral resolution of SRS excitation:
+𝑟 =  1
+4𝑁𝐴 √1 ( 1
+𝜆𝑝𝑢𝑚𝑝2 + 1
+𝜆𝑆𝑡𝑜𝑘𝑒𝑠
+2 )⁄ (𝑆4)
+and excitation volume:
+𝑉𝑆𝑅𝑆 = 4
+3 𝜋𝑟3 (𝑆5)
+In this region, energy deposition causes a temperature rise (∆𝑇):
+∆𝑇 = 𝑄
+𝐶𝑝 ∙ 𝑉𝑆𝑅𝑆
+(𝑆6)
+where 𝐶𝑝 is the heat capacity at constant pressure of the medium and 𝑉𝑆𝑅𝑆 is the volume of the
+SRS excitation. Thermal diffusion is not considered as the energy deposition of a single pair of
+laser pulses is finished within the thermal confinement time (~1 μs). The pressure is assumed to
+be constant as the stress confinement time (< 1 ns) is too short to be captured by the current
+measurement system (20 MHz).
+The elevated temperature then changes the refractive index of the medium (∆𝑛):
+∆𝑛 = ∆𝑇 ∙ 𝑑𝑛
+𝑑𝑇 (𝑆7)
+where 𝑑𝑛 𝑑𝑇⁄  is the thermo-optic coefficient of the medium.
+As shown in Fig. S4, the changed refractive index effectively forms a thermal ball lens, with its
+focal length 𝑓 satisfing the relationship that:
+
+===== SUPPLEMENT PDF PAGE 3 =====
+3
+1
+𝑓 = 2
+𝑟 (𝑛1
+𝑛0
+− 1) = 2∆𝑛
+𝑛0𝑟 (𝑆8)
+Here, 𝑟 is the radius of the ball lens, 𝑛0 is the refractive index of the medium, and 𝑛1 is the
+refractive index of the ball lens.
+To probe the thermal lens effect, we introduce a focused Gaussian probe laser that is collinear with
+the laser beams for SRS. The ball lens changes the propagation of the probe light, with the dashed
+lines indicating the light propagation without a ball lens, and the solid lines indicating light
+propagation with a ball lens:
+1
+𝑓 =
+1
+𝑞 −
+1
+𝑧𝑓
+(𝑆9)
+where zf denotes the offset between the SRS and probe laser focus.
+Under the paraxial approximation, for an annular ray of light with incident angle  as shown in
+Fig. S3, Eq. (S9) becomes:
+1
+𝑓 ≈ ∆Θ(𝜃)
+𝑧𝑓𝑠𝑖𝑛𝜃𝑐𝑜𝑠𝜃 (𝑆10)
+Here, ∆Θ(𝜃) is the change of propagation angle of the probe light at angle 𝜃.
+Combining Eq. (S8) and Eq. (S10) yields the change of laser propagation angle ∆Θ induced by the
+ball lens as a function of incident angle 𝜃:
+∆Θ(𝜃) = 2𝑧𝑓 ∙ ∆𝑛 ∙ 𝑠𝑖𝑛𝜃𝑐𝑜𝑠𝜃
+𝑛0𝑟 (𝑆11)
+The far-field annular intensity distribution of the probe laser, 𝐼(𝜃), can be written as
+𝐼(𝜃) = 𝐼0𝜋𝑍𝑅
+2 ∙ 𝜃 ∙ exp (− 𝑍𝑅
+2
+𝜔0
+2 ∙ 𝜃2) (𝑆12)
+where 𝑍𝑅 is the Rayleigh length of the laser focus and 𝜔0 is the beam waist.  After propagating
+through the ball lens, the probe laser intensity is measured by a photodetector with angular
+detection aperture size 𝜃𝐷𝑒𝑡. Thus, the SRP signal is calculated as the intensity difference with the
+presence or absence of the ball lens:
+𝐼𝑆𝑅𝑃 = ∫ 𝐼(𝜃 + ∆Θ(𝜃))
+𝜃𝐷𝑒𝑡
+0
+𝑑𝜃− ∫ 𝐼(𝜃)
+𝜃𝐷𝑒𝑡
+0
+𝑑𝜃 ≈ 𝐼(𝜃𝐷𝑒𝑡)∙ ∆Θ(𝜃𝐷𝑒𝑡) (𝑆13)
+Combining all above equations gives:
+𝐼𝑆𝑅𝑃 ≈ 𝐼(𝜃𝐷𝑒𝑡)4𝑧𝑓 ∙ 𝑠𝑖𝑛𝜃𝐷𝑒𝑡 ∙ 𝑐𝑜𝑠𝜃𝐷𝑒𝑡
+𝑛0𝑟 ∙ 1
+𝐶𝑝
+𝑑𝑛
+𝑑𝑇 ∙ 1
+𝑉𝑆𝑅𝑆
+∙ (ℏ𝜔𝑆𝑅𝑆) (𝑁𝑚𝑜𝑙𝜎𝑆𝑅𝑆𝜙𝑝𝑢𝑚𝑝𝜙𝑆𝑡𝑜𝑘𝑒𝑠𝜏𝑒𝑥𝑐)(𝑆14)
+In Eq. (S14),
+1
+𝐶𝑝
+𝑑𝑛
+𝑑𝑇 denotes the thermal and thermo -optic properties of the sample environment.
+VSRS denotes the volume of heating.  ℏ𝜔𝑆𝑅𝑆 represents the energy of vibrational transition.
+𝑁𝑚𝑜𝑙𝜎𝑆𝑅𝑆𝜙𝑝𝑢𝑚𝑝𝜙𝑆𝑡𝑜𝑘𝑒𝑠𝜏𝑒𝑥𝑐  represents the number of transitions caused by SRS
+Under the tight focusing condition, a FDTD simulation is conducted to calculate the dependence
+of SRP intensity on the molecular concentration. First, a thermal ball lens model is generated in
+
+===== SUPPLEMENT PDF PAGE 4 =====
+4
+
+MATLAB as a matrix, where the refractive index outside the ball lens is set to the refractive
+index of the DMSO medium (n 0 = 1.4793), and the refractive index inside the ball lens region is
+set to different lower values (n = n0 + Δn). Then, the thermal ball lens model is imported into
+FDTD as an “(n,k) material” object. A Gaussian focused light source is sent through the thermal
+ball lens object and is measured with a far-field intensity analyzer, of which the output is a far-
+field angular distribution of intensity. The middle 31° (~0.4 NA) of the angular distribution of
+intensity is integrated, then subtracted by the corresponding 0-concentration value to determine
+the SRP signal intensity.
+
+===== SUPPLEMENT PDF PAGE 5 =====
+
+5
+Fig. S1. Simulation modal for SRP induced thermal effect. (A) Thermal effect generation
+scheme. (B) Schematic of a heat diffusion model. The system is meshed into concentric spherical
+shells. The red arrow indicates the thermal propagation direction.
+
+===== SUPPLEMENT PDF PAGE 6 =====
+
+6
+Fig. S2. Measured fluorescence of rhodamine 800 in DMSO during an SRS process. The
+beating frequency ( ωp−ωs) was tuned to 2913 cm −1 for On-Resonance and 2850 cm −1 for Off-
+Resonance.
+
+===== SUPPLEMENT PDF PAGE 7 =====
+
+7
+Fig. S3. Thermal ball lens model. The solid line indicates the propagation in the absence of a ball
+lens. The dashed line indicates the propagation of the probe laser in the presence of a ball lens. n0
+is the refractive index of the medium. n is the change of refractive index induced by the SRP
+effect.
+
+===== SUPPLEMENT PDF PAGE 8 =====
+8
+Fig. S4. Finite-difference time-domain simulation of SRP in high NA condition shows linear
+relationship between relative concentration and SRP signal intensity. Probe laser illumination
+NA: 1.47; collection NA: 0.4; simulation wavelength: 520 nm.
+
+===== SUPPLEMENT PDF PAGE 9 =====
+
+9
+Fig. S5. Electronic control and data acquisition flow in the SRP microscope.
+
+===== SUPPLEMENT PDF PAGE 10 =====
+10
+Fig. S6. Data processing of a  thermal dynamic trace recorded by a n SRP microscope. The
+signal is acquired from a single 100 -nm PMMA nanoparticle at Raman shift of 2950 cm -1
+immersed in glycerol-d8. FFT: fast Fourier transform; iFFT: inverse fast Fourier transform.
+
+===== SUPPLEMENT PDF PAGE 11 =====
+11
+Fig. S7. Simulation results for the shape of temperature gradient  (A) and thermal lens (B)
+induced by the SRS absorption of a 100-nm PMMA particle in glycerol or water. The PMMA
+particle is placed at x = 0. Two local minimums of refractive index change appear at two PMMA-
+medium boundaries, due to the sudden change of thermos -optic coefficients ( dn/dT) at the
+boundaries.
+
+===== SUPPLEMENT PDF PAGE 12 =====
+12
+Fig. S8. SRP spectral fidelity. (A) Comparison between SRS and SRP spectr a of pure DMSO.
+(B) Comparison between SRS and SRP spectra of a 500-nm PMMA particle.
+
+===== SUPPLEMENT PDF PAGE 13 =====
+
+13
+Fig. S9. Complete data set of LOD measurement of DMSO dissolved in DMSO-d6 with SRP
+(A) and SRS (B). Unit of concentration: mM.
+
+===== SUPPLEMENT PDF PAGE 14 =====
+14
+Fig. S10. Limit of detection (LOD) of SRP and SRS for 1,7-Octadiyne in DMSO. (A-B) SRP
+(A) or SRS (B) signal with a gradient concentration of 1,7 -Octadiyne dissolved in DMSO. Insert
+shows the signal intensity as a function of concentration. ( C-D) The complete data set of LOD
+measurement with SRP (C) and SRS (D). Unit of concentration: mM.
+
+===== SUPPLEMENT PDF PAGE 15 =====
+
+15
+Fig. S11. Limit of Detection (LOD) of SRP and SRS for DMSO-d6 in DMSO. (A-B) SRP (A)
+or SRS (B) signal with a gradient concentration of DMSO-d6 dissolved in DMSO. Concentration
+unit: mM. Insert shows the signal intensity as a function of concentration. ( C-D) The complete
+data set of LOD measurement with SRP (C) and SRS (D).
+
+===== SUPPLEMENT PDF PAGE 16 =====
+16
+Fig. S12. SRP spectrum of a single 100 nm PMMA nanoparticle immersed in glycerol. The
+peak around 2950 cm-1 is from CH3 stretching vibration in PMMA.
+
+===== SUPPLEMENT PDF PAGE 17 =====
+17
+Fig. S13. Phasor analysis for the SRP image of SJSA-1 cells in aqueous environment. (A) Segmentation
+of the SRP image in the phasor domain. ( B) The SRP spectrum at C -H region for each component. ( C)
+Mapping of each component from phasor analysis. Scale bar: 10 μm.
+
+===== SUPPLEMENT PDF PAGE 18 =====
+
+18
+Fig. S14. Hyperspectral SRP imaging of SJSA-1 cell in PBS. Data were shown with 20 cm−1 spectral
+step. The cells were incubated with (A) or without (B) deuterated palmitic acid (PA-d31) for 18 h prior to
+imaging. Scale bar: 10 μm.
+
+===== SUPPLEMENT PDF PAGE 19 =====
+
+19
+Fig. S15. SRP imaging of a mouse brain slice immersed in PBS. (A) Picture of the brain slice
+sample. (B-D) Representative SRP images of the brain slice sample at 2930 cm -1. Scale bar = 12
+µm.
+
+===== SUPPLEMENT PDF PAGE 20 =====
+
+20
+Fig. S16. Phasor analysis for the SRP image of glycerol-d8 immersed Mia PACA-2 cells. (A)
+Segmentation of the SRP image in the phasor domain. ( B) Maps of each component from phasor
+analysis. Scale bar = 5 µm. (C) The SRP spectrum at C-H region for each component.
+
+===== SUPPLEMENT PDF PAGE 21 =====
+21
+Fig. S17. Comparison between SRP and SRS images of SKOV3 cell immersed in glycerol-d8.
+(A) SRP and SRS images  taken at three Raman shifts for lipid, protein and DNA . Scale bar: 10
+μm. (B) The intensity profiles along the arrow-indicated lines in the SRP and SRS images at 2967
+cm-1.
+
+===== SUPPLEMENT PDF PAGE 22 =====
+22
+Fig. S18. Compare SRP and SRS performance under different light collection condition. SRP
+(A) and SRS (B) images of 500 nm PMMA nanoparticles recorded with 1.2 (NA) water objective
+for focusing and a 0.5 NA air condenser for signal collection. Raman shift: 2950 cm−1. Scale bar:
+1.5 μm. (C) Comparison between the SRP and SRS spectra of a single 500 nm PMMA nanoparticle.
+The broader line profile in SRS with low NA collection (blue line) is caused by a Raman -
+independent cross-phase modulation background. (D) Image quality comparison between SRP and
+SRS images. BG: background. SBR: signal-to-background ratio.
+
+===== SUPPLEMENT PDF PAGE 23 =====
+
+23
+Table S1. Thermal and thermo-optic properties and estimated relative signal intensity of the
+materials related to the study.
+
+===== SUPPLEMENT PDF PAGE 24 =====
+24
+Movie S1. SRP imaging of lipid dynamics inside a living SJSA-1 cell. Frame rate: 2.8 s/frame. Scale
+bar: 5 μm.
+Movie S2. Hyperspectral C-H SRP imaging of fixed SJSA-1 cell in aqueous environment. Scale bar:
+10 μm.
+
+===== SUPPLEMENT PDF PAGE 25 =====
+REFERENCES AND NOTES
+1. C. W. Freudiger, W. Min, B. G. Saar, S. Lu, G. R. Holtom, C. He, J. C. Tsai, J. X. Kang, X. S. Xie,
+Label-free biomedical imaging with high sensitivity by stimulated Raman scattering microscopy.
+Science 322, 1857–1861 (2008).
+2. W. Min, C. W. Freudiger, S. Lu, X. S. Xie, Coherent nonlinear optical imaging: Beyond fluorescence
+microscopy. Annu. Rev. Phys. Chem. 62, 507–530 (2011).
+3. J.-X. Cheng, X. S. Xie, Vibrational spectroscopic imaging of living systems: An emerging platform for
+biology and medicine. Science 350, aaa8870 (2015).
+4. Z. Zhao, Y. Shen, F. Hu, W. Min, Applications of vibrational tags in biological imaging by Raman
+microscopy. Analyst 142, 4018–4029 (2017).
+5. M. Ji, D. A. Orringer, C. W. Freudiger, S. Ramkissoon, X. Liu, D. Lau, A. J. Golby, I. Norton, M.
+Hayashi, N. Y. R. Agar, G. S. Young, C. Spino, S. Santagata, S. Camelo-Piragua, K. L. Ligon, O.
+Sagher, X. S. Xie, Rapid, label-free detection of brain tumors with stimulated Raman scattering
+microscopy. Sci. Transl. Med. 5, 201ra119 (2013).
+6. D. A. Orringer, B. Pandian, Y. S. Niknafs, T. C. Hollon, J. Boyle, S. Lewis, M. Garrard, S. L. Hervey-
+Jumper, H. J. L. Garton, C. O. Maher, J. A. Heth, O. Sagher, D. A. Wilkinson, M. Snuderl, S. Venneti,
+S. H. Ramkissoon, K. A. McFadden, A. Fisher-Hubbard, A. P. Lieberman, T. D. Johnson, X. S. Xie, J.
+K. Trautman, C. W. Freudiger, S. Camelo-Piragua, Rapid intraoperative histology of unprocessed
+surgical specimens via fibre-laser-based stimulated Raman scattering microscopy. Nat. Biomed. Eng. 1,
+0027 (2017).
+7. F. Hu, Z. Chen, L. Zhang, Y. Shen, L. Wei, W. Min, Vibrational imaging of glucose uptake activity in
+live cells and tissues by stimulated Raman scattering. Angew. Chem. Int. Ed. 54, 9821–9825 (2015).
+8. L. Shi, C. Zheng, Y. Shen, Z. Chen, E. S. Silveira, L. Zhang, M. Wei, C. Liu, C. de Sena-Tomas, K.
+Targoff, W. Min, Optical imaging of metabolic dynamics in animals. Nat. Commun. 9, 2995 (2018).
+
+===== SUPPLEMENT PDF PAGE 26 =====
+
+9. J. Li, J.-X. Cheng, Direct visualization of de novo lipogenesis in single living cells. Sci. Rep. 4, 6807
+(2014).
+10. S. Yue, J. Li, S.-Y. Lee, H. J. Lee, T. Shao, B. Song, L. Cheng, T. A. Masterson, X. Liu, T. L. Ratliff,
+J.-X. Cheng, Cholesteryl ester accumulation induced by PTEN loss and PI3K/AKT activation underlies
+human prostate cancer aggressiveness. Cell Metab. 19, 393–406 (2014).
+11. J. Du, Y. Su, C. Qian, D. Yuan, K. Miao, D. Lee, A. H. C. Ng, R. S. Wijker, A. Ribas, R. D. Levine, J.
+R. Heath, L. Wei, Raman-guided subcellular pharmaco-metabolomics for metastatic melanoma cells.
+Nat. Commun. 11, 4830 (2020).
+12. H. J. Lee, Z. Chen, M. Collard, F. Chen, J. G. Chen, M. Wu, R. M. Alani, J.-X. Cheng, Multimodal
+metabolic imaging reveals pigment reduction and lipid accumulation in metastatic melanoma. BME
+Front., 9860123 (2021).
+13. C. Chen, Z. Zhao, N. Qian, S. Wei, F. Hu, W. Min, Multiplexed live-cell profiling with Raman probes.
+Nat. Commun. 12, 3405 (2021).
+14. Y. Tan, J. Li, G. Zhao, K.-C. Huang, H. Cardenas, Y. Wang, D. Matei, J.-X. Cheng, Metabolic
+reprogramming from glycolysis to fatty acid uptake and beta-oxidation in platinum-resistant cancer
+cells. Nat. Commun. 13, 4554 (2022).
+15. X. Ge, F. C. Pereira, M. Mitteregger, D. Berry, M. Zhang, B. Hausmann, J. Zhang, A. Schintlmeister,
+M. Wagner, J.-X. Cheng, SRS-FISH: A high-throughput platform linking microbiome metabolism to
+identity at the single-cell level. Proc. Natl. Acad. Sci. U.S.A. 119, e2203519119 (2022).
+16. M. Zhang, W. Hong, N. S. Abutaleb, J. Li, P.-T. Dong, C. Zong, P. Wang, M. N. Seleem, J.-X. Cheng,
+Rapid determination of antimicrobial susceptibility by stimulated Raman scattering imaging of D2O
+metabolic incorporation in a single bacterium. Adv. Sci. 7, 2001452 (2020).
+17. W. Rock, M. Bonn, S. H. Parekh, Near shot-noise limited hyperspectral stimulated Raman scattering
+spectroscopy using low energy lasers and a fast CMOS array. Opt. Express 21, 15113–15120 (2013).
+
+===== SUPPLEMENT PDF PAGE 27 =====
+
+18. C.-S. Liao, M. N. Slipchenko, P. Wang, J. Li, S.-Y. Lee, R. A. Oglesbee, J.-X. Cheng, Microsecond
+scale vibrational spectroscopic imaging by multiplex stimulated Raman scattering microscopy. Light
+Sci. Appl. 4, e265 (2015).
+19. R. B. de Andrade, H. Kerdoncuff, K. Berg-Sørensen, T. Gehring, M. Lassen, U. L. Andersen,
+Quantum-enhanced continuous-wave stimulated Raman scattering spectroscopy. Optica 7, 470–475
+(2020).
+20. Z. Xu, K. Oguchi, Y. Taguchi, S. Takahashi, Y. Sano, T. Mizuguchi, K. Katoh, Y. Ozeki, Quantum-
+enhanced stimulated Raman scattering microscopy in a high-power regime. Opt. Lett. 47, 5829–5832
+(2022).
+21. L. Wei, Z. Chen, L. Shi, R. Long, A. V. Anzalone, L. Zhang, F. Hu, R. Yuste, V. W. Cornish, W. Min,
+Super-multiplex vibrational imaging. Nature 544, 465–470 (2017).
+22. L. Wei, W. Min, Electronic preresonance stimulated Raman scattering microscopy. J. Phys. Chem. Lett.
+9, 4294–4301 (2018).
+23. M. Zhuge, K.-C. Huang, H. J. Lee, Y. Jiang, Y. Tan, H. Lin, P.-T. Dong, G. Zhao, D. Matei, Q. Yang,
+J.-X. Cheng, Ultrasensitive vibrational imaging of retinoids by visible preresonance stimulated Raman
+scattering microscopy. Adv. Sci. 8, 2003136 (2021).
+24. C. Zong, R. Premasiri, H. Lin, Y. Huang, C. Zhang, C. Yang, B. Ren, L. D. Ziegler, J.-X. Cheng,
+Plasmon-enhanced stimulated Raman scattering microscopy with single-molecule detection sensitivity.
+Nat. Commun. 10, 5318 (2019).
+25. H. Xiong, L. Shi, L. Wei, Y. Shen, R. Long, Z. Zhao, W. Min, Stimulated Raman excited fluorescence
+spectroscopy and imaging. Nat. Photonics. 13, 412–417 (2019).
+26. H. Wang, Y. Fu, J.-X. Cheng, Experimental observation and theoretical analysis of Raman resonance-
+enhanced photodamage in coherent anti-Stokes Raman scattering microscopy. J. Opt. Soc. Am. B 24,
+544–552 (2007).
+
+===== SUPPLEMENT PDF PAGE 28 =====
+
+27. S. Adhikari, P. Spaeth, A. Kar, M. D. Baaske, S. Khatua, M. Orrit, Photothermal microscopy: Imaging
+the optical absorption of single nanoparticles and single molecules. ACS Nano 14, 16414–16445 (2020).
+28. A. Gaiduk, M. Yorulmaz, P. V. Ruijgrok, M. Orrit, Room-temperature detection of a single molecule’s
+absorption by photothermal contrast. Science 330, 353–356 (2010).
+29. M. E. Long, R. L. Swofford, A. C. Albrecht, Thermal lens technique: A new method of absorption
+spectroscopy. Science 191, 183–185 (1976).
+30. D. Zhang, C. Li, C. Zhang, M. N. Slipchenko, G. Eakins, J.-X. Cheng, Depth-resolved mid-infrared
+photothermal imaging of living cells and organisms with submicrometer spatial resolution. Sci. Adv. 2,
+e1600521 (2016).
+31. Z. Li, K. Aleshire, M. Kuno, G. V. Hartland, Super-resolution far-field infrared imaging by
+photothermal heterodyne imaging. J. Phys. Chem. B 121, 8838–8846 (2017).
+32. P. Fu, W. Cao, T. Chen, X. Huang, T. Le, S. Zhu, D.-W. Wang, H. J. Lee, D. Zhang, Super-resolution
+imaging of non-fluorescent molecules by photothermal relaxation localization microscopy. Nat.
+Photonics, 17, 330–337 (2023).
+33. X. Gao, X. Li, W. Min, Absolute stimulated Raman cross sections of molecules. J. Phys. Chem. Lett.
+14, 5701–5708 (2023).
+34. H. El-Kashef, The necessary requirements imposed on polar dielectric laser dye solvents—II. Phys. B
+Condens. Matter 311, 376–379 (2002).
+35. E. J. Bowen, J. Sahu, The effect of temperature on fluorescence of solutions. J. Phys. Chem. 63, 4–7
+(1959).
+36. A. Soleilhac, M. Girod, P. Dugourd, B. Burdin, J. Parvole, P.-Y. Dugas, F. Bayard, E. Lacôte, E.
+Bourgeat-Lami, R. Antoine, Temperature response of rhodamine B-doped latex particles. from solution
+to single particles. Langmuir 32, 4052–4058 (2016).
+
+===== SUPPLEMENT PDF PAGE 29 =====
+
+37. M. Li, A. Razumtcev, R. Yang, Y. Liu, J. Rong, A. C. Geiger, R. Blanchard, C. Pfluegl, L. S. Taylor,
+G. J. Simpson, Fluorescence-detected mid-infrared photothermal microscopy. J. Am. Chem. Soc. 143,
+10809–10815 (2021).
+38. Y. Zhang, H. Zong, C. Zong, Y. Tan, M. Zhang, Y. Zhan, J.-X. Cheng, Fluorescence-detected mid-
+infrared photothermal microscopy. J. Am. Chem. Soc. 143, 11490–11499 (2021).
+39. T. Hellerer, A. M. K. Enejder, A. Zumbusch, Spectral focusing: High spectral resolution spectroscopy
+with broad-bandwidth laser pulses. Appl. Phys. Lett. 85, 25–27 (2004).
+40. D. Fu, G. Holtom, C. Freudiger, X. Zhang, X. S. Xie, Hyperspectral imaging with stimulated raman
+scattering by chirped femtosecond lasers. J. Phys. Chem. B 117, 4634–4640 (2013).
+41. C. W. Freudiger, W. Yang, G. R. Holtom, N. Peyghambarian, X. S. Xie, K. Q. Kieu, Stimulated Raman
+scattering microscopy with a robust fibre laser source. Nat. Photonics 8, 153–159 (2014).
+42. A. Gaiduk, P. V. Ruijgrok, M. Yorulmaz, M. Orrit, Detection limits in photothermal microscopy.
+Chem. Sci. 1, 343–350 (2010).
+43. S. Novais, M. S. Ferreira, J. L. Pinto, Determination of thermo-optic coefficient of ethanol-water
+mixtures with optical fiber tip sensor. Opt. Fiber Technol. 45, 276–279 (2018).
+44. M. Maggioni, V. Katkovnik, K. Egiazarian, A. Foi, Nonlocal transform-domain filter for volumetric
+data denoising and reconstruction. IEEE Trans. Image Process. 22, 119–133 (2013).
+45. D. Fu, X. S. Xie, Reliable cell segmentation based on spectral phasor analysis of hyperspectral
+stimulated Raman scattering imaging data. Anal. Chem. 86, 4115–4119 (2014).
+46. A. Sauerbrei, Diagnosis, antiviral therapy, and prophylaxis of varicella-zoster virus infections. Eur. J.
+Clin. Microbiol. Infect. Dis. 35, 723–734 (2016).
+47. M.-H. Chien, M. Brameshuber, B. K. Rossboth, G. J. Schütz, S. Schmid, Single-molecule optical
+absorption imaging by nanomechanical photothermal sensing. Proc. Natl. Acad. Sci. U.S.A. 115, 11150–
+11155 (2018).
+
+===== SUPPLEMENT PDF PAGE 30 =====
+
+48. E. N. Ward, R. Pal, Image scanning microscopy: An overview. J. Microsc. 266, 221–228 (2017).
+49. P. H. C. Eilers, A perfect smoother. Anal. Chem. 75, 3631–3636 (2003).
+50. J. Yin, L. Lan, Y. Zhang, H. Ni, Y. Tan, M. Zhang, Y. Bai, J.-X. Cheng, Nanosecond-resolution
+photothermal dynamic imaging via MHZ digitization and match filtering. Nat. Commun. 12, 7097
+(2021).
+51. S. E. Bialkowski, Photothermal Spectroscopy Methods for Chemical Analysis, Vol. 134 of Chemical
+Analysis: A Series of Monographs on Analytical Chemistry and Its Applications, J. D. Winefordner, Ed.
+(John Wiley & Sons Inc., 1996), 290 pp.
+52. Z. Cao, L. Jiang, S. Wang, M. Wang, D. Liu, P. Wang, F. Zhang, Y. Lu, All-glass extrinsic Fabry-Perot
+interferometer thermo-optic coefficient sensor based on a capillary bridged two fiber ends. Appl. Optics
+54, 2371–2375 (2015).
+53. Z. Zhang, P. Zhao, P. Lin, F. Sun, Thermo-optic coefficients of polymers for optical waveguide
+applications. Polymer 47, 4893–4896 (2006).

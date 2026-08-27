@@ -12,7 +12,10 @@ At session start:
 2. look for a human-approved record in `curriculum/`;
 3. ask the human to select `TRAINING` or `EFFICIENT_READING` unless already specified;
 4. for TRAINING, ask for `FOUNDATION`, `CORE`, or `ADVANCED`;
-5. build or load the full paper model internally without leaking unrevealed content.
+5. load an approved model or compile the full paper model before asking the first runner question;
+6. persist the model and its audit report under the paper workspace;
+7. validate model parseability, source-anchor coverage, and stage visibility;
+8. create a session record that pins the model path, version, source hash, and selection seed.
 
 `EXAM` is reserved for a future protocol. Do not invent assessment rules.
 
@@ -21,6 +24,44 @@ Trust order:
 > human-approved curriculum record > fresh reconstruction for the current session
 
 Models in `paper_models/pending/` are unapproved. Do not automatically reuse them as reference models.
+
+## Compile before run
+
+Never rely on a paper structure that exists only in transient conversation context. Follow `protocols/model_compilation.md`.
+
+If no approved model exists, compile a pending model into:
+
+```text
+papers/<paper_slug>/model/paper_model.pending.toml
+papers/<paper_slug>/model/paper_model.audit.md
+```
+
+The originating session may run from that validated pending model. A later session must not automatically reuse it until human approval.
+
+Before each prompt, load the pinned model and current session state from disk. After each human response, persist the response, updated human structure, asked-node history, and resume cursor before producing the next prompt.
+
+Use two session artifacts:
+
+```text
+<session>.state.toml  # canonical machine-recoverable state
+<session>.md          # human-readable audit log
+```
+
+The TOML state is authoritative for resumption; the Markdown log preserves the interaction for inspection.
+
+After session compaction or interruption, resume from the persisted model and cursor. Do not reconstruct prior hidden state from conversational memory.
+
+## Rule-governed question selection
+
+Follow `protocols/question_selection.md`.
+
+- KNOWLEDGE: seeded selection from prerequisite nodes whose dependencies are satisfied and whose stage visibility permits disclosure.
+- IDEA: expose the complete compiled problem-state view; do not randomly omit a premise.
+- CLAIMS: select a node only from the human tree and ask a generic structural question.
+- EVIDENCE: select a revealed claim and ask the human for evidence/proof design; do not sample hidden paper evidence.
+- DELTA: fixed prompt only.
+
+Persist the selection seed and every selected node/prompt ID for reproducibility.
 
 ## Required paper model
 
@@ -157,4 +198,4 @@ Skip generative training. Present the source-anchored paper architecture directl
 
 ## Persistence
 
-Session notes are optional. A newly reconstructed paper model may be saved to `paper_models/pending/`, but must remain clearly unapproved until human review. Only approved records may enter `curriculum/` and the reusable index.
+The runner session state is required and must be updated after every turn. A newly compiled paper model must remain clearly unapproved until human review. Only approved records may enter `curriculum/` and the reusable index.

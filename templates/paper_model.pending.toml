@@ -1,0 +1,57 @@
+status = "pending"
+human_approved = false
+model_version = "0.1.0"
+selection_policy_version = "1.0"
+source_sha256 = ""
+paper_slug = ""
+title = ""
+doi = ""
+
+[compiler]
+compiled_at = ""
+compiled_by = "agent"
+parse_validated = false
+anchor_audit = "pending"
+visibility_audit = "pending"
+
+[[knowledge_nodes]]
+id = "K1"
+concept = ""
+prerequisites = []
+required_levels = ["foundation", "core"]
+visibility = "pre_idea"
+priority = 1
+prompt = ""
+source_anchors = []
+
+[[claim_nodes]]
+id = "T0"
+role = "title"
+parents = []
+author_claim = ""
+agent_interpretation = ""
+source_anchors = []
+reveal_after = "idea_rollout_complete"
+
+[[evidence_nodes]]
+id = "E1"
+target_claims = ["T0"]
+evidence_type = ""
+control_role = ""
+source_anchors = []
+result_detail = ""
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+
+[disclosure_views]
+knowledge = []
+idea_problem_state = []
+claims_start = ["T0"]
+evidence_start = []
+
+[selection]
+knowledge_policy = "seeded_dependency_eligible"
+idea_policy = "complete_problem_state_fixed_prompt"
+claims_policy = "human_tree_open_nodes_only"
+evidence_policy = "revealed_claims_only"
+delta_policy = "fixed_prompt"

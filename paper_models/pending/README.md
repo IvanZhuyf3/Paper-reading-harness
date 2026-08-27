@@ -1,6 +1,6 @@
 # Pending Review Pool
 
-Models here are provisional candidates for human review.
+This directory may contain an index or links to provisional candidates for human review. Canonical pending models live under `papers/<paper_slug>/model/`.
 
 Every file must state:
 

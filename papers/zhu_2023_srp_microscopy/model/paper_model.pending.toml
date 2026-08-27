@@ -1,0 +1,374 @@
+status = "pending"
+human_approved = false
+model_version = "0.1.1"
+selection_policy_version = "1.0"
+paper_slug = "zhu_2023_srp_microscopy"
+title = "Stimulated Raman photothermal microscopy toward ultrasensitive chemical imaging"
+authors = ["Yifan Zhu", "Xiaowei Ge", "Hongli Ni", "Jiaze Yin", "Haonan Lin", "Le Wang", "Yuying Tan", "Chinmayee V. Prabhu Dessai", "Yueming Li", "Xinyan Teng", "Ji-Xin Cheng"]
+journal = "Science Advances"
+year = 2023
+article = "9, eadi2181"
+doi = "10.1126/sciadv.adi2181"
+source_path = "../source/Zhu_et_al_2023_SRP_microscopy.pdf"
+source_sha256 = "B51735420198D699D8C0F3976617F9CA3DFAA2D8E25EE5B3145A70D884CC8A09"
+pdf_pages = 12
+article_pages = 11
+supplement_path = "../source/Zhu_et_al_2023_SRP_microscopy_supplement.pdf"
+supplement_sha256 = "F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16023B2"
+supplement_pdf_pages = 30
+
+[compiler]
+compiled_at = "2026-08-27T13:48:48-04:00"
+compiled_by = "agent"
+parse_validated = true
+anchor_audit = "pass"
+visibility_audit = "pass"
+approval_note = "PENDING — NOT HUMAN APPROVED — DO NOT AUTO-REUSE"
+
+[[knowledge_nodes]]
+id = "K1"
+concept = "SRS signal formation and optical readout"
+prerequisites = []
+required_levels = ["foundation", "core"]
+visibility = "pre_idea"
+priority = 10
+question_eligible = true
+prompt = "In SRS, when pump and Stokes satisfy the Raman resonance, what changes occur in the sample and beams, and what optical signal is normally detected?"
+source_anchors = ["PDF p.1, Introduction, paragraph beginning \"Stimulated Raman scattering (SRS) microscopy...\""]
+
+[[knowledge_nodes]]
+id = "K2"
+concept = "Small modulation depth, shot noise, and sample power tolerance"
+prerequisites = ["K1"]
+required_levels = ["foundation", "core"]
+visibility = "pre_idea"
+priority = 20
+question_eligible = true
+prompt = "If the SRS signal is a small fractional intensity change on a strong beam, what constrains detectability, and why can incident power not be increased without limit?"
+source_anchors = ["PDF p.1, Introduction, paragraph beginning \"Stimulated Raman scattering (SRS) microscopy...\""]
+
+[[knowledge_nodes]]
+id = "K3"
+concept = "Two generic sensitivity levers: reduce measurement noise or amplify signal"
+prerequisites = ["K2"]
+required_levels = ["foundation"]
+visibility = "pre_idea"
+priority = 30
+question_eligible = true
+prompt = "At the SNR level, what two broad classes of intervention can push the sensitivity limit?"
+source_anchors = ["PDF p.1, Introduction, paragraph beginning \"Pushing the fundamental limit of...\""]
+
+[[knowledge_nodes]]
+id = "K4"
+concept = "Photothermal transduction from deposited vibrational energy to refractive-index change"
+prerequisites = ["K1"]
+required_levels = ["foundation", "core"]
+visibility = "post_idea"
+priority = 40
+question_eligible = true
+prompt = "How can vibrational energy deposited in a sample become an optically detectable refractive-index change?"
+source_anchors = ["PDF p.1, Introduction, paragraph beginning \"To seek approaches toward boosting...\"", "PDF p.1, Introduction, paragraph beginning \"Optically detected photothermal microscopy has...\""]
+
+[[knowledge_nodes]]
+id = "K5"
+concept = "Thermal-lens optical readout"
+prerequisites = ["K4"]
+required_levels = ["foundation"]
+visibility = "post_idea"
+priority = 50
+question_eligible = true
+prompt = "How does a localized refractive-index profile act on a probe beam in a photothermal measurement?"
+source_anchors = ["PDF p.3, Results/Optically sensing the SRP effect, paragraph beginning \"The SRP effect creates a...\""]
+
+[[knowledge_nodes]]
+id = "K6"
+concept = "Performance dimensions: spectral fidelity, detection limit, modulation depth, spatial resolution, and application range"
+prerequisites = ["K1", "K2"]
+required_levels = ["foundation"]
+visibility = "post_idea"
+priority = 60
+question_eligible = true
+prompt = "What distinct performance dimensions would a new chemical-imaging modality need to establish?"
+source_anchors = ["PDF p.4, Results/SRP spectral fidelity and detection sensitivity, paragraph beginning \"We first characterized the spectral...\"", "PDF p.7, Discussion, paragraph beginning \"In this work, we have...\""]
+
+[[claim_nodes]]
+id = "I1"
+role = "background"
+parents = []
+author_claim = "Stimulated Raman scattering (SRS) microscopy has become a powerful platform in chemical imaging."
+agent_interpretation = "SRS supplies an established high-speed vibrational-imaging capability worth extending."
+source_anchors = ["PDF p.1, Introduction, paragraph beginning \"Stimulated Raman scattering (SRS) microscopy...\""]
+reveal_after = "knowledge_start"
+
+[[claim_nodes]]
+id = "I2"
+role = "limitation"
+parents = ["I1"]
+author_claim = "SRS faces inherent challenges in detection sensitivity due to the small modulation depth [...] and the shot noise in the pump or Stokes beam."
+agent_interpretation = "Direct SRL/SRG detection has a weak fractional signal riding on a strong optical carrier."
+source_anchors = ["PDF p.1, Introduction, paragraph beginning \"Stimulated Raman scattering (SRS) microscopy...\""]
+reveal_after = "knowledge_start"
+
+[[claim_nodes]]
+id = "I3"
+role = "constraint"
+parents = ["I2"]
+author_claim = "Simply increasing the number of photons can easily exceed the sample's power tolerance."
+agent_interpretation = "Optical power cannot be treated as an unlimited route to sensitivity."
+source_anchors = ["PDF p.1, Introduction, paragraph beginning \"Stimulated Raman scattering (SRS) microscopy...\""]
+reveal_after = "knowledge_start"
+
+[[claim_nodes]]
+id = "I4"
+role = "existing_routes"
+parents = ["I2"]
+author_claim = "This method is limited by low squeeze efficiency and decoherence in complex imaging systems. [...] The requirement of special target molecules or plasmonic nanostructures constrains the scope of applications."
+agent_interpretation = "Existing sensitivity strategies trade generality or system practicality for gain."
+source_anchors = ["PDF p.1, Introduction, paragraph beginning \"Pushing the fundamental limit of...\""]
+reveal_after = "idea_start"
+
+[[claim_nodes]]
+id = "G1"
+role = "gap"
+parents = ["I3", "I4"]
+author_claim = "Pushing the fundamental limit of SRS sensitivity necessitates either reducing measurement noise or amplifying the signal."
+agent_interpretation = "A broadly applicable readout is needed that improves sensitivity without special target structures or unlimited sample power."
+source_anchors = ["PDF p.1, Introduction, paragraph beginning \"Pushing the fundamental limit of...\""]
+reveal_after = "idea_start"
+
+[[claim_nodes]]
+id = "T0"
+role = "title"
+parents = ["G1"]
+author_claim = "By probing the refractive index changes with a laser beam, we introduce stimulated Raman photothermal (SRP) microscopy, where a >500-fold boost of modulation depth is achieved."
+agent_interpretation = "SRP microscopy converts the thermal consequence of Raman-resonant energy deposition into an optical readout, enabling substantially more sensitive and broadly applicable chemical imaging than direct SRS detection under the demonstrated conditions."
+source_anchors = ["PDF p.1, Abstract, paragraph beginning \"Stimulated Raman scattering (SRS) microscopy...\"", "PDF p.7, Discussion, paragraph beginning \"In this work, we have...\""]
+reveal_after = "idea_rollout_complete"
+
+[[claim_nodes]]
+id = "M1"
+role = "major"
+parents = ["T0"]
+author_claim = "We have numerically simulated and experimentally confirmed the presence of the SRP effect."
+agent_interpretation = "SRS energy deposition produces a localized thermal/refractive-index response that can serve as a measurement channel."
+source_anchors = ["PDF p.7, Discussion, paragraph beginning \"In this work, we have...\"", "Fig. 1, PDF pp.2–3"]
+reveal_after = "claims_rollout_complete"
+
+[[claim_nodes]]
+id = "S1.1"
+role = "subclaim"
+parents = ["M1"]
+author_claim = "The temperature elevation subsequently changes the local refractive index via the thermal-optic effect."
+agent_interpretation = "The proposed transduction has a quantitatively plausible physical source."
+source_anchors = ["PDF p.2, Results/Simulation of the SRP effect, paragraph beginning \"In a stimulated Raman loss...\"", "Fig. 1C–D, PDF p.2", "Eq. 1, PDF p.2"]
+reveal_after = "claims_rollout_complete"
+
+[[claim_nodes]]
+id = "S1.2"
+role = "subclaim"
+parents = ["M1"]
+author_claim = "Here, we adopt this method to quantify the temperature rise at the SRS focus, using rhodamine B as a fluorescence thermometer."
+agent_interpretation = "The thermal intermediate is observed independently of the final probe-beam implementation."
+source_anchors = ["PDF p.3, Results/Experimental confirmation of the SRP effect, paragraph beginning \"When the chirped pump and...\"", "Fig. 1E–F, PDF pp.2–3", "Supplementary Fig. S2, supplement PDF p.6"]
+reveal_after = "claims_rollout_complete"
+
+[[claim_nodes]]
+id = "S1.3"
+role = "subclaim"
+parents = ["M1"]
+author_claim = "The SRP effect creates a divergent lens [...] and can be optically probed through a continuous wave beam."
+agent_interpretation = "A third beam can convert the thermal intermediate into a measurable intensity modulation."
+source_anchors = ["PDF p.3, Results/Optically sensing the SRP effect, paragraph beginning \"The SRP effect creates a...\"", "Eq. 2, PDF p.3"]
+reveal_after = "claims_rollout_complete"
+
+[[claim_nodes]]
+id = "M2"
+role = "major"
+parents = ["T0"]
+author_claim = "We have built an SRP microscope and demonstrated superior detection sensitivity and resolution in comparison to a conventional SRS microscope."
+agent_interpretation = "The physical effect is realized as a spectrally faithful chemical-imaging instrument with a large modulation signal and useful resolution."
+source_anchors = ["PDF p.7, Discussion, paragraph beginning \"In this work, we have...\"", "Figs. 2–3, PDF pp.4–5"]
+reveal_after = "claims_rollout_complete"
+
+[[claim_nodes]]
+id = "S2.1"
+role = "subclaim"
+parents = ["M2"]
+author_claim = "By sensing the local refractive index modulation with a third continuous wave beam, we have built an SRP microscope."
+agent_interpretation = "The proposed architecture realizes and parameterizes the SRP readout."
+source_anchors = ["PDF p.3, Results/An SRP microscope, paragraph beginning \"By sensing the local refractive...\"", "Fig. 2A–D, PDF p.4"]
+reveal_after = "claims_rollout_complete"
+
+[[claim_nodes]]
+id = "S2.2"
+role = "subclaim"
+parents = ["M2"]
+author_claim = "The SRP spectra agree with the SRS spectra for both the bulk liquid sample and nanoparticles (PMMA). [...] Thus, SRP measurement offers an ~17-fold improvement."
+agent_interpretation = "Sensitivity gain does not discard the chemical spectrum being measured."
+source_anchors = ["PDF p.4, Results/SRP spectral fidelity and detection sensitivity, paragraph beginning \"We first characterized the spectral...\"", "PDF p.4, same section, paragraph beginning \"We then measured the limit...\"", "Fig. 3A–B, PDF p.5"]
+reveal_after = "claims_rollout_complete"
+
+[[claim_nodes]]
+id = "S2.3"
+role = "subclaim"
+parents = ["M2"]
+author_claim = "The introduction of a third probe beam at a shorter wavelength helped improve the spatial resolution profile."
+agent_interpretation = "The readout modality can improve rather than sacrifice spatial resolution."
+source_anchors = ["PDF p.5, Results, paragraph beginning \"Collectively, SRP showed improved sensitivity...\"", "Fig. 3C–D, PDF p.5", "PDF p.7, Discussion, paragraph beginning \"SRP holds slight advantage over...\""]
+reveal_after = "claims_rollout_complete"
+
+[[claim_nodes]]
+id = "M3"
+role = "major"
+parents = ["T0"]
+author_claim = "We have also demonstrated SRP imaging of multiple biological samples in aqueous and glycerol environments."
+agent_interpretation = "The instrument operates across representative biological specimens and chemical bands rather than only on calibration samples."
+source_anchors = ["PDF p.7, Discussion, paragraph beginning \"In this work, we have...\"", "Figs. 4–5, PDF pp.6–7"]
+reveal_after = "claims_rollout_complete"
+
+[[claim_nodes]]
+id = "S3.1"
+role = "subclaim"
+parents = ["M3"]
+author_claim = "To explore the potential of SRP in bioimaging, we first performed label-free SRP imaging of live SJSA-1 osteosarcoma cancer cells."
+agent_interpretation = "SRP supports biological imaging without requiring a glycerol sensitivity enhancer."
+source_anchors = ["PDF p.5, Results/SRP imaging of biological samples in physiological environment, paragraph beginning \"To explore the potential of...\"", "Fig. 4A–L, PDF p.6"]
+reveal_after = "claims_rollout_complete"
+
+[[claim_nodes]]
+id = "S3.2"
+role = "subclaim"
+parents = ["M3"]
+author_claim = "Compared to water, the high thermo-optic coefficient and low heat capacity of glycerol open up the opportunity to further boost the sensitivity of SRP microscopy."
+agent_interpretation = "Sample-medium thermal properties provide an additional sensitivity lever and enable diverse demonstrations."
+source_anchors = ["PDF p.6, Results/SRP imaging of biological samples in glycerol, paragraph beginning \"Compared to water, the high...\"", "Fig. 5A–F, PDF p.7"]
+reveal_after = "claims_rollout_complete"
+
+[[claim_nodes]]
+id = "S3.3"
+role = "subclaim"
+parents = ["M2", "M3"]
+author_claim = "Last, we conducted a direct comparison between SRP and SRS at the same FOV [...] with conserved average laser power and dwell time."
+agent_interpretation = "The claimed application advantage is linked to a direct matched-sample comparison."
+source_anchors = ["PDF p.7, Results, paragraph beginning \"Last, we conducted a direct...\"", "Supplementary Fig. S17, supplement PDF p.21", "Supplementary Fig. S18, supplement PDF p.22"]
+reveal_after = "claims_rollout_complete"
+
+[[evidence_nodes]]
+id = "E1"
+target_claims = ["S1.1"]
+evidence_type = "energy-deposition estimate plus finite-element heat/refractive-index simulation"
+control_roles = ["Use reported SRS parameters and material constants", "Resolve temporal and spatial heat diffusion"]
+source_anchors = ["Eq. 1, PDF p.2", "Fig. 1C–D, PDF p.2", "PDF p.2, Results, paragraph beginning \"With this energy deposition estimation...\""]
+result_detail = "For the modeled DMSO condition, the center temperature reaches about 2.4 K after 12 μs; the simulated refractive-index profile forms a divergent thermal lens."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+
+[[evidence_nodes]]
+id = "E2"
+target_claims = ["S1.2"]
+evidence_type = "rhodamine-B fluorescence thermometry during resonant SRS excitation"
+control_roles = ["Subtract off-resonance trace to remove non-photothermal contribution", "Use temperature-insensitive Rh800 control to exclude photobleaching/thermophoresis explanation", "Compare measured trace with simulation"]
+source_anchors = ["Fig. 1E–F, PDF pp.2–3", "PDF p.3, Results, paragraph beginning \"When the chirped pump and...\"", "PDF p.3, Results, paragraph beginning \"To eliminate the potential impact...\"", "Supplementary Fig. S2, supplement PDF p.6"]
+result_detail = "The on-resonance fluorescence change corresponds to about a 1.2 K average rise; weighted simulation yields a closely aligned trace, and Rh800 shows negligible response."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+
+[[evidence_nodes]]
+id = "E3"
+target_claims = ["S1.3"]
+evidence_type = "thermal-ball-lens model and wave-propagation simulation"
+control_roles = ["Relate signal to excitation, vibrational energy, thermo-optic coefficient, heat capacity, and probe geometry", "Check linear concentration response"]
+source_anchors = ["Eq. 2, PDF p.3", "PDF p.3, Results/Optically sensing the SRP effect, paragraph beginning \"The SRP effect creates a...\"", "Supplementary Fig. S3, supplement PDF p.7", "Supplementary Fig. S4, supplement PDF p.8"]
+result_detail = "The model predicts an optically detectable divergent lens and linear SRP response versus concentration under the simulated condition."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+
+[[evidence_nodes]]
+id = "E4"
+target_claims = ["S2.1"]
+evidence_type = "three-beam microscope construction and modulation-parameter characterization"
+control_roles = ["Compare on- and off-resonance probe traces", "Vary duty cycle and modulation frequency", "Hold relevant average-power conditions for SRS comparison"]
+source_anchors = ["Fig. 2A–D, PDF p.4", "PDF p.3, Results/An SRP microscope, paragraph beginning \"By sensing the local refractive...\"", "PDF p.3, same section, paragraph beginning \"Unlike SRS, both the pump...\""]
+result_detail = "The reported pure-liquid probe modulation depth is 22.3%, more than 500-fold the 0.04% direct SRS modulation depth under the stated comparison."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+
+[[evidence_nodes]]
+id = "E5"
+target_claims = ["S2.2"]
+evidence_type = "spectral comparison, concentration series, calibration, and detection-limit comparison"
+control_roles = ["Compare SRP and SRS spectra on the same chemical mode", "Use DMSO-d6 matrix to tune concentration while preserving medium properties", "Test isotopic substitutions and particle spectra"]
+source_anchors = ["Fig. 3A–B, PDF p.5", "PDF p.4, Results/SRP spectral fidelity and detection sensitivity, paragraph beginning \"We first characterized the spectral...\"", "PDF p.4, same section, paragraph beginning \"We then measured the limit...\"", "Supplementary Fig. S8, supplement PDF p.12", "Supplementary Fig. S9, supplement PDF p.13", "Supplementary Fig. S10, supplement PDF p.14", "Supplementary Fig. S11, supplement PDF p.15", "Supplementary Fig. S12, supplement PDF p.16"]
+result_detail = "The reported DMSO LOD is 2.3 mM for SRP versus 39 mM for SRS, an approximately 17-fold improvement under different average laser powers stated by the authors."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+
+[[evidence_nodes]]
+id = "E6"
+target_claims = ["S2.3"]
+evidence_type = "100-nm bead imaging and line-profile resolution measurement"
+control_roles = ["Image the same sample with SRP and SRS", "Fit bead profiles and compare with optical-resolution expectations"]
+source_anchors = ["Fig. 3C–D, PDF p.5", "PDF p.5, Results, paragraph beginning \"Collectively, SRP showed improved sensitivity...\""]
+result_detail = "The Gaussian-fitted SRP bead-profile FWHM is about 218 nm; deconvolution gives about 194 nm, below the stated SRS theoretical limit under the configuration."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+
+[[evidence_nodes]]
+id = "E7"
+target_claims = ["S3.1"]
+evidence_type = "live-cell dynamics, hyperspectral fixed-cell imaging, deuterated-lipid control, and brain-tissue spectra in aqueous media"
+control_roles = ["Untreated versus PA-d31-treated cells", "Cell background spectrum", "PBS nonsample spectrum", "Polarization-dependent myelin response"]
+source_anchors = ["Fig. 4A–L, PDF p.6", "PDF p.5, Results/SRP imaging of biological samples in physiological environment, paragraph beginning \"To explore the potential of...\""]
+result_detail = "The demonstrations resolve cellular components, deuterated-lipid contrast, live lipid dynamics, and distinct lipid/protein-rich brain-tissue spectra in aqueous environments."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+
+[[evidence_nodes]]
+id = "E8"
+target_claims = ["S3.2"]
+evidence_type = "glycerol-mediated SRP imaging of nanoparticles, a single virus, cells, and fingerprint-region tissue"
+control_roles = ["Compare thermal-medium properties", "Single-virus versus background spectrum", "Phasor segmentation of cellular components", "Pixel spectra from lipid and protein regions"]
+source_anchors = ["Fig. 5A–F, PDF p.7", "PDF p.6, Results/SRP imaging of biological samples in glycerol, paragraph beginning \"Compared to water, the high...\"", "Supplementary Table S1, supplement PDF p.23"]
+result_detail = "The paper reports single-virus contrast, multi-component cell segmentation, and lipid/protein differentiation in fingerprint-region tissue measurements."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+
+[[evidence_nodes]]
+id = "E9"
+target_claims = ["S3.3"]
+evidence_type = "matched-field SRP-versus-SRS comparison"
+control_roles = ["Same field of view", "Conserved average laser power", "Same dwell time", "Compare spectra and image metrics"]
+source_anchors = ["PDF p.7, Results, paragraph beginning \"Last, we conducted a direct...\"", "Supplementary Fig. S17, supplement PDF p.21", "Supplementary Fig. S18, supplement PDF p.22"]
+result_detail = "The main text reports SNR values of 53 for SRP and 17 for SRS for the cell comparison. It also states 2.2-fold SNR and 7.8-fold signal-to-background improvements for Fig. S18D. The Fig. S18D table itself lists SBR 2.96 versus 62.9 and SNR 19.17 versus 150.29; this text/table discrepancy is preserved for audit rather than resolved by the agent."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+
+[disclosure_views]
+knowledge = ["K1", "K2", "K3"]
+post_idea_knowledge = ["K4", "K5", "K6"]
+idea_problem_state = ["I1", "I2", "I3", "I4", "G1"]
+claims_start = ["T0"]
+claims_reference = ["T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "M3", "S3.1", "S3.2", "S3.3"]
+evidence_start = ["T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "M3", "S3.1", "S3.2", "S3.3"]
+evidence_reference_design = ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9"]
+independent_reading = ["all_claim_nodes", "all_evidence_nodes", "result_detail"]
+
+[selection]
+knowledge_policy = "seeded_dependency_eligible"
+idea_policy = "complete_problem_state_fixed_prompt"
+claims_policy = "human_tree_open_nodes_only"
+evidence_policy = "revealed_claims_only"
+delta_policy = "fixed_prompt"
+
+[prompt_templates]
+idea_fixed = "What would you try?"
+idea_clarify = "Clarify one structural relation inside the human proposal."
+idea_finish = "Are you ready to end this IDEA rollout?"
+claims_add = "Which major claim do you want to add under the current root?"
+claims_expand = "Which human-created node should be expanded next?"
+claims_decompose = "What immediate subclaim belongs under this human-created node?"
+claims_finish = "Are you ready to end this CLAIMS rollout?"
+evidence_attach = "What evidence or proof would you attach to this revealed claim?"
+evidence_control = "What control role is required for this human-designed evidence?"
+evidence_finish = "Are you ready to end this EVIDENCE rollout?"
+delta_fixed = "What's the delta?"

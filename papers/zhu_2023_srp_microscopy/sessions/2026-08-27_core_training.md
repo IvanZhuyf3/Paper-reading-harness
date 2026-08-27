@@ -4,13 +4,24 @@
 **Identifier:** DOI 10.1126/sciadv.adi2181
 **Runner:** TRAINING
 **Level:** CORE
-**Paper-model source:** fresh reconstruction from source PDF
-**Human had not read paper at entry:** YES
-**Current state:** KNOWLEDGE
+**Paper-model source:** compiled pending model for originating session
+**Paper-model path:** `../model/paper_model.pending.toml`
+**Paper-model version:** 0.1.1
+**Paper-model SHA-256:** `BEB27FAA21120AF3E9D60C3E2A0B99DAC5EACE01D320C6DAA7BEFDCB0A07366A`
+**Main-source SHA-256:** `B51735420198D699D8C0F3976617F9CA3DFAA2D8E25EE5B3145A70D884CC8A09`
+**Supplement SHA-256:** `F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16023B2`
+**Selection-policy version:** 1.0
+**Selection seed:** 2026082701
+**Human had not read paper at entry:** NO — human later disclosed being a paper author
+**Current state:** IDEA
+**Resume cursor:** `IDEA.H-I2.mechanism_confirmed.awaiting_finish`
+**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`
 
 ## Disclosure note
 
 The supplied filename/title exposes part of the author solution. During KNOWLEDGE and IDEA, prompts must not use that solution detail to select or steer questions.
+
+The human later disclosed being a paper author. This session can test interaction structure but cannot validate spoiler control for a genuinely unread reader.
 
 ## 1. KNOWLEDGE
 
@@ -85,9 +96,57 @@ Human proposal(s):
 
 - H-I1 — Convert the measurement modality and combine SRS with a more
   sensitive readout modality, for example photothermal (PT) detection.
+  - H-I1.1 — Treat SRS as a real transition that deposits vibrational energy.
+  - H-I1.2 — Vibrational relaxation produces heat and a local temperature rise.
+  - H-I1.3 — The temperature rise changes refractive index, which PT reads out.
+  - STATUS — withdrawn by human and retained as session history.
+
+- H-I2 — Set the modulation frequency to one-half of the laser repetition
+  rate so a signal reflected/folded from the repetition-rate structure is
+  demodulated by the same lock-in channel, potentially doubling signal
+  intensity.
+  - STATUS — active rollout.
 
 Structural clarification prompt:
 
 > 在你的 PT 路线中，SRS 事件产生的哪个中间物理量携带 Raman-specific information，而 PT readout 具体测量这个量的什么变化？
+
+Human response:
+
+> SRS是real transition，会产热，PT测热-温度-折射率变化
+
+Next structural clarification:
+
+> 相比直接测量 SRL/SRG，你预期这条“振动能量 → 热 → 折射率”链条的灵敏度增益来自哪个环节？
+
+Human revision:
+
+> 算了我不装了摊牌了，我是论文作者，我这里换个idea讲吧。可以把modulation frequency调到1/2 laser rep rate，这样从rep rate反射回来的信号也会被lock in解调，可以double signal intensity
+
+Next structural clarification for H-I2:
+
+> 我先确认结构：你说的“从 rep rate 反射回来”，是否指脉冲列频谱中的 `f_rep − f_m` 分量在 `f_m = f_rep/2` 时与 `f_m` 重合，因此被同一个 lock-in channel 相干读出？
+
+Human confirmation:
+
+> 是的
+
+Structured mechanism:
+
+```text
+f_m = f_rep / 2
+→ the f_rep − f_m component coincides with f_m
+→ both contributions enter the same lock-in channel coherently
+→ expected demodulated signal-intensity increase
+```
+
+**Session pause:** architecture discussion about precompiled, auditable paper models and compaction-safe question selection.
+
+Architecture resolution:
+
+- Paper model compiled and persisted before resuming.
+- Mechanical/source audit passed 21/21 checks.
+- Question selection changed from transient reasoning to rule-governed, model-pinned selection.
+- Resume at `IDEA.H-I2.mechanism_confirmed.awaiting_finish`.
 
 **Human declared rollout complete:** NO
