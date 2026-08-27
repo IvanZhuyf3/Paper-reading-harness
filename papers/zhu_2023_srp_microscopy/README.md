@@ -35,3 +35,4 @@ The source PDF is treated as immutable.
 - Paper model: not yet generated.
 - Human approval: not reviewed.
 - Curriculum status: not approved for reuse.
+- Active saved session: `sessions/2026-08-27_core_training.md`.

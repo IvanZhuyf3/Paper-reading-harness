@@ -16,6 +16,7 @@
 ...
 
 **SOURCE ANCHOR(S):**
+_Use PDF page + section + paragraph beginning with the first ~5 words; use explicit labels for figures/tables/equations/supplements._
 - ...
 
 **AGENT INTERPRETATION, if materially different:**

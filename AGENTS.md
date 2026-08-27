@@ -51,6 +51,8 @@ Never present an agent interpretation as the author's wording.
 
 `AUTHOR CLAIM` should preserve the author's own concise wording. If the claim is distributed across passages, show the relevant author excerpts and place any synthesis under `AGENT INTERPRETATION`; do not fabricate a unified author sentence.
 
+For prose, use a reader-locatable anchor such as `PDF p.1, Introduction, paragraph beginning "Pushing the fundamental limit of..."`, normally preserving the first five words. A file path alone is not a claim-level source anchor. For figures, tables, equations, and supplement items, use their explicit labels plus the PDF page when useful.
+
 ## TRAINING control loop
 
 Enforce:

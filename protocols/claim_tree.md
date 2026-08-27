@@ -34,7 +34,7 @@ Every important paper-side node must contain:
 ID: T0 / I1 / M1 / S1.1 / ...
 ROLE: background / limitation / gap / title / major / subclaim
 AUTHOR CLAIM: author's own concise formulation or source excerpts
-SOURCE ANCHOR: page + section/paragraph, or another precise locator
+SOURCE ANCHOR: PDF page + section + paragraph's first ~5 words, or an explicit figure/table/equation/supplement label
 AGENT INTERPRETATION: required when materially different from AUTHOR CLAIM
 PARENT / CHILD LINKS: ...
 ```
@@ -54,7 +54,13 @@ SOURCE ANCHOR: ...
 RESULT DETAIL: internally available; withheld during TRAINING until independent reading
 ```
 
-Use precise anchors such as figure panels, tables, equations, result subsections, methods sections, or supplement items. A DOI or whole-paper citation is not a sufficient node-level anchor.
+For prose, use a format such as:
+
+```text
+PDF p.1, Introduction, paragraph beginning "Pushing the fundamental limit of..."
+```
+
+Preserve approximately the first five words so the human can visually locate the paragraph. For figures, tables, equations, and supplement items, use their explicit labels and include the PDF page when useful. A DOI, file path, or whole-paper citation is not a sufficient node-level anchor.
 
 ## Human rollout tree
 

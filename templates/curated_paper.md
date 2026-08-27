@@ -51,6 +51,8 @@ SOURCE ANCHOR: ...
 AGENT INTERPRETATION: ...
 ```
 
+For prose anchors, use PDF page + section + the paragraph's first approximately five words. For non-prose material, use explicit figure/table/equation/supplement labels.
+
 ## Training-stage disclosure
 
 ### Problem state exposed before IDEA

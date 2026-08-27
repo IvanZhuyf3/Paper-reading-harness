@@ -40,7 +40,7 @@ rg -n "AI asks → human reasons → AI attacks|EFFICIENT_READING \| Quick|Prese
 - PASS — Each stage reveals a descriptive paper diff and re-anchors the next stage to the paper trajectory.
 - PASS — Agent scientific analysis/ranking is prohibited; active factual verification remains allowed in KNOWLEDGE.
 - PASS — Introduction and Results use one unified claim structure centered on the normalized title claim.
-- PASS — Important paper-side nodes require precise source anchors.
+- PASS — Important paper-side nodes require reader-locatable anchors: PDF page + section + paragraph opening words, or explicit figure/table/equation/supplement labels.
 - PASS — Author wording/source excerpts are separated from materially different agent interpretations.
 - PASS — TRAINING reveals proof architecture after EVIDENCE but does not substitute for reading results.
 - PASS — DELTA is asked after independent paper reading and is not interpreted by the agent.
