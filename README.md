@@ -91,7 +91,7 @@ source PDF
 
 The session stores the model path/version, current stage, selection history, current human structure, and resume cursor after every turn. This keeps the runner compatible with approved models and makes session compaction recoverable.
 
-Question selection is rule-governed rather than purely random. KNOWLEDGE may use seeded sampling from eligible prerequisite nodes. IDEA exposes the complete problem state. CLAIMS and EVIDENCE select only from the human's exposed structure and generic structural prompts; they never sample hidden paper nodes.
+Question selection is rule-governed rather than purely random. KNOWLEDGE may use seeded sampling from eligible prerequisite nodes. IDEA exposes the complete problem state and normally asks only one challenge or clarification, stopping once the proposal is checkable. CLAIMS and EVIDENCE select only from the human's exposed structure and generic structural prompts; they never sample hidden paper nodes.
 
 ## Agent boundary
 
@@ -109,8 +109,8 @@ The agent must not supply the student's scientific content, lead from the hidden
 The human explicitly selects a level at session start.
 
 - **FOUNDATION:** high KNOWLEDGE weight; skip human IDEA generation; retain interactive CLAIMS and EVIDENCE rollouts.
-- **CORE:** moderate knowledge alignment; one serious IDEA rollout; full CLAIMS and EVIDENCE rollouts.
-- **ADVANCED:** knowledge only when needed; multiple independent IDEA rollouts; full CLAIMS and EVIDENCE rollouts.
+- **CORE:** moderate knowledge alignment; one concise IDEA attempt with a minimal checkability gate; full CLAIMS and EVIDENCE rollouts.
+- **ADVANCED:** knowledge only when needed; multiple independent concise IDEA attempts; full CLAIMS and EVIDENCE rollouts.
 
 The FOUNDATION exception follows a simple premise: thinking searches over the graph of the mind; the graph must exist before productive idea search is possible.
 

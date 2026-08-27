@@ -1,7 +1,7 @@
 status = "pending"
 human_approved = false
 model_version = "0.1.0"
-selection_policy_version = "1.0"
+selection_policy_version = "1.1"
 source_sha256 = ""
 paper_slug = ""
 title = ""
@@ -51,7 +51,7 @@ evidence_start = []
 
 [selection]
 knowledge_policy = "seeded_dependency_eligible"
-idea_policy = "complete_problem_state_fixed_prompt"
+idea_policy = "complete_problem_state_fixed_prompt_minimal_checkability_gate"
 claims_policy = "human_tree_open_nodes_only"
 evidence_policy = "revealed_claims_only"
 delta_policy = "fixed_prompt"

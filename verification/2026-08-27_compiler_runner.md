@@ -2,7 +2,7 @@
 
 ## Outcome
 
-The harness now compiles and persists an auditable paper model before runner questions, and stores a separate machine-recoverable session state. Question selection is rule-governed rather than purely random.
+The harness now compiles and persists an auditable paper model before runner questions, and stores a separate machine-recoverable session state. Question selection is rule-governed rather than purely random. IDEA policy 1.1 adds a minimal checkability gate: normally one challenge or clarification, with no requirement for exhaustive deliberation.
 
 ## Architecture artifacts
 
@@ -16,8 +16,8 @@ The harness now compiles and persists an auditable paper model before runner que
 ## SRP paper-model build
 
 - Model: `papers/zhu_2023_srp_microscopy/model/paper_model.pending.toml`
-- Version: 0.1.1
-- Model SHA-256: `BEB27FAA21120AF3E9D60C3E2A0B99DAC5EACE01D320C6DAA7BEFDCB0A07366A`
+- Version: 0.1.2
+- Model SHA-256: `CB9953A2A72340F5B899F98A0C0322F32BA63EFA69A0605088237E52F9E7FAC3`
 - Knowledge nodes: 6
 - Claim nodes: 18
 - Evidence nodes: 9
@@ -32,6 +32,7 @@ The harness now compiles and persists an auditable paper model before runner que
 | `paper_model.audit.preflight2.md` | 20/21 | Supplement integrated; compiler flags intentionally pending |
 | `paper_model.audit.v0.1.0.md` | 21/21 | First finalized mechanically valid model |
 | `paper_model.audit.v0.1.1.md` | 21/21 | Author-source excerpts separated from agent interpretations |
+| `paper_model.audit.v0.1.2.md` | 21/21 | IDEA minimal-checkability gate and selection policy 1.1 |
 
 ## Visual/source audit
 
@@ -46,11 +47,12 @@ The harness now compiles and persists an auditable paper model before runner que
 
 - Canonical state: `papers/zhu_2023_srp_microscopy/sessions/2026-08-27_core_training.state.toml`
 - Human-readable log: `papers/zhu_2023_srp_microscopy/sessions/2026-08-27_core_training.md`
-- State audit: PASS — 13/13 checks.
+- State audit: PASS — 14/14 checks.
 - Pinned model hash: PASS.
 - Selection seed/history: PASS.
+- Completed-stage prefix: PASS.
 - Human-node parent graph: PASS.
-- Unique next interaction cursor: `IDEA.H-I2.mechanism_confirmed.awaiting_finish`.
+- Unique next interaction cursor: `CLAIMS.T0.awaiting_first_major_claim`.
 
 ## Code checks
 

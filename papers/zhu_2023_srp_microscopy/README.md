@@ -36,8 +36,8 @@ The source PDF is treated as immutable.
 - Page-delimited text and 12 page renders generated under `artifacts/`.
 - Supplement text and 30 page renders generated under `artifacts/`.
 - Source/render inspection: passed; see `artifacts/inspection_manifest.md`.
-- Paper model: `model/paper_model.pending.toml`, version 0.1.1.
-- Paper-model SHA-256: `BEB27FAA21120AF3E9D60C3E2A0B99DAC5EACE01D320C6DAA7BEFDCB0A07366A`.
+- Paper model: `model/paper_model.pending.toml`, version 0.1.2.
+- Paper-model SHA-256: `CB9953A2A72340F5B899F98A0C0322F32BA63EFA69A0605088237E52F9E7FAC3`.
 - Mechanical/source audit: `model/paper_model.audit.md`, 21/21 checks passed.
 - Human approval: not reviewed.
 - Curriculum status: not approved for reuse.

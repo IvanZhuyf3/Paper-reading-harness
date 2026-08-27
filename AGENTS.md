@@ -56,7 +56,7 @@ After session compaction or interruption, resume from the persisted model and cu
 Follow `protocols/question_selection.md`.
 
 - KNOWLEDGE: seeded selection from prerequisite nodes whose dependencies are satisfied and whose stage visibility permits disclosure.
-- IDEA: expose the complete compiled problem-state view; do not randomly omit a premise.
+- IDEA: expose the complete compiled problem-state view; then use only minimal clarification to make the human proposal checkable.
 - CLAIMS: select a node only from the human tree and ask a generic structural question.
 - EVIDENCE: select a revealed claim and ask the human for evidence/proof design; do not sample hidden paper evidence.
 - DELTA: fixed prompt only.
@@ -138,8 +138,10 @@ established claims
 Then ask what the human would try.
 
 - FOUNDATION: skip the human IDEA rollout and reveal the paper idea/title claim after knowledge alignment.
-- CORE: one serious rollout.
-- ADVANCED: multiple independent rollouts.
+- CORE: one concise idea attempt.
+- ADVANCED: multiple independent concise attempts.
+
+The IDEA gate is not a separate training exercise in exhaustive deliberation. Normally ask one challenge or clarification about the human proposal. Continue only if its intervention, key mechanism relation, or expected observable remains too ambiguous to record without inventing content. Once the proposal is checkable and the human declares completion, stop; do not demand a detailed or optimized rollout.
 
 For CORE and ADVANCED, wait until the human declares completion. Then juxtapose the human idea(s) with the source-anchored paper idea without ranking or analyzing them. Re-anchor CLAIMS to the paper's title claim.
 

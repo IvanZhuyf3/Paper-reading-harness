@@ -6,16 +6,16 @@
 **Level:** CORE
 **Paper-model source:** compiled pending model for originating session
 **Paper-model path:** `../model/paper_model.pending.toml`
-**Paper-model version:** 0.1.1
-**Paper-model SHA-256:** `BEB27FAA21120AF3E9D60C3E2A0B99DAC5EACE01D320C6DAA7BEFDCB0A07366A`
+**Paper-model version:** 0.1.2
+**Paper-model SHA-256:** `CB9953A2A72340F5B899F98A0C0322F32BA63EFA69A0605088237E52F9E7FAC3`
 **Main-source SHA-256:** `B51735420198D699D8C0F3976617F9CA3DFAA2D8E25EE5B3145A70D884CC8A09`
 **Supplement SHA-256:** `F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16023B2`
-**Selection-policy version:** 1.0
+**Selection-policy version:** 1.1
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
-**Current state:** IDEA
-**Resume cursor:** `IDEA.H-I2.mechanism_confirmed.awaiting_finish`
-**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`
+**Current state:** CLAIMS
+**Resume cursor:** `CLAIMS.T0.awaiting_first_major_claim`
+**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`
 
 ## Disclosure note
 
@@ -149,4 +149,47 @@ Architecture resolution:
 - Question selection changed from transient reasoning to rule-governed, model-pinned selection.
 - Resume at `IDEA.H-I2.mechanism_confirmed.awaiting_finish`.
 
-**Human declared rollout complete:** NO
+**Human declared rollout complete:** YES
+
+### IDEA gate resolution
+
+The human clarified that this gate should prevent an uncheckable or hand-waving proposal, not train exhaustive idea deliberation. The recorded rule is now:
+
+```text
+intervention + key mechanism relation + expected observable
+→ normally one challenge/clarification
+→ human may end rollout
+```
+
+H-I2 already satisfies this minimal recordability gate.
+
+### Structural comparison with the paper IDEA
+
+```text
+HUMAN ACTIVE IDEA H-I2
+intervention: set f_m = f_rep / 2
+mechanism relation: f_rep - f_m coincides with f_m
+observable: both contributions enter one lock-in channel coherently,
+            with an expected doubled demodulated signal
+
+PAPER IDEA / TITLE CLAIM T0
+intervention: probe the Raman-induced refractive-index change with a laser beam
+mechanism relation: Raman energy deposition → heat/temperature → refractive index
+observable: an SRP modulation-depth boost and ultrasensitive chemical imaging
+```
+
+**AUTHOR CLAIM:** “By probing the refractive index changes with a laser beam, we introduce stimulated Raman photothermal (SRP) microscopy, where a >500-fold boost of modulation depth is achieved.”
+
+**SOURCE ANCHORS:** PDF p.1, Abstract, paragraph beginning “Stimulated Raman scattering (SRS) microscopy...”; PDF p.7, Discussion, paragraph beginning “In this work, we have...”
+
+**AGENT INTERPRETATION:** SRP converts the thermal consequence of Raman-resonant energy deposition into an optical readout for more sensitive chemical imaging under the demonstrated conditions.
+
+Descriptive relation: the withdrawn H-I1 contains the paper's central transduction chain; the active H-I2 instead changes the modulation/demodulation arrangement. Both target a larger detectable modulation, but they branch before the title claim.
+
+## 3. CLAIMS
+
+Starting root: paper title claim T0 above.
+
+Pending prompt:
+
+> 要让这个 title claim 成立，你首先会在它下面放哪一条 major claim？

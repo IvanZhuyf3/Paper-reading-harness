@@ -127,6 +127,24 @@ def main() -> int:
         )
     )
 
+    stage_order = ["knowledge", "idea", "claims", "evidence", "independent_reading", "delta"]
+    completed_stages = state.get("completed_stages", [])
+    current_stage = state.get("current_stage")
+    expected_prefix = (
+        stage_order[: stage_order.index(current_stage)]
+        if current_stage in stage_order
+        else stage_order
+        if current_stage == "complete"
+        else []
+    )
+    checks.append(
+        Check(
+            "Completed stages form the prefix before the current stage",
+            completed_stages == expected_prefix,
+            f"completed={completed_stages}, expected={expected_prefix}",
+        )
+    )
+
     asked_ids = state.get("asked_ids", [])
     checks.append(
         Check(

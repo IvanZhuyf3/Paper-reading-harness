@@ -4,4 +4,4 @@ These models are mechanically validated but not human approved. Do not auto-reus
 
 | Paper | Canonical model | Audit | Version | Status |
 |---|---|---|---|---|
-| Zhu et al. 2023, SRP microscopy | `papers/zhu_2023_srp_microscopy/model/paper_model.pending.toml` | `papers/zhu_2023_srp_microscopy/model/paper_model.audit.md` | 0.1.1 | Pending human review |
+| Zhu et al. 2023, SRP microscopy | `papers/zhu_2023_srp_microscopy/model/paper_model.pending.toml` | `papers/zhu_2023_srp_microscopy/model/paper_model.audit.md` | 0.1.2 | Pending human review |

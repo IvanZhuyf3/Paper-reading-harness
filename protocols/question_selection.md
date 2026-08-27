@@ -34,7 +34,7 @@ Do not randomly sample individual problem-state claims. Expose the complete comp
 
 > What would you try?
 
-Follow-up questions may use only the human proposal generated so far.
+Follow-up questions may use only the human proposal generated so far. Normally select exactly one challenge or clarification targeting an ambiguous intervention, mechanism relation, or expected observable. Ask another only when the proposal still cannot be recorded without inventing content; never continue merely to make the idea detailed, optimized, or fully reasoned.
 
 ## CLAIMS
 

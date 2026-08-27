@@ -7,13 +7,14 @@ paper_model_version = ""
 paper_model_sha256 = ""
 main_source_sha256 = ""
 supplement_sha256 = ""
-selection_policy_version = "1.0"
+selection_policy_version = "1.1"
 selection_seed = 0
 current_stage = "knowledge"
 resume_cursor = ""
 asked_ids = []
 verified_knowledge_ids = []
 rollout_complete = false
+completed_stages = []
 pending_prompt_id = ""
 pending_prompt_text = ""
 

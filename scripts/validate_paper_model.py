@@ -259,7 +259,7 @@ def main() -> int:
 
     expected_selection = {
         "knowledge_policy": "seeded_dependency_eligible",
-        "idea_policy": "complete_problem_state_fixed_prompt",
+        "idea_policy": "complete_problem_state_fixed_prompt_minimal_checkability_gate",
         "claims_policy": "human_tree_open_nodes_only",
         "evidence_policy": "revealed_claims_only",
         "delta_policy": "fixed_prompt",

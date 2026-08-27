@@ -61,6 +61,14 @@ Ask:
 
 Each follow-up must be a generic structural clarification based only on what the human has said. After the human declares the rollout complete, show the source-anchored paper idea/title claim alongside the human proposal without analysis or ranking.
 
+The IDEA gate checks only whether the proposal can be recorded without the agent inventing its scientific content. Normally ask one challenge or clarification. A sufficient proposal identifies:
+
+- the intervention;
+- one key mechanism or logical relation;
+- the expected observable consequence.
+
+Do not turn this gate into exhaustive idea development, optimization, feasibility analysis, or a test of whether the human has fully thought the proposal through. If the structure is checkable and the human ends the rollout, proceed.
+
 Then re-anchor CLAIMS to the paper title claim.
 
 FOUNDATION skips the human IDEA rollout. After knowledge alignment, reveal the paper idea/title claim and proceed to CLAIMS.
@@ -117,7 +125,7 @@ Do not offer a taxonomy or analyze the answer.
 | Level | KNOWLEDGE | IDEA | CLAIMS | EVIDENCE |
 |---|---|---|---|---|
 | FOUNDATION | High weight; active concept-graph building | Skip human generation | Interactive rollout | Interactive rollout |
-| CORE | Moderate alignment | One serious rollout | Interactive rollout | Interactive rollout |
-| ADVANCED | On demand | Multiple independent rollouts | Interactive rollout | Interactive rollout |
+| CORE | Moderate alignment | One concise attempt; minimal checkability gate | Interactive rollout | Interactive rollout |
+| ADVANCED | On demand | Multiple independent concise attempts | Interactive rollout | Interactive rollout |
 
 The FOUNDATION exception reflects the premise that thinking searches over the graph of the mind; productive idea search requires enough graph to search.
