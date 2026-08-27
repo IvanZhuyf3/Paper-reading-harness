@@ -10,13 +10,14 @@ supplement_sha256 = "F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16
 selection_policy_version = "1.1"
 selection_seed = 2026082701
 current_stage = "claims"
-resume_cursor = "CLAIMS.T0.awaiting_first_major_claim"
-asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0"]
+resume_cursor = "CLAIMS.H-C1.1.awaiting_causal_claim"
+asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1"]
 verified_knowledge_ids = ["K1", "K2"]
 rollout_complete = false
 completed_stages = ["knowledge", "idea"]
-pending_prompt_id = "CLAIMS_ADD_T0"
-pending_prompt_text = "What is the first major claim you would place under this title claim?"
+revealed_paper_claim_ids = ["T0"]
+pending_prompt_id = "CLAIMS_EXPAND_H-C1.1"
+pending_prompt_text = "How would you state the existence of the SRS thermal effect as a testable causal claim?"
 human_is_paper_author = true
 spoiler_control_test_valid = false
 
@@ -55,6 +56,27 @@ parents = ["H-I2.1"]
 status = "active"
 content = "Both contributions enter the same lock-in channel coherently, with an expected doubling of demodulated signal intensity."
 
+[[human_nodes]]
+id = "H-C1"
+stage = "claims"
+parents = ["T0"]
+status = "decomposed"
+content = "The SRS thermal effect exists and its magnitude reaches a measurable regime."
+
+[[human_nodes]]
+id = "H-C1.1"
+stage = "claims"
+parents = ["H-C1"]
+status = "open"
+content = "An SRS thermal effect exists."
+
+[[human_nodes]]
+id = "H-C1.2"
+stage = "claims"
+parents = ["H-C1"]
+status = "open"
+content = "The magnitude of the SRS thermal effect reaches a measurable regime."
+
 [[events]]
 sequence = 1
 prompt_id = "K1"
@@ -84,3 +106,8 @@ human_response = "Confirmed that f_rep - f_m coincides with f_m at half the repe
 sequence = 6
 prompt_id = "IDEA_FINISH"
 human_response = "Ended the IDEA rollout. Clarified that the gate should require only enough challenge or clarification to prevent an uncheckable proposal, not exhaustive deliberation."
+
+[[events]]
+sequence = 7
+prompt_id = "CLAIMS_ADD_T0"
+human_response = "First prove that the SRS thermal effect exists and that its magnitude reaches a measurable regime."

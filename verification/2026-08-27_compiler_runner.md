@@ -47,12 +47,13 @@ The harness now compiles and persists an auditable paper model before runner que
 
 - Canonical state: `papers/zhu_2023_srp_microscopy/sessions/2026-08-27_core_training.state.toml`
 - Human-readable log: `papers/zhu_2023_srp_microscopy/sessions/2026-08-27_core_training.md`
-- State audit: PASS — 14/14 checks.
+- State audit: PASS — 15/15 checks.
 - Pinned model hash: PASS.
 - Selection seed/history: PASS.
 - Completed-stage prefix: PASS.
+- Revealed paper-claim references: PASS.
 - Human-node parent graph: PASS.
-- Unique next interaction cursor: `CLAIMS.T0.awaiting_first_major_claim`.
+- Unique next interaction cursor: `CLAIMS.H-C1.1.awaiting_causal_claim`.
 
 ## Code checks
 

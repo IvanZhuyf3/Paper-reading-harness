@@ -161,14 +161,26 @@ def main() -> int:
         )
     )
 
+    model_claim_ids = {node.get("id") for node in model.get("claim_nodes", [])}
+    revealed_paper_claim_ids = state.get("revealed_paper_claim_ids", [])
+    invalid_revealed_claim_ids = sorted(set(revealed_paper_claim_ids) - model_claim_ids)
+    checks.append(
+        Check(
+            "Revealed paper-claim IDs resolve",
+            not invalid_revealed_claim_ids,
+            f"missing={invalid_revealed_claim_ids}",
+        )
+    )
+
     human_nodes = state.get("human_nodes", [])
     human_ids = {node.get("id") for node in human_nodes}
+    allowed_parent_ids = human_ids | set(revealed_paper_claim_ids)
     unresolved_parents = sorted(
         {
             parent
             for node in human_nodes
             for parent in node.get("parents", [])
-            if parent not in human_ids
+            if parent not in allowed_parent_ids
         }
     )
     checks.append(

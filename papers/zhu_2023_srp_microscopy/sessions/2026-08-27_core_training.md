@@ -14,8 +14,8 @@
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
 **Current state:** CLAIMS
-**Resume cursor:** `CLAIMS.T0.awaiting_first_major_claim`
-**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`
+**Resume cursor:** `CLAIMS.H-C1.1.awaiting_causal_claim`
+**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`
 
 ## Disclosure note
 
@@ -193,3 +193,22 @@ Starting root: paper title claim T0 above.
 Pending prompt:
 
 > 要让这个 title claim 成立，你首先会在它下面放哪一条 major claim？
+
+Human response:
+
+> 第一步得证明SRS热效应存在，且量级能到可测量的地步。
+
+Current human claim tree:
+
+```text
+T0 — PAPER TITLE CLAIM
+└─ H-C1 — SRS thermal effect exists and reaches a measurable magnitude
+   ├─ H-C1.1 — existence of the SRS thermal effect [OPEN]
+   └─ H-C1.2 — magnitude reaches a measurable regime [OPEN]
+```
+
+Structural operation: the human supplied two burdens joined by “且”; they are retained as two immediate subclaims without adding scientific content.
+
+Pending prompt:
+
+> 先展开 H-C1.1：你要把“SRS 热效应存在”写成怎样一条可验证的因果 claim？

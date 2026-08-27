@@ -15,6 +15,7 @@ asked_ids = []
 verified_knowledge_ids = []
 rollout_complete = false
 completed_stages = []
+revealed_paper_claim_ids = []
 pending_prompt_id = ""
 pending_prompt_text = ""
 
