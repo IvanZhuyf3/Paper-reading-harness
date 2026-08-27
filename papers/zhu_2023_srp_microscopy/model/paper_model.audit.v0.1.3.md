@@ -37,17 +37,3 @@
 ## Scope
 
 This report validates parseability, identity/hash linkage, graph references, anchor presence, disclosure-view membership, and selection-policy invariants. It does not determine whether the paper's scientific trajectory is normatively optimal, and it does not visually prove that every prose anchor points to the intended paragraph.
-
-## Manual source and visibility audit
-
-- PASS — all 12 pages of the supplied main PDF were rendered and visually inspected.
-- PASS — supplement pages containing Figs. S2–S4, S8–S12, S17–S18, and Table S1 were rendered and visually inspected.
-- PASS — prose anchors use main-PDF page, section, and visible paragraph-opening words.
-- PASS — figure/table/equation anchors use labels visible in the supplied main or supplement PDF.
-- PASS — `author_claim` values remain concise source excerpts; normalized synthesis remains in `agent_interpretation`.
-- PASS — the IDEA problem-state view contains no author-solution, title-claim, Results-claim, or evidence node.
-- PASS — IDEA selection policy 1.1 retains its minimal checkability gate rather than exhaustive deliberation.
-- PASS — selection policy 1.2 declares the transferability/reusability filter for default CLAIMS/EVIDENCE follow-up.
-- PASS — CLAIMS begins only from T0; EVIDENCE result details remain hidden until independent reading.
-- NOTE — the main-text fold statements associated with Fig. S18D do not transparently match ratios calculated from the table values. Both source representations are preserved in E9 without agent resolution.
-- STATUS — mechanically validated pending model; not human approved and not eligible for automatic cross-session reuse.

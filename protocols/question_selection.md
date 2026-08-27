@@ -17,6 +17,10 @@ asked/not-asked state
 
 The session records a selection-policy version, seed, selected IDs, and current cursor.
 
+### Transferability/reusability filter
+
+Human-open-node eligibility is necessary but not sufficient for default follow-up. During CLAIMS and EVIDENCE, prefer commonly reusable scientific reasoning primitives, such as resolution calibration, why a fluorescence thermometer can measure temperature, or how LOD is defined and calculated. Low-transfer, paper-specific apparatus optimization—such as detailed device architecture or function-module design—should normally be recorded and left closed rather than deepened. Select such a node only when the human explicitly requests it, when clarification is necessary to make the claim checkable, or when EFFICIENT_READING asks for that expansion.
+
 ## KNOWLEDGE
 
 Eligible nodes must:
@@ -38,13 +42,13 @@ Follow-up questions may use only the human proposal generated so far. Normally s
 
 ## CLAIMS
 
-Eligible nodes come only from the human's current tree. Selection may choose among human-created open nodes, using generic prompts such as add, expand, decompose, or finish.
+Eligible nodes come only from the human's current tree. Selection may choose among human-created open nodes, using generic prompts such as add, expand, decompose, or finish, subject to the transferability/reusability filter above.
 
 Never select a hidden paper claim to probe an omission.
 
 ## EVIDENCE
 
-Eligible nodes are claims already revealed by the stage protocol. Ask the human to attach an experiment, control, analysis, simulation, or proof design.
+Eligible nodes are claims already revealed by the stage protocol. Ask the human to attach an experiment, control, analysis, simulation, or proof design, subject to the transferability/reusability filter above.
 
 Never select a hidden paper evidence node before human rollout completion.
 

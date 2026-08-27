@@ -6,16 +6,16 @@
 **Level:** CORE
 **Paper-model source:** compiled pending model for originating session
 **Paper-model path:** `../model/paper_model.pending.toml`
-**Paper-model version:** 0.1.2
-**Paper-model SHA-256:** `CB9953A2A72340F5B899F98A0C0322F32BA63EFA69A0605088237E52F9E7FAC3`
+**Paper-model version:** 0.1.3
+**Paper-model SHA-256:** `706E5E5642349F277D110F84475241C37E67232AFA9B5C9EC3CB42204B99AD2F`
 **Main-source SHA-256:** `B51735420198D699D8C0F3976617F9CA3DFAA2D8E25EE5B3145A70D884CC8A09`
 **Supplement SHA-256:** `F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16023B2`
-**Selection-policy version:** 1.1
+**Selection-policy version:** 1.2
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
 **Current state:** CLAIMS
-**Resume cursor:** `CLAIMS.H-C2.1.awaiting_architecture_claim`
-**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`
+**Resume cursor:** `CLAIMS.T0.awaiting_next_major_claim`
+**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`
 
 ## Disclosure note
 
@@ -210,7 +210,8 @@ T0 — PAPER TITLE CLAIM
 │  │  └─ H-C1.1.3 — SRS produces a temperature rise at the focus [OPEN]
 │  └─ H-C1.2 — magnitude reaches a measurable regime [OPEN]
 └─ H-C2 — the principle can be realized as a functioning microscope [DECOMPOSED]
-   ├─ H-C2.1 — device architecture [OPEN]
+   ├─ H-C2.1 — absorption SRS readout → scattering/PT readout;
+   │           lower NA on the collection side [CLOSED]
    ├─ H-C2.2 — signal characteristics [OPEN]
    └─ H-C2.3 — signal-processing method [OPEN]
 ```
@@ -264,3 +265,15 @@ T0 — PAPER TITLE CLAIM
 Current pending prompt:
 
 > 先展开 H-C2.1：设备架构必须包含哪些功能模块及其关系，才能把这个原理实现成显微镜？
+
+Event 10 — `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`
+
+Human response:
+
+> 核心应该是把吸收测量（SRS）转化成散射测量（PT），所以收光侧需要降低NA
+
+Structural operation: H-C2.1 is recorded as sufficient and closed at the level supplied by the human. It is not deepened into paper-specific apparatus modules. H-C2.2 and H-C2.3 remain the human-provided open placeholders.
+
+Current pending prompt:
+
+> 回到 T0：还需要添加哪一条 major claim？

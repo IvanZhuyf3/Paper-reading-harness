@@ -260,11 +260,19 @@ def main() -> int:
     expected_selection = {
         "knowledge_policy": "seeded_dependency_eligible",
         "idea_policy": "complete_problem_state_fixed_prompt_minimal_checkability_gate",
-        "claims_policy": "human_tree_open_nodes_only",
-        "evidence_policy": "revealed_claims_only",
+        "claims_policy": "human_tree_open_nodes_only_transferability_filtered",
+        "evidence_policy": "revealed_claims_only_transferability_filtered",
+        "transferability_filter": "default_reusable_reasoning_primitives",
         "delta_policy": "fixed_prompt",
     }
     selection = model.get("selection", {})
+    checks.append(
+        Check(
+            "Selection-policy version is current",
+            model.get("selection_policy_version") == "1.2",
+            f"version={model.get('selection_policy_version')}",
+        )
+    )
     selection_mismatch = {
         key: selection.get(key)
         for key, expected in expected_selection.items()

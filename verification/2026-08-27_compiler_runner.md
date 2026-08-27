@@ -2,7 +2,7 @@
 
 ## Outcome
 
-The harness now compiles and persists an auditable paper model before runner questions, and stores a separate machine-recoverable session state. Question selection is rule-governed rather than purely random. IDEA policy 1.1 adds a minimal checkability gate: normally one challenge or clarification, with no requirement for exhaustive deliberation.
+The harness now compiles and persists an auditable paper model before runner questions, and stores a separate machine-recoverable session state. Question selection is rule-governed rather than purely random. IDEA policy 1.1 adds a minimal checkability gate: normally one challenge or clarification, with no requirement for exhaustive deliberation. Selection policy 1.2 adds a transferability/reusability filter so default CLAIMS/EVIDENCE follow-up favors reusable scientific reasoning primitives over low-transfer paper-specific apparatus optimization.
 
 ## Architecture artifacts
 
@@ -16,8 +16,8 @@ The harness now compiles and persists an auditable paper model before runner que
 ## SRP paper-model build
 
 - Model: `papers/zhu_2023_srp_microscopy/model/paper_model.pending.toml`
-- Version: 0.1.2
-- Model SHA-256: `CB9953A2A72340F5B899F98A0C0322F32BA63EFA69A0605088237E52F9E7FAC3`
+- Version: 0.1.3
+- Model SHA-256: `706E5E5642349F277D110F84475241C37E67232AFA9B5C9EC3CB42204B99AD2F`
 - Knowledge nodes: 6
 - Claim nodes: 18
 - Evidence nodes: 9
@@ -33,6 +33,7 @@ The harness now compiles and persists an auditable paper model before runner que
 | `paper_model.audit.v0.1.0.md` | 21/21 | First finalized mechanically valid model |
 | `paper_model.audit.v0.1.1.md` | 21/21 | Author-source excerpts separated from agent interpretations |
 | `paper_model.audit.v0.1.2.md` | 21/21 | IDEA minimal-checkability gate and selection policy 1.1 |
+| `paper_model.audit.v0.1.3.md` | 22/22 | Transferability/reusability filter and selection policy 1.2 |
 
 ## Visual/source audit
 
@@ -53,7 +54,7 @@ The harness now compiles and persists an auditable paper model before runner que
 - Completed-stage prefix: PASS.
 - Revealed paper-claim references: PASS.
 - Human-node parent graph: PASS.
-- Unique next interaction cursor: `CLAIMS.H-C2.1.awaiting_architecture_claim`.
+- Unique next interaction cursor: `CLAIMS.T0.awaiting_next_major_claim`.
 
 ## Current session checkpoint — event 8
 
@@ -68,6 +69,13 @@ The harness now compiles and persists an auditable paper model before runner que
 - Event sequence: contiguous through event 9.
 - Unique next interaction cursor: `CLAIMS.H-C2.1.awaiting_architecture_claim`.
 - Pending prompt ID: `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`.
+
+## Current session checkpoint — event 10
+
+- Canonical session-state audit: PASS — 15/15 checks.
+- Event sequence: contiguous through event 10.
+- Unique next interaction cursor: `CLAIMS.T0.awaiting_next_major_claim`.
+- Pending prompt ID: `CLAIMS_ADD_T0_3`.
 
 ## Code checks
 

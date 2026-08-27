@@ -1,7 +1,7 @@
 status = "pending"
 human_approved = false
-model_version = "0.1.2"
-selection_policy_version = "1.1"
+model_version = "0.1.3"
+selection_policy_version = "1.2"
 paper_slug = "zhu_2023_srp_microscopy"
 title = "Stimulated Raman photothermal microscopy toward ultrasensitive chemical imaging"
 authors = ["Yifan Zhu", "Xiaowei Ge", "Hongli Ni", "Jiaze Yin", "Haonan Lin", "Le Wang", "Yuying Tan", "Chinmayee V. Prabhu Dessai", "Yueming Li", "Xinyan Teng", "Ji-Xin Cheng"]
@@ -356,8 +356,9 @@ independent_reading = ["all_claim_nodes", "all_evidence_nodes", "result_detail"]
 [selection]
 knowledge_policy = "seeded_dependency_eligible"
 idea_policy = "complete_problem_state_fixed_prompt_minimal_checkability_gate"
-claims_policy = "human_tree_open_nodes_only"
-evidence_policy = "revealed_claims_only"
+claims_policy = "human_tree_open_nodes_only_transferability_filtered"
+evidence_policy = "revealed_claims_only_transferability_filtered"
+transferability_filter = "default_reusable_reasoning_primitives"
 delta_policy = "fixed_prompt"
 
 [prompt_templates]
