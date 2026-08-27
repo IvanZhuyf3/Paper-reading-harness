@@ -10,14 +10,14 @@ supplement_sha256 = "F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16
 selection_policy_version = "1.2"
 selection_seed = 2026082701
 current_stage = "claims"
-resume_cursor = "CLAIMS.H-C3.3.awaiting_spectral_fidelity_definition"
-asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3", "CLAIMS_EXPAND_H-C3.1_LOD", "CLAIMS_EXPAND_H-C3.2_RESOLUTION", "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY"]
+resume_cursor = "CLAIMS.H-C3.3.awaiting_similarity_metric"
+asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3", "CLAIMS_EXPAND_H-C3.1_LOD", "CLAIMS_EXPAND_H-C3.2_RESOLUTION", "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY", "CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC"]
 verified_knowledge_ids = ["K1", "K2"]
 rollout_complete = false
 completed_stages = ["knowledge", "idea"]
 revealed_paper_claim_ids = ["T0"]
-pending_prompt_id = "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY"
-pending_prompt_text = "先展开 H-C3.3：你会怎样定义并量化 SRP 相对于参考 Raman 测量的 spectral fidelity？"
+pending_prompt_id = "CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC"
+pending_prompt_text = "这里的 spectrum similarity，你会用哪个 quantitative metric 来定义？"
 human_is_paper_author = true
 spoiler_control_test_valid = false
 
@@ -202,7 +202,50 @@ id = "H-C3.3"
 stage = "claims"
 parents = ["H-C3"]
 status = "open"
+decomposition_status = "partial"
 content = "Spectral fidelity, by comparing SRP and Raman on a sample（spectral fidelity，在样品上比较 SRP 和 Raman）。"
+
+[[human_nodes]]
+id = "H-C3.3.1"
+stage = "claims"
+parents = ["H-C3.3"]
+status = "open"
+content = "Measure the same sample with SRP and Raman（测量相同样品）。"
+
+[[human_nodes]]
+id = "H-C3.3.2"
+stage = "claims"
+parents = ["H-C3.3.1"]
+status = "open"
+content = "Normalize the spectra together（normalize 到一起）。"
+
+[[human_nodes]]
+id = "H-C3.3.3"
+stage = "claims"
+parents = ["H-C3.3.2"]
+status = "open"
+content = "Quantify spectrum similarity; the quantitative metric remains open（比较 spectrum 相似度；metric 尚未定义）。"
+
+[[human_nodes]]
+id = "H-C3.3.4"
+stage = "claims"
+parents = ["H-C3.3.3"]
+status = "open"
+content = "If similarity is high, there is no additional explanatory burden（相似度高时不用额外解释）。"
+
+[[human_nodes]]
+id = "H-C3.3.5"
+stage = "claims"
+parents = ["H-C3.3.3"]
+status = "open"
+content = "If similarity is low, explain what physical principle causes the difference（相似度低时解释导致差异的物理原理）。"
+
+[[human_nodes]]
+id = "H-C3.3.6"
+stage = "claims"
+parents = ["H-C3.3.3"]
+status = "open"
+content = "If similarity is low, assess whether the residual/new spectrum affects spectrum interpretation（相似度低时评估余下的新 spectrum 是否影响 spectrum interpretation）。"
 
 [[human_nodes]]
 id = "H-C3.4"
@@ -303,3 +346,8 @@ human_response = "3σ/k，σ是baseline STD，k是calibration curve的slope。"
 sequence = 13
 prompt_id = "CLAIMS_EXPAND_H-C3.2_RESOLUTION"
 human_response = "两个思路：1，测很稀疏的beads，找单个bead的spatial profile，测FWHM，在deconvolute bead shape。2，测密一些的beads，测Fourier ring correlation。实践上就一把测，稀疏就1，密了就2。然后务必oversample on space"
+
+[[events]]
+sequence = 14
+prompt_id = "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY"
+human_response = "测量相同样品，normalize到一起，比较spectrum相似度。一般来说相似度高的就不用讲了，相似度低了就只能讨论下1，什么原理导致不一样；2，余下的这个新spectrum会不会影响spectrum interpretation"

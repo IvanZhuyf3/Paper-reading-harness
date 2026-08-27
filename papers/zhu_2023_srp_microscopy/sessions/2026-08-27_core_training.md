@@ -14,8 +14,8 @@
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
 **Current state:** CLAIMS
-**Resume cursor:** `CLAIMS.H-C3.3.awaiting_spectral_fidelity_definition`
-**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`
+**Resume cursor:** `CLAIMS.H-C3.3.awaiting_similarity_metric`
+**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`
 
 ## Disclosure note
 
@@ -226,7 +226,14 @@ T0 — PAPER TITLE CLAIM
    │  │     └─ H-C3.2.4 — deconvolve finite bead shape [CLOSED]
    │  ├─ H-C3.2.5 — denser beads → Fourier ring correlation [CLOSED]
    │  └─ H-C3.2.6 — choose method according to bead density [CLOSED]
-   ├─ H-C3.3 — spectral fidelity by comparing SRP and Raman on a sample [OPEN]
+   ├─ H-C3.3 — spectral fidelity by comparing SRP and Raman on a sample [OPEN / PARTIAL]
+   │  ├─ H-C3.3.1 — measure the same sample with SRP and Raman [OPEN]
+   │  ├─ H-C3.3.2 — normalize the spectra together [OPEN]
+   │  ├─ H-C3.3.3 — quantify spectrum similarity; metric remains open [OPEN]
+   │  ├─ H-C3.3.4 — high similarity → no additional explanatory burden [OPEN]
+   │  ├─ H-C3.3.5 — low similarity → explain the physical cause [OPEN]
+   │  └─ H-C3.3.6 — low similarity → assess impact of residual/new spectrum
+   │              on spectrum interpretation [OPEN]
    ├─ H-C3.4 — penetration depth, only if improved [CONDITIONAL]
    └─ H-C3.5 — speed [OPEN]
 ```
@@ -341,3 +348,15 @@ Structural operation: H-C3.2 is decomposed into the common spatial-oversampling 
 Current pending prompt:
 
 > 先展开 H-C3.3：你会怎样定义并量化 SRP 相对于参考 Raman 测量的 spectral fidelity？
+
+Event 14 — `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`
+
+Human response:
+
+> 测量相同样品，normalize到一起，比较spectrum相似度。一般来说相似度高的就不用讲了，相似度低了就只能讨论下1，什么原理导致不一样；2，余下的这个新spectrum会不会影响spectrum interpretation
+
+Structural operation: H-C3.3 is partially decomposed while remaining open because the similarity metric is not defined. The recorded structure preserves matched-sample measurement, joint normalization, similarity quantification, and the human's high-similarity/low-similarity decision branches without adding a metric or paper result.
+
+Current pending prompt:
+
+> 这里的 spectrum similarity，你会用哪个 quantitative metric 来定义？
