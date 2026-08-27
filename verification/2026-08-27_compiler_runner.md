@@ -193,6 +193,16 @@ The harness now compiles and persists an auditable paper model before runner que
 - Unique next interaction cursor: `INDEPENDENT_READING.awaiting_human_completion`.
 - Pending prompt ID: `INDEPENDENT_READING_COMPLETE`.
 
+## Current session checkpoint — event 28
+
+- Canonical session-state audit: PASS — 38/38 checks.
+- Event sequence: contiguous through event 28.
+- Current stage: `complete`.
+- Stage dispositions: `independent_reading=not_applicable`, `delta=skipped`.
+- Unique terminal cursor: `COMPLETE.terminal`.
+- Pending prompt: none.
+- Markdown renderer parity and chronology: PASS.
+
 ## Code checks
 
 - PASS — both validator scripts compile under Python 3.12.

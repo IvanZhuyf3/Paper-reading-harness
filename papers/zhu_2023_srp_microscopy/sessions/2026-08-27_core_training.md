@@ -13,9 +13,11 @@
 **Selection-policy version:** 1.2
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
-**Current state:** INDEPENDENT_READING
-**Resume cursor:** `INDEPENDENT_READING.awaiting_human_completion`
+**Current state:** COMPLETE
+**Resume cursor:** `COMPLETE.terminal`
 **Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`, `CLAIMS_EXPAND_H-C3.5_SPEED`, `CLAIMS_FINISH_OR_ADD`, `CLAIMS_FINISH`, `EVIDENCE_M1_THERMOMETRY_VALIDITY`, `EVIDENCE_M1_THERMOMETRY_CONFOUNDS`, `EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION`, `EVIDENCE_M2_MATCHED_SENSITIVITY_COMPARISON`, `EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION`, `EVIDENCE_M3_APPLICATION_PERFORMANCE_LINK`, `EVIDENCE_M3_FEATURE_RECOGNITION_VALIDITY`, `EVIDENCE_M3_CLARIFY_NO_COMPARISON`, `EVIDENCE_FINISH`, `INDEPENDENT_READING_COMPLETE`
+**Stage dispositions:** knowledge=completed; idea=completed; claims=completed; evidence=completed; independent_reading=not_applicable; delta=skipped
+**Rollout complete:** YES
 
 ## Disclosure note
 
@@ -261,7 +263,10 @@ H-E-C1.1.3-MICRO-THERMOCOUPLE → H-C1.1.3
   Use an approximately 1-μm micro-thermocouple to measure the focus temperature.
 ```
 
-Event 8 — `CLAIMS_EXPAND_H-C1.1`
+<!-- BEGIN HUMAN NARRATIVE -->
+## Chronological human narrative
+
+### Human narrative record — #8 — `CLAIMS_EXPAND_H-C1.1`
 
 Human response:
 
@@ -272,8 +277,7 @@ The claims and evidence candidates above are a faithful structural recording of 
 Current pending prompt:
 
 > 回到 T0：你下一条要添加的 major claim 是什么？
-
-Event 9 — `CLAIMS_ADD_T0_2`
+### Human narrative record — #9 — `CLAIMS_ADD_T0_2`
 
 Human response:
 
@@ -294,8 +298,7 @@ T0 — PAPER TITLE CLAIM
 Current pending prompt:
 
 > 先展开 H-C2.1：设备架构必须包含哪些功能模块及其关系，才能把这个原理实现成显微镜？
-
-Event 10 — `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`
+### Human narrative record — #10 — `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`
 
 Human response:
 
@@ -306,8 +309,7 @@ Structural operation: H-C2.1 is recorded as sufficient and closed at the level s
 Current pending prompt:
 
 > 回到 T0：还需要添加哪一条 major claim？
-
-Event 11 — `CLAIMS_ADD_T0_3`
+### Human narrative record — #11 — `CLAIMS_ADD_T0_3`
 
 Human response:
 
@@ -331,8 +333,7 @@ T0 — PAPER TITLE CLAIM
 Current pending prompt:
 
 > 先展开 H-C3.1 的低浓度灵敏度：你会怎样定义并计算 LoD？
-
-Event 12 — `CLAIMS_EXPAND_H-C3.1_LOD`
+### Human narrative record — #12 — `CLAIMS_EXPAND_H-C3.1_LOD`
 
 Human response:
 
@@ -343,8 +344,7 @@ Structural operation: the human supplied a reusable LoD definition and calculati
 Current pending prompt:
 
 > 先展开 H-C3.2：你会怎样用 small-bead measurement 定义并估计显微镜的空间分辨率？
-
-Event 13 — `CLAIMS_EXPAND_H-C3.2_RESOLUTION`
+### Human narrative record — #13 — `CLAIMS_EXPAND_H-C3.2_RESOLUTION`
 
 Human response:
 
@@ -355,8 +355,7 @@ Structural operation: H-C3.2 is decomposed into the common spatial-oversampling 
 Current pending prompt:
 
 > 先展开 H-C3.3：你会怎样定义并量化 SRP 相对于参考 Raman 测量的 spectral fidelity？
-
-Event 14 — `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`
+### Human narrative record — #14 — `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`
 
 Human response:
 
@@ -367,8 +366,7 @@ Structural operation: H-C3.3 is partially decomposed while remaining open becaus
 Current pending prompt:
 
 > 这里的 spectrum similarity，你会用哪个 quantitative metric 来定义？
-
-Event 15 — `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`
+### Human narrative record — #15 — `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`
 
 Human response:
 
@@ -379,8 +377,7 @@ Structural operation: the human supplied a quantitative spectrum-similarity metr
 Current pending prompt:
 
 > 先展开 H-C3.5：你会用什么 operational metric 定义 imaging speed，并要求哪些 acquisition conditions 保持一致？
-
-Event 16 — `CLAIMS_EXPAND_H-C3.5_SPEED`
+### Human narrative record — #16 — `CLAIMS_EXPAND_H-C3.5_SPEED`
 
 Human response:
 
@@ -391,8 +388,7 @@ Structural operation: H-C3.5 is reclassified as relocated/not standalone. The hu
 Current pending prompt:
 
 > 这样调整后，你还要添加别的 major claim，还是结束 CLAIMS rollout？
-
-Event 17 — `CLAIMS_FINISH_OR_ADD`
+### Human narrative record — #17 — `CLAIMS_FINISH_OR_ADD`
 
 Human response:
 
@@ -403,8 +399,7 @@ Structural operation: the human added H-C4 as an APPLICATION major claim and sup
 Current pending prompt:
 
 > 你准备结束这次 CLAIMS rollout，并与论文 claim tree 做结构对照了吗？
-
-Event 18 — `CLAIMS_FINISH`
+### Human narrative record — #18 — `CLAIMS_FINISH`
 
 Human response:
 
@@ -472,8 +467,7 @@ EVIDENCE re-anchor: the next task is human evidence/proof design attached to rev
 Current pending prompt:
 
 > 针对 M1 的局部温升 claim：为什么 fluorescence thermometer 的 fluorescence change 可以解释为 temperature change？必须先建立哪条 calibration relation？
-
-Event 19 — `EVIDENCE_M1_THERMOMETRY_VALIDITY`
+### Human narrative record — #19 — `EVIDENCE_M1_THERMOMETRY_VALIDITY`
 
 Human response:
 
@@ -493,8 +487,7 @@ Structural operation: this records the human's fluorescence-thermometry inferenc
 Current pending prompt:
 
 > 除了温度，还有哪些因素可能改变 Rhodamine B fluorescence？你会用什么 control 排除它们？
-
-Event 20 — `EVIDENCE_M1_THERMOMETRY_CONFOUNDS`
+### Human narrative record — #20 — `EVIDENCE_M1_THERMOMETRY_CONFOUNDS`
 
 Human response:
 
@@ -511,8 +504,7 @@ confound: photobleaching
 Current pending prompt:
 
 > 这个 only-bleach/no-thermal control 里，你会改变哪个实验变量来关闭 thermal generation，同时让 dye 的 optical exposure 尽量保持一致？
-
-Event 21 — `EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION`
+### Human narrative record — #21 — `EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION`
 
 Human response:
 
@@ -523,8 +515,7 @@ Structural operation: the human completed the only-bleach/no-thermal control by 
 Current pending prompt:
 
 > 如果要证明 SRP 相比 SRS 更灵敏，这个 comparison 中哪些 acquisition variables 必须保持一致，最后比较哪个 sensitivity metric？
-
-Event 22 — `EVIDENCE_M2_MATCHED_SENSITIVITY_COMPARISON`
+### Human narrative record — #22 — `EVIDENCE_M2_MATCHED_SENSITIVITY_COMPARISON`
 
 Human response:
 
@@ -543,8 +534,7 @@ Structural operation: the comparison structure is recorded as sufficient. It doe
 Current pending prompt:
 
 > 在 single-bead FWHM measurement 中，有限 bead size 要怎样从 measured spatial width 中 deconvolve？
-
-Event 23 — `EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION`
+### Human narrative record — #23 — `EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION`
 
 Human response:
 
@@ -563,8 +553,26 @@ Structural operation: this is recorded explicitly as the human's simplified algo
 Current pending prompt:
 
 > feature recognition 容易变成主观判断；你会怎样把它 operationalize，或者用什么 blind/control 让比较可复现？
+### Human narrative record — #24 — `EVIDENCE_M3_APPLICATION_PERFORMANCE_LINK`
 
-Event 25 — `EVIDENCE_M3_FEATURE_RECOGNITION_VALIDITY`
+Human response:
+
+> 最好是同样品同FoV同参数测量，直接head2head比较image quality，包括SNR、resolution、feature recognization
+
+Human-designed evidence structure under paper M3:
+
+```text
+same sample + same FoV + same/matched acquisition parameters
+→ head-to-head image-quality comparison
+→ SNR + resolution + feature recognition
+```
+
+Structural operation: SNR and resolution are recorded as operational comparison dimensions. Feature recognition remains open because the human response does not define a reproducible operationalization; no paper result is added.
+
+Current pending prompt:
+
+> feature recognition 容易变成主观判断；你会怎样把它 operationalize，或者用什么 blind/control 让比较可复现？
+### Human narrative record — #25 — `EVIDENCE_M3_FEATURE_RECOGNITION_VALIDITY`
 
 Human response:
 
@@ -586,8 +594,7 @@ Structural operation: the concrete example remains in this session audit only. T
 Current pending prompt:
 
 > 我只确认最后一句：这里“不需要做 comparison”是指证据重心转为 biological/causal controls，而不再要求与其他成像方法做 head-to-head comparison，对吗？
-
-Event 26 — `EVIDENCE_M3_CLARIFY_NO_COMPARISON`
+### Human narrative record — #26 — `EVIDENCE_M3_CLARIFY_NO_COMPARISON`
 
 Human response:
 
@@ -606,8 +613,7 @@ Structural operation: the clarification is marked sufficient/closed and records 
 Current pending prompt:
 
 > 你准备结束这次 EVIDENCE rollout，并与论文的 proof architecture 做结构对照了吗？
-
-Event 27 — `EVIDENCE_FINISH`
+### Human narrative record — #27 — `EVIDENCE_FINISH`
 
 Human response:
 
@@ -640,23 +646,373 @@ This is a descriptive structural diff only. It does not rank the trajectories, a
 Current pending prompt:
 
 > 现在请你独立查看论文中的 evidence details；完成后告诉我。
+<!-- END HUMAN NARRATIVE -->
 
-Event 24 — `EVIDENCE_M3_APPLICATION_PERFORMANCE_LINK`
+<!-- BEGIN GENERATED EVENT TIMELINE -->
+## Machine-generated event timeline
 
-Human response:
+### Event 1 — `K1`
+
+**Stage:** `knowledge`
+**Selection policy:** `1.1`
+
+**Prompt:**
+
+> 在 stimulated Raman scattering（SRS）中，pump 与 Stokes 两束光满足 Raman resonance 时，样品和两束光分别发生什么变化？实验上通常检测的“信号”是什么？
+
+**Human response:**
+
+> SRL and SRG; normally detect the optical-intensity changes from these processes.
+
+### Event 2 — `K2`
+
+**Stage:** `knowledge`
+**Selection policy:** `1.1`
+
+**Prompt:**
+
+> 如果 SRS 信号只是叠加在强 pump 或 Stokes 光束上的一个很小的相对光强变化，最低可检测浓度主要受什么约束？为什么不能简单地无限增加入射光功率来改善它？
+
+**Human response:**
+
+> Limited modulation depth and shot-noise limit; excessive optical power causes photodamage.
+
+### Event 3 — `IDEA_FIXED`
+
+**Stage:** `idea`
+**Selection policy:** `1.1`
+
+**Prompt:**
+
+> 在这个问题状态下，你会尝试什么路线？
+
+**Human response:**
+
+> Convert the measurement modality and use a more sensitive modality, for example PT.
+
+### Event 4 — `IDEA_CLARIFY_H-I1`
+
+**Stage:** `idea`
+**Selection policy:** `1.1`
+
+**Prompt:**
+
+> 在你的 PT 路线中，SRS 事件产生的哪个中间物理量携带 Raman-specific information，而 PT readout 具体测量这个量的什么变化？
+
+**Human response:**
+
+> SRS is a real transition that produces heat; PT measures heat to temperature to refractive-index change.
+
+### Event 5 — `IDEA_CLARIFY_H-I2_FOLDING`
+
+**Stage:** `idea`
+**Selection policy:** `1.1`
+
+**Prompt:**
+
+> 我先确认结构：你说的“从 rep rate 反射回来”，是否指脉冲列频谱中的 `f_rep − f_m` 分量在 `f_m = f_rep/2` 时与 `f_m` 重合，因此被同一个 lock-in channel 相干读出？
+
+**Human response:**
+
+> Confirmed that f_rep - f_m coincides with f_m at half the repetition rate and is coherently read by the same lock-in channel.
+
+### Event 6 — `IDEA_FINISH`
+
+**Stage:** `idea`
+**Selection policy:** `1.1`
+
+**Prompt:**
+
+> 你准备结束这次 IDEA rollout，并与论文 idea 做结构对照了吗？
+
+**Human response:**
+
+> Ended the IDEA rollout. Clarified that the gate should require only enough challenge or clarification to prevent an uncheckable proposal, not exhaustive deliberation.
+
+### Event 7 — `CLAIMS_ADD_T0`
+
+**Stage:** `claims`
+**Selection policy:** `1.1`
+
+**Prompt:**
+
+> 要让这个 title claim 成立，你首先会在它下面放哪一条 major claim？
+
+**Human response:**
+
+> First prove that the SRS thermal effect exists and that its magnitude reaches a measurable regime.
+
+### Event 8 — `CLAIMS_EXPAND_H-C1.1`
+
+**Stage:** `claims`
+**Selection policy:** `1.1`
+
+**Prompt:**
+
+> 先展开 H-C1.1：你会怎样把“存在性”拆成可检验的子claim？
+
+**Human response:**
+
+> 存在性，首先可以用energy diagram说明，final state是excited state，这就不像CARS。然后可以做一些simulation，从已有的数据出发，first principle算出来能产生多少热，能积累多少温度。最后可以做一个thermometer验证，比如做一个微型热电偶，1μm那么大，就测focus温度
+
+### Event 9 — `CLAIMS_ADD_T0_2`
+
+**Stage:** `claims`
+**Selection policy:** `1.1`
+
+**Prompt:**
+
+> 回到 T0：你下一条要添加的 major claim 是什么？
+
+**Human response:**
+
+> 第二个major claim是按照这个原理真的能打出来一个显微镜。这里需要subclaim包括：设备架构，信号特征，信号处理方法
+
+### Event 10 — `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`
+
+**Stage:** `claims`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 先展开 H-C2.1：设备架构必须包含哪些功能模块及其关系，才能把这个原理实现成显微镜？
+
+**Human response:**
+
+> 核心应该是把吸收测量（SRS）转化成散射测量（PT），所以收光侧需要降低NA
+
+### Event 11 — `CLAIMS_ADD_T0_3`
+
+**Stage:** `claims`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 回到 T0：还需要添加哪一条 major claim？
+
+**Human response:**
+
+> H-C3 显微镜可以达成很好的性能。可能可以做的方向包括：灵敏度（低浓度，测LoD；小particle，测比如50nm plastic beads），分辨率（小beads），spectral fidelity （随便什么样品，比较SRP和Raman），penetration depth （如果有进步的话），speed
+
+### Event 12 — `CLAIMS_EXPAND_H-C3.1_LOD`
+
+**Stage:** `claims`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 先展开 H-C3.1 的低浓度灵敏度：你会怎样定义并计算 LoD？
+
+**Human response:**
+
+> 3σ/k，σ是baseline STD，k是calibration curve的slope。
+
+### Event 13 — `CLAIMS_EXPAND_H-C3.2_RESOLUTION`
+
+**Stage:** `claims`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 先展开 H-C3.2：你会怎样用 small-bead measurement 定义并估计显微镜的空间分辨率？
+
+**Human response:**
+
+> 两个思路：1，测很稀疏的beads，找单个bead的spatial profile，测FWHM，在deconvolute bead shape。2，测密一些的beads，测Fourier ring correlation。实践上就一把测，稀疏就1，密了就2。然后务必oversample on space
+
+### Event 14 — `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`
+
+**Stage:** `claims`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 先展开 H-C3.3：你会怎样定义并量化 SRP 相对于参考 Raman 测量的 spectral fidelity？
+
+**Human response:**
+
+> 测量相同样品，normalize到一起，比较spectrum相似度。一般来说相似度高的就不用讲了，相似度低了就只能讨论下1，什么原理导致不一样；2，余下的这个新spectrum会不会影响spectrum interpretation
+
+### Event 15 — `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`
+
+**Stage:** `claims`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 这里的 spectrum similarity，你会用哪个 quantitative metric 来定义？
+
+**Human response:**
+
+> 向量归一化求点积应该就可以。完全相同是1。
+
+### Event 16 — `CLAIMS_EXPAND_H-C3.5_SPEED`
+
+**Stage:** `claims`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 先展开 H-C3.5：你会用什么 operational metric 定义 imaging speed，并要求哪些 acquisition conditions 保持一致？
+
+**Human response:**
+
+> speed其实不需要严格characterize，一般就测到动的样品在动，标个frame rate就完了。这个一般会放在application那里一起说。
+
+### Event 17 — `CLAIMS_FINISH_OR_ADD`
+
+**Stage:** `claims`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 这样调整后，你还要添加别的 major claim，还是结束 CLAIMS rollout？
+
+**Human response:**
+
+> 接下来需要有一些application。一般一个侧重仪器理论的论文，application会选择全面覆盖各种样品类型和各种信号区间。样品尺度从小到大，virus，cell，tissue；Raman window覆盖C-H，C-D，amide1 就行了。如果是性能提升很大的，就加一些能体现性能提升的应用。这个claim虽然重要，但具体选什么可能不那么重要，上面几个参数排列组合出几个图就行了。
+
+### Event 18 — `CLAIMS_FINISH`
+
+**Stage:** `claims`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 你准备结束这次 CLAIMS rollout，并与论文 claim tree 做结构对照了吗？
+
+**Human response:**
+
+> ok，结束rollout
+
+### Event 19 — `EVIDENCE_M1_THERMOMETRY_VALIDITY`
+
+**Stage:** `evidence`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 针对 M1 的局部温升 claim：为什么 fluorescence thermometer 的 fluorescence change 可以解释为 temperature change？必须先建立哪条 calibration relation？
+
+**Human response:**
+
+> 因为很多dye的Quantum yield和温度有负相关，比如rhodamine B，他就有2%/K的fluorescence/temperature 相关。建立这个calibration就能测温度了。
+
+### Event 20 — `EVIDENCE_M1_THERMOMETRY_CONFOUNDS`
+
+**Stage:** `evidence`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 除了温度，还有哪些因素可能改变 Rhodamine B fluorescence？你会用什么 control 排除它们？
+
+**Human response:**
+
+> 激光会bleach dye，所以需要掌握实验的时间尺度，并提供只有bleach没有thermal的control
+
+### Event 21 — `EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION`
+
+**Stage:** `evidence`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 这个 only-bleach/no-thermal control 里，你会改变哪个实验变量来关闭 thermal generation，同时让 dye 的 optical exposure 尽量保持一致？
+
+**Human response:**
+
+> 把SRS调到off resonance，这是2pf可以很接近，但没有SRS
+
+### Event 22 — `EVIDENCE_M2_MATCHED_SENSITIVITY_COMPARISON`
+
+**Stage:** `evidence`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 如果要证明 SRP 相比 SRS 更灵敏，这个 comparison 中哪些 acquisition variables 必须保持一致，最后比较哪个 sensitivity metric？
+
+**Human response:**
+
+> LoD是最重要的。同时比较小beads 上的performance。参数主要是average power和dwell time
+
+### Event 23 — `EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION`
+
+**Stage:** `evidence`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 在 single-bead FWHM measurement 中，有限 bead size 要怎样从 measured spatial width 中 deconvolve？
+
+**Human response:**
+
+> 一般就FWHM_image^2 = FWHM_PSF^2+FWHM_bead^2，简化算法。FWHM_bead = bead size
+
+### Event 24 — `EVIDENCE_M3_APPLICATION_PERFORMANCE_LINK`
+
+**Stage:** `evidence`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 在 application figure 中，怎样设计 comparison，才能让它支持“性能提升”而不只是“这个样品可以成像”？
+
+**Human response:**
 
 > 最好是同样品同FoV同参数测量，直接head2head比较image quality，包括SNR、resolution、feature recognization
 
-Human-designed evidence structure under paper M3:
+### Event 25 — `EVIDENCE_M3_FEATURE_RECOGNITION_VALIDITY`
 
-```text
-same sample + same FoV + same/matched acquisition parameters
-→ head-to-head image-quality comparison
-→ SNR + resolution + feature recognition
-```
+**Stage:** `evidence`
+**Selection policy:** `1.2`
 
-Structural operation: SNR and resolution are recorded as operational comparison dimensions. Feature recognition remains open because the human response does not define a reproducible operationalization; no paper result is added.
-
-Current pending prompt:
+**Prompt:**
 
 > feature recognition 容易变成主观判断；你会怎样把它 operationalize，或者用什么 blind/control 让比较可复现？
+
+**Human response:**
+
+> 如果真的要仔细做，就需要加重复加control加negative control，比如看到cholesterol domain就得做cholesterol depletion。但仪器原理性文章一般不做这么细，喧宾夺主。一般需要细做的，是feature recognization看到了很重要的feature，别的方法看不到，有重大意义的。这种就不需要做comparison，
+
+### Event 26 — `EVIDENCE_M3_CLARIFY_NO_COMPARISON`
+
+**Stage:** `evidence`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 我只确认最后一句：这里“不需要做 comparison”是指证据重心转为 biological/causal controls，而不再要求与其他成像方法做 head-to-head comparison，对吗？
+
+**Human response:**
+
+> 对的
+
+### Event 27 — `EVIDENCE_FINISH`
+
+**Stage:** `evidence`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 你准备结束这次 EVIDENCE rollout，并与论文的 proof architecture 做结构对照了吗？
+
+**Human response:**
+
+> ok
+
+### Event 28 — `INDEPENDENT_READING_COMPLETE`
+
+**Stage:** `independent_reading`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 现在请你独立查看论文中的 evidence details；完成后告诉我。
+
+**Human response:**
+
+> delta 跳过吧，那个不测试你的能力与选择。overall good job。
+
+<!-- END GENERATED EVENT TIMELINE -->
