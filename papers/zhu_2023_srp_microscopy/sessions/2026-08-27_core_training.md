@@ -14,8 +14,8 @@
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
 **Current state:** CLAIMS
-**Resume cursor:** `CLAIMS.awaiting_finish_or_add`
-**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`, `CLAIMS_EXPAND_H-C3.5_SPEED`, `CLAIMS_FINISH_OR_ADD`
+**Resume cursor:** `CLAIMS.awaiting_finish_confirmation`
+**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`, `CLAIMS_EXPAND_H-C3.5_SPEED`, `CLAIMS_FINISH_OR_ADD`, `CLAIMS_FINISH`
 
 ## Disclosure note
 
@@ -238,6 +238,11 @@ T0 — PAPER TITLE CLAIM
    ├─ H-C3.4 — penetration depth, only if improved [CONDITIONAL]
    └─ H-C3.5 — speed; not a standalone strict-characterization claim [RELOCATED]
       └─ H-APPLICATION-SPEED — application bucket: dynamic sample visibly moving + report frame rate [DEFERRED]
+└─ H-C4 — application coverage across sample types/scales and signal/spectral regimes [CLOSED]
+   ├─ H-C4.1 — sample scale: virus → cell → tissue [CLOSED]
+   ├─ H-C4.2 — Raman windows: C–H, C–D, amide I [CLOSED]
+   ├─ H-C4.3 — if performance gain is large, add applications showing it [CLOSED]
+   └─ H-C4.4 — exact combinations are lower-importance choices for figure arrangement [CLOSED]
 ```
 
 Structural operation: the human supplied two burdens joined by “且”; they are retained as two immediate subclaims without adding scientific content. The response further decomposed the existence subclaim into the three causal statements above, preserving the human's stated sequence.
@@ -386,3 +391,15 @@ Structural operation: H-C3.5 is reclassified as relocated/not standalone. The hu
 Current pending prompt:
 
 > 这样调整后，你还要添加别的 major claim，还是结束 CLAIMS rollout？
+
+Event 17 — `CLAIMS_FINISH_OR_ADD`
+
+Human response:
+
+> 接下来需要有一些application。一般一个侧重仪器理论的论文，application会选择全面覆盖各种样品类型和各种信号区间。样品尺度从小到大，virus，cell，tissue；Raman window覆盖C-H，C-D，amide1 就行了。如果是性能提升很大的，就加一些能体现性能提升的应用。这个claim虽然重要，但具体选什么可能不那么重要，上面几个参数排列组合出几个图就行了。
+
+Structural operation: the human added H-C4 as an APPLICATION major claim and supplied sample-scale, Raman-window, performance-gain, and low-importance combination axes. H-C4 is marked structurally sufficient/closed; no concrete paper application, sample, result, or low-reuse combination was added.
+
+Current pending prompt:
+
+> 你准备结束这次 CLAIMS rollout，并与论文 claim tree 做结构对照了吗？
