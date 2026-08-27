@@ -54,7 +54,7 @@ The harness now compiles and persists an auditable paper model before runner que
 - Completed-stage prefix: PASS.
 - Revealed paper-claim references: PASS.
 - Human-node parent graph: PASS.
-- Unique next interaction cursor: `EVIDENCE.M2.awaiting_bead_deconvolution`.
+- Unique next interaction cursor: `EVIDENCE.M3.awaiting_application_performance_link`.
 
 ## Current session checkpoint — event 8
 
@@ -155,6 +155,13 @@ The harness now compiles and persists an auditable paper model before runner que
 - Event sequence: contiguous through event 22.
 - Unique next interaction cursor: `EVIDENCE.M2.awaiting_bead_deconvolution`.
 - Pending prompt ID: `EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION`.
+
+## Current session checkpoint — event 23
+
+- Canonical session-state audit: PASS — 15/15 checks.
+- Event sequence: contiguous through event 23.
+- Unique next interaction cursor: `EVIDENCE.M3.awaiting_application_performance_link`.
+- Pending prompt ID: `EVIDENCE_M3_APPLICATION_PERFORMANCE_LINK`.
 
 ## Code checks
 

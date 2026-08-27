@@ -10,14 +10,14 @@ supplement_sha256 = "F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16
 selection_policy_version = "1.2"
 selection_seed = 2026082701
 current_stage = "evidence"
-resume_cursor = "EVIDENCE.M2.awaiting_bead_deconvolution"
-asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3", "CLAIMS_EXPAND_H-C3.1_LOD", "CLAIMS_EXPAND_H-C3.2_RESOLUTION", "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY", "CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC", "CLAIMS_EXPAND_H-C3.5_SPEED", "CLAIMS_FINISH_OR_ADD", "CLAIMS_FINISH", "EVIDENCE_M1_THERMOMETRY_VALIDITY", "EVIDENCE_M1_THERMOMETRY_CONFOUNDS", "EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION", "EVIDENCE_M2_MATCHED_SENSITIVITY_COMPARISON", "EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION"]
+resume_cursor = "EVIDENCE.M3.awaiting_application_performance_link"
+asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3", "CLAIMS_EXPAND_H-C3.1_LOD", "CLAIMS_EXPAND_H-C3.2_RESOLUTION", "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY", "CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC", "CLAIMS_EXPAND_H-C3.5_SPEED", "CLAIMS_FINISH_OR_ADD", "CLAIMS_FINISH", "EVIDENCE_M1_THERMOMETRY_VALIDITY", "EVIDENCE_M1_THERMOMETRY_CONFOUNDS", "EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION", "EVIDENCE_M2_MATCHED_SENSITIVITY_COMPARISON", "EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION", "EVIDENCE_M3_APPLICATION_PERFORMANCE_LINK"]
 verified_knowledge_ids = ["K1", "K2"]
 rollout_complete = false
 completed_stages = ["knowledge", "idea", "claims"]
 revealed_paper_claim_ids = ["T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "M3", "S3.1", "S3.2", "S3.3"]
-pending_prompt_id = "EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION"
-pending_prompt_text = "在 single-bead FWHM measurement 中，有限 bead size 要怎样从 measured spatial width 中 deconvolve？"
+pending_prompt_id = "EVIDENCE_M3_APPLICATION_PERFORMANCE_LINK"
+pending_prompt_text = "在 application figure 中，怎样设计 comparison，才能让它支持“性能提升”而不只是“这个样品可以成像”？"
 human_is_paper_author = true
 spoiler_control_test_valid = false
 
@@ -286,6 +286,15 @@ sufficiency = "sufficient"
 evidence_type = "matched sensitivity comparison"
 content = "Match average power and dwell time; use LoD as the primary sensitivity metric and small-bead performance as a complementary test（保持 average power 和 dwell time 一致；主要 sensitivity metric 为 LoD，并用 small-bead performance 作 complementary test）。"
 
+[[human_evidence_designs]]
+id = "H-E-M2-RESOLUTION-BEAD-DECONVOLUTION"
+stage = "evidence"
+target_paper_claims = ["M2", "S2.3"]
+status = "closed"
+sufficiency = "sufficient"
+evidence_type = "simplified bead-shape deconvolution"
+content = "Use the simplified algorithm FWHM_PSF = sqrt(FWHM_image^2 − FWHM_bead^2), with FWHM_bead = bead size（简化算法：FWHM_PSF = sqrt(FWHM_image^2 − FWHM_bead^2)，FWHM_bead = bead size）。"
+
 [[human_control_designs]]
 id = "H-CONTROL-M1-BLEACH-ONLY"
 stage = "evidence"
@@ -463,3 +472,8 @@ human_response = "把SRS调到off resonance，这是2pf可以很接近，但没�
 sequence = 22
 prompt_id = "EVIDENCE_M2_MATCHED_SENSITIVITY_COMPARISON"
 human_response = "LoD是最重要的。同时比较小beads 上的performance。参数主要是average power和dwell time"
+
+[[events]]
+sequence = 23
+prompt_id = "EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION"
+human_response = "一般就FWHM_image^2 = FWHM_PSF^2+FWHM_bead^2，简化算法。FWHM_bead = bead size"

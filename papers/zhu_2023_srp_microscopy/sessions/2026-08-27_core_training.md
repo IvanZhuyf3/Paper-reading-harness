@@ -14,8 +14,8 @@
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
 **Current state:** EVIDENCE
-**Resume cursor:** `EVIDENCE.M2.awaiting_bead_deconvolution`
-**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`, `CLAIMS_EXPAND_H-C3.5_SPEED`, `CLAIMS_FINISH_OR_ADD`, `CLAIMS_FINISH`, `EVIDENCE_M1_THERMOMETRY_VALIDITY`, `EVIDENCE_M1_THERMOMETRY_CONFOUNDS`, `EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION`, `EVIDENCE_M2_MATCHED_SENSITIVITY_COMPARISON`, `EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION`
+**Resume cursor:** `EVIDENCE.M3.awaiting_application_performance_link`
+**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`, `CLAIMS_EXPAND_H-C3.5_SPEED`, `CLAIMS_FINISH_OR_ADD`, `CLAIMS_FINISH`, `EVIDENCE_M1_THERMOMETRY_VALIDITY`, `EVIDENCE_M1_THERMOMETRY_CONFOUNDS`, `EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION`, `EVIDENCE_M2_MATCHED_SENSITIVITY_COMPARISON`, `EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION`, `EVIDENCE_M3_APPLICATION_PERFORMANCE_LINK`
 
 ## Disclosure note
 
@@ -543,3 +543,23 @@ Structural operation: the comparison structure is recorded as sufficient. It doe
 Current pending prompt:
 
 > 在 single-bead FWHM measurement 中，有限 bead size 要怎样从 measured spatial width 中 deconvolve？
+
+Event 23 — `EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION`
+
+Human response:
+
+> 一般就FWHM_image^2 = FWHM_PSF^2+FWHM_bead^2，简化算法。FWHM_bead = bead size
+
+Human-designed evidence structure under paper M2:
+
+```text
+FWHM_image^2 = FWHM_PSF^2 + FWHM_bead^2
+→ FWHM_PSF = sqrt(FWHM_image^2 − FWHM_bead^2)
+→ FWHM_bead = bead size
+```
+
+Structural operation: this is recorded explicitly as the human's simplified algorithm. The node is marked sufficient/closed; no additional assumptions, standard deconvolution answer, FRC threshold, or paper result is added.
+
+Current pending prompt:
+
+> 在 application figure 中，怎样设计 comparison，才能让它支持“性能提升”而不只是“这个样品可以成像”？
