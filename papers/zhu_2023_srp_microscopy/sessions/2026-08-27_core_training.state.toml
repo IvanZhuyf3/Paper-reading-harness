@@ -10,14 +10,14 @@ supplement_sha256 = "F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16
 selection_policy_version = "1.1"
 selection_seed = 2026082701
 current_stage = "claims"
-resume_cursor = "CLAIMS.T0.awaiting_next_major_claim"
-asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2"]
+resume_cursor = "CLAIMS.H-C2.1.awaiting_architecture_claim"
+asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE"]
 verified_knowledge_ids = ["K1", "K2"]
 rollout_complete = false
 completed_stages = ["knowledge", "idea"]
 revealed_paper_claim_ids = ["T0"]
-pending_prompt_id = "CLAIMS_ADD_T0_2"
-pending_prompt_text = "回到 T0：你下一条要添加的 major claim 是什么？"
+pending_prompt_id = "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE"
+pending_prompt_text = "先展开 H-C2.1：设备架构必须包含哪些功能模块及其关系，才能把这个原理实现成显微镜？"
 human_is_paper_author = true
 spoiler_control_test_valid = false
 
@@ -98,6 +98,34 @@ parents = ["H-C1"]
 status = "open"
 content = "The magnitude of the SRS thermal effect reaches a measurable regime."
 
+[[human_nodes]]
+id = "H-C2"
+stage = "claims"
+parents = ["T0"]
+status = "decomposed"
+content = "The principle can be realized as a functioning microscope（按照这个原理可以真正实现一台显微镜）。"
+
+[[human_nodes]]
+id = "H-C2.1"
+stage = "claims"
+parents = ["H-C2"]
+status = "open"
+content = "Device architecture（设备架构）。"
+
+[[human_nodes]]
+id = "H-C2.2"
+stage = "claims"
+parents = ["H-C2"]
+status = "open"
+content = "Signal characteristics（信号特征）。"
+
+[[human_nodes]]
+id = "H-C2.3"
+stage = "claims"
+parents = ["H-C2"]
+status = "open"
+content = "Signal-processing method（信号处理方法）。"
+
 [[human_evidence_candidates]]
 id = "H-E-C1.1.1-ENERGY-DIAGRAM"
 stage = "claims"
@@ -158,3 +186,8 @@ human_response = "First prove that the SRS thermal effect exists and that its ma
 sequence = 8
 prompt_id = "CLAIMS_EXPAND_H-C1.1"
 human_response = "存在性，首先可以用energy diagram说明，final state是excited state，这就不像CARS。然后可以做一些simulation，从已有的数据出发，first principle算出来能产生多少热，能积累多少温度。最后可以做一个thermometer验证，比如做一个微型热电偶，1μm那么大，就测focus温度"
+
+[[events]]
+sequence = 9
+prompt_id = "CLAIMS_ADD_T0_2"
+human_response = "第二个major claim是按照这个原理真的能打出来一个显微镜。这里需要subclaim包括：设备架构，信号特征，信号处理方法"

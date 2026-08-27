@@ -14,8 +14,8 @@
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
 **Current state:** CLAIMS
-**Resume cursor:** `CLAIMS.T0.awaiting_next_major_claim`
-**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`
+**Resume cursor:** `CLAIMS.H-C2.1.awaiting_architecture_claim`
+**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`
 
 ## Disclosure note
 
@@ -202,13 +202,17 @@ Current human claim tree:
 
 ```text
 T0 — PAPER TITLE CLAIM
-└─ H-C1 — SRS thermal effect exists and reaches a measurable magnitude
-   ├─ H-C1.1 — existence of the SRS thermal effect [DECOMPOSED]
-   │  ├─ H-C1.1.1 — SRS leaves the sample in a real excited state
-   │  │              (human contrasted this with CARS) [OPEN]
-   │  ├─ H-C1.1.2 — energy deposited by SRS can relax as heat [OPEN]
-   │  └─ H-C1.1.3 — SRS produces a temperature rise at the focus [OPEN]
-   └─ H-C1.2 — magnitude reaches a measurable regime [OPEN]
+├─ H-C1 — SRS thermal effect exists and reaches a measurable magnitude
+│  ├─ H-C1.1 — existence of the SRS thermal effect [DECOMPOSED]
+│  │  ├─ H-C1.1.1 — SRS leaves the sample in a real excited state
+│  │  │              (human contrasted this with CARS) [OPEN]
+│  │  ├─ H-C1.1.2 — energy deposited by SRS can relax as heat [OPEN]
+│  │  └─ H-C1.1.3 — SRS produces a temperature rise at the focus [OPEN]
+│  └─ H-C1.2 — magnitude reaches a measurable regime [OPEN]
+└─ H-C2 — the principle can be realized as a functioning microscope [DECOMPOSED]
+   ├─ H-C2.1 — device architecture [OPEN]
+   ├─ H-C2.2 — signal characteristics [OPEN]
+   └─ H-C2.3 — signal-processing method [OPEN]
 ```
 
 Structural operation: the human supplied two burdens joined by “且”; they are retained as two immediate subclaims without adding scientific content. The response further decomposed the existence subclaim into the three causal statements above, preserving the human's stated sequence.
@@ -238,3 +242,25 @@ The claims and evidence candidates above are a faithful structural recording of 
 Current pending prompt:
 
 > 回到 T0：你下一条要添加的 major claim 是什么？
+
+Event 9 — `CLAIMS_ADD_T0_2`
+
+Human response:
+
+> 第二个major claim是按照这个原理真的能打出来一个显微镜。这里需要subclaim包括：设备架构，信号特征，信号处理方法
+
+Structural operation: the human added H-C2 under T0 and supplied three immediate subclaims. No paper-side content was added to these placeholders.
+
+Current human claim tree extension:
+
+```text
+T0 — PAPER TITLE CLAIM
+└─ H-C2 — the principle can be realized as a functioning microscope [DECOMPOSED]
+   ├─ H-C2.1 — device architecture [OPEN]
+   ├─ H-C2.2 — signal characteristics [OPEN]
+   └─ H-C2.3 — signal-processing method [OPEN]
+```
+
+Current pending prompt:
+
+> 先展开 H-C2.1：设备架构必须包含哪些功能模块及其关系，才能把这个原理实现成显微镜？
