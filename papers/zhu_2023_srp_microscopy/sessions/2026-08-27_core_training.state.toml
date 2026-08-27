@@ -10,14 +10,14 @@ supplement_sha256 = "F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16
 selection_policy_version = "1.2"
 selection_seed = 2026082701
 current_stage = "evidence"
-resume_cursor = "EVIDENCE.M1.awaiting_thermometry_controls"
-asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3", "CLAIMS_EXPAND_H-C3.1_LOD", "CLAIMS_EXPAND_H-C3.2_RESOLUTION", "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY", "CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC", "CLAIMS_EXPAND_H-C3.5_SPEED", "CLAIMS_FINISH_OR_ADD", "CLAIMS_FINISH", "EVIDENCE_M1_THERMOMETRY_VALIDITY", "EVIDENCE_M1_THERMOMETRY_CONFOUNDS"]
+resume_cursor = "EVIDENCE.M1.awaiting_bleach_control_implementation"
+asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3", "CLAIMS_EXPAND_H-C3.1_LOD", "CLAIMS_EXPAND_H-C3.2_RESOLUTION", "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY", "CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC", "CLAIMS_EXPAND_H-C3.5_SPEED", "CLAIMS_FINISH_OR_ADD", "CLAIMS_FINISH", "EVIDENCE_M1_THERMOMETRY_VALIDITY", "EVIDENCE_M1_THERMOMETRY_CONFOUNDS", "EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION"]
 verified_knowledge_ids = ["K1", "K2"]
 rollout_complete = false
 completed_stages = ["knowledge", "idea", "claims"]
 revealed_paper_claim_ids = ["T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "M3", "S3.1", "S3.2", "S3.3"]
-pending_prompt_id = "EVIDENCE_M1_THERMOMETRY_CONFOUNDS"
-pending_prompt_text = "除了温度，还有哪些因素可能改变 Rhodamine B fluorescence？你会用什么 control 排除它们？"
+pending_prompt_id = "EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION"
+pending_prompt_text = "这个 only-bleach/no-thermal control 里，你会改变哪个实验变量来关闭 thermal generation，同时让 dye 的 optical exposure 尽量保持一致？"
 human_is_paper_author = true
 spoiler_control_test_valid = false
 
@@ -277,6 +277,15 @@ status = "human_designed"
 evidence_type = "fluorescence thermometry"
 content = "Rhodamine B quantum yield/fluorescence negatively correlates with temperature; establish a ΔF/F–ΔT calibration with an approximately −2% per K local slope; use the calibration to infer temperature change from fluorescence change（Rhodamine B 的 quantum yield/fluorescence 与温度负相关；建立 ΔF/F–ΔT calibration，local slope 约 −2%/K；用 calibration 将 fluorescence change 推到 temperature change）。"
 
+[[human_control_designs]]
+id = "H-CONTROL-M1-BLEACH-ONLY"
+stage = "evidence"
+target_paper_claims = ["M1"]
+target_evidence_designs = ["H-E-M1-THERMOMETRY"]
+status = "human_designed"
+confound = "photobleaching"
+content = "Characterize bleaching over the experiment/acquisition timescale and provide an only-bleach/no-thermal control（在实验/采集时间尺度上 characterize bleaching，并提供 only-bleach/no-thermal control）。"
+
 [[human_nodes]]
 id = "H-C4"
 stage = "claims"
@@ -429,3 +438,8 @@ human_response = "ok，结束rollout"
 sequence = 19
 prompt_id = "EVIDENCE_M1_THERMOMETRY_VALIDITY"
 human_response = "因为很多dye的Quantum yield和温度有负相关，比如rhodamine B，他就有2%/K的fluorescence/temperature 相关。建立这个calibration就能测温度了。"
+
+[[events]]
+sequence = 20
+prompt_id = "EVIDENCE_M1_THERMOMETRY_CONFOUNDS"
+human_response = "激光会bleach dye，所以需要掌握实验的时间尺度，并提供只有bleach没有thermal的control"
