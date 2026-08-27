@@ -10,14 +10,14 @@ supplement_sha256 = "F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16
 selection_policy_version = "1.2"
 selection_seed = 2026082701
 current_stage = "claims"
-resume_cursor = "CLAIMS.H-C3.3.awaiting_similarity_metric"
-asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3", "CLAIMS_EXPAND_H-C3.1_LOD", "CLAIMS_EXPAND_H-C3.2_RESOLUTION", "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY", "CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC"]
+resume_cursor = "CLAIMS.H-C3.5.awaiting_speed_metric"
+asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3", "CLAIMS_EXPAND_H-C3.1_LOD", "CLAIMS_EXPAND_H-C3.2_RESOLUTION", "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY", "CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC", "CLAIMS_EXPAND_H-C3.5_SPEED"]
 verified_knowledge_ids = ["K1", "K2"]
 rollout_complete = false
 completed_stages = ["knowledge", "idea"]
 revealed_paper_claim_ids = ["T0"]
-pending_prompt_id = "CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC"
-pending_prompt_text = "这里的 spectrum similarity，你会用哪个 quantitative metric 来定义？"
+pending_prompt_id = "CLAIMS_EXPAND_H-C3.5_SPEED"
+pending_prompt_text = "先展开 H-C3.5：你会用什么 operational metric 定义 imaging speed，并要求哪些 acquisition conditions 保持一致？"
 human_is_paper_author = true
 spoiler_control_test_valid = false
 
@@ -201,8 +201,8 @@ content = "Choose the sparse-bead method or dense-bead method according to bead 
 id = "H-C3.3"
 stage = "claims"
 parents = ["H-C3"]
-status = "open"
-decomposition_status = "partial"
+status = "closed"
+decomposition_status = "complete"
 content = "Spectral fidelity, by comparing SRP and Raman on a sample（spectral fidelity，在样品上比较 SRP 和 Raman）。"
 
 [[human_nodes]]
@@ -223,8 +223,8 @@ content = "Normalize the spectra together（normalize 到一起）。"
 id = "H-C3.3.3"
 stage = "claims"
 parents = ["H-C3.3.2"]
-status = "open"
-content = "Quantify spectrum similarity; the quantitative metric remains open（比较 spectrum 相似度；metric 尚未定义）。"
+status = "closed"
+content = "Normalize the spectra as vectors and take their dot product; this is a normalized dot-product/cosine-similarity metric, and identical spectra equal 1（向量归一化求点积；完全相同是 1）。"
 
 [[human_nodes]]
 id = "H-C3.3.4"
@@ -351,3 +351,8 @@ human_response = "两个思路：1，测很稀疏的beads，找单个bead的spat
 sequence = 14
 prompt_id = "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY"
 human_response = "测量相同样品，normalize到一起，比较spectrum相似度。一般来说相似度高的就不用讲了，相似度低了就只能讨论下1，什么原理导致不一样；2，余下的这个新spectrum会不会影响spectrum interpretation"
+
+[[events]]
+sequence = 15
+prompt_id = "CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC"
+human_response = "向量归一化求点积应该就可以。完全相同是1。"

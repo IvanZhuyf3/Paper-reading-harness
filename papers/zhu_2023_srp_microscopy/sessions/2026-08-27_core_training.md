@@ -14,8 +14,8 @@
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
 **Current state:** CLAIMS
-**Resume cursor:** `CLAIMS.H-C3.3.awaiting_similarity_metric`
-**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`
+**Resume cursor:** `CLAIMS.H-C3.5.awaiting_speed_metric`
+**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`, `CLAIMS_EXPAND_H-C3.5_SPEED`
 
 ## Disclosure note
 
@@ -226,10 +226,11 @@ T0 — PAPER TITLE CLAIM
    │  │     └─ H-C3.2.4 — deconvolve finite bead shape [CLOSED]
    │  ├─ H-C3.2.5 — denser beads → Fourier ring correlation [CLOSED]
    │  └─ H-C3.2.6 — choose method according to bead density [CLOSED]
-   ├─ H-C3.3 — spectral fidelity by comparing SRP and Raman on a sample [OPEN / PARTIAL]
+   ├─ H-C3.3 — spectral fidelity by comparing SRP and Raman on a sample [CLOSED]
    │  ├─ H-C3.3.1 — measure the same sample with SRP and Raman [OPEN]
    │  ├─ H-C3.3.2 — normalize the spectra together [OPEN]
-   │  ├─ H-C3.3.3 — quantify spectrum similarity; metric remains open [OPEN]
+   │  ├─ H-C3.3.3 — vector normalization → dot product;
+   │  │              identical spectra = 1 [CLOSED]
    │  ├─ H-C3.3.4 — high similarity → no additional explanatory burden [OPEN]
    │  ├─ H-C3.3.5 — low similarity → explain the physical cause [OPEN]
    │  └─ H-C3.3.6 — low similarity → assess impact of residual/new spectrum
@@ -360,3 +361,15 @@ Structural operation: H-C3.3 is partially decomposed while remaining open becaus
 Current pending prompt:
 
 > 这里的 spectrum similarity，你会用哪个 quantitative metric 来定义？
+
+Event 15 — `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`
+
+Human response:
+
+> 向量归一化求点积应该就可以。完全相同是1。
+
+Structural operation: the human supplied a quantitative spectrum-similarity metric. H-C3.3.3 records vector normalization followed by a dot product, with normalized dot-product/cosine-similarity as a name and identical spectra equal to 1. H-C3.3 is now sufficient/closed; the previously recorded low-similarity decision branches remain in the tree. H-C3.4 remains conditional and is not selected for default follow-up.
+
+Current pending prompt:
+
+> 先展开 H-C3.5：你会用什么 operational metric 定义 imaging speed，并要求哪些 acquisition conditions 保持一致？
