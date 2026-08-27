@@ -14,8 +14,8 @@
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
 **Current state:** EVIDENCE
-**Resume cursor:** `EVIDENCE.M1.awaiting_thermometry_controls`
-**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`, `CLAIMS_EXPAND_H-C3.5_SPEED`, `CLAIMS_FINISH_OR_ADD`, `CLAIMS_FINISH`, `EVIDENCE_M1_THERMOMETRY_VALIDITY`, `EVIDENCE_M1_THERMOMETRY_CONFOUNDS`
+**Resume cursor:** `EVIDENCE.M2.awaiting_bead_deconvolution`
+**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`, `CLAIMS_EXPAND_H-C3.5_SPEED`, `CLAIMS_FINISH_OR_ADD`, `CLAIMS_FINISH`, `EVIDENCE_M1_THERMOMETRY_VALIDITY`, `EVIDENCE_M1_THERMOMETRY_CONFOUNDS`, `EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION`, `EVIDENCE_M2_MATCHED_SENSITIVITY_COMPARISON`, `EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION`
 
 ## Disclosure note
 
@@ -493,3 +493,53 @@ Structural operation: this records the human's fluorescence-thermometry inferenc
 Current pending prompt:
 
 > 除了温度，还有哪些因素可能改变 Rhodamine B fluorescence？你会用什么 control 排除它们？
+
+Event 20 — `EVIDENCE_M1_THERMOMETRY_CONFOUNDS`
+
+Human response:
+
+> 激光会bleach dye，所以需要掌握实验的时间尺度，并提供只有bleach没有thermal的control
+
+Human-designed control structure under paper M1:
+
+```text
+confound: photobleaching
+→ characterize bleaching over the experiment/acquisition timescale
+→ provide an only-bleach/no-thermal control
+```
+
+Current pending prompt:
+
+> 这个 only-bleach/no-thermal control 里，你会改变哪个实验变量来关闭 thermal generation，同时让 dye 的 optical exposure 尽量保持一致？
+
+Event 21 — `EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION`
+
+Human response:
+
+> 把SRS调到off resonance，这是2pf可以很接近，但没有SRS
+
+Structural operation: the human completed the only-bleach/no-thermal control by detuning the pump–Stokes difference off Raman resonance, keeping the optical exposure and two-photon-fluorescence condition close while removing the resonant SRS energy-deposition/thermal contribution. The control is marked sufficient/closed without adding a paper result.
+
+Current pending prompt:
+
+> 如果要证明 SRP 相比 SRS 更灵敏，这个 comparison 中哪些 acquisition variables 必须保持一致，最后比较哪个 sensitivity metric？
+
+Event 22 — `EVIDENCE_M2_MATCHED_SENSITIVITY_COMPARISON`
+
+Human response:
+
+> LoD是最重要的。同时比较小beads 上的performance。参数主要是average power和dwell time
+
+Human-designed evidence structure under paper M2:
+
+```text
+matched acquisition variables: average power + dwell time
+→ primary sensitivity metric: LoD
+→ complementary test: small-bead performance
+```
+
+Structural operation: the comparison structure is recorded as sufficient. It does not add third-beam or paper-specific bookkeeping, and it does not disclose a paper result. The next prompt reuses the human's earlier sparse-bead/FWHM/deconvolution structure as a transferable resolution-calibration interface.
+
+Current pending prompt:
+
+> 在 single-bead FWHM measurement 中，有限 bead size 要怎样从 measured spatial width 中 deconvolve？
