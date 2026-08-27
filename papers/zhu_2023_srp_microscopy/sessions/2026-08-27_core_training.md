@@ -13,9 +13,9 @@
 **Selection-policy version:** 1.2
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
-**Current state:** CLAIMS
-**Resume cursor:** `CLAIMS.awaiting_finish_confirmation`
-**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`, `CLAIMS_EXPAND_H-C3.5_SPEED`, `CLAIMS_FINISH_OR_ADD`, `CLAIMS_FINISH`
+**Current state:** EVIDENCE
+**Resume cursor:** `EVIDENCE.M1.awaiting_thermometry_validity`
+**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`, `CLAIMS_EXPAND_H-C3.5_SPEED`, `CLAIMS_FINISH_OR_ADD`, `CLAIMS_FINISH`, `EVIDENCE_M1_THERMOMETRY_VALIDITY`
 
 ## Disclosure note
 
@@ -403,3 +403,72 @@ Structural operation: the human added H-C4 as an APPLICATION major claim and sup
 Current pending prompt:
 
 > 你准备结束这次 CLAIMS rollout，并与论文 claim tree 做结构对照了吗？
+
+Event 18 — `CLAIMS_FINISH`
+
+Human response:
+
+> ok，结束rollout
+
+CLAIMS human rollout completed. The session now re-anchors EVIDENCE to the pinned paper claim tree:
+
+```text
+T0, M1, S1.1, S1.2, S1.3,
+M2, S2.1, S2.2, S2.3,
+M3, S3.1, S3.2, S3.3
+```
+
+### Descriptive structural diff
+
+The following juxtaposition is descriptive only. It does not rank the human and paper trajectories or assess their adequacy.
+
+#### H-C1 ↔ paper M1
+
+Human structure: H-C1 states that the SRS thermal effect exists and reaches a measurable regime, with the causal existence branch developed under H-C1.1.
+
+AUTHOR CLAIM: “We have numerically simulated and experimentally confirmed the presence of the SRP effect.”
+
+SOURCE ANCHOR: PDF p.7, Discussion, paragraph beginning “In this work, we have...”; Fig. 1, PDF pp.2–3.
+
+AGENT INTERPRETATION: SRS energy deposition produces a localized thermal/refractive-index response that can serve as a measurement channel.
+
+#### H-C2 + H-C3 ↔ paper M2
+
+Human structure: H-C2 covers realization of the principle as a functioning microscope; H-C3 covers performance dimensions. The human splits these two aspects, while the paper groups them under M2.
+
+AUTHOR CLAIM: “We have built an SRP microscope and demonstrated superior detection sensitivity and resolution in comparison to a conventional SRS microscope.”
+
+SOURCE ANCHOR: PDF p.7, Discussion, paragraph beginning “In this work, we have...”; Figs. 2–3, PDF pp.4–5.
+
+AGENT INTERPRETATION: The physical effect is realized as a spectrally faithful chemical-imaging instrument with a large modulation signal and useful resolution.
+
+#### H-C4 ↔ paper M3
+
+Human structure: H-C4 is an APPLICATION claim covering sample-scale and Raman-window axes, conditional performance-gain applications, and lower-importance figure combinations.
+
+AUTHOR CLAIM: “We have also demonstrated SRP imaging of multiple biological samples in aqueous and glycerol environments.”
+
+SOURCE ANCHOR: PDF p.7, Discussion, paragraph beginning “In this work, we have...”; Figs. 4–5, PDF pp.6–7.
+
+AGENT INTERPRETATION: The instrument operates across representative biological specimens and chemical bands rather than only on calibration samples.
+
+#### Human branches without an independent paper counterpart
+
+- H-C3.4 penetration depth is explicitly conditional (“only if improved”) and has no independent counterpart among the pinned paper claim nodes.
+- H-C3.5 speed was relocated as not standalone; its deferred application metadata has no independent counterpart among the pinned paper claim nodes.
+
+#### Paper cross-link between performance and application
+
+The paper's matched SRP/SRS comparison is cross-linked to both the performance and application regions through S3.3.
+
+AUTHOR CLAIM: “Last, we conducted a direct comparison between SRP and SRS at the same FOV [...] with conserved average laser power and dwell time.”
+
+SOURCE ANCHOR: PDF p.7, Results, paragraph beginning “Last, we conducted a direct...”; Supplementary Fig. S17, supplement PDF p.21; Supplementary Fig. S18, supplement PDF p.22.
+
+AGENT INTERPRETATION: The claimed application advantage is linked to a direct matched-sample comparison.
+
+EVIDENCE re-anchor: the next task is human evidence/proof design attached to revealed paper claims only. No paper evidence results or numerical outcomes are disclosed at this transition.
+
+Current pending prompt:
+
+> 针对 M1 的局部温升 claim：为什么 fluorescence thermometer 的 fluorescence change 可以解释为 temperature change？必须先建立哪条 calibration relation？
