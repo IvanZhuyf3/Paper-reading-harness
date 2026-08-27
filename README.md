@@ -105,4 +105,4 @@ The FOUNDATION exception follows a simple premise: thinking searches over the gr
 - A human-approved record enters `curriculum/` and the approved index.
 - An approved record has priority over a fresh agent reconstruction.
 
-See `protocols/` for session behavior, `templates/` for artifacts, `paper_models/` for provisional models, and `curriculum/` for approved reusable records.
+See `protocols/` for session behavior, `templates/` for artifacts, `papers/` for isolated source-and-session workspaces, `paper_models/` for the general provisional pool, and `curriculum/` for approved reusable records.

@@ -1,0 +1,1196 @@
+===== PDF PAGE 1 =====
+RESEARCH METHODS
+Stimula ted Raman photothermal micr oscopy to w ard
+ultr asensitiv e chemical imaging
+Yifan Zhu
+1
+†, Xiao w ei Ge
+2
+†, Hongli Ni
+2
+, Jiaze Yin
+2
+, Haonan Lin
+3
+, Le W ang
+2
+, Yuying T an
+3
+,
+Chinma y ee V . Pr abhu Dessai
+3
+, Yueming Li
+4
+, Xiny an T eng
+1
+, Ji-Xin Cheng
+1,2,3,5
+*
+Stimula ted Raman sca ttering (SRS) micr oscopy has sho wn enormous potential in r ev ealing molecular s tructur es,
+dynamics, and couplings in comple x s y s tems. Ho w ev er, the sensitivity of SRS is fundamentally limited to the
+millimolar lev el due to shot noise and the small modula tion depth. T o o v er come this barrier, w e r evisit SRS fr om
+the perspectiv e of energy deposition. The SRS pr ocess pumps molecules to their vibr a tionally e xcited s ta tes. The
+subsequent r elaxa tion hea ts up the surr oundings and induces r efr a ctiv e inde x changes. By pr obing the r efr a c-
+tiv e inde x changes with a laser beam, w e intr oduce s timula ted Raman photothermal (SRP) micr oscopy , wher e a
+>500-fold boos t of modula tion depth is a chiev ed. The v ersa tile applica tions of SRP micr oscopy on vir al particles,
+cells, and tissues ar e demons tr a ted. SRP micr oscopy opens a w a y to perform vibr a tional spectr oscopic imaging
+with ultr ahigh sensitivity .
+C opyright © 2023 The
+Authors, some
+rights r eserv ed;
+ex clusiv e licensee
+American Associa tion
+for the Advancement
+of Science. No claim to
+original U.S. Go v ernment
+W orks. Dis tributed
+under a Cr ea tiv e
+C ommons Attribution
+NonC ommer cial
+License 4.0 (CC BY-NC).
+INTR ODUCTION
+Stimula ted Raman sca ttering (SRS) micr oscopy has become a po w-
+erful pla tform in chemical imaging (1–3), o v er coming the nonr es-
+onant ba ckgr ound issue encounter ed in the coher ent anti-Stok es
+Raman sca ttering (C ARS) micr oscopy . In SRS (Fig. 1A), two laser
+pulse tr ains, kno wn as pump and Stok es, o v erlap in spa ce and time.
+The y inter a ct coher ently with Raman-a ctiv e molecules r esona ting a t
+the laser bea ting fr equency , leading to a s timula ted Raman gain in
+the Stok es field and loss in the pump field. SRS pr o vides the same
+molecular vibr a tional fea tur es as conv entional Raman spectr oscopy
+but a chiev es up to six orders of magnitude fas ter a cquisition (3).
+This speed impr o v ement, together with the dev elopment of vibr a-
+tional pr obes (4), has enabled a wide r ange of applica tions. These
+include label-fr ee s timula ted Raman his tology (5, 6), nutrient
+mapping (7–9), the s tudy of alter ed cancer metabolism (10–14),
+the r esolution of heter ogeneity in the micr obiome (15), and the
+r apid detection of antimicr obial susceptibility (16). Ho w ev er,
+despite these advances, SRS fa ces inher ent challenges in detection
+sensitivity due to the small modula tion depth (<0.1% for a pur e
+liquid) and the shot noise in the pump or Stok es beam (17, 18).
+Simply incr easing the number of photons can easily e xceed the
+sample’s po w er toler ance.
+Pushing the fundamental limit of SRS sensitivity necessita tes
+either r educing measur ement noise or amplifying the signal. T o
+r educe the measur ement noise, efforts focused on squeezed light,
+r eferr ed to as “quantum-enhanced SRS. ” Signal-to-noise r a tio
+(SNR) enhancements of 3.6 dB (19) with continuous w a v e squeezed
+light and 2.89 dB (20) with pulsed squeezed light ha v e been dem-
+ons tr a ted with no additional perturba tion on samples. While pr om-
+ising, this method is limited by lo w squeeze efficiency and
+decoher ence in comple x imaging s y s tems. T o amplify the signal,
+various photophy sical pr ocesses ha v e been used to incr ease the
+cr oss section. These include electr onic pr e-r esonance SRS (21–
+23), plasmon-enhanced SRS (24), and s timula ted Raman e xcited
+fluor escence (25). Exceedingly high enhancement fa ctors (10
+4
+to
+10
+7
+) of SRS signal and single-molecule SRS measur ement (24, 25)
+ha v e been a chiev ed. Ho w ev er, the r equir ement of special target mol-
+ecules or plasmonic nanos tructur es cons tr ains the scope of
+applica tions.
+T o seek appr oa ches to w ard boos ting the signal, w e r evisit the
+phy sics of SRS fr om the perspectiv e of energy tr ansfer fr om laser
+fields to the sample. As illus tr a ted in Fig. 1B, when pump and
+Stok es pulses with appr opria te w a v elengths inter a ct with Raman-
+a ctiv e molecules, the target molecules ar e pumped to their vibr a-
+tionally e xcited s ta tes, with the tr ansition energy equal to the
+bea ting fr equency betw een the pump and Stok es lasers. After SRS
+e xcita tion, the vibr a tionally e xcited molecules r elax their vibr a tional
+energy quickly thr ough nonr adia tiv e deca y . C onsequently , this
+hea ts up the surr ounding envir onment, causing a s timula ted
+Raman photothermal (SRP) effect. As e xplor ed by Cheng and co-
+work ers in 2007 fr om the perspectiv e of photodamage in C ARS
+imaging (26), ~0.08% of the laser po w er is absorbed by a my elin
+sample thr ough the simultaneously occurring s timula ted Raman
+gain and loss pr ocesses.
+Optically detected photothermal micr oscopy has been w ell de-
+v eloped (27) and has r ea ched the sensitivity do wn to single-mole-
+cule lev el (28). In photothermal spectr oscopy , firs t r eported in the
+1970s (29), optical absorption r aises the local temper a tur e and
+induces a local change of r efr a ctiv e inde x, which is then measur ed
+with a pr obing beam. Early photothermal micr oscopy r esear ch
+focused on electr onic absorption, targeting nonfluor escent dy e
+molecules or metal nanos tructur es (27). R ecently dev eloped mid-
+infr ar ed photothermal micr oscopy pr o vides univ ersal infr ar ed-
+a ctiv e vibr a tional spectr oscopic fea tur es. It offers detection sensitiv-
+ity a t the micr omolar lev el and a chiev es spa tial r esolution a t the
+visible diffr a ction limit (30, 31). F urthermor e, by pr obing high har-
+monic signals, it can ev en a chiev e higher r esolution (32). On the
+contr ary , the thermal effects induced by a Raman pr ocess ar e com-
+monly believ ed to be minimal because of the small cr oss sections of
+1
+Department of Chemis try , Bos ton Univ ersity , Bos ton, MA 02215, USA.
+2
+Department of Electrical and C omputer Engineering, Bos ton Univ ersity , Bos ton,
+MA 02215, USA.
+3
+Department of Biomedical Engineering, Bos ton Univ ersity ,
+Bos ton, MA 02215, USA.
+4
+Department of Mechanical Engineering, Bos ton Univ er-
+sity , Bos ton, MA 02215, USA.
+5
+Photonics C enter, Bos ton Univ ersity , Bos ton, MA
+02215, USA.
+*C orr esponding author. Email: jxcheng@bu.edu
+†These authors contributed equally to this work.
+SCIENCE ADV ANCES
+|
+RESEARCH ARTICLE
+Zhu et al., Sci. Adv. 9, eadi2181 (2023) 27 October 2023 1 of 11
+Downloaded from https://www.science.org at Boston University on June 20, 2026
+
+
+===== PDF PAGE 2 =====
+Raman sca ttering. Her e, w e challenge this conv entional under-
+s tanding thr ough lo w duty cycle coher ent Raman e xcita tion tha t
+nonlinearly benefits fr om high laser peak po w er. W e sho w the sub-
+s tantial thermal effect of an SRS pr ocess and demons tr a te its poten-
+tial in bond-selectiv e imaging with ultr ahigh sensitivity .
+RESUL TS
+Simula tion of the SRP effect
+In a s timula ted Raman loss measur ement, the r ela tionship betw een
+the modula tion depth of pump beam (η), the pump laser intensity
+(I
+p
+), and change of photon number per pulse (∆N ) can be e xpr essed
+as
+ηI
+p
+2
+¼ ΔN � ħω
+p
+� f
+rep
+ð1Þ
+wher e ℏ is the r educed Plank’s cons tant, ω
+p
+is the angular fr equency
+of the pump field, and f
+r ep
+is the laser r epetition r a te. The fa ctor of 2
+a ccounts for the 50% duty cycle. W ith this, one can es tima te the
+energy deposition per pair of SRS pulses using ∆N ∙ ℏω
+R
+, wher e
+ω
+R
+is the target Raman shift. Liter a tur e has sho wn tha t with 25
+mW (modula ted a t 50% duty cycle) for the Stok es beam and 15
+mW for the pump beams on sample a t 80 MHz, the SRS modula tion
+depth on the 2913 cm
+−1
+mode of dimethyl sulfoxide (DMSO)
+r ea ches 0.04% (4). By subs tituting these measur ed values into the
+equa tions, the energy deposition per pair of laser pulses is calcula ted
+to be 8.7 fJ, equivalent to 0.7 μW with 12.5 ns of pulse spa cing. This
+subs tantial energy deposition aligns with Min’s calcula tion of the
+appar ent cr oss section of SRS (33).
+W ith this energy deposition es tima tion, w e applied F ourier ’s la w
+and built a finite element model (fig. S1) to quantita tiv ely simula te
+the s timula ted Raman-induced temper a tur e rise in pur e DMSO.
+Simula tion r esults (Fig. 1C) sho w tha t, when using a 0.8 numerical
+apertur e (NA) objectiv e alongside the r outinely used laser po w er for
+SRS (25 mW for pump, 50 mW for Stok es, 80 MHz r epetition r a te,
+and 50% duty cycle), the temper a tur e rise a t the center of the laser
+focus can r ea ch as high as 2.4 K a fter 12 μs of s timula ted Raman
+e xcita tion, corr esponding to 960 pairs of pump/Stok es pulses. At t
+= 12 μs, the temper a tur e rises a t 1 and 2 μm a w a y fr om the focal
+center ar e 0.54 and 0.12 K, r espectiv ely . The temper a tur e map a t dif-
+fer ent time points is also sho wn in Fig. 1C. The full width a t half
+maximum (FWHM) of the temper a tur e rise field a t t = 12 μs is cal-
+cula ted to be 1.1 μm, sugges ting v ery localized hea ting.
+The temper a tur e eleva tion subsequently changes the local r efr a c-
+tiv e inde x via the thermal-optic effect. F or pur e DMSO with a r e-
+fr a ctiv e inde x of 1.497 and a thermo-optic coefficient of −4.93 ×
+10
+−4
+K
+−1
+(dn/dT) (34), the s timula ted Raman-induced hea ting
+r esults in a r eduction of r efr a ctiv e inde x by 0.07% a t the focal
+center (t = 12 μs). As sho wn in Fig. 1D, such an inde x change non-
+linearly e xtends to the surr oundings thr ough hea t pr opaga tion,
+ther eby giving rise to the forma tion of a thermal lens. The pr esence
+of such a thermal lens builds the founda tion for SRP micr oscopy .
+Experimental confirma tion of the SRP effect
+W e valida ted the simula tion r esults using a fluor escence thermom-
+eter. It has been w ell documented tha t the emission intensities of
+certain fluor ophor es e xhibit temper a tur e dependence (35). F or in-
+s tance, the fluor escence intensity of rhodamine B decr eases by ~2%
+per k elvin a t r oom temper a tur e (36). This pr operty has been used in
+fluor escence-detected mid-infr ar ed photothermal spectr oscopy (37,
+38). Her e, w e adopt this method to quantify the temper a tur e rise a t
+the SRS focus, using rhodamine B as a fluor escence thermometer.
+Fig. 1. Theor etical simula tion and e xperimental observa tion of the SRP effect. (A) Schema tic of s timula ted Raman gain and loss. (B) Schema tic of SRP effect. (C)
+Simula tion of temper a tur e rise induced by SRP in tempor al (top) and spa tial (bottom) domains. Spa tial scale bar, 1 μm. (D) Simula ted pr ofile of thermal lens induced by
+SRP in pur e DMSO. (E) Illus tr a tion of fluor escence thermometer measur ement of SRP-media ted temper a tur e rise. (F) Fluor escence intensity of rhodamine B in DMSO
+during an SRS pr ocess. The bea ting fre quency (ω
+p
+− ω
+s
+) is tuned to 2913 cm
+−1
+for on r esonance and 2850 cm
+−1
+for off r esonance (BG). The on r esonance (BG r emo v ed)
+curv e is obtained by subtr a cting the off r esonance (BG) fr om the on r esonance curv e to elimina te the non-photothermal contributions. BG, ba ckgr ound; a.u., arbi-
+tr ary units.
+SCIENCE ADV ANCES
+|
+RESEARCH ARTICLE
+Zhu et al., Sci. Adv. 9, eadi2181 (2023) 27 October 2023 2 of 11
+Downloaded from https://www.science.org at Boston University on June 20, 2026
+
+
+===== PDF PAGE 3 =====
+When the chirped pump and Stok es lasers ar e focused into a DMSO
+solution of rhodamine B, the rhodamine B molecules a t the SRS
+focus ar e electr onically e xcited thr ough multiphoton absorption
+and emit fluor escence. Meanwhile, when the bea ting fr equency
+betw een the pump and Stok es is tuned to r esona te with the C─H
+vibr a tion in DMSO, the SRP effect r aises the temper a tur e and a c-
+cordingly decr eases the two-photon fluor escence intensity of rho-
+damine B molecules (Fig. 1E). In the e xperiment, w e used
+identical par ameters as in the simula tion. Firs t, the fluor escence in-
+tensity change curv e measur ed a t off-r esonance fr equency w as sub-
+tr a cted fr om the on-r esonance measur ement to r emo v e the
+photoblea ching contribution in the r esult. Then, w e found tha t
+the fluor escence intensity dr opped ~2.3% a fter 12 μs of on-r eso-
+nance SRS, corr esponding to ~1.2 K of temper a tur e rise (Fig. 1F),
+close to the simula tion r esult of 2.4 K. The differ ence betw een the
+two values could be pr edominantly due to their differ ent sampling
+r egions. The e xperiment measur ed the a v er age temper a tur e rise
+a cr oss the whole laser focus, while the simula tion r esult only
+sho w ed the temper a tur e rise a t the center of the laser focus (~20
+nm diameter). After taking w eighted a v er age of temper a tur e in-
+cr eases thr oughout the hea ting r egion and a ccounting for the
+two-photon e xcita tion intensity of a Gaussian beam, the fluor es-
+cence change curv e aligned closely with the simula tion (Fig. 1F).
+T o elimina te the potential impa ct of thermophor esis on the ob-
+serv ed fluor escence intensity dr op, w e performed a contr ol e xperi-
+ment using rhodamine 800 (Rh800) as the dy e in DMSO under the
+same SRS and two-photon e xcita tion schemes. The fluor escence of
+Rh800 is not temper a tur e dependent and not vulner able to photo-
+blea ching. As sho wn in fig. S2, the SRS pr ocess did not vary the
+Rh800 fluor escence intensity , indica ting tha t thermophor esis
+pla y ed a negligible r ole.
+Optically sensing the SRP effect
+The SRP effect cr ea tes a div ergent lens (Fig. 1D) (27, 29) and can be
+optically pr obed thr ough a continuous w a v e beam. W e built a
+thermal ball lens model to illus tr a te this detection scheme. In this
+model, w e assumed tha t SRS e xcita tion cr ea tes uniform hea ting in a
+spherical s ymmetric r egion. A thermal ball lens changes the subse-
+quent pr obe light pr opaga tion, which is formula ted on the basis of
+geometrical optics (details in Supplementary T e xt and fig. S3).
+Under the par axial appr oxima tion, the model giv es the pr oportion-
+ality of SRP signal intensity (I
+SRP
+) induced by a single pair of pump
+and Stok es pulses as
+I
+SRP
+/ N
+mol
+σ
+SRS
+ϕ
+pump
+ϕ
+Stokes
+τ
+exc
+� ħω
+SRS
+�
+1
+V
+SRS
+1
+C
+p
+n
+0
+dn
+dT
+ð2Þ
+Her e, SRS is modeled as a two-photon vibr a tional e xcita tion
+pr ocess (33). The firs t term (N
+mol
+σ
+SRS
+ϕ
+pump
+ϕ
+Stok es
+τ
+e xc
+) describes
+the number of SRS ev ents, i.e., the number of vibr a tional e xcita tions,
+N
+mol
+is the number of molecules in the e xcita tion v olume, σ
+SRS
+is the
+SRS cr oss section (in cm
+4
+s photon
+−1
+), ϕ
+pump
+and ϕ
+Stok es
+ar e the
+photon flux of the pump and Stok es lasers, r espectiv ely (in
+photon cm
+−2
+s
+−1
+), and τ
+e xc
+is the laser pulse width (in seconds).
+The second term (ℏω
+SRS
+) is the energy of vibr a tional tr ansition.
+The las t term describes pr operties of the measur ement envir on-
+ment, wher e V
+SRS
+is the SRS e xcita tion v olume, C
+p
+is the hea t
+capa city , n
+0
+is the r efr a ctiv e inde x, and dn/dT is the thermo-optic
+coefficient. The pr oduct of the firs t and the second term giv es the
+amount of energy deposition. The las t term giv es the r a te of hea t to
+r efr a ctiv e inde x conv ersion. This term is inv ersely pr oportional to
+the e xcita tion v olume and the hea t capa city , and is linear to the
+thermo-optic coefficient. The envir onment pr operties term holds
+potential to impr o v e the signal intensity , which is not applicable
+to SRS measur ement. F or the high NA condition, w e carried out
+a finite-differ ence time-domain w a v e pr opaga tion simula tion. The
+r esults (fig. S4) sho w tha t the SRP signal maintains linearity to
+concentr a tion.
+An SRP micr oscope
+By sensing the local r efr a ctiv e inde x modula tion using a third con-
+tinuous w a v e beam, w e ha v e built an SRP micr oscope as illus tr a ted
+in Fig. 2A. Briefly , the s ynchr onized pump and Stok es pulse tr ains
+ar e intensity-modula ted by two a cous to-optic modula tors, com-
+bined, and chirped by glass r ods. Her e, chirping of femtosecond
+pulses gener a tes spectr al focusing for e xcita tion of specific Raman
+modes (39, 40). A pr obe beam is collinearly aligned with the SRS
+beams. A pair of lenses adjus ts the collima tion of the pr obe beam
+to mak e the pr obe laser focus axially off the SRS focus, ther eby max-
+imizing the photothermal signal (27). An iris a t the ba ck focal plane
+of the condenser lens is set to an NA of 0.4 to conv ert the pr obe
+beam r efr a ction modula tion to intensity modula tion. A fas t photo-
+diode detects the pr obe beam intensity , follo w ed by a high-pass
+filter and a br oadband amplifier. The SRP modula tion induced by
+s ynchr onized pump and Stok es pulses is digitized in r eal time by a
+high-speed digitiza tion card. F urther details can be found in Ma te-
+rials and Methods and fig. S5.
+Unlik e SRS, both the pump and Stok es beam ar e intensity-mod-
+ula ted in the SRP micr oscope. SRS intensity is pr oportional to the
+pr oduct of pump and Stok es peak po w er. W ith conserv ed a v er age
+laser po w er, r eduction of laser duty cycle leads to higher laser peak
+po w er and, hence, mor e SRS energy deposition. Our e xperiment
+(Fig. 2B) confirmed this and sho w ed much higher SRP signal inten-
+sity with a lo w er duty cycle. In SRP imaging applica tions, the duty
+cycle w as set to 5 to 10% as a compr omise betw een signal intensity
+and laser po w er. Notably , ma tch filtering can be applied to the lo w
+duty cycle SRP signal to further impr o v e the SNR (fig. S6). Another
+k e y par ameter is the modula tion fr equency . Lo w er fr equency sho ws
+higher signal intensity (Fig. 2C) due to longer hea t a ccumula tion
+time but suffers mor e fr om the 1/f laser intensity noise (41).
+Ho w ev er, it also r educes the imaging speed and compr omises the
+spa tial r esolution. A value of 125 kHz w as chosen to balance
+these fa ctors.
+F or a pur e liquid, under conditions of a 5% duty cycle and 125-
+kHz modula tion fr equency , the induced modula tion on the pr obe
+beam w as so s tr ong tha t w e could dir ectly measur e the SRP signal in
+the dir ect curr ent channel without any amplifica tion (Fig. 2D).
+W ith r easonable laser po w ers on the sample to e xcite the C─H s ym-
+metric s tr etching mode (2913 cm
+−1
+) of DMSO, the modula tion
+depth r ea ched 22.3%. This is >500-fold higher than the SRS modu-
+la tion depth (0.04%) with identical a v er age po w er. The tr emendous-
+ly higher modula tion depth la y s the founda tion for a better
+detection sensitivity .
+In addition to duty cycle and modula tion fr equency , the thermal
+ball lens model sho ws tha t the medium pr operties ar e another
+crucial fa ctor tha t a ffects the photothermal signal intensity . The
+photothermal signal intensity (S ), thermo-optic coefficient (dn/
+SCIENCE ADV ANCES
+|
+RESEARCH ARTICLE
+Zhu et al., Sci. Adv. 9, eadi2181 (2023) 27 October 2023 3 of 11
+Downloaded from https://www.science.org at Boston University on June 20, 2026
+
+
+===== PDF PAGE 4 =====
+dT), and hea t capa city (C
+p
+) ha v e a r ela tionship tha t S /
+dn
+dT
+=C
+p
+  �
+,
+which is also supported by pr evious liter a tur e (42). Ho w ev er, the
+mos t common medium in biological samples, w a ter, has a lo w
+thermo-optic coefficient (−1.13 × 10
+−4
+K
+−1
+) (43) and high hea t ca-
+pa city (4181 J kg
+−1
+K
+−1
+). Seeking to incr ease the signal intensity , w e
+inv es tiga ted common liquid medium, as sho wn in table S1. W e
+found tha t glycer ol augments the signal intensity by 3.21-fold com-
+par ed to w a ter. Glycer ol also sho ws high biocompa tibility and is
+widely used as a mounting medium or clearing agent in bioimaging.
+Our simula tion of the thermal lens comparison, depicted in fig. S7,
+also aligns with pr evious theories. It indica tes tha t the peak r efr a c-
+tiv e inde x change in a glycer ol medium is ~2.5-fold higher than in
+w a ter when subjected to an identical hea ting, which in this case is a
+100-nm poly(methyl metha cryla te) (PMMA) nanoparticle under
+on-r esonance SRP hea ting. Ther efor e, glycer ol w as chosen as the
+medium to push the sensitivity limit of SRP imaging. C onsidering
+the inher ent Raman-a ctiv e vibr a tional fea tur es of glycer ol, deuter-
+a ted glycer ol (glycer ol-d8) w as applied for SRP measur ement a t the
+C─H and fingerprint r egions.
+SRP spectr al fidelity and detection sensitivity
+W e firs t char a cterized the spectr al fidelity of our SRP micr oscope
+with w ell-defined samples. As sho wn in fig. S8, the SRP spectr a
+agr ee with the SRS spectr a for both the bulk liquid sample and
+nanoparticles (PMMA). W e note tha t the SRP intensity is also
+pr oportional to ω
+SRS
+, while its impa ct on the SRP spectrum is neg-
+ligible in a narr o w spectr al windo w . The high spectr al fidelity builds
+the founda tion to further compar e the detection sensitivities of both
+techniques.
+W e then measur ed the limit of detection (L OD) for DMSO, fo-
+cusing on the 2913 cm
+−1
+mode. T o k eep the thermal and optical
+pr operties cons tant thr oughout the measur ement, deuter a ted
+DMSO (DMSO-d6) w as used as the solv ent to dilute DMSO. As
+sho wn in Fig. 3A and fig. S9 (for complete measur ement), the
+SRP spectrum w as clean and smooth with a high-concentr a tion
+DMSO sample, and the signal w as observable a t a concentr a tion
+as lo w as 5.1 mM. W e calcula ted the L OD as 2.3 mM using L OD
+= 3σ/k, wher e σ is the SD of the baseline and k is the slope of the
+intensity-concentr a tion linear calibr a tion curv e. In comparison, the
+L OD by SRS under identical a v er age laser po w ers w as found to be 39
+mM. Thus, SRP measur ement offers an ~17-fold impr o v ement. The
+L ODs for C≡C and C─D bonds w er e measur ed in DMSO medium
+using 1,7-octadiyne (fig. S10) and DMSO-d6 (fig. S11). In both
+cases, SRP sho w ed superior sensitivity to SRS, with 12-fold L OD in-
+cr ease on 1,7-octadiyne and 4-fold L OD incr ease on DMSO-d6.
+Such sensitivity impr o v ement allo ws high-quality imaging of
+nanoparticles. W ith the SRP micr oscope, w e successfully a cquir ed
+a hyperspectr al image of 100-nm PMMA beads as sho wn in Fig. 3C.
+The a cquir ed SRP spectrum sho w ed a Raman peak of PMMA a t
+2950 cm
+−1
+, which w as w ell dis tinguished fr om the ba ckgr ound
+Fig. 2. SRP micr oscope design and char a cteriza tion of SRP modula tion depth as a function of duty cycle and modula tion fr equency . (A) Experimental setup. DM,
+dichr oic mirr or; DL, dela y line; A OM, a cous to-optic modula tor; PBS, polarizing beam splitter; HWP , half-w a v e pla te; SM, scanning mirr or; OBJ, objectiv e; C OND, condenser;
+SP , spectr al filter; PD, photodiode; HP , high-pass filter; AMP , amplifier. (B) Measur ed SRP signal as a function of modulat ion duty cycle. (C) Measur ed SRP signal as a
+function of modula tion fr equency . (D) SRP gener a ted a large (22.3%) modula tion depth with DMSO as the sample. The on-r esonance and off-r esonance tr a ces w er e
+obtained with the Raman shift a t 2913 and 2850 cm
+−1
+, r espectiv ely .
+SCIENCE ADV ANCES
+|
+RESEARCH ARTICLE
+Zhu et al., Sci. Adv. 9, eadi2181 (2023) 27 October 2023 4 of 11
+Downloaded from https://www.science.org at Boston University on June 20, 2026
+
+
+===== PDF PAGE 5 =====
+spectrum as sho wn in fig. S12, with an SNR of ~7.0 a fter BM4D
+denoising (44). In comparison, the SRS measur ement sho w ed no
+contr as t of 100-nm beads on the same sample with identical
+a v er age laser po w er. C ollectiv ely , SRP sho w ed impr o v ed sensitivity
+compar ed with SRS, both for liquid samples and for nanoparticles.
+The intr oduction of a third pr obe beam a t a shorter w a v elength
+helped impr o v e the spa tial r esolution (Fig. 3D). W e plotted the in-
+tensity pr ofile a cr oss a pair of 100-nm PMMA beads, with the
+Gaussian-fitted FWHM found to be ~218 nm. Deconv olution
+with the size of the beads gener a ted an FWHM of ~194 nm,
+which w as belo w the theor etical r esolution limit of SRS under the
+same condition (~217 nm, FWHM of the Airy disk).
+SRP imaging of biological samples in phy siological
+envir onment
+T o e xplor e the potential of SRP in bioimaging, w e firs t performed
+label-fr ee SRP imaging of liv e SJSA-1 os teosar coma cancer cells. As
+sho wn in Fig. 4A, the lipid dr oplets, endoplasmic r eticulum (ER),
+and nucleolus sho w a s tr ong signal a t 2930 cm
+−1
+. The nuclear mem-
+br ane sho ws pr onounced contr as t, indica ting locally enhanced pho-
+tothermal intensity in an aqueous envir onment. At an imaging
+speed of ~2.8 s/fr ame, the dynamics of lipid dr oplets w er e captur ed,
+with all tr ajectories displa y ed in Fig. 4B. A complete time-lapse
+mo vie is sho wn in mo vie S1.
+Ne xt, w e performed hyperspectr al SRP imaging of SJSA-1 cells a t
+the C─H s tr etching vibr a tion r egion. As demons tr a ted in Fig. 4C,
+subcellular s tructur es, such as lipid dr oplets and nucleolus, sho w
+decent contr as t. Subsequent phasor analy sis w as applied to
+segment the subcellular s tructur es (45), wher e fiv e of the major
+components w er e identified (Fig. 4D) with corr esponding spectr a
+(fig. S13). A complete hyperspectr al mo vie is sho wn in mo vie S2.
+T o e xplor e the applicability of SRP imaging in the silent windo w ,
+w e s tudied the cellular uptak e of deuter a ted palmitic a cid (P A-d31).
+Figur e S14 sho ws the hyperspectr al SRP images of SJSA-1 cells in-
+cuba ted with P A-d31. W ith phasor analy sis, the P A-d31–rich
+r egions (the membr ane and ER) can be w ell separ a ted fr om other
+cellular components (Fig. 4E). The spectr al pr ofile (Fig. 4F) fr om
+phasor analy sis sho ws a peak a t 2100 cm
+−1
+, wher e the C─D
+s tr etch vibr a tion r esides. In the contr ol sample without P A-d31
+tr ea tment, only the cellular components w er e observ ed (Fig. 4, G
+and H). The ba ckgr ound signal is independent of Raman shift
+(Fig. 4, F and H, and fig. S14). This ba ckgr ound is lik ely fr om the
+o v ertone absorption of C─H vibr a tional tr ansitions, which also de-
+posits energy and cr ea te photothermal contr as t. The cell ba ck-
+gr ound in the C─D SRP images is s tr onger than tha t in the C─H
+SRP images (Fig. 4D), which can be a ttributed to the 855-nm pump
+laser used for C─D e xcita tion being close to the 920-nm o v ertone
+absorption band of the C─H s tr etching vibr a tion.
+Using mouse br ain slices as the sample, w e pr oceeded to evalua te
+SRP imaging performance on tissue specimens (Fig. 4, I to K).
+Thr ee fields of vie w (F O Vs) ar e chosen as r epr esenta tions of
+typical br ain s tructur e. In Fig. 4, I to K, the detailed s tructur e of
+my elin shea th can be clearly r esolv ed, sho wing the typical lipid-
+rich Raman spectr al fea tur es. The my elin shea ths with differ ent ori-
+enta tions sho w dr as tically differ ent signal intensities, indica ting a
+s tr ong dependence of the SRP intensity on the laser polariza tion.
+Fig. 3. SRP spectr oscopy and imaging performance char ac teriza tion. (A and B) SRP (A) or SRS (B) signal with gr adient concentr a tions of DMSO dissolv ed in DMSO-d6.
+C oncentr a tion in mM. Inset sho ws the signal intensity as a function of concentr a tion (complete da ta in fig. S6). (C) SRP and SRS image of 100-nm PMMA beads a t 2950
+cm
+−1
+with the same a v er age po w er, a t the same field of view . Scale bar, 500 nm. The beads w er e immersed in d8-glycer ol. (D) The Gaussian fitting FWHM of bead pr ofile is
+218 nm.
+SCIENCE ADV ANCES
+|
+RESEARCH ARTICLE
+Zhu et al., Sci. Adv. 9, eadi2181 (2023) 27 October 2023 5 of 11
+Downloaded from https://www.science.org at Boston University on June 20, 2026
+
+
+===== PDF PAGE 6 =====
+In Fig. 4J, densely pa ck ed cytoplasmic organelles w er e observ ed.
+The SRP spectr a (Fig. 4L) sho w the lipid peak a t 2845 cm
+−1
+and
+the pr otein peak a t 2930 cm
+−1
+for my elin shea th, while the cyto-
+plasm signal is domina ted by pr oteins. The SRP signal fr om the
+medium is w eak and independent of Raman shift. The tissue
+sample and additional SRP tissue images ar e sho wn in fig. S15. C ol-
+lectiv ely , our da ta sho w the potential of SRP imaging in chemical
+analy sis of tissues with good spectr al fidelity .
+SRP imaging of biological samples in glycer ol
+C ompar ed to w a ter, the high thermo-optic coefficient and lo w hea t
+capa city of glycer ol open up the opportunity to further boos t the
+sensitivity of SRP micr oscopy . Inspir ed by the capability of
+imaging 100-nm nanoparticles with high SRP contr as t (Fig. 3C),
+w e firs t assessed SRP imaging of vir al particles. As sho wn in
+Fig. 5A, individual varicella-zos ter vir al particles (diameter ≈ 180
+nm) (46) could be clearly r esolv ed fr om the ba ckgr ound with an
+SNR of ~20. The SRP spectrum of a single virus (Fig. 5B) peak ed
+a t 2950 cm
+−1
+, indica ting a s tr ong contribution fr om the nucleic
+a cids a t the cor e of the virus.
+Glycer ol-d8 as a mounting medium w as used to impr o v e the
+quality of SRP imaging of mammalian cells. W e used the pancr ea tic
+cancer cell MIA P aCa-2 as the tes t bed (Fig. 5C). Glycer ol-d8 w as
+applied to r epla ce the phospha te-buffer ed saline (PBS) buffer and
+immerse the cells to enhance the SRP contr as t. SRP imaging a t
+the high–w a v e number C─H vibr a tion r egion sho w ed a large con-
+tr as t fr om membr anes and intr a cellular lipids. Phasor analy sis w as
+applied to segment the cellular compartments (fig. S16), wher e up
+to six differ ent components could be w ell identified (Fig. 5D).
+Notably , the nuclear membr ane s tood out fr om the cytoplasm
+and the nuclear ma trix, highlighting the potential of applying
+SRP to s tudy fine membr ane s tructur es. It is lik ely tha t this high
+contr as t is a r esult of the high thermo-optic coefficients and lo w
+hea t capa cities of membr anes.
+Upon addition of glycer ol, the high sensitivity of SRP also pr o-
+vides a ccess to w eak Raman bands in the fingerprint r egion.
+Fig. 4. SRP imaging of biological samples in aqueous envir onment. (A) SRP image of a liv e SJSA-1 cell in PBS. Raman shift, 2930 cm
+−1
+. (B) Dynamic imaging of the
+same liv e SJSA-1 cell with color-coded tempor al dynamics of the lipid dr oplets inside the cell. Scale bar, 5 μm. (C) Hyperspectr al SRP imaging of fixed SJSA-1 cell in PBS,
+2930 cm
+−1
+. Scale bar, 10 μm. (D) Phasor analy sis output of the hyperspectr al SRP image in (C). (E to H) SRP analy sis of SJSA-1 cell in PBS with (E and F) or without (G and H)
+palmitic a cid–d31 (P A-d31) tr ea tment. Phasor analy sis separ a tes P A-d31 SRP signal (r ed) and cell ba ckgr ound (cy an) (E and G) with spectr al fea tur es sho wn in (F) and (H).
+Scale bar, 10 μm. (I to K) SRP imaging of a mouse br ain immersed in PBS a t 2930 cm
+−1
+in differ ent r egions. Scale bar, 12 μm. (L) T wo r epr esenta tiv e spectr a in the mouse
+br ain indica ted with triangles fr om (I) (my elin shea th) and (J) (cytoplasm). The PBS spectrum w as a cquir ed a t the nonsample r egion.
+SCIENCE ADV ANCES
+|
+RESEARCH ARTICLE
+Zhu et al., Sci. Adv. 9, eadi2181 (2023) 27 October 2023 6 of 11
+Downloaded from https://www.science.org at Boston University on June 20, 2026
+
+
+===== PDF PAGE 7 =====
+Figur e 5E sho ws the SRP image of a 10-μm-thick O VC AR-5 cancer
+tissue a t 1650 cm
+−1
+tha t targets the amide I band in pr oteins and the
+C═C vibr a tion in lipids. High-quality spectr a w er e r esolv ed fr om
+the hyperspectr al image s ta ck. In Fig. 5F , the lipid [r egion of inter es t
+1 (R OI 1)] and pr otein (R OI 2) species ar e clearly differ entia ted.
+Las t, w e conducted a dir ect comparison betw een SRP and SRS a t
+the same F O V on an SK O V3 cell in glycer ol, with conserv ed a v er age
+laser po w er and dw ell time. The r esults ar e sho wn in fig. S17. The
+r epr esenta tiv e cellular s tructur es (lipid dr oplets, cell nuclei, and nu-
+cleolus) can be clearly r esolv ed in both images. C omparison
+betw een pr ofiles a t the lines indica ted by arr o ws on the 2980
+cm
+−1
+fr ames sho ws an SNR of 53 for SRP and 17 for SRS. F urther-
+mor e, the SRP image clearly sho ws sharper contr as t for the intr anu-
+clear s tructur es.
+DISCUSSION
+In this work, w e ha v e numerically simula ted and e xperimentally
+confirmed the pr esence of the SRP effect. On the basis of this
+SRP effect, w e ha v e built an SRP micr oscope and demons tr a ted su-
+perior detection sensitivity and r esolution in comparison to a con-
+v entional SRS micr oscope. W e ha v e also demons tr a ted SRP imaging
+of multiple biological samples in aqueous and glycer ol envir on-
+ments. Belo w , w e compar e SRP and SRS in terms of detection mech-
+anism, spa tial r esolution, laser noise, and solv ent effect.
+SRS micr oscopy measur es either the gain in Stok es or the loss in
+the pump beam. Thus, a high-NA objectiv e is needed to maximize
+the collection efficiency while minimizing the cr oss-phase modula-
+tion. In contr as t, SRP micr oscopy measur es light sca ttering caused
+by thermal e xpansion of a particle or r efr a ction caused by the
+thermal lens. Thus, SRP fa v ors light collection with a lo w-NA ob-
+jectiv e or an air condenser. As sho wn in fig. S18, with a 0.5 NA air
+condenser, the SRP image is clear and sharp, while the SRS image is
+compar ably noisier. In addition, SRP maintains good spectr al fidel-
+ity (fig. S18C), while SRS spectrum has been dis torted by the en-
+hanced cr oss-phase modula tion ba ckgr ound. Q uantita tiv ely (fig.
+S18D), the SRP image sho ws 21.2-fold SNR impr o v ement and
+7.8-fold signal-to-ba ckgr ound r a tio impr o v ement when compar ed
+to the SRS image. The r elaxa tion of the high-NA oil condenser r e-
+quir ement brings conv enience in the SRP applica tions.
+SRP holds slight advantage o v er SRS in terms of spa tial r esolu-
+tion. W ith the intr oduction of a pr obe laser, the ideal effectiv e point
+spr ead function (PSF) is the pr oduct of all thr ee laser PSFs (i.e.,
+pump, Stok es, and pr obe). In addition, the pr obe can be chosen
+a t a much shorter w a v elength to yield a much sharper SRP effectiv e
+PSF . In this work, with a 1.49-NA objectiv e, the ideal r esolution
+r ea ches ~167 nm with a 765-nm laser applied as the pr obe and
+~137 nm when measur ed with a 522-nm laser. Achieving such an
+ideal r esolution impr o v ement r equir es a high fr equency (>MHz),
+since thermal diffusion within a modula tion period will enlarge
+the size of thermal lens, compr omising the r esolution. At the
+e xtr eme of lo w modula tion fr equency , the r esolution is degr aded
+to tha t of SRS. W ith the curr ent modula tion fr equency of 125
+kHz, the spa tial r esolution impr o v ement has been subs tantial,
+fr om ~217 nm with SRS to ~194 nm with SRP .
+The differ ent measur ement scheme betw een SRP and SRS also
+brings differ ent origins of noise in the measur ement. In both mea-
+sur ements, the major origin of noise is the r ela tiv e intensity noise
+Fig. 5. SRP imaging of biological samples immersed in glycer ol. (A) SRP imaging of a single varicella-zos ter virus immersed in glycer ol-d8, 2950 cm
+−1
+. Scale bar, 2 μm.
+(B) Single virus Raman spectrum a t C─H r egion, a cquir ed fr om a single virus in (A). (C) SRP imaging of fixed MIA P aCa-2 cell immersed in glycer ol-d8, a t 2950 cm
+−1
+. Scale
+bar, 5 μm. (D) C olor-coded chemical map thr ough phasor analy sis of (C). (E) SRP spectr oscopic imaging of O VC AR-5 tissue, clear ed with glycer ol-d8, a t 1650 cm
+−1
+. (F)
+Single-pixel spectrum a t the cir cled R OI.
+SCIENCE ADV ANCES
+|
+RESEARCH ARTICLE
+Zhu et al., Sci. Adv. 9, eadi2181 (2023) 27 October 2023 7 of 11
+Downloaded from https://www.science.org at Boston University on June 20, 2026
+
+
+===== PDF PAGE 8 =====
+and shot noise of the measur ed laser beam, which is the pr obe laser
+in SRP , or the pump/Stok es laser in SRS. The differ ent origins of
+noise a fford SRP two advantages. Firs t, SRP is less susceptible to
+the laser noise of the ultr a fas t lasers used for SRS e xcita tion. Ther e-
+for e, SRP can be implemented with a nois y ultr a fas t laser; second,
+both the pump and Stok es laser po w ers can be incr eased without
+a ffecting the measur ement noise of SRP . Ther efor e, SRP potentially
+enables the applica tion of nois y and high-po w er lasers for vibr a tion-
+al imaging.
+A dis tinguishing fea tur e of SRP compar ed to SRS is its depen-
+dence on the pr operties of the sample envir onment. As a r esult,
+the lipid-rich r egions in the cellular images, such as lipid dr oplets
+and lipid bila y ers in membr anes, e xhibit enhanced contr as t in com-
+parison to SRS images. This pr operty also enables opportunities to
+enhance the SRP signal intensity with a car efully engineer ed
+medium, such as critical xenon, which could bring a ~400-fold en-
+hancement as demons tr a ted in visible photothermal micr oscopy
+(27). Ho w ev er, the sample-dependent na tur e of SRP signals ma y
+pose a challenge to quantita tiv e analy sis in highly heter ogeneous
+envir onments.
+Ther e is s till spa ce to impr o v e the SRP imaging performance.
+The imaging speed of our curr ent setup can r ea ch up to 8 μs/
+pixel, or ~3 fr ames per second (FPS) for a 200 × 200–pixel image.
+This imaging speed is majorly limited by the lo w modula tion fr e-
+quency a t 125 kHz. It is possible to a chiev e much higher imaging
+speed by measuring the SRP effect caused by a single pair of SRS
+e xcita tion pulses a t 1-MHz r epetition r a te. Under such conditions,
+the imaging speed is only cons tr ained by the r a te of sample cooling,
+usually on the lev el of 1 μs per pixel. This would be sufficient for
+SRP imaging close to video r a te. R egarding detection sensitivity , it
+is viable to incorpor a te a mor e elegant photothermal detection
+scheme to boos t the signal intensity , such as fluor escence detection
+(37, 38) or nanomechanical photothermal sensing (47). R egarding
+spa tial r esolution, it is possible to switch to a shorter w a v elength
+pr obe laser and couple with an imaging scanning micr oscopy tech-
+nique (48) to further impr o v e the r esolution to sub–100-nm lev el.
+MA TERIALS AND METHODS
+C ell cultur e and sample pr epar a tion
+SK O V3 (ca talog no. HTB-77) and MIA P aCa-2 (ca talog no. CRL-
+1420) cells w er e fr om the American T ype Cultur e C ollection
+(A T CC). C ells w er e cultur ed in high-glucose Dulbecco ’s modified
+Eagle’s medium (Gibco) supplemented with 10% fetal bo vine
+serum (FBS) and penicillin-s tr eptomycin (100 U/ml) and main-
+tained in a humidified incuba tor with 5% C O
+2
+supply a t 37°C.
+After o v ernight seeding in a s terile 35-mm glass-bottom dish
+(C ellvis) or #1 co v er glass (VWR), cells w er e fixed with 10%
+neutr al-buffer ed formalin for 30 min follo w ed by thr ee PBS
+w ashes. Then, the cells w er e co v er ed with glycer ol-d8 befor e
+sealing and imaging.
+SJSA-1 cells (ca talog no. CRL-2098) w er e fr om the A T CC. C ells
+w er e cultur ed in RPMI 1640 cultur e medium (Gibco) supplemented
+with 10% (v/v) FBS and 1% (v/v) penicillin-s tr eptomycin. All cells
+w er e cultur ed under contr olled conditions in a humidified incuba-
+tor set a t 37°C with a 5% C O
+2
+supply . F or the C-D labeled gr oup, the
+cells w er e initially cultur ed until a tta ching to the glass bottom dishes
+and then incuba ted in RPMI 1640 medium containing de-lipid
+serum for 3 hours. Subsequently , the cells w er e incuba ted with
+200 μM P A-d31 in the medium for 18 hours. Afterw ard, cells
+w er e fixed with 10% neutr al-buffer ed formalin for 30 min follo w ed
+by thr ee PBS w ashes befor e micr oscopic imaging.
+Tissue sample pr epar a tion
+O VC AR-cisR tissue sample
+A fr esh o varian tumor section w as e xtr a cted fr om NU/J mouse (4
+w eeks old, female, homozygous for F oxn1nu) pur chased fr om the
+Ja ckson Labor a tory . The mouse w as inocula ted with O VC AR5-cisR
+cells. The sections w er e immedia tely fixed in a 10% formalin solu-
+tion. The e xtr a cted tissue section w as then w ashed using PBS solu-
+tion and cry opr eserv ed by incuba tion in 15% sucr ose solution for 12
+hours, follo w ed by incuba tion in 30% sucr ose solution o v ernight a t
+r oom temper a tur e. The tissue section w as fr ozen a t −80°C by em-
+bedding in OCT (optimal cutting temper a tur e) compound in a
+tissue mold. The tissue section w as then sliced using a Micr om
+HM525 cry os ta t a t the Bio-Interfa ce and T echnologies F a cility ,
+Bos ton Univ ersity , into 10-μm-thick la y ers, ea ch pla ced on separ a te
+glass slides and fr ozen a t −80°C until the e xperiment. T o pr epar e
+the samples for imaging, the tissue slides w er e w ashed using PBS
+solution to w ash off the OCT . The tissue slides w er e then co v er ed
+with glycer ol-d8 befor e pla cing a co v erslip to seal the glycer ol-d8
+co v er ed tissue la y er.
+Mouse br ain tissue sample
+The mouse w as euthanized and perfused tr anscardially with PBS
+(1×, pH 7.4, Thermo Fisher Scientific Inc.) solution and 10% for-
+malin, allo wing the fixa tiv e to cir cula te thr oughout the vascula tur e.
+After fixa tion, the br ain w as e xtr a cted and fixed in 10% formalin
+solution for 24 hours to ensur e complete fixa tion. Then, the
+mouse br ain w as submerged in a 1× PBS solution and then sliced
+horizontally into sections with a thickness of 100 μm using an Os-
+cilla ting Tissue Slicer (OST-4500, Electr on Micr oscopy Sciences).
+Glycer ol-agar (glycer ol-d8-agar) medium pr epar a tion
+Agar (1%, w/w) (Sigma-Aldrich) w as mixed with glycer ol (or glyc-
+er ol-d8, Sigma-Aldrich) and then micr o w a v ed for 2 min to fully dis-
+solv e the agar.
+Nanoparticle and virus pr epar a tion
+F or 100-nm PMMA nanoparticles, 10 μl of solution w as mixed with
+w arm glycer ol-d8-agar medium and then sandwiched betw een two
+No.1 co v erslips befor e imaging. V aricella-zos ter virus solution
+(Fisher Scientific) w as dr opped onto a No.1 co v erslip and dried
+on top. The sample w as co v er ed with glycer ol-d8 and then sand-
+wiched betw een two co v erslips and sealed with nail polish
+befor e imaging.
+Modeling the temper a tur e change induced by SRS
+T o quantita tiv ely evalua te the SRP effect, w e built a model to sim-
+ula te the hea t deposition both spa tially and tempor ally . The SRS-
+induced temper a tur e change is dependent on the pulse width,
+pulse energy , laser r epetition r a te, and thermal pr operties
+(thermal conductivity , hea t capa city , etc.) of the sample and the sur-
+r ounding medium. Firs t, the deposited energy by SRS is es tima ted
+by the modula tion depth on the pump or Stok es beam along with
+the pulse energy . Then, to simula te the thermal conduction, the
+time domain and spa tial domain ar e divided into finite elements
+for the calcula tion a ccording to F ourier ’s la w: dQ = −kA(dT/dr)
+(wher e dQ is the conducted hea t energy in the time windo w , k is
+SCIENCE ADV ANCES
+|
+RESEARCH ARTICLE
+Zhu et al., Sci. Adv. 9, eadi2181 (2023) 27 October 2023 8 of 11
+Downloaded from https://www.science.org at Boston University on June 20, 2026
+
+
+===== PDF PAGE 9 =====
+the thermal conductivity , A is the surfa ce ar ea, and dT is the tem-
+per a tur e differ ence betw een dis tance dr). The SRS on-off pr ocess
+induces hea ting and cooling a t the focus. Hea t tr ansfer happens
+during both hea ting and cooling. During the hea ting pr ocess, the
+SRS pulses deposit hea t to the sample ins tantaneously with a Gauss-
+ian dis tribution as the vibr a tional e xcited s ta te r elaxa tion time is
+much fas ter compar ed to the simula tion time grid. Las t, with the
+hea ting es tima ted by the modula tion depth and thermal conduction
+calcula ted a ccording to F ourier ’s la w , the temper a tur e spa tial dis tri-
+bution a t ea ch time point is calcula ted.
+T o simplify the model, an isotr opic Gaussian SRS hea ting ar ea is
+assumed. The simula tion ar ea is set to be a 48-la y er model with in-
+cr easing s tep size fr om the center to the edge (fig. S1). The time s tep
+is set to be 200 ps, which is much smaller than the hea t pr opaga tion
+time to ensur e a conv erged r esult. DMSO has a hea t conductivity of
+0.2 W/(m·K). The laser par ameters ar e set to 50% duty cycle and 80-
+MHz r epetition r a te, a ccording to the commonly used SRS setting.
+T o pr edict the fluor escence change upon temper a tur e rise, the
+e xcita tion pr ofile of two photon fluor escence w as modeled as the
+normalized Gaussian PSF of the objectiv e. W eights based on the
+assumed e xcita tion pr ofile w er e put onto the temper a tur e rise of
+ea ch la y er and then multiplied by the −2%/K r a te (35) to yield
+the fluor escence change.
+Measur ement of temper a tur e a t the SRS focus
+A fluor escence thermometer, rhodamine B (−2%/K) (34), is intr o-
+duced to measur e the temper a tur e rise a t the SRS focus. Rhodamine
+B (80 μM) dissolv ed in DMSO is sandwiched betw een two thin co v-
+erslips (No.1; Thermo Fisher Scientific) for the measur ement. A
+dual-output s ynchr onized laser sour ce (InSight X3; Spectr a-
+Phy sics) pr o vides pump and Stok es beams, r espectiv ely . The
+Stok es beam is modula ted by an a cous to-optic modula tor (1205c;
+Isomet C orpor a tion) a t 40 kHz with the firs t-order beam to
+pr o vide a 100% modula tion depth. Then, the pump and Stok es
+beams ar e chirped by 75- and 90-cm glass r ods (SF57; Scott AG),
+r espectiv ely , to implement hyperspectr al SRS under a spectr al fo-
+cusing scheme. The pa th length of the Stok es beams could be adjus t-
+ed by a motorized dela y line (X-LRM025A-KX13A, Zaber
+T echnologies). The two beams ar e combined by a dichr oic mirr or
+(950 nm; Chr oma) and then collinearly guided into a laser scanning
+micr oscope. T o vibr a tionally e xcite the C─H bond in DMSO, the
+pump laser w as set to 800 nm with the Stok es beam w a v elength
+fixed a t 1045 nm. These two beams could also simultaneously
+e xcite the two-photon fluor escence signal of rhodamine B. A 40×
+w a ter objectiv e (NA = 0.8, Olympus) focused the two beams onto
+the sample, with po w er of 25 mW for pump and 50 mW for Stok es.
+The output light is collected in the forw ard dir ection by an oil con-
+denser (NA = 1.4, Aplana t Achr oma t 1.4; Olympus) and a 75-mm
+A-coa ting focal lens (Thorlabs). A silicon photomultiplier (C14455-
+3050GA; Hamama tsu) module with a band-pass optical filter
+(RT570/20x; Chr oma) and two short-pass filters (1000SP , 775SP;
+Thorlabs) is used to detect the fluor escence signal. The output of
+the silicon photomultiplier is r ecorded by a spectr ometer (Moku:
+Lab, Liquid Ins truments) for the analy sis in Fig. 1F .
+SRP micr oscope
+The SRP micr oscope is based on the SRS setup described in the pr e-
+vious section. Both pump and Stok es beams ar e modula ted by two
+s ynchr onized a cous to-optic modula tors outputting the firs t-order
+beams, various duty cycles, and modula tion fr equency a t 125
+kHz. Besides, a 765-nm continuous pr obe laser (TLB6712-D; Spec-
+tr al Phy sics) is added a fter the combining dichr oic mirr or by a po-
+larized beam splitter to form a thr ee-beam copr opaga ting colinear
+s y s tem (Fig. 2B). The thr ee beams ar e guided to a two-dimensional
+galv o scanning unit (GVS002; Thorlabs), which is conjuga ted by a
+four-focal s y s tem to the ba ck apertur e of a 100× oil objectiv e (NA =
+1.49, UAP ON100XO TIRF; Olympus). The NA of the condenser is
+adjus ted to 0.4 to enable the detection of the thermal lensing signal.
+The detector is a br oadband silicon photodiode (Hamama tsu) with
+50-ohm r esis tance, a 22-kHz high-pass r adio fr equency filter (Mini-
+cir cuits), and a 46-dB lo w-noise amplifier (SA230-F5; W a yne). A
+tilted band-pass optical filter (FL780-10; Thorlabs) is mounted
+befor e the detector to block the SRS beams and allo w sole detection
+of the pr obe beam. The output signal is digitized by a fas t da ta a c-
+quisition card (Alazar card, A TS9462; Alazar T echnologies). F or the
+images of bio-samples in w a ter envir onment (Fig. 4), virus
+(Fig. 5A), and image comparison betw een SRS and SRP (fig. S17),
+the 1045-nm femtosecond laser output is sent to a lithium tribor a te
+cry s tal to gener a te 522.5-nm SHG laser beam and then chirped to
+serv e as the SRP pr obe. This picosecond pr obe with r educed coher-
+ence length minimizes the interfer ence fr om the medium/co v er-
+glass interfa ce.
+When performing SRS imaging on the same setup, the pr obe
+laser is turned off. A 1.4-NA condenser is used to minimize the
+cr oss-phase modula tion ba ckgr ound. The modula tion on the
+pump is set to alw a y s on, and the Stok es w as modula ted a t ~2.25
+MHz. After the condenser, two short-pass optical filters (980SP;
+Thorlabs) pass the pump beam to the photodiode. A labor a tory-
+built r esonant amplifier a fter the photodiode picks up the s timula t-
+ed Raman loss signal. The photodiode output is then sent to the
+lock-in amplifier (MFLI; Zurich), and the s timula ted Raman loss
+signal is r ecorded with a da ta a cquisition card (NIDAQ card,
+PCI-6363; Na tional Ins truments). The SRS L OD measur ements
+w er e performed on a separ a te SRS s y s tem with no modula tion on
+pump to ensur e optimized measur ement quality .
+The SRP s y s tem is electr onically s ynchr onized by a NI-DAQ
+card. The NIDAQ card contr ols the galv o scanning unit and gener-
+a tes both the tr ansis tor-tr ansis tor logic trigger to contr ol the sam-
+pling of the Alazar card and the pixel trigger to contr ol the function
+gener a tor. The function gener a tor gener a tes r ectangular w a v es with
+various duty cycles a t 125 kHz in burs t mode to contr ol the two
+a cous to-optic modula tors to modula te the pump and Stok es pulse
+tr ains (fig. S2). The amplified signal fr om the detector set is digi-
+tized by the Alazar card a t a sampling fr equency of 20 MHz and
+then sent to the hos t computer for further analy sis.
+SRP signal digitiza tion and pr ocessing
+After r ecording the signal fr om ea ch pixel, a Whittak er smoother
+r emo v es the fluctua ted baseline caused by varia tion in the tr ansmis-
+sion (49). Ma tched filtering is then applied to impr o v e the SNR (50).
+F ourier tr ansform on the baseline-r emo v ed signal is applied to gen-
+er a te the signal spectrum. T o r educe the out-of-fr equency noise, a
+ma tched multi–band-pass filter a t up to sev en harmonic fr equencies
+of the modula tion fr equency is applied to the signal spectrum (fig.
+S6). The width of the single band-pass filter is set to 13.89 kHz when
+the pixel dw ell time is 72 μs. The ma tch-filter ed spectrum is then
+inv ersely F ourier tr ansformed ba ck to the time domain. The SRP
+SCIENCE ADV ANCES
+|
+RESEARCH ARTICLE
+Zhu et al., Sci. Adv. 9, eadi2181 (2023) 27 October 2023 9 of 11
+Downloaded from https://www.science.org at Boston University on June 20, 2026
+
+
+===== PDF PAGE 10 =====
+signal intensity of ea ch pixel is calcula ted fr om the a v er age peak-dip
+contr as t of the pr ocessed time domain da ta.
+SRP imaging par ameters
+The modula tion depth is measur ed with a 5% duty cycle modula-
+tion, 50 mW for Stok es and 20 mW for pump. The virus image is
+a cquir ed with a 5% duty cycle modula tion, 40 mW for Stok es and 20
+mW for pump. The liv e cell image is a cquir ed with 16-μs pixel in-
+tegr a tion time and a 10% duty cycle modula tion, using 40 mW for
+Stok es and 20 mW for pump. The glycer ol-d8 mounted cell image is
+a cquir ed with a 10% duty cycle modula tion, using 30 mW for Stok es
+and 15 mW for pump. The tissue images ar e a cquir ed with a 5%
+duty cycle modula tion, using 30 mW for Stok es and 10 mW for
+pump. All po w ers ar e measur ed befor e the galvanometer.
+Phasor analy sis
+Phasor analy sis w as performed with the s tandardized phasor anal-
+y sis plug-in in ImageJ (1.49v). The phasor domain segmenta tion
+w as performed manually to maximize the separ a tion of differ ent
+components as w ell as the integrity of ea ch component.
+Supplementary Ma terials
+This PDF file includes:
+Supplementary T e xt
+Figs. S1 to S18
+Ta ble S1
+Legends for mo vies S1 and S2
+R efere nces
+Other Supplementary Ma terial for this
+manuscript includes the follo wing:
+Mo vies S1 and S2
+REFERENCES AND NO TES
+1. C. W . Fr eudiger, W . Min, B. G. Saar, S. Lu, G. R. Holtom, C. He, J. C. Tsai, J. X. Kang, X. S. Xie,
+Label-fr ee biomedical imaging with high sensitivity by s timula ted Raman sca ttering mi-
+cros copy . Science 322, 1857–1861 (2008).
+2. W . Min, C. W . Fr eudiger, S. Lu, X. S. Xie, C oher ent nonlinear optical imaging: Bey ond
+fluor escence micr oscopy . Annu. Rev . Phys . Chem. 62, 507–530 (2011).
+3. J.-X. Cheng, X. S. Xie, Vibra tional spectros copic imaging of living s y s tems: An emerging
+pla tform for biology and medicine. Science 350, aaa8870 (2015).
+4. Z. Zhao, Y . Shen, F . Hu, W . Min, Applica tions of vibr a tional tags in biological imaging by
+Raman micr oscopy . Analy s t 142, 4018–4029 (2017).
+5. M. Ji, D. A. Orringer, C. W . Fr eudiger, S. Ramkissoon, X. Liu, D. Lau, A. J. Golby , I. Norton,
+M. Ha y ashi, N. Y . R. Agar, G. S. Y oung, C. Spino, S. Santagata , S. Camelo-Pir agua, K. L. Ligon,
+O. Sagher, X. S. Xie, Rapid, label-fr ee detection of br ain tumors with s timula ted Raman
+sca ttering micr oscopy. Sci. T r ansl. Med. 5, 201ra 119 (2013).
+6. D. A. Orringer, B. P andian, Y . S. Nikna fs, T . C. Hollon, J. Boyle, S. Lewis , M. Garr ard,
+S. L. Herv e y-Jumper, H. J. L. Garton, C. O. Maher, J. A. Heth, O. Sagher, D. A. W ilkinson,
+M. Snuderl, S. Ve nneti, S. H. Ramkissoon, K. A. McF adden, A. Fisher-Hubbard,
+A. P . Lieberman, T . D. Johnson, X. S. Xie, J. K. Tr autman, C. W . Fr eudiger, S. Camelo-Pir agua,
+Rapid intra oper a tive his tology of unpr ocessed surgical specimens via fibre -laser-based
+s timulate d Raman sca ttering micr oscopy . Na t. Biomed. Eng. 1, 0027 (2017).
+7. F . Hu, Z. Chen, L. Zhang, Y . Shen, L. W ei, W . Min, Vibr a tional imaging of glucose uptak e
+a ctivity in liv e cells and tissues by s timulate d Raman sca ttering. Ange w . Chem. Int. Ed. 54,
+9821–9825 (2015).
+8. L. Shi, C. Zheng, Y . Shen, Z. Chen, E. S. Silv eira , L. Zhang, M. W ei, C. Liu, C. de Sena-T omas,
+K. Ta rgoff, W . Min, Optical imaging of metabolic dynamics in animals. Na t. C ommun. 9,
+2995 (2018).
+9. J. Li, J.-X. Cheng, Dire ct visualiza tion of de no v o lipogenesis in single living cells. Sci. R ep. 4,
+6807 (2014).
+10. S. Yue, J. Li, S.-Y . Lee, H. J. Lee, T . Shao, B. Song, L. Cheng, T . A. Maste rson, X. Liu, T . L. Ra tliff,
+J.-X. Cheng, Cholest eryl es ter a ccumula tion induced by PTEN loss and PI3K/AKT a ctiva tion
+underlies human pr os ta te cancer aggr essiv eness. Cell Metab. 19, 393–406 (2014).
+11. J. Du, Y . Su, C. Qian, D. Yuan, K. Miao, D. Lee, A. H. C. Ng, R. S. W ijk er, A. Ribas, R. D. Levine,
+J. R. Hea th, L. W ei, Raman-guided subcellular pharmaco- metabolomics for metas ta tic
+melanoma cells. Na t. C ommun. 11, 4830 (2020).
+12. H. J. Lee, Z. Chen, M. C ollard, F . Chen, J. G. Chen, M. Wu, R. M. Alani, J.-X. Cheng, Multimodal
+metabolic imaging r ev eals pigment r eduction and lipid a ccumula tion in metast a tic mel-
+anoma. BME Fr ont. 2021, 9860123 (2021).
+13. C. Chen, Z. Zhao, N. Qian, S. W ei, F . Hu, W . Min, Multiplex ed liv e-cell pr ofiling with Raman
+probe s. Na t. C ommun. 12, 3405 (2021).
+14. Y . Ta n, J. Li, G. Zhao, K.-C. Huang, H. Cardenas, Y . W ang, D. Ma tei, J.-X. Cheng, Metabolic
+r epr ogr amming from glycoly sis to fa tty a cid uptak e and beta-oxidatio n in pla tinum-r esis-
+tant cancer cells. Na t. C ommun. 13, 4554 (2022).
+15. X. Ge, F . C. Pe r eira , M. Mitter egger, D. Berry , M. Zhang, B. Hausmann, J. Zhang,
+A. Schintlmeis ter, M. W agner, J.-X. Cheng, SRS-FISH: A high-thr oughput pla tform linking
+micr obiome metabolism to identity a t the single-cell lev el. Pr oc. Na tl. Acad. Sci. U.S.A. 119,
+e2203519119 (2022).
+16. M. Zhang, W . Hong, N. S. Abutaleb, J. Li, P .-T . Dong, C. Zong, P . W ang, M. N. Seleem, J.-
+X. Cheng, Rapid determina tion of antimicr obial susceptibility by s timulate d Raman sca t-
+tering imaging of D
+2
+O metabolic incorpora tion in a single ba cterium. Adv. Sci. 7,
+2001452 (2020).
+17. W . R ock, M. Bonn, S. H. P are kh, Near shot-noise limited hyperspectr al s timula ted Raman
+sca ttering spectros copy using lo w energy lasers and a fas t CMOS arr a y . Opt. Expr ess 21,
+15113–15120 (2013).
+18. C.-S. Liao, M. N. Slipchenko , P . W ang, J. Li, S.-Y . Lee, R. A. Oglesbee, J.-X. Cheng, Micr o-
+second scale vibra tional spectr oscopic imaging by multiple x s timulate d Raman sca ttering
+micr oscopy. Light Sci. Appl. 4, e265 (2015).
+19. R. B. de Andra de, H. Kerdoncuff, K. Berg-Sør ensen, T . Gehring, M. Lassen, U. L. Andersen,
+Qu antum-enhanced continuous-w a v e s timula ted Raman sca ttering spectr oscopy. Optica
+7, 470–475 (2020).
+20. Z. Xu, K. Oguchi, Y . T aguchi, S. Ta kahashi, Y . Sano, T . Mizuguchi, K. Ka toh, Y . Ozeki,
+Qu antum-enhanced s timula ted Raman sca ttering micr oscopy in a high-po w er r egime. Opt.
+Lett. 47, 5829–5832 (2022).
+21. L. W ei, Z. Chen, L. Shi, R. Long, A. V . Anzalone, L. Zhang, F . Hu, R. Yus te, V . W . C ornish, W . Min,
+Super-multiple x vibr a tional imaging. Na tur e 544, 465–470 (2017).
+22. L. W ei, W . Min, Electr onic pr ere sonance s timula ted Raman sca ttering micr oscopy . J. Phys .
+Chem. Lett. 9, 4294–4301 (2018).
+23. M. Zhuge, K.-C. Huang, H. J. Lee, Y . Jiang, Y . T an, H. Lin, P .-T . Dong, G. Zhao, D. Ma tei,
+Q. Y ang, J.-X. Cheng, Ultr asensitiv e vibr a tional imaging of r etinoids by visible pr ere so-
+nance s timula ted Raman sca ttering micr oscopy. Adv. Sci. 8, 2003136 (2021).
+24. C. Zong, R. Premas iri, H. Lin, Y . Huang, C. Zhang, C. Y ang, B. R en, L. D. Ziegler, J.-X. Cheng,
+Plasmon-enhanced s timula ted Raman sca ttering micr oscopy with single-molecule de-
+tection sensitivity . Na t. C ommun. 10, 5318 (2019).
+25. H. Xiong, L. Shi, L. W ei, Y . Shen, R. Long, Z. Zhao, W . Min, Stimula ted Raman e xcited
+fluore scence spectr oscopy and imaging. Na t. Photonics. 13, 412–417 (2019).
+26. H. W ang, Y . F u, J.-X. Cheng, Experimental observa tion and theoretic al analy sis of Raman
+r esonance-enhanced photodamage in cohere nt anti-Stok es Raman sca ttering micr oscopy.
+J. Opt. Soc. Am. B 24, 544–552 (2007).
+27. S. Adhikari, P . Spaeth, A. Kar, M. D. Baaske , S. Kha tua, M. Orrit, Photothermal micr oscopy:
+Imaging the optical absorption of single nanoparticles and single molecules. A CS Nano 14,
+16414–16445 (2020).
+28. A. Gaiduk, M. Y orulmaz, P . V . Ruijgr ok, M. Orrit, R oom-tempera ture detection of a single
+molecule’s absorption by photothermal contr as t. Science 330, 353–356 (2010).
+29. M. E. Long, R. L. Swofford, A. C. Albr echt, Thermal lens technique: A ne w method of ab-
+sorption spectr oscopy. Science 191, 183–185 (1976).
+30. D. Zhang, C. Li, C. Zhang, M. N. Slipchenk o, G. Eakins, J.-X. Cheng, Depth-r esolv ed mid-
+infr are d photothermal imaging of living cells and organisms with submicr ometer spatial
+r esolution. Sci. Adv. 2, e1600521 (2016).
+31. Z. Li, K. Aleshir e, M. Kuno, G. V . Hartland, Super-r esolution far-field infr ar ed imaging by
+photothermal heter odyne imaging. J. Phys . Chem. B 121, 8838–8846 (2017).
+32. P . Fu , W . Cao, T . Chen, X. Huang, T . Le, S. Zhu, D.-W . W ang, H. J. Lee, D. Zhang, Super-
+r esolution imaging of non-fluore scent molecules by photothermal r elaxa tion localiza tion
+micr oscopy. Na t. Photonics 17, 330–337 (2023).
+33. X. Gao, X. Li, W . Min, Absolute s timulate d Raman cr oss sections of molecules. J. Phys . Chem.
+Lett. 14, 5701–5708 (2023).
+34. H. El-Kashef, The necessary r equir ements imposed on polar dielectric laser dy e solv ents—
+II. Phys . B C ondens. Ma tter 311, 376–379 (2002).
+SCIENCE ADV ANCES
+|
+RESEARCH ARTICLE
+Zhu et al., Sci. Adv. 9, eadi2181 (2023) 27 October 2023 10 of 11
+Downloaded from https://www.science.org at Boston University on June 20, 2026
+
+
+===== PDF PAGE 11 =====
+35. E. J. Bo w en, J. Sahu, The effect of temper a ture on fluor escence of solutions. J. Phy s. Chem.
+63, 4–7 (1959).
+36. A. Soleilha c, M. Gir od, P . Dugourd, B. Burdin, J. Pa rvo le, P .-Y . Dugas, F . Ba y ard, E. La côte,
+E. Bourgea t-Lami, R. Antoine, T emper a ture r esponse of rhodamine B-doped la te x particles.
+fr om solution to single particles. Langmuir 32, 4052–4058 (2016).
+37. M. Li, A. Razumtcev, R. Y ang, Y . Liu, J. R ong, A. C. Geiger, R. Blanchard, C. Pfluegl, L. S. Ta ylor,
+G. J. Simpson, Fluor escence-detected mid-infra r ed photothermal micr oscopy . J. Am.
+Chem. Soc. 143, 10809–10815 (2021).
+38. Y . Zhang, H. Zong, C. Zong, Y . Ta n, M. Zhang, Y . Zhan, J.-X. Cheng, Fluor escence-detected
+mid-infr ar ed photothermal micr oscopy . J. Am. Chem. Soc. 143, 11490–11499 (2021).
+39. T . Heller er, A. M. K. Enejder, A. Zumbusch, Spectr al focusing: High spectra l r esolution
+spectr oscopy with br oad-bandwidth laser pulses. Appl. Phys. Lett. 85, 25–27 (2004).
+40. D. F u, G. Holtom, C. Fr eudiger, X. Zhang, X. S. Xie, Hyperspectr al imaging with s timulate d
+r aman sca ttering by chirped femtosecond lasers. J. Phys. Chem. B 117, 4634–4640 (2013).
+41. C. W . Fr eudiger, W . Y ang, G. R. Holtom, N. P e yghambarian, X. S. Xie, K. Q. Kieu, Stimula ted
+Raman sca ttering micr oscopy with a r obus t fibr e laser sour ce. Na t. Photonics 8,
+153–159 (2014).
+42. A. Gaiduk, P . V . Ruijgr ok, M. Y orulmaz, M. Orrit, Detection limits in photothermal micr os-
+copy . Chem. Sci. 1, 343–350 (2010).
+43. S. No vais, M. S. Fe rre ir a, J. L. Pinto, Determina tion of thermo-optic coefficient of ethanol-
+w a ter mixtur es with optical fiber tip sensor. Opt. Fiber T echnol. 45, 276–279 (2018).
+44. M. Maggioni, V . Ka tko vnik, K. Egiazarian, A. Foi, Nonlocal tr ansform-domain filter for v ol-
+umetric data denoising and r econstr uction. IEEE T r ans. Image Pr ocess. 22, 119–133 (2013).
+45. D. F u, X. S. Xie, R eliable cell segmentation based on spectra l phasor analy sis of hyper-
+spectr al s timula ted Raman sca ttering imaging da ta. Anal. Chem. 86, 4115–4119 (2014).
+46. A. Sauerbr ei, Diagnosis, antivir al ther apy , and pr ophylaxis of varicella-zos ter virus infec-
+tions. Eur. J. Clin. Micr obiol. Infect. Dis. 35, 723–734 (2016).
+47. M.-H. Chien, M. Bram eshuber, B. K. R ossboth, G. J. Schütz, S. Schmid, Single-molecule
+optical absorption imaging by nanomechanical photothermal sensing. Pr oc. Na tl. Acad. Sci.
+U.S.A. 115, 11150–11155 (2018).
+48. E. N. W ard, R. Pa l, Image scanning micr oscopy: An o v ervie w . J. Micr osc. 266,
+221–228 (2017).
+49. P . H. C. Eilers, A perfect smoother. Anal. Chem. 75, 3631–3636 (2003).
+50. J. Yin, L. Lan, Y . Zhang, H. Ni, Y . T an, M. Zhang, Y . Bai, J.-X. Cheng, Nanosecond-r esolution
+photothermal dynamic imaging via MHZ digitiza tion and ma tch filtering. Na t. C ommun.
+12, 7097 (2021).
+51. S. E. Bialk o wski, Photothermal Spectr oscopy Methods for Chemical Analy sis, Vol. 134 of
+Chemical Analy sis: A Series of Monogr aphs on Analytical Chemis try and Its Applica tions,
+J. D. W inefordner, Ed. (John Wile y & Sons Inc., 1996), 290 pp.
+52. Z. Cao, L. Jiang, S. W ang, M. W ang, D. Liu, P . W ang, F . Zhang, Y . Lu, All-glass e xtrinsic F abry-
+Pe r ot interferom eter thermo-optic coefficient sensor based on a capillary bridged two
+fiber ends. Appl. Optics 54, 2371–2375 (2015).
+53. Z. Zhang, P . Zhao, P . Lin, F . Sun, Thermo-optic coefficients of polymers for optical w a v e-
+guide applica tions. P olymer 47, 4893–4896 (2006).
+Ackno wledgments: W e thank H. He for the assis tance in cell cultur e. F unding: This work w as
+supported by NIH gr ant R35GM136223 (J.-X.C.) Author contributions: C onceptualiza tion: J.-X.
+C. Methodology: Y .Z., X.G., H.N., H.L., and L.W . Softw ar e: Y .Z. and J.Y . Inv es tiga tion: Y .Z. and X.G.
+Visualiza tion: Y .Z. and X.G. R esour ces: Y .T ., C.V .P .D., Y .L., and X.T . Supervision: J.-X.C. Wr iting—
+original dr a ft: Y .Z. and X.G. W riting—re vie w and editing: Y .Z., X.G., and J.-X.C. C ompeting
+inter es ts: J.-X.C. declar es financial inter ests in Vibr onix Inc. and Photothermal Spectr oscopy
+C orp., which did not fund the s tudy . J.-X.C., Y .Z., X.G., H.N., and J.Y . ar e inv entors of a pa tent
+applica tion (U.S. Pr o visional No. 63/441,297), submitted by Bos ton Unive rsity , which co v ers
+s timula ted Raman photothermal micr oscopy. The other authors declar e that the y hav e no
+competing inter es ts. Da ta and ma terials a vailability: All da ta needed to evalua te the
+conclusions in the paper ar e pre sent in the paper and/or the Supplementary Ma terials. Ra w
+da ta and code ar e a vailable in Zenodo (DOI: 10.5281/zenodo.8141012).
+Submitted 11 April 2023
+Accepted 27 September 2023
+Published 27 October 2023
+10.1126/sciadv.adi2181
+SCIENCE ADV ANCES
+|
+RESEARCH ARTICLE
+Zhu et al., Sci. Adv. 9, eadi2181 (2023) 27 October 2023 11 of 11
+Downloaded from https://www.science.org at Boston University on June 20, 2026
+
+
+===== PDF PAGE 12 =====
+Stimulated Raman photothermal microscopy toward ultrasensitive chemical
+imaging
+Yifan Zhu, Xiaowei Ge, Hongli Ni, Jiaze Yin, Haonan Lin, Le Wang, Yuying Tan, Chinmayee V. Prabhu Dessai, Yueming
+Li, Xinyan Teng, and Ji-Xin Cheng
+Sci. Adv. 9 (43), eadi2181.  DOI: 10.1126/sciadv.adi2181
+View the article online
+https://www.science.org/doi/10.1126/sciadv.adi2181
+Permissions
+https://www.science.org/help/reprints-and-permissions
+Use of this article is subject to the Terms of service
+Science Advances (ISSN 2375-2548) is published by the American Association for the Advancement of Science. 1200 New York Avenue
+NW, Washington, DC 20005. The title Science Advances is a registered trademark of AAAS. 
+Copyright © 2023 The Authors, some rights reserved; exclusive licensee American Association for the Advancement of Science. No claim
+to original U.S. Government Works. Distributed under a Creative Commons Attribution NonCommercial License 4.0 (CC BY-NC).
+Downloaded from https://www.science.org at Boston University on June 20, 2026
+
