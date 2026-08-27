@@ -10,14 +10,14 @@ supplement_sha256 = "F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16
 selection_policy_version = "1.2"
 selection_seed = 2026082701
 current_stage = "claims"
-resume_cursor = "CLAIMS.H-C3.2.awaiting_resolution_calibration"
-asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3", "CLAIMS_EXPAND_H-C3.1_LOD", "CLAIMS_EXPAND_H-C3.2_RESOLUTION"]
+resume_cursor = "CLAIMS.H-C3.3.awaiting_spectral_fidelity_definition"
+asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3", "CLAIMS_EXPAND_H-C3.1_LOD", "CLAIMS_EXPAND_H-C3.2_RESOLUTION", "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY"]
 verified_knowledge_ids = ["K1", "K2"]
 rollout_complete = false
 completed_stages = ["knowledge", "idea"]
 revealed_paper_claim_ids = ["T0"]
-pending_prompt_id = "CLAIMS_EXPAND_H-C3.2_RESOLUTION"
-pending_prompt_text = "先展开 H-C3.2：你会怎样用 small-bead measurement 定义并估计显微镜的空间分辨率？"
+pending_prompt_id = "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY"
+pending_prompt_text = "先展开 H-C3.3：你会怎样定义并量化 SRP 相对于参考 Raman 测量的 spectral fidelity？"
 human_is_paper_author = true
 spoiler_control_test_valid = false
 
@@ -151,8 +151,51 @@ content = "LoD = 3σ/k, where σ is the baseline standard deviation and k is the
 id = "H-C3.2"
 stage = "claims"
 parents = ["H-C3"]
-status = "open"
-content = "Spatial resolution, using small beads（分辨率，用小 beads 测量）。"
+status = "closed"
+sufficiency = "sufficient"
+content = "Spatial resolution, using small beads, with spatial oversampling（分辨率，用小 beads 测量，并务必在空间上 oversample）。"
+
+[[human_nodes]]
+id = "H-C3.2.1"
+stage = "claims"
+parents = ["H-C3.2"]
+status = "closed"
+content = "Common prerequisite: spatial oversampling（共同前提：spatial oversampling）。"
+
+[[human_nodes]]
+id = "H-C3.2.2"
+stage = "claims"
+parents = ["H-C3.2"]
+status = "closed"
+content = "For sparse beads, find a single-bead spatial profile（稀疏 beads：找单个 bead 的 spatial profile）。"
+
+[[human_nodes]]
+id = "H-C3.2.3"
+stage = "claims"
+parents = ["H-C3.2.2"]
+status = "closed"
+content = "Measure the FWHM of the single-bead spatial profile（测 FWHM）。"
+
+[[human_nodes]]
+id = "H-C3.2.4"
+stage = "claims"
+parents = ["H-C3.2.3"]
+status = "closed"
+content = "Deconvolve the finite bead shape（deconvolve bead shape）。"
+
+[[human_nodes]]
+id = "H-C3.2.5"
+stage = "claims"
+parents = ["H-C3.2"]
+status = "closed"
+content = "For denser beads, use Fourier ring correlation（较密 beads：测 Fourier ring correlation）。"
+
+[[human_nodes]]
+id = "H-C3.2.6"
+stage = "claims"
+parents = ["H-C3.2.2", "H-C3.2.5"]
+status = "closed"
+content = "Choose the sparse-bead method or dense-bead method according to bead density（实践上由 bead density 决定选择哪一种方法）。"
 
 [[human_nodes]]
 id = "H-C3.3"
@@ -255,3 +298,8 @@ human_response = "H-C3 显微镜可以达成很好的性能。可能可以做的
 sequence = 12
 prompt_id = "CLAIMS_EXPAND_H-C3.1_LOD"
 human_response = "3σ/k，σ是baseline STD，k是calibration curve的slope。"
+
+[[events]]
+sequence = 13
+prompt_id = "CLAIMS_EXPAND_H-C3.2_RESOLUTION"
+human_response = "两个思路：1，测很稀疏的beads，找单个bead的spatial profile，测FWHM，在deconvolute bead shape。2，测密一些的beads，测Fourier ring correlation。实践上就一把测，稀疏就1，密了就2。然后务必oversample on space"

@@ -14,8 +14,8 @@
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
 **Current state:** CLAIMS
-**Resume cursor:** `CLAIMS.H-C3.2.awaiting_resolution_calibration`
-**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`
+**Resume cursor:** `CLAIMS.H-C3.3.awaiting_spectral_fidelity_definition`
+**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`
 
 ## Disclosure note
 
@@ -219,7 +219,13 @@ T0 — PAPER TITLE CLAIM
    │           detectability (e.g. 50-nm plastic beads) [DECOMPOSED]
    │  └─ H-C3.1.1 — LoD = 3σ/k; σ = baseline standard deviation;
    │                 k = calibration-curve slope [CLOSED]
-   ├─ H-C3.2 — spatial resolution using small beads [OPEN]
+   ├─ H-C3.2 — spatial resolution using small beads and spatial oversampling [CLOSED]
+   │  ├─ H-C3.2.1 — common prerequisite: spatial oversampling [CLOSED]
+   │  ├─ H-C3.2.2 — sparse beads → single-bead spatial profile [CLOSED]
+   │  │  └─ H-C3.2.3 — measure FWHM [CLOSED]
+   │  │     └─ H-C3.2.4 — deconvolve finite bead shape [CLOSED]
+   │  ├─ H-C3.2.5 — denser beads → Fourier ring correlation [CLOSED]
+   │  └─ H-C3.2.6 — choose method according to bead density [CLOSED]
    ├─ H-C3.3 — spectral fidelity by comparing SRP and Raman on a sample [OPEN]
    ├─ H-C3.4 — penetration depth, only if improved [CONDITIONAL]
    └─ H-C3.5 — speed [OPEN]
@@ -323,3 +329,15 @@ Structural operation: the human supplied a reusable LoD definition and calculati
 Current pending prompt:
 
 > 先展开 H-C3.2：你会怎样用 small-bead measurement 定义并估计显微镜的空间分辨率？
+
+Event 13 — `CLAIMS_EXPAND_H-C3.2_RESOLUTION`
+
+Human response:
+
+> 两个思路：1，测很稀疏的beads，找单个bead的spatial profile，测FWHM，在deconvolute bead shape。2，测密一些的beads，测Fourier ring correlation。实践上就一把测，稀疏就1，密了就2。然后务必oversample on space
+
+Structural operation: H-C3.2 is decomposed into the common spatial-oversampling prerequisite, the sparse-bead single-profile/FWHM/deconvolution path, the denser-bead Fourier-ring-correlation path, and the bead-density-based method choice. The human marked this node sufficient/closed; no standard resolution protocol or paper result was added.
+
+Current pending prompt:
+
+> 先展开 H-C3.3：你会怎样定义并量化 SRP 相对于参考 Raman 测量的 spectral fidelity？
