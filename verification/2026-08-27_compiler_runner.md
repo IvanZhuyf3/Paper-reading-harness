@@ -53,7 +53,14 @@ The harness now compiles and persists an auditable paper model before runner que
 - Completed-stage prefix: PASS.
 - Revealed paper-claim references: PASS.
 - Human-node parent graph: PASS.
-- Unique next interaction cursor: `CLAIMS.H-C1.1.awaiting_causal_claim`.
+- Unique next interaction cursor: `CLAIMS.T0.awaiting_next_major_claim`.
+
+## Current session checkpoint — event 8
+
+- Canonical session-state audit: PASS — 15/15 checks.
+- Event sequence: contiguous through event 8.
+- Unique next interaction cursor: `CLAIMS.T0.awaiting_next_major_claim`.
+- Pending prompt ID: `CLAIMS_ADD_T0_2`.
 
 ## Code checks
 

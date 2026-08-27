@@ -10,14 +10,14 @@ supplement_sha256 = "F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16
 selection_policy_version = "1.1"
 selection_seed = 2026082701
 current_stage = "claims"
-resume_cursor = "CLAIMS.H-C1.1.awaiting_causal_claim"
-asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1"]
+resume_cursor = "CLAIMS.T0.awaiting_next_major_claim"
+asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2"]
 verified_knowledge_ids = ["K1", "K2"]
 rollout_complete = false
 completed_stages = ["knowledge", "idea"]
 revealed_paper_claim_ids = ["T0"]
-pending_prompt_id = "CLAIMS_EXPAND_H-C1.1"
-pending_prompt_text = "How would you state the existence of the SRS thermal effect as a testable causal claim?"
+pending_prompt_id = "CLAIMS_ADD_T0_2"
+pending_prompt_text = "回到 T0：你下一条要添加的 major claim 是什么？"
 human_is_paper_author = true
 spoiler_control_test_valid = false
 
@@ -67,8 +67,29 @@ content = "The SRS thermal effect exists and its magnitude reaches a measurable 
 id = "H-C1.1"
 stage = "claims"
 parents = ["H-C1"]
-status = "open"
+status = "decomposed"
 content = "An SRS thermal effect exists."
+
+[[human_nodes]]
+id = "H-C1.1.1"
+stage = "claims"
+parents = ["H-C1.1"]
+status = "open"
+content = "SRS leaves the sample in a real excited state（SRS 的 final state 是 excited state，不同于 CARS）。"
+
+[[human_nodes]]
+id = "H-C1.1.2"
+stage = "claims"
+parents = ["H-C1.1"]
+status = "open"
+content = "The energy deposited by SRS can relax as heat（SRS 沉积的能量可以通过弛豫变成热）。"
+
+[[human_nodes]]
+id = "H-C1.1.3"
+stage = "claims"
+parents = ["H-C1.1"]
+status = "open"
+content = "SRS produces a temperature rise at the focus（SRS 导致焦点处温度升高）。"
 
 [[human_nodes]]
 id = "H-C1.2"
@@ -76,6 +97,27 @@ stage = "claims"
 parents = ["H-C1"]
 status = "open"
 content = "The magnitude of the SRS thermal effect reaches a measurable regime."
+
+[[human_evidence_candidates]]
+id = "H-E-C1.1.1-ENERGY-DIAGRAM"
+stage = "claims"
+target_claims = ["H-C1.1.1"]
+status = "deferred"
+content = "Use an energy diagram to show that the final state is an excited state."
+
+[[human_evidence_candidates]]
+id = "H-E-C1.1.2-SIMULATION"
+stage = "claims"
+target_claims = ["H-C1.1.2", "H-C1.1.3"]
+status = "deferred"
+content = "Starting from existing data, use a first-principles simulation to estimate how much heat can be generated and how much temperature can accumulate."
+
+[[human_evidence_candidates]]
+id = "H-E-C1.1.3-MICRO-THERMOCOUPLE"
+stage = "claims"
+target_claims = ["H-C1.1.3"]
+status = "deferred"
+content = "Use an approximately 1-μm micro-thermocouple to measure the temperature at the focus."
 
 [[events]]
 sequence = 1
@@ -111,3 +153,8 @@ human_response = "Ended the IDEA rollout. Clarified that the gate should require
 sequence = 7
 prompt_id = "CLAIMS_ADD_T0"
 human_response = "First prove that the SRS thermal effect exists and that its magnitude reaches a measurable regime."
+
+[[events]]
+sequence = 8
+prompt_id = "CLAIMS_EXPAND_H-C1.1"
+human_response = "存在性，首先可以用energy diagram说明，final state是excited state，这就不像CARS。然后可以做一些simulation，从已有的数据出发，first principle算出来能产生多少热，能积累多少温度。最后可以做一个thermometer验证，比如做一个微型热电偶，1μm那么大，就测focus温度"

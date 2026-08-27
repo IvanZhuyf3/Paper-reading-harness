@@ -14,8 +14,8 @@
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
 **Current state:** CLAIMS
-**Resume cursor:** `CLAIMS.H-C1.1.awaiting_causal_claim`
-**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`
+**Resume cursor:** `CLAIMS.T0.awaiting_next_major_claim`
+**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`
 
 ## Disclosure note
 
@@ -203,12 +203,38 @@ Current human claim tree:
 ```text
 T0 — PAPER TITLE CLAIM
 └─ H-C1 — SRS thermal effect exists and reaches a measurable magnitude
-   ├─ H-C1.1 — existence of the SRS thermal effect [OPEN]
+   ├─ H-C1.1 — existence of the SRS thermal effect [DECOMPOSED]
+   │  ├─ H-C1.1.1 — SRS leaves the sample in a real excited state
+   │  │              (human contrasted this with CARS) [OPEN]
+   │  ├─ H-C1.1.2 — energy deposited by SRS can relax as heat [OPEN]
+   │  └─ H-C1.1.3 — SRS produces a temperature rise at the focus [OPEN]
    └─ H-C1.2 — magnitude reaches a measurable regime [OPEN]
 ```
 
-Structural operation: the human supplied two burdens joined by “且”; they are retained as two immediate subclaims without adding scientific content.
+Structural operation: the human supplied two burdens joined by “且”; they are retained as two immediate subclaims without adding scientific content. The response further decomposed the existence subclaim into the three causal statements above, preserving the human's stated sequence.
 
-Pending prompt:
+Deferred human evidence candidates (not yet an EVIDENCE rollout):
 
-> 先展开 H-C1.1：你要把“SRS 热效应存在”写成怎样一条可验证的因果 claim？
+```text
+H-E-C1.1.1-ENERGY-DIAGRAM → H-C1.1.1
+  Use an energy diagram to show that the final state is an excited state.
+
+H-E-C1.1.2-SIMULATION → H-C1.1.2, H-C1.1.3
+  Start from existing data and use a first-principles simulation to estimate
+  generated heat and accumulated temperature.
+
+H-E-C1.1.3-MICRO-THERMOCOUPLE → H-C1.1.3
+  Use an approximately 1-μm micro-thermocouple to measure the focus temperature.
+```
+
+Event 8 — `CLAIMS_EXPAND_H-C1.1`
+
+Human response:
+
+> 存在性，首先可以用energy diagram说明，final state是excited state，这就不像CARS。然后可以做一些simulation，从已有的数据出发，first principle算出来能产生多少热，能积累多少温度。最后可以做一个thermometer验证，比如做一个微型热电偶，1μm那么大，就测focus温度
+
+The claims and evidence candidates above are a faithful structural recording of this response. The simulation and micro-thermocouple remain deferred candidates for the later EVIDENCE stage.
+
+Current pending prompt:
+
+> 回到 T0：你下一条要添加的 major claim 是什么？
