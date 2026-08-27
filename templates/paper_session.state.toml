@@ -18,6 +18,7 @@ completed_stages = []
 revealed_paper_claim_ids = []
 pending_prompt_id = ""
 pending_prompt_text = ""
+stage_dispositions = { knowledge = "in_progress", idea = "in_progress", claims = "in_progress", evidence = "in_progress", independent_reading = "in_progress", delta = "in_progress" }
 
 [[human_nodes]]
 id = ""
@@ -29,4 +30,7 @@ content = ""
 [[events]]
 sequence = 1
 prompt_id = ""
+prompt_text = ""
+stage = "knowledge"
+selection_policy_version = "1.2"
 human_response = ""

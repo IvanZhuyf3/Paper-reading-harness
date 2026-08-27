@@ -15,7 +15,7 @@ selection weight or priority
 asked/not-asked state
 ```
 
-The session records a selection-policy version, seed, selected IDs, and current cursor.
+The session records a selection-policy version, seed, selected IDs, current cursor, and the prompt text plus policy version on every event. The TOML event stream is canonical; Markdown is rendered from it and checked for parity.
 
 ### Transferability/reusability filter
 
@@ -57,6 +57,12 @@ Never select a hidden paper evidence node before human rollout completion.
 No selection. Ask exactly:
 
 > What's the delta?
+
+If the human explicitly declines DELTA, record its stage disposition as `skipped` and retain the terminal response without treating the stage as completed.
+
+## Persistence cadence
+
+Update canonical state and regenerate/check the Markdown projection after every turn. Persist immutable audits and commits at stage boundaries, failures, policy changes, or explicit checkpoints; ordinary same-stage turns may be batched.
 
 ## EXAM
 

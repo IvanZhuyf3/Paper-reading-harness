@@ -16,4 +16,22 @@ The validator checks TOML parseability, graph references, anchor presence/form, 
 scripts\validate_session_state.bat papers\<paper_slug>\sessions\<session>.state.toml --report papers\<paper_slug>\sessions\<session>.state.audit.md
 ```
 
-This checks that the canonical session state resolves to the exact frozen paper-model hash and contains a unique compaction-recovery cursor, selection seed/history, and internally consistent human-node graph.
+This checks the frozen model/source pin, stage dispositions, event prompt/policy provenance, asked-event-pending correspondence, evidence design identity and result-detail boundary, human record graph/terminal statuses, and deterministic Markdown parity.
+
+## Deterministic Markdown projection
+
+```bat
+scripts\render_session_markdown.bat papers\<paper_slug>\sessions\<session>.state.toml
+scripts\render_session_markdown.bat papers\<paper_slug>\sessions\<session>.state.toml --check
+```
+
+The TOML event stream is the only event source. The renderer preserves structural narrative, sorts legacy event narrative by sequence, and writes a generated event timeline between sentinels. `--check` exits nonzero when the Markdown projection has drifted or is out of order.
+
+## Reusable tests
+
+```bat
+set PYTHONIOENCODING=utf-8
+python -m unittest scripts\test_session_state.py
+```
+
+The standard-library tests cover renderer chronology and validator checks for IDs, evidence drift/leaks, status consistency, prompt provenance, and skipped terminal stages. Ordinary turns need only the cheap validator and renderer check; immutable audit reports and commits are reserved for stage boundaries, failures, policy changes, or explicit checkpoints.

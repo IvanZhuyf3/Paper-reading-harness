@@ -14,6 +14,7 @@
 **Current state:** KNOWLEDGE / IDEA / CLAIMS / EVIDENCE / INDEPENDENT READING / DELTA / COMPLETE
 **Resume cursor:**
 **Asked node/prompt IDs:**
+**Stage dispositions:** knowledge / idea / claims / evidence / independent reading / delta
 
 ## 1. KNOWLEDGE
 
@@ -113,3 +114,5 @@ Descriptive structural diff:
 Human response, preserved without agent interpretation:
 
 ...
+
+The canonical TOML event stream is the only event source. Regenerate the timeline with `scripts/render_session_markdown.bat`; use `--check` to detect Markdown drift. Each event stores its prompt text and selection-policy version.

@@ -8,12 +8,23 @@ import tomllib
 from dataclasses import dataclass
 from pathlib import Path
 
+try:
+    from .render_session_markdown import default_markdown_path, render_text
+except ImportError:
+    from render_session_markdown import default_markdown_path, render_text
+
 
 @dataclass
 class Check:
     name: str
     passed: bool
     detail: str
+
+
+STAGE_ORDER = ["knowledge", "idea", "claims", "evidence", "independent_reading", "delta"]
+ALLOWED_STAGES = set(STAGE_ORDER) | {"complete"}
+ALLOWED_DISPOSITIONS = {"completed", "skipped", "not_applicable", "in_progress"}
+AMBIGUOUS_STATUSES = {"open", "active", "human_designed"}
 
 
 def sha256(path: Path) -> str:
@@ -24,29 +35,206 @@ def sha256(path: Path) -> str:
     return digest.hexdigest().upper()
 
 
+def _ids(records: list[dict]) -> list[str]:
+    return [record.get("id", "") for record in records]
+
+
+def _target_values(record: dict, *keys: str) -> list[str]:
+    values: list[str] = []
+    for key in keys:
+        value = record.get(key, [])
+        if isinstance(value, str):
+            values.append(value)
+        elif isinstance(value, list):
+            values.extend(str(item) for item in value)
+    return values
+
+
+def _check_record_ids(checks: list[Check], state: dict) -> tuple[dict[str, set[str]], set[str]]:
+    collections = {
+        "human nodes": state.get("human_nodes", []),
+        "human evidence designs": state.get("human_evidence_designs", []),
+        "human control designs": state.get("human_control_designs", []),
+        "human application metadata": state.get("human_application_metadata", []),
+        "human evidence candidates": state.get("human_evidence_candidates", []),
+    }
+    by_collection: dict[str, set[str]] = {}
+    all_ids: list[str] = []
+    for name, records in collections.items():
+        values = _ids(records)
+        duplicates = sorted({item for item in values if values.count(item) > 1 or not item})
+        checks.append(Check(f"{name} IDs are unique", not duplicates, f"duplicates={duplicates}"))
+        by_collection[name] = set(values)
+        all_ids.extend(values)
+    duplicates = sorted({item for item in all_ids if all_ids.count(item) > 1 or not item})
+    checks.append(Check("Human record IDs are unique across collections", not duplicates, f"duplicates={duplicates}"))
+    return by_collection, set(all_ids)
+
+
+def _status_checks(checks: list[Check], state: dict, completed_stages: list[str]) -> None:
+    records = []
+    for key in ("human_nodes", "human_evidence_designs", "human_control_designs", "human_application_metadata", "human_evidence_candidates"):
+        records.extend(state.get(key, []))
+    ambiguous_in_finished = sorted(
+        record.get("id", "")
+        for record in records
+        if record.get("stage") in completed_stages and record.get("status") in AMBIGUOUS_STATUSES
+    )
+    checks.append(Check("Finished-stage records have explicit terminal status", not ambiguous_in_finished, f"ambiguous={ambiguous_in_finished}"))
+
+    human_nodes = {record.get("id"): record for record in state.get("human_nodes", [])}
+    child_map: dict[str, list[dict]] = {}
+    for child in state.get("human_nodes", []):
+        for parent in child.get("parents", []):
+            child_map.setdefault(parent, []).append(child)
+    invalid_closed_children = sorted(
+        parent_id
+        for parent_id, children in child_map.items()
+        if human_nodes.get(parent_id, {}).get("status") == "closed"
+        and any(child.get("status") in AMBIGUOUS_STATUSES for child in children)
+    )
+    checks.append(Check("Closed human parents have no ambiguous open children", not invalid_closed_children, f"parents={invalid_closed_children}"))
+
+
+def _paper_evidence_checks(checks: list[Check], state: dict, model: dict, model_claim_ids: set[str]) -> None:
+    model_evidence = {node.get("id"): node for node in model.get("evidence_nodes", [])}
+    revealed = state.get("revealed_paper_evidence_ids", [])
+    invalid_revealed = sorted(set(revealed) - set(model_evidence))
+    checks.append(Check("Revealed paper-evidence IDs resolve", not invalid_revealed, f"missing={invalid_revealed}"))
+
+    session_designs = state.get("paper_evidence_designs", [])
+    session_by_id = {node.get("id"): node for node in session_designs}
+    expected_ids = set(model_evidence)
+    design_ids_ok = set(session_by_id) == expected_ids and len(session_designs) == len(expected_ids)
+    checks.append(Check("Session paper-evidence design IDs match model", design_ids_ok, f"missing={sorted(expected_ids - set(session_by_id))}, extra={sorted(set(session_by_id) - expected_ids)}"))
+    design_fields = ("target_claims", "evidence_type", "control_roles", "source_anchors")
+    drift: list[str] = []
+    leaks: list[str] = []
+    for evidence_id, expected in model_evidence.items():
+        actual = session_by_id.get(evidence_id, {})
+        if any(key in actual for key in ("result_detail", "result_details", "result")):
+            leaks.append(evidence_id)
+        if {key: actual.get(key) for key in design_fields} != {key: expected.get(key) for key in design_fields}:
+            drift.append(evidence_id)
+        invalid_targets = sorted(set(_target_values(actual, "target_claims")) - model_claim_ids)
+        if invalid_targets:
+            drift.append(f"{evidence_id}:targets={invalid_targets}")
+    checks.append(Check("Session paper-evidence designs equal frozen design fields", not drift, f"drift={drift}"))
+    checks.append(Check("Session paper-evidence designs contain no result details", not leaks, f"leaks={leaks}"))
+
+
+def _event_checks(checks: list[Check], state: dict, model: dict) -> None:
+    events = state.get("events", [])
+    sequences = [event.get("sequence") for event in events]
+    checks.append(Check("Event sequence is contiguous", sequences == list(range(1, len(events) + 1)), f"events={len(events)}"))
+    event_ids = [event.get("prompt_id") for event in events]
+    checks.append(Check("Event prompt IDs are unique", len(event_ids) == len(set(event_ids)) and all(event_ids), f"duplicates={sorted({item for item in event_ids if event_ids.count(item) > 1})}"))
+    missing_fields = [event.get("sequence") for event in events if not event.get("prompt_text") or not event.get("selection_policy_version")]
+    checks.append(Check("Every event has prompt text and policy provenance", not missing_fields, f"missing={missing_fields}"))
+    policies = [event.get("selection_policy_version") for event in events]
+    checks.append(Check("Event policy provenance is well-formed", all(isinstance(value, str) and value for value in policies), f"policies={sorted(set(policies))}"))
+
+    asked_ids = state.get("asked_ids", [])
+    terminal = state.get("current_stage") == "complete" or state.get("rollout_complete") is True
+    pending_id = state.get("pending_prompt_id", "")
+    expected_asked = event_ids if terminal else event_ids + [pending_id]
+    checks.append(Check("Asked IDs match responded events and pending prompt", asked_ids == expected_asked and len(asked_ids) == len(set(asked_ids)), f"expected={expected_asked}, actual={asked_ids}"))
+    checks.append(Check("Terminal state has no pending prompt", not terminal or (not pending_id and not state.get("pending_prompt_text")), f"pending_id={pending_id}"))
+    checks.append(Check("Nonterminal state has one unasked pending prompt", terminal or (bool(pending_id) and pending_id not in event_ids and bool(state.get("pending_prompt_text"))), f"pending_id={pending_id}"))
+    checks.append(Check("Selection policy provenance is present on every event", all(event.get("selection_policy_version") for event in events), f"model_current={model.get('selection_policy_version')}"))
+
+
+def _markdown_check(checks: list[Check], state: dict, markdown_path: Path | None) -> None:
+    if markdown_path is None or not markdown_path.exists():
+        checks.append(Check("Markdown renderer parity", True, "skipped: Markdown path not supplied or missing"))
+        return
+    try:
+        actual = markdown_path.read_text(encoding="utf-8")
+        expected = render_text(state, actual)
+        checks.append(Check("Markdown renderer parity", actual == expected, str(markdown_path)))
+        headings = [int(match.group(1)) for match in re.finditer(r"(?m)^### Event (\d+) —", actual)]
+        expected_headings = [event["sequence"] for event in state.get("events", [])]
+        checks.append(Check("Markdown event chronology matches state", headings == expected_headings, f"headings={headings}"))
+    except Exception as exc:
+        checks.append(Check("Markdown renderer parity", False, str(exc)))
+
+
+def validate_state(state_path: Path, markdown_path: Path | None = None) -> list[Check]:
+    checks: list[Check] = []
+    try:
+        with state_path.open("rb") as stream:
+            state = tomllib.load(stream)
+        checks.append(Check("Session TOML parses", True, "tomllib loaded the state"))
+    except Exception as exc:
+        return [Check("Session TOML parses", False, str(exc))]
+
+    model_path = (state_path.parent / state.get("paper_model_path", "")).resolve()
+    exists = model_path.is_file()
+    checks.append(Check("Pinned paper model exists", exists, str(model_path)))
+    model: dict = {}
+    if exists:
+        with model_path.open("rb") as stream:
+            model = tomllib.load(stream)
+    expected_hash = str(state.get("paper_model_sha256", "")).upper()
+    actual_hash = sha256(model_path) if exists else ""
+    checks.append(Check("Pinned paper-model SHA-256 matches", bool(re.fullmatch(r"[0-9A-F]{64}", expected_hash)) and actual_hash == expected_hash, f"expected={expected_hash}, actual={actual_hash}"))
+    checks.append(Check("Paper-model version matches", state.get("paper_model_version") == model.get("model_version"), f"state={state.get('paper_model_version')}, model={model.get('model_version')}"))
+    checks.append(Check("Selection-policy version matches", state.get("selection_policy_version") == model.get("selection_policy_version"), f"state={state.get('selection_policy_version')}, model={model.get('selection_policy_version')}"))
+    checks.append(Check("Main-source hash matches model", state.get("main_source_sha256") == model.get("source_sha256"), f"state={state.get('main_source_sha256')}, model={model.get('source_sha256')}"))
+    checks.append(Check("Supplement hash matches model", state.get("supplement_sha256") == model.get("supplement_sha256"), f"state={state.get('supplement_sha256')}, model={model.get('supplement_sha256')}"))
+
+    current_stage = state.get("current_stage")
+    checks.append(Check("Current stage is valid", current_stage in ALLOWED_STAGES, str(current_stage)))
+    dispositions = state.get("stage_dispositions", {})
+    disposition_ok = isinstance(dispositions, dict) and all(stage in STAGE_ORDER and value in ALLOWED_DISPOSITIONS for stage, value in dispositions.items())
+    checks.append(Check("Stage dispositions are legal", disposition_ok, str(dispositions)))
+    completed_stages = state.get("completed_stages", [])
+    expected_completed = [stage for stage in STAGE_ORDER if dispositions.get(stage) == "completed"]
+    checks.append(Check("Completed stages agree with dispositions", completed_stages == expected_completed, f"completed={completed_stages}, expected={expected_completed}"))
+    if current_stage == "complete":
+        order_ok = dispositions.get("independent_reading") in {"completed", "not_applicable"} and dispositions.get("delta") in {"skipped", "not_applicable"}
+    elif current_stage in STAGE_ORDER:
+        order_ok = all(dispositions.get(stage) == "completed" for stage in STAGE_ORDER[: STAGE_ORDER.index(current_stage)])
+    else:
+        order_ok = False
+    checks.append(Check("Stage disposition order is coherent", order_ok, f"current={current_stage}"))
+    checks.append(Check("Selection seed is persisted", isinstance(state.get("selection_seed"), int) and state.get("selection_seed") > 0, str(state.get("selection_seed"))))
+
+    model_claim_ids = {node.get("id") for node in model.get("claim_nodes", [])}
+    revealed_claims = state.get("revealed_paper_claim_ids", [])
+    invalid_claims = sorted(set(revealed_claims) - model_claim_ids)
+    checks.append(Check("Revealed paper-claim IDs resolve", not invalid_claims, f"missing={invalid_claims}"))
+    _, human_ids = _check_record_ids(checks, state)
+    allowed_parent_ids = human_ids | set(revealed_claims)
+    unresolved_parents = sorted({parent for node in state.get("human_nodes", []) for parent in node.get("parents", []) if parent not in allowed_parent_ids})
+    checks.append(Check("Human-node parents resolve", not unresolved_parents, f"missing={unresolved_parents}"))
+
+    target_errors: list[str] = []
+    for key in ("human_evidence_designs", "human_control_designs"):
+        for record in state.get(key, []):
+            target_errors.extend(f"{record.get('id')}:{target}" for target in _target_values(record, "target_paper_claims") if target not in model_claim_ids)
+    for key in ("human_evidence_candidates", "human_application_metadata"):
+        for record in state.get(key, []):
+            target_errors.extend(f"{record.get('id')}:{target}" for target in _target_values(record, "target_claims", "parent_claims") if target not in human_ids and target not in model_claim_ids)
+    design_ids = {record.get("id") for record in state.get("human_evidence_designs", [])}
+    for record in state.get("human_control_designs", []):
+        target_errors.extend(f"{record.get('id')}:{target}" for target in _target_values(record, "target_evidence_designs", "parent_evidence_designs") if target not in design_ids)
+    checks.append(Check("Human targets resolve", not target_errors, f"missing={target_errors}"))
+    _paper_evidence_checks(checks, state, model, model_claim_ids)
+    _status_checks(checks, state, completed_stages)
+    _event_checks(checks, state, model)
+    if current_stage == "complete":
+        checks.append(Check("Terminal cursor is explicit", state.get("resume_cursor") == "COMPLETE.terminal", str(state.get("resume_cursor"))))
+    _markdown_check(checks, state, markdown_path)
+    return checks
+
+
 def report_text(state_path: Path, checks: list[Check]) -> str:
     passed = sum(check.passed for check in checks)
-    overall = "PASS" if passed == len(checks) else "FAIL"
-    lines = [
-        "# Session-State Recovery Audit",
-        "",
-        f"- **State:** `{state_path.name}`",
-        f"- **Overall:** {overall}",
-        f"- **Checks passed:** {passed}/{len(checks)}",
-        "",
-        "| Check | Result | Detail |",
-        "|---|---|---|",
-    ]
+    lines = ["# Session-State Recovery Audit", "", f"- **State:** `{state_path.name}`", f"- **Overall:** {'PASS' if passed == len(checks) else 'FAIL'}", f"- **Checks passed:** {passed}/{len(checks)}", "", "| Check | Result | Detail |", "|---|---|---|"]
     for check in checks:
-        result = "PASS" if check.passed else "FAIL"
-        lines.append(f"| {check.name} | {result} | {check.detail.replace('|', '\\|')} |")
-    lines.extend(
-        [
-            "",
-            "The audit verifies that the persisted TOML state can identify its frozen paper model and recover a unique next interaction. It does not evaluate the scientific content of the human rollout.",
-            "",
-        ]
-    )
+        lines.append(f"| {check.name} | {'PASS' if check.passed else 'FAIL'} | {check.detail.replace('|', '\\|').replace(chr(10), ' ')} |")
+    lines.extend(["", "The audit covers model identity, stage disposition, event provenance/order, graph and evidence consistency, terminal recovery semantics, and deterministic Markdown parity.", ""])
     return "\n".join(lines)
 
 
@@ -54,158 +242,11 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Validate a paper-harness session state.")
     parser.add_argument("state", type=Path)
     parser.add_argument("--report", type=Path)
+    parser.add_argument("--markdown", type=Path)
     args = parser.parse_args()
     state_path = args.state.resolve()
-    checks: list[Check] = []
-
-    try:
-        with state_path.open("rb") as stream:
-            state = tomllib.load(stream)
-        checks.append(Check("Session TOML parses", True, "tomllib loaded the state"))
-    except Exception as exc:
-        text = report_text(state_path, [Check("Session TOML parses", False, str(exc))])
-        if args.report:
-            args.report.write_text(text, encoding="utf-8", newline="\n")
-        print(text)
-        return 1
-
-    model_path = (state_path.parent / state.get("paper_model_path", "")).resolve()
-    model_exists = model_path.is_file()
-    checks.append(Check("Pinned paper model exists", model_exists, str(model_path)))
-
-    model = {}
-    if model_exists:
-        with model_path.open("rb") as stream:
-            model = tomllib.load(stream)
-
-    expected_model_hash = state.get("paper_model_sha256", "").upper()
-    actual_model_hash = sha256(model_path) if model_exists else ""
-    checks.append(
-        Check(
-            "Pinned paper-model SHA-256 matches",
-            bool(re.fullmatch(r"[0-9A-F]{64}", expected_model_hash))
-            and actual_model_hash == expected_model_hash,
-            f"expected={expected_model_hash}, actual={actual_model_hash}",
-        )
-    )
-
-    checks.append(
-        Check(
-            "Paper-model version matches",
-            state.get("paper_model_version") == model.get("model_version"),
-            f"state={state.get('paper_model_version')}, model={model.get('model_version')}",
-        )
-    )
-    checks.append(
-        Check(
-            "Selection-policy version matches",
-            state.get("selection_policy_version") == model.get("selection_policy_version"),
-            f"state={state.get('selection_policy_version')}, model={model.get('selection_policy_version')}",
-        )
-    )
-    checks.append(
-        Check(
-            "Main-source hash matches model",
-            state.get("main_source_sha256") == model.get("source_sha256"),
-            f"state={state.get('main_source_sha256')}, model={model.get('source_sha256')}",
-        )
-    )
-    checks.append(
-        Check(
-            "Supplement hash matches model",
-            state.get("supplement_sha256") == model.get("supplement_sha256"),
-            f"state={state.get('supplement_sha256')}, model={model.get('supplement_sha256')}",
-        )
-    )
-
-    allowed_stages = {"knowledge", "idea", "claims", "evidence", "independent_reading", "delta", "complete"}
-    checks.append(
-        Check(
-            "Current stage is valid",
-            state.get("current_stage") in allowed_stages,
-            str(state.get("current_stage")),
-        )
-    )
-
-    stage_order = ["knowledge", "idea", "claims", "evidence", "independent_reading", "delta"]
-    completed_stages = state.get("completed_stages", [])
-    current_stage = state.get("current_stage")
-    expected_prefix = (
-        stage_order[: stage_order.index(current_stage)]
-        if current_stage in stage_order
-        else stage_order
-        if current_stage == "complete"
-        else []
-    )
-    checks.append(
-        Check(
-            "Completed stages form the prefix before the current stage",
-            completed_stages == expected_prefix,
-            f"completed={completed_stages}, expected={expected_prefix}",
-        )
-    )
-
-    asked_ids = state.get("asked_ids", [])
-    checks.append(
-        Check(
-            "Asked IDs are unique",
-            len(asked_ids) == len(set(asked_ids)),
-            f"count={len(asked_ids)}",
-        )
-    )
-    checks.append(
-        Check(
-            "Selection seed is persisted",
-            isinstance(state.get("selection_seed"), int) and state.get("selection_seed") > 0,
-            str(state.get("selection_seed")),
-        )
-    )
-
-    model_claim_ids = {node.get("id") for node in model.get("claim_nodes", [])}
-    revealed_paper_claim_ids = state.get("revealed_paper_claim_ids", [])
-    invalid_revealed_claim_ids = sorted(set(revealed_paper_claim_ids) - model_claim_ids)
-    checks.append(
-        Check(
-            "Revealed paper-claim IDs resolve",
-            not invalid_revealed_claim_ids,
-            f"missing={invalid_revealed_claim_ids}",
-        )
-    )
-
-    human_nodes = state.get("human_nodes", [])
-    human_ids = {node.get("id") for node in human_nodes}
-    allowed_parent_ids = human_ids | set(revealed_paper_claim_ids)
-    unresolved_parents = sorted(
-        {
-            parent
-            for node in human_nodes
-            for parent in node.get("parents", [])
-            if parent not in allowed_parent_ids
-        }
-    )
-    checks.append(
-        Check("Human-node parents resolve", not unresolved_parents, f"missing={unresolved_parents}")
-    )
-
-    cursor_present = bool(state.get("resume_cursor"))
-    pending_present = bool(state.get("pending_prompt_id") and state.get("pending_prompt_text"))
-    checks.append(
-        Check(
-            "Unique next interaction is persisted",
-            cursor_present and (state.get("rollout_complete") is True or pending_present),
-            f"cursor={state.get('resume_cursor')}, pending_prompt={state.get('pending_prompt_id')}",
-        )
-    )
-
-    checks.append(
-        Check(
-            "Event sequence is contiguous",
-            [event.get("sequence") for event in state.get("events", [])]
-            == list(range(1, len(state.get("events", [])) + 1)),
-            f"events={len(state.get('events', []))}",
-        )
-    )
-
+    markdown_path = (args.markdown or default_markdown_path(state_path)).resolve()
+    checks = validate_state(state_path, markdown_path)
     text = report_text(state_path, checks)
     if args.report:
         args.report.parent.mkdir(parents=True, exist_ok=True)

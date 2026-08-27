@@ -49,6 +49,8 @@ Use two session artifacts:
 
 The TOML state is authoritative for resumption; the Markdown log preserves the interaction for inspection.
 
+Events are the sole canonical interaction source. Every event records its prompt text and the selection-policy version used for that selection. Render the Markdown event timeline deterministically from the TOML with `scripts/render_session_markdown.py`; use its `--check` mode to detect drift. Keep structural narrative in the Markdown, but do not maintain a second hand-edited event timeline.
+
 After session compaction or interruption, resume from the persisted model and cursor. Do not reconstruct prior hidden state from conversational memory.
 
 ## Rule-governed question selection
@@ -205,3 +207,5 @@ Skip generative training. Present the source-anchored paper architecture directl
 ## Persistence
 
 The runner session state is required and must be updated after every turn. A newly compiled paper model must remain clearly unapproved until human review. Only approved records may enter `curriculum/` and the reusable index.
+
+Stage dispositions are explicit: `completed`, `skipped`, or `not_applicable` (with `in_progress` allowed for an active stage). A skipped or not-applicable stage must not be represented as completed. Ordinary within-stage turns use a cheap canonical validation and deterministic Markdown render; immutable audit reports and commits are reserved for stage boundaries, failures, policy changes, or explicit checkpoints.

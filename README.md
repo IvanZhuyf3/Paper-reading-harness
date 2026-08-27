@@ -91,9 +91,13 @@ source PDF
 
 The session stores the model path/version, current stage, selection history, current human structure, and resume cursor after every turn. This keeps the runner compatible with approved models and makes session compaction recoverable.
 
+Each canonical event stores its prompt text and the selection-policy version used for that selection. The Markdown audit timeline is a deterministic projection of the TOML event stream; regenerate it with `scripts/render_session_markdown.bat` and verify parity with `--check`. Stage dispositions distinguish `completed`, `skipped`, and `not_applicable`, including terminal sessions with a skipped DELTA.
+
 Question selection is rule-governed rather than purely random. KNOWLEDGE may use seeded sampling from eligible prerequisite nodes. IDEA exposes the complete problem state and normally asks only one challenge or clarification, stopping once the proposal is checkable. CLAIMS and EVIDENCE select only from the human's exposed structure and generic structural prompts; they never sample hidden paper nodes.
 
 Question selection also applies a transferability/reusability filter: an open human node is necessary but not sufficient for default deepening. Prefer transferable measurement and claim–evidence relations. Record low-transfer, paper-specific apparatus optimization without default deep probing, unless the human requests it, clarification is required for checkability, or EFFICIENT_READING requests the expansion.
+
+Persistence is deliberately tiered: update canonical TOML and regenerate/check Markdown after each turn; create immutable audit reports and Git commits at stage boundaries, failures, policy changes, or explicit checkpoints. Ordinary turns within one stage may be batched.
 
 ## Agent boundary
 
