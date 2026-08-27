@@ -1,6 +1,6 @@
 .........
 ----------------------------------------------------------------------
-Ran 9 tests in 0.386s
+Ran 9 tests in 0.364s
 
 OK
-Markdown is not deterministic-render parity: C:\Users\Ivanz\AppData\Local\Temp\tmpnu_picaj\session.md
+Markdown is not deterministic-render parity: C:\Users\Ivanz\AppData\Local\Temp\tmp2vmz5fdb\session.md

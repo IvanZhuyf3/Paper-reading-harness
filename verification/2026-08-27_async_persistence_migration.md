@@ -24,4 +24,6 @@ This migration repairs the canonical SRP session and persistence tooling after t
 - `python -m py_compile`: PASS.
 - `git diff --check`: PASS.
 
+Saved reports: `verification/2026-08-27_session_validation.txt`, `verification/2026-08-27_paper_model_validation.txt`, and `verification/2026-08-27_session_tests.txt`.
+
 The validator now covers model and source pins, stage dispositions, event provenance and ordering, asked/pending correspondence, human record identity and targets, frozen paper evidence design parity, result-detail leakage, terminal status consistency, and Markdown parity.
