@@ -13,9 +13,9 @@
 **Selection-policy version:** 1.2
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
-**Current state:** EVIDENCE
-**Resume cursor:** `EVIDENCE.M3.awaiting_feature_recognition_validity`
-**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`, `CLAIMS_EXPAND_H-C3.5_SPEED`, `CLAIMS_FINISH_OR_ADD`, `CLAIMS_FINISH`, `EVIDENCE_M1_THERMOMETRY_VALIDITY`, `EVIDENCE_M1_THERMOMETRY_CONFOUNDS`, `EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION`, `EVIDENCE_M2_MATCHED_SENSITIVITY_COMPARISON`, `EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION`, `EVIDENCE_M3_APPLICATION_PERFORMANCE_LINK`
+**Current state:** INDEPENDENT_READING
+**Resume cursor:** `INDEPENDENT_READING.awaiting_human_completion`
+**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`, `CLAIMS_EXPAND_H-C3.5_SPEED`, `CLAIMS_FINISH_OR_ADD`, `CLAIMS_FINISH`, `EVIDENCE_M1_THERMOMETRY_VALIDITY`, `EVIDENCE_M1_THERMOMETRY_CONFOUNDS`, `EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION`, `EVIDENCE_M2_MATCHED_SENSITIVITY_COMPARISON`, `EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION`, `EVIDENCE_M3_APPLICATION_PERFORMANCE_LINK`, `EVIDENCE_M3_FEATURE_RECOGNITION_VALIDITY`, `EVIDENCE_M3_CLARIFY_NO_COMPARISON`, `EVIDENCE_FINISH`, `INDEPENDENT_READING_COMPLETE`
 
 ## Disclosure note
 
@@ -563,6 +563,83 @@ Structural operation: this is recorded explicitly as the human's simplified algo
 Current pending prompt:
 
 > feature recognition 容易变成主观判断；你会怎样把它 operationalize，或者用什么 blind/control 让比较可复现？
+
+Event 25 — `EVIDENCE_M3_FEATURE_RECOGNITION_VALIDITY`
+
+Human response:
+
+> 如果真的要仔细做，就需要加重复加control加negative control，比如看到cholesterol domain就得做cholesterol depletion。但仪器原理性文章一般不做这么细，喧宾夺主。一般需要细做的，是feature recognization看到了很重要的feature，别的方法看不到，有重大意义的。这种就不需要做comparison，
+
+Human-designed conditional evidence structure under paper M3:
+
+```text
+ordinary instrumentation application
+→ limited feature-recognition demonstration; no full biological validation
+
+significant novel feature unavailable to other methods
+→ separate scientific claim
+→ repeats + biological/causal controls + negative/perturbation controls
+```
+
+Structural operation: the concrete example remains in this session audit only. The final statement about not needing comparison is held for clarification rather than interpreted in advance.
+
+Current pending prompt:
+
+> 我只确认最后一句：这里“不需要做 comparison”是指证据重心转为 biological/causal controls，而不再要求与其他成像方法做 head-to-head comparison，对吗？
+
+Event 26 — `EVIDENCE_M3_CLARIFY_NO_COMPARISON`
+
+Human response:
+
+> 对的
+
+Human-designed conditional evidence structure under paper M3, closed:
+
+```text
+significant novel biological feature as a separate scientific claim
+→ repeats + biological/causal controls + negative/perturbation controls
+→ no default head-to-head comparison against other imaging methods
+```
+
+Structural operation: the clarification is marked sufficient/closed and records the conditional burden without adding paper results or judging the application.
+
+Current pending prompt:
+
+> 你准备结束这次 EVIDENCE rollout，并与论文的 proof architecture 做结构对照了吗？
+
+Event 27 — `EVIDENCE_FINISH`
+
+Human response:
+
+> ok
+
+The human EVIDENCE rollout is complete. The following paper-side proof architecture is now re-anchored from the pinned model at design level only; result details remain hidden until independent reading.
+
+Paper proof architecture (source-anchored design fields only):
+
+| ID | Target claim | Evidence type | Control roles | Source anchors |
+|---|---|---|---|---|
+| E1 | S1.1 | Energy-deposition estimate plus finite-element heat/refractive-index simulation | Reported SRS parameters/material constants; temporal and spatial heat diffusion | Eq. 1, PDF p.2; Fig. 1C–D, PDF p.2; Results paragraph beginning “With this energy deposition estimation...” |
+| E2 | S1.2 | Rhodamine-B fluorescence thermometry during resonant SRS excitation | Off-resonance subtraction; temperature-insensitive Rh800 control; simulation comparison | Fig. 1E–F, PDF pp.2–3; Results paragraphs beginning “When the chirped pump and...” and “To eliminate the potential impact...”; Supplementary Fig. S2, supplement PDF p.6 |
+| E3 | S1.3 | Thermal-ball-lens model and wave-propagation simulation | Relate excitation/vibrational energy/thermo-optic/material/probe parameters; check linear concentration response | Eq. 2, PDF p.3; Results paragraph beginning “The SRP effect creates a...”; Supplementary Figs. S3–S4, supplement PDF pp.7–8 |
+| E4 | S2.1 | Three-beam microscope construction and modulation-parameter characterization | On/off-resonance probe traces; duty-cycle/modulation-frequency variation; relevant average-power conditions for SRS comparison | Fig. 2A–D, PDF p.4; Results paragraphs beginning “By sensing the local refractive...” and “Unlike SRS, both the pump...” |
+| E5 | S2.2 | Spectral comparison, concentration series, calibration, and detection-limit comparison | Same chemical mode comparison; DMSO-d6 matrix; isotopic substitutions and particle spectra | Fig. 3A–B, PDF p.5; Results paragraphs beginning “We first characterized the spectral...” and “We then measured the limit...”; Supplementary Figs. S8–S12, supplement PDF pp.12–16 |
+| E6 | S2.3 | 100-nm bead imaging and line-profile resolution measurement | Same-sample SRP/SRS imaging; bead-profile fitting and optical-resolution comparison | Fig. 3C–D, PDF p.5; Results paragraph beginning “Collectively, SRP showed improved sensitivity...” |
+| E7 | S3.1 | Live-cell dynamics, hyperspectral fixed-cell imaging, deuterated-lipid control, and brain-tissue spectra in aqueous media | Untreated/PA-d31-treated cells; cell background; PBS nonsample; polarization-dependent myelin response | Fig. 4A–L, PDF p.6; Results paragraph beginning “To explore the potential of...” |
+| E8 | S3.2 | Glycerol-mediated SRP imaging of nanoparticles, a single virus, cells, and fingerprint-region tissue | Thermal-medium comparison; single-virus/background spectrum; phasor segmentation; lipid/protein-region pixel spectra | Fig. 5A–F, PDF p.7; Results paragraph beginning “Compared to water, the high...”; Supplementary Table S1, supplement PDF p.23 |
+| E9 | S3.3 | Matched-field SRP-versus-SRS comparison | Same FoV; conserved average laser power; same dwell time; spectra/image-metric comparison | Results paragraph beginning “Last, we conducted a direct...”, PDF p.7; Supplementary Figs. S17–S18, supplement PDF pp.21–22 |
+
+Descriptive human-versus-paper evidence structural diff:
+
+- M1: common simulation/thermometry/off-resonance control interface. Human-unique deferred energy-diagram and micro-thermocouple candidates. Paper additionally anchors a Rh800 control and thermal-lens/wave model.
+- M2: common LoD, spectral, resolution, and matched-condition interfaces. Paper additionally anchors modulation-parameter characterization and matrix/isotope/particle controls.
+- M3: human coverage axes plus matched comparison and conditional biological validation. Paper instantiates application structures with deuterated-lipid, background, PBS, polarization, medium, single-virus, and phasor controls, plus matched-FoV comparison.
+
+This is a descriptive structural diff only. It does not rank the trajectories, assess sufficiency, or disclose evidence outcomes.
+
+Current pending prompt:
+
+> 现在请你独立查看论文中的 evidence details；完成后告诉我。
 
 Event 24 — `EVIDENCE_M3_APPLICATION_PERFORMANCE_LINK`
 

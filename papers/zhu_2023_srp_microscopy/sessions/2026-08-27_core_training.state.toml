@@ -9,15 +9,16 @@ main_source_sha256 = "B51735420198D699D8C0F3976617F9CA3DFAA2D8E25EE5B3145A70D884
 supplement_sha256 = "F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16023B2"
 selection_policy_version = "1.2"
 selection_seed = 2026082701
-current_stage = "evidence"
-resume_cursor = "EVIDENCE.M3.awaiting_feature_recognition_validity"
-asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3", "CLAIMS_EXPAND_H-C3.1_LOD", "CLAIMS_EXPAND_H-C3.2_RESOLUTION", "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY", "CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC", "CLAIMS_EXPAND_H-C3.5_SPEED", "CLAIMS_FINISH_OR_ADD", "CLAIMS_FINISH", "EVIDENCE_M1_THERMOMETRY_VALIDITY", "EVIDENCE_M1_THERMOMETRY_CONFOUNDS", "EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION", "EVIDENCE_M2_MATCHED_SENSITIVITY_COMPARISON", "EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION", "EVIDENCE_M3_APPLICATION_PERFORMANCE_LINK"]
+current_stage = "independent_reading"
+resume_cursor = "INDEPENDENT_READING.awaiting_human_completion"
+asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3", "CLAIMS_EXPAND_H-C3.1_LOD", "CLAIMS_EXPAND_H-C3.2_RESOLUTION", "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY", "CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC", "CLAIMS_EXPAND_H-C3.5_SPEED", "CLAIMS_FINISH_OR_ADD", "CLAIMS_FINISH", "EVIDENCE_M1_THERMOMETRY_VALIDITY", "EVIDENCE_M1_THERMOMETRY_CONFOUNDS", "EVIDENCE_M1_BLEACH_ONLY_CONTROL_IMPLEMENTATION", "EVIDENCE_M2_MATCHED_SENSITIVITY_COMPARISON", "EVIDENCE_M2_RESOLUTION_BEAD_DECONVOLUTION", "EVIDENCE_M3_APPLICATION_PERFORMANCE_LINK", "EVIDENCE_M3_FEATURE_RECOGNITION_VALIDITY", "EVIDENCE_M3_CLARIFY_NO_COMPARISON", "EVIDENCE_FINISH", "INDEPENDENT_READING_COMPLETE"]
 verified_knowledge_ids = ["K1", "K2"]
 rollout_complete = false
-completed_stages = ["knowledge", "idea", "claims"]
+completed_stages = ["knowledge", "idea", "claims", "evidence"]
 revealed_paper_claim_ids = ["T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "M3", "S3.1", "S3.2", "S3.3"]
-pending_prompt_id = "EVIDENCE_M3_FEATURE_RECOGNITION_VALIDITY"
-pending_prompt_text = "feature recognition 容易变成主观判断；你会怎样把它 operationalize，或者用什么 blind/control 让比较可复现？"
+revealed_paper_evidence_ids = ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9"]
+pending_prompt_id = "INDEPENDENT_READING_COMPLETE"
+pending_prompt_text = "现在请你独立查看论文中的 evidence details；完成后告诉我。"
 human_is_paper_author = true
 spoiler_control_test_valid = false
 
@@ -310,9 +311,73 @@ id = "H-E-M3-FEATURE-RECOGNITION"
 stage = "evidence"
 target_paper_claims = ["M3", "S3.3"]
 parent_evidence_designs = ["H-E-M3-APPLICATION-PERFORMANCE-LINK"]
-status = "open"
+status = "closed"
+sufficiency = "sufficient"
 evidence_type = "feature-recognition reproducibility"
-content = "Feature recognition remains open because it is subjective/undefined and requires operationalization or a blind/control design（feature recognition 因主观/未定义而保持 open，需要 operationalize 或 blind/control 设计）。"
+content = "For an ordinary instrumentation application, feature recognition remains a limited demonstration without full biological validation. If a significant novel feature unavailable to other methods is elevated to a separate scientific claim, the burden shifts to repeats, biological/causal controls, and negative/perturbation controls; there is no default requirement for head-to-head comparison against other imaging methods（普通仪器原理 application 中，feature recognition 只作有限 demonstration，不承担完整 biological validation；若重大且其他方法看不到的新 feature 被提升为独立 scientific claim，则证据负担转为 repeats、biological/causal controls 和 negative/perturbation controls；不默认要求与其他成像方法 head-to-head comparison）。"
+
+[[paper_evidence_designs]]
+id = "E1"
+target_claims = ["S1.1"]
+evidence_type = "energy-deposition estimate plus finite-element heat/refractive-index simulation"
+control_roles = ["Use reported SRS parameters and material constants", "Resolve temporal and spatial heat diffusion"]
+source_anchors = ["Eq. 1, PDF p.2", "Fig. 1C–D, PDF p.2", "PDF p.2, Results, paragraph beginning \"With this energy deposition estimation...\""]
+
+[[paper_evidence_designs]]
+id = "E2"
+target_claims = ["S1.2"]
+evidence_type = "rhodamine-B fluorescence thermometry during resonant SRS excitation"
+control_roles = ["Subtract off-resonance trace to remove non-photothermal contribution", "Use temperature-insensitive Rh800 control to exclude photobleaching/thermophoresis explanation", "Compare measured trace with simulation"]
+source_anchors = ["Fig. 1E–F, PDF pp.2–3", "PDF p.3, Results, paragraph beginning \"When the chirped pump and...\"", "PDF p.3, Results, paragraph beginning \"To eliminate the potential impact...\"", "Supplementary Fig. S2, supplement PDF p.6"]
+
+[[paper_evidence_designs]]
+id = "E3"
+target_claims = ["S1.3"]
+evidence_type = "thermal-ball-lens model and wave-propagation simulation"
+control_roles = ["Relate signal to excitation, vibrational energy, thermo-optic coefficient, heat capacity, and probe geometry", "Check linear concentration response"]
+source_anchors = ["Eq. 2, PDF p.3", "PDF p.3, Results/Optically sensing the SRP effect, paragraph beginning \"The SRP effect creates a...\"", "Supplementary Fig. S3, supplement PDF p.7", "Supplementary Fig. S4, supplement PDF p.8"]
+
+[[paper_evidence_designs]]
+id = "E4"
+target_claims = ["S2.1"]
+evidence_type = "three-beam microscope construction and modulation-parameter characterization"
+control_roles = ["Compare on- and off-resonance probe traces", "Vary duty cycle and modulation frequency", "Hold relevant average-power conditions for SRS comparison"]
+source_anchors = ["Fig. 2A–D, PDF p.4", "PDF p.3, Results/An SRP microscope, paragraph beginning \"By sensing the local refractive...\"", "PDF p.3, same section, paragraph beginning \"Unlike SRS, both the pump...\""]
+
+[[paper_evidence_designs]]
+id = "E5"
+target_claims = ["S2.2"]
+evidence_type = "spectral comparison, concentration series, calibration, and detection-limit comparison"
+control_roles = ["Compare SRP and SRS spectra on the same chemical mode", "Use DMSO-d6 matrix to tune concentration while preserving medium properties", "Test isotopic substitutions and particle spectra"]
+source_anchors = ["Fig. 3A–B, PDF p.5", "PDF p.4, Results/SRP spectral fidelity and detection sensitivity, paragraph beginning \"We first characterized the spectral...\"", "PDF p.4, same section, paragraph beginning \"We then measured the limit...\"", "Supplementary Fig. S8, supplement PDF p.12", "Supplementary Fig. S9, supplement PDF p.13", "Supplementary Fig. S10, supplement PDF p.14", "Supplementary Fig. S11, supplement PDF p.15", "Supplementary Fig. S12, supplement PDF p.16"]
+
+[[paper_evidence_designs]]
+id = "E6"
+target_claims = ["S2.3"]
+evidence_type = "100-nm bead imaging and line-profile resolution measurement"
+control_roles = ["Image the same sample with SRP and SRS", "Fit bead profiles and compare with optical-resolution expectations"]
+source_anchors = ["Fig. 3C–D, PDF p.5", "PDF p.5, Results, paragraph beginning \"Collectively, SRP showed improved sensitivity...\""]
+
+[[paper_evidence_designs]]
+id = "E7"
+target_claims = ["S3.1"]
+evidence_type = "live-cell dynamics, hyperspectral fixed-cell imaging, deuterated-lipid control, and brain-tissue spectra in aqueous media"
+control_roles = ["Untreated versus PA-d31-treated cells", "Cell background spectrum", "PBS nonsample spectrum", "Polarization-dependent myelin response"]
+source_anchors = ["Fig. 4A–L, PDF p.6", "PDF p.5, Results/SRP imaging of biological samples in physiological environment, paragraph beginning \"To explore the potential of...\""]
+
+[[paper_evidence_designs]]
+id = "E8"
+target_claims = ["S3.2"]
+evidence_type = "glycerol-mediated SRP imaging of nanoparticles, a single virus, cells, and fingerprint-region tissue"
+control_roles = ["Compare thermal-medium properties", "Single-virus versus background spectrum", "Phasor segmentation of cellular components", "Pixel spectra from lipid and protein regions"]
+source_anchors = ["Fig. 5A–F, PDF p.7", "PDF p.6, Results/SRP imaging of biological samples in glycerol, paragraph beginning \"Compared to water, the high...\"", "Supplementary Table S1, supplement PDF p.23"]
+
+[[paper_evidence_designs]]
+id = "E9"
+target_claims = ["S3.3"]
+evidence_type = "matched-field SRP-versus-SRS comparison"
+control_roles = ["Same field of view", "Conserved average laser power", "Same dwell time", "Compare spectra and image metrics"]
+source_anchors = ["PDF p.7, Results, paragraph beginning \"Last, we conducted a direct...\"", "Supplementary Fig. S17, supplement PDF p.21", "Supplementary Fig. S18, supplement PDF p.22"]
 
 [[human_control_designs]]
 id = "H-CONTROL-M1-BLEACH-ONLY"
@@ -501,3 +566,18 @@ human_response = "一般就FWHM_image^2 = FWHM_PSF^2+FWHM_bead^2，简化算法�
 sequence = 24
 prompt_id = "EVIDENCE_M3_APPLICATION_PERFORMANCE_LINK"
 human_response = "最好是同样品同FoV同参数测量，直接head2head比较image quality，包括SNR、resolution、feature recognization"
+
+[[events]]
+sequence = 25
+prompt_id = "EVIDENCE_M3_FEATURE_RECOGNITION_VALIDITY"
+human_response = "如果真的要仔细做，就需要加重复加control加negative control，比如看到cholesterol domain就得做cholesterol depletion。但仪器原理性文章一般不做这么细，喧宾夺主。一般需要细做的，是feature recognization看到了很重要的feature，别的方法看不到，有重大意义的。这种就不需要做comparison，"
+
+[[events]]
+sequence = 26
+prompt_id = "EVIDENCE_M3_CLARIFY_NO_COMPARISON"
+human_response = "对的"
+
+[[events]]
+sequence = 27
+prompt_id = "EVIDENCE_FINISH"
+human_response = "ok"
