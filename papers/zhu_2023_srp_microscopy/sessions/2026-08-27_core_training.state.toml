@@ -10,14 +10,14 @@ supplement_sha256 = "F697113130FEC858E5852D50ACCBFFC052894AF4C3F69915AD9DD591D16
 selection_policy_version = "1.2"
 selection_seed = 2026082701
 current_stage = "claims"
-resume_cursor = "CLAIMS.H-C3.5.awaiting_speed_metric"
-asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3", "CLAIMS_EXPAND_H-C3.1_LOD", "CLAIMS_EXPAND_H-C3.2_RESOLUTION", "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY", "CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC", "CLAIMS_EXPAND_H-C3.5_SPEED"]
+resume_cursor = "CLAIMS.awaiting_finish_or_add"
+asked_ids = ["K1", "K2", "IDEA_FIXED", "IDEA_CLARIFY_H-I1", "IDEA_CLARIFY_H-I2_FOLDING", "IDEA_FINISH", "CLAIMS_ADD_T0", "CLAIMS_EXPAND_H-C1.1", "CLAIMS_ADD_T0_2", "CLAIMS_EXPAND_H-C2.1_ARCHITECTURE", "CLAIMS_ADD_T0_3", "CLAIMS_EXPAND_H-C3.1_LOD", "CLAIMS_EXPAND_H-C3.2_RESOLUTION", "CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY", "CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC", "CLAIMS_EXPAND_H-C3.5_SPEED", "CLAIMS_FINISH_OR_ADD"]
 verified_knowledge_ids = ["K1", "K2"]
 rollout_complete = false
 completed_stages = ["knowledge", "idea"]
 revealed_paper_claim_ids = ["T0"]
-pending_prompt_id = "CLAIMS_EXPAND_H-C3.5_SPEED"
-pending_prompt_text = "先展开 H-C3.5：你会用什么 operational metric 定义 imaging speed，并要求哪些 acquisition conditions 保持一致？"
+pending_prompt_id = "CLAIMS_FINISH_OR_ADD"
+pending_prompt_text = "这样调整后，你还要添加别的 major claim，还是结束 CLAIMS rollout？"
 human_is_paper_author = true
 spoiler_control_test_valid = false
 
@@ -258,8 +258,16 @@ content = "Penetration depth, only if there is an improvement（penetration dept
 id = "H-C3.5"
 stage = "claims"
 parents = ["H-C3"]
-status = "open"
-content = "Speed（速度）。"
+status = "relocated"
+standalone = false
+content = "Speed does not need strict characterization; for a dynamic sample, observe that it is moving and report a frame rate, generally together with the application（速度不需要严格 characterise；测到动态样品在动，标 frame rate，一般放在 application 一起说）。"
+
+[[human_application_metadata]]
+id = "H-APPLICATION-SPEED"
+parent_claims = ["H-C3.5"]
+bucket = "application"
+status = "deferred"
+content = "Dynamic sample visibly moving + report frame rate（动态样品在动 + 标 frame rate）。"
 
 [[human_evidence_candidates]]
 id = "H-E-C1.1.1-ENERGY-DIAGRAM"
@@ -356,3 +364,8 @@ human_response = "测量相同样品，normalize到一起，比较spectrum相似
 sequence = 15
 prompt_id = "CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC"
 human_response = "向量归一化求点积应该就可以。完全相同是1。"
+
+[[events]]
+sequence = 16
+prompt_id = "CLAIMS_EXPAND_H-C3.5_SPEED"
+human_response = "speed其实不需要严格characterize，一般就测到动的样品在动，标个frame rate就完了。这个一般会放在application那里一起说。"

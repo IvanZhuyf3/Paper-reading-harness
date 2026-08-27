@@ -14,8 +14,8 @@
 **Selection seed:** 2026082701
 **Human had not read paper at entry:** NO — human later disclosed being a paper author
 **Current state:** CLAIMS
-**Resume cursor:** `CLAIMS.H-C3.5.awaiting_speed_metric`
-**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`, `CLAIMS_EXPAND_H-C3.5_SPEED`
+**Resume cursor:** `CLAIMS.awaiting_finish_or_add`
+**Asked node/prompt IDs:** `K1`, `K2`, `IDEA_FIXED`, `IDEA_CLARIFY_H-I1`, `IDEA_CLARIFY_H-I2_FOLDING`, `IDEA_FINISH`, `CLAIMS_ADD_T0`, `CLAIMS_EXPAND_H-C1.1`, `CLAIMS_ADD_T0_2`, `CLAIMS_EXPAND_H-C2.1_ARCHITECTURE`, `CLAIMS_ADD_T0_3`, `CLAIMS_EXPAND_H-C3.1_LOD`, `CLAIMS_EXPAND_H-C3.2_RESOLUTION`, `CLAIMS_EXPAND_H-C3.3_SPECTRAL_FIDELITY`, `CLAIMS_CLARIFY_H-C3.3_SIMILARITY_METRIC`, `CLAIMS_EXPAND_H-C3.5_SPEED`, `CLAIMS_FINISH_OR_ADD`
 
 ## Disclosure note
 
@@ -236,7 +236,8 @@ T0 — PAPER TITLE CLAIM
    │  └─ H-C3.3.6 — low similarity → assess impact of residual/new spectrum
    │              on spectrum interpretation [OPEN]
    ├─ H-C3.4 — penetration depth, only if improved [CONDITIONAL]
-   └─ H-C3.5 — speed [OPEN]
+   └─ H-C3.5 — speed; not a standalone strict-characterization claim [RELOCATED]
+      └─ H-APPLICATION-SPEED — application bucket: dynamic sample visibly moving + report frame rate [DEFERRED]
 ```
 
 Structural operation: the human supplied two burdens joined by “且”; they are retained as two immediate subclaims without adding scientific content. The response further decomposed the existence subclaim into the three causal statements above, preserving the human's stated sequence.
@@ -373,3 +374,15 @@ Structural operation: the human supplied a quantitative spectrum-similarity metr
 Current pending prompt:
 
 > 先展开 H-C3.5：你会用什么 operational metric 定义 imaging speed，并要求哪些 acquisition conditions 保持一致？
+
+Event 16 — `CLAIMS_EXPAND_H-C3.5_SPEED`
+
+Human response:
+
+> speed其实不需要严格characterize，一般就测到动的样品在动，标个frame rate就完了。这个一般会放在application那里一起说。
+
+Structural operation: H-C3.5 is reclassified as relocated/not standalone. The human's dynamic-sample observation and frame-rate metadata are deferred to an application bucket named only `application`; no sample or paper-specific application was added. No speed benchmark follow-up is requested.
+
+Current pending prompt:
+
+> 这样调整后，你还要添加别的 major claim，还是结束 CLAIMS rollout？
