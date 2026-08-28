@@ -1,28 +1,36 @@
 state_version = "1.0"
 session_id = "2026-08-28_foundation_training"
 runner = "training"
-level = "core"
+level = "foundation"
 paper_model_path = "../model/paper_model.pending.toml"
 paper_model_version = "0.1.0"
 paper_model_sha256 = "AF997481BA7FC92462E3750AC5FD14020091A25BDC02665968EF68A0F8A575B9"
 main_source_sha256 = "702F012A0C7FBA10ECDB9DC03619D3AF9CD8DFF05B288F52A31911C6142A6F6D"
 selection_policy_version = "1.2"
 selection_seed = 2026082801
-current_stage = "idea"
-resume_cursor = "IDEA.IDEA_FIXED_RETRY.await_response"
-asked_ids = ["K1", "K1_CHECK", "K1_NIR", "K2_STEP1", "K2_STEP1_REASK", "K2_STEP2", "K2_STEP3", "K2_STEP4", "K3_STEP1", "K3_STEP2", "IDEA_FIXED", "K3_STEP2_REASK", "K3_STEP2_TIME", "K3_STEP3_LINEWIDTH", "IDEA_FIXED_RETRY"]
+current_stage = "claims"
+resume_cursor = "CLAIMS.CLAIMS_ADD_T0.await_response"
+asked_ids = ["K1", "K1_CHECK", "K1_NIR", "K2_STEP1", "K2_STEP1_REASK", "K2_STEP2", "K2_STEP3", "K2_STEP4", "K3_STEP1", "K3_STEP2", "IDEA_FIXED", "K3_STEP2_REASK", "K3_STEP2_TIME", "K3_STEP3_LINEWIDTH", "IDEA_FIXED_RETRY", "IDEA_CLARIFY_H-I1_COVERAGE", "IDEA_CLARIFY_H-I1_INTERVENTION", "IDEA_LEVEL_DECISION", "CLAIMS_ADD_T0"]
 verified_knowledge_ids = ["K1", "K2", "K3"]
 rollout_complete = false
 completed_stages = ["knowledge"]
-revealed_paper_claim_ids = ["I1", "I2", "I3", "I4", "I5", "G1"]
+revealed_paper_claim_ids = ["I1", "I2", "I3", "I4", "I5", "G1", "T0"]
 revealed_paper_evidence_ids = []
-pending_prompt_id = "IDEA_FIXED_RETRY"
-pending_prompt_text = "现在只做 IDEA 的最小一步：面对“逐波长扫描把带宽、分辨率和时间绑在一起”这个问题，你会优先改动哪个环节？先只说干预对象，不需要完整方案。"
-stage_dispositions = { knowledge = "completed", idea = "in_progress", claims = "in_progress", evidence = "in_progress", independent_reading = "in_progress", delta = "in_progress" }
+pending_prompt_id = "CLAIMS_ADD_T0"
+pending_prompt_text = "以论文的 TITLE CLAIM（T0）为根，你认为它首先需要哪一条 major claim 才能成立？只给一条。"
+stage_dispositions = { knowledge = "completed", idea = "skipped", claims = "in_progress", evidence = "in_progress", independent_reading = "in_progress", delta = "in_progress" }
 human_had_not_read_at_entry = true
 level_change_note = "Human changed FOUNDATION to CORE during K3 and explicitly skipped the remainder of KNOWLEDGE before entering IDEA."
 stage_return_note = "Human returned from IDEA to unfinished K3 before producing an IDEA proposal; CORE level retained."
 knowledge_completion_note = "K1, K2, and K3 were verified after the return from IDEA; KNOWLEDGE is completed."
+foundation_return_note = "Human explicitly returned to FOUNDATION; IDEA was skipped after no checkable proposal formed; T0 was revealed and CLAIMS started."
+
+[[human_nodes]]
+id = "H-I1"
+stage = "idea"
+parents = []
+status = "withdrawn_on_foundation_switch"
+content = "目标是增加可测带宽；具体干预动作尚未给出。"
 
 [[paper_evidence_designs]]
 id = "E1"
@@ -226,3 +234,35 @@ prompt_text = "假设两个谱峰相距 2 cm^-1，但光源本身每个波长点
 stage = "knowledge"
 selection_policy_version = "1.2"
 human_response = "不能"
+
+[[events]]
+sequence = 15
+prompt_id = "IDEA_FIXED_RETRY"
+prompt_text = "现在只做 IDEA 的最小一步：面对“逐波长扫描把带宽、分辨率和时间绑在一起”这个问题，你会优先改动哪个环节？先只说干预对象，不需要完整方案。"
+stage = "idea"
+selection_policy_version = "1.2"
+human_response = "优先改带宽"
+
+[[events]]
+sequence = 16
+prompt_id = "IDEA_CLARIFY_H-I1_COVERAGE"
+prompt_text = "你说“改带宽”，具体是想让一次测量同时覆盖更宽的频段，还是仍然逐波长扫描、只是扩大总扫描范围？"
+stage = "idea"
+selection_policy_version = "1.2"
+human_response = "不知道你要干啥，这俩不是一个在增加时间，一个在牺牲分辨率"
+
+[[events]]
+sequence = 17
+prompt_id = "IDEA_CLARIFY_H-I1_INTERVENTION"
+prompt_text = "“增加带宽”是目标。请把 idea 写成“我会____，从而增加可测带宽”；现在只填第一个空：你会具体改变什么？"
+stage = "idea"
+selection_policy_version = "1.2"
+human_response = "不懂"
+
+[[events]]
+sequence = 18
+prompt_id = "IDEA_LEVEL_DECISION"
+prompt_text = "是否把本轮退回 FOUNDATION：跳过 human IDEA rollout，由我直接展示论文的 source-anchored title claim，然后继续 CLAIMS？"
+stage = "idea"
+selection_policy_version = "1.2"
+human_response = "好"

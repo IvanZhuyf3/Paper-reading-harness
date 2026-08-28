@@ -13,11 +13,11 @@
 | Selection-policy version matches | PASS | state=1.2, model=1.2 |
 | Main-source hash matches model | PASS | state=702F012A0C7FBA10ECDB9DC03619D3AF9CD8DFF05B288F52A31911C6142A6F6D, model=702F012A0C7FBA10ECDB9DC03619D3AF9CD8DFF05B288F52A31911C6142A6F6D |
 | Supplement hash matches model | PASS | state=None, model=None |
-| Current stage is valid | PASS | idea |
-| Stage dispositions are legal | PASS | {'knowledge': 'completed', 'idea': 'in_progress', 'claims': 'in_progress', 'evidence': 'in_progress', 'independent_reading': 'in_progress', 'delta': 'in_progress'} |
+| Current stage is valid | PASS | claims |
+| Stage dispositions are legal | PASS | {'knowledge': 'completed', 'idea': 'skipped', 'claims': 'in_progress', 'evidence': 'in_progress', 'independent_reading': 'in_progress', 'delta': 'in_progress'} |
 | Completed stages agree with dispositions | PASS | completed=['knowledge'], expected=['knowledge'] |
-| Stage disposition order is coherent | PASS | current=idea |
-| Rollout terminal flag matches current stage | PASS | current=idea, rollout_complete=False |
+| Stage disposition order is coherent | PASS | current=claims |
+| Rollout terminal flag matches current stage | PASS | current=claims, rollout_complete=False |
 | Selection seed is persisted | PASS | 2026082801 |
 | Revealed paper-claim IDs resolve | PASS | missing=[] |
 | human nodes IDs are unique | PASS | duplicates=[] |
@@ -34,15 +34,15 @@
 | Session paper-evidence designs contain no result details | PASS | leaks=[] |
 | Finished-stage records have explicit terminal status | PASS | ambiguous=[] |
 | Closed human parents have no ambiguous open children | PASS | parents=[] |
-| Event sequence is contiguous | PASS | events=14 |
+| Event sequence is contiguous | PASS | events=18 |
 | Event prompt IDs are unique | PASS | duplicates=[] |
 | Every event has prompt text and policy provenance | PASS | missing=[] |
 | Event policy provenance is well-formed | PASS | policies=['1.2'] |
-| Asked IDs match responded events and pending prompt | PASS | expected=['K1', 'K1_CHECK', 'K1_NIR', 'K2_STEP1', 'K2_STEP1_REASK', 'K2_STEP2', 'K2_STEP3', 'K2_STEP4', 'K3_STEP1', 'K3_STEP2', 'IDEA_FIXED', 'K3_STEP2_REASK', 'K3_STEP2_TIME', 'K3_STEP3_LINEWIDTH', 'IDEA_FIXED_RETRY'], actual=['K1', 'K1_CHECK', 'K1_NIR', 'K2_STEP1', 'K2_STEP1_REASK', 'K2_STEP2', 'K2_STEP3', 'K2_STEP4', 'K3_STEP1', 'K3_STEP2', 'IDEA_FIXED', 'K3_STEP2_REASK', 'K3_STEP2_TIME', 'K3_STEP3_LINEWIDTH', 'IDEA_FIXED_RETRY'] |
-| Terminal state has no pending prompt | PASS | pending_id=IDEA_FIXED_RETRY |
-| Nonterminal state has one unasked pending prompt | PASS | pending_id=IDEA_FIXED_RETRY |
+| Asked IDs match responded events and pending prompt | PASS | expected=['K1', 'K1_CHECK', 'K1_NIR', 'K2_STEP1', 'K2_STEP1_REASK', 'K2_STEP2', 'K2_STEP3', 'K2_STEP4', 'K3_STEP1', 'K3_STEP2', 'IDEA_FIXED', 'K3_STEP2_REASK', 'K3_STEP2_TIME', 'K3_STEP3_LINEWIDTH', 'IDEA_FIXED_RETRY', 'IDEA_CLARIFY_H-I1_COVERAGE', 'IDEA_CLARIFY_H-I1_INTERVENTION', 'IDEA_LEVEL_DECISION', 'CLAIMS_ADD_T0'], actual=['K1', 'K1_CHECK', 'K1_NIR', 'K2_STEP1', 'K2_STEP1_REASK', 'K2_STEP2', 'K2_STEP3', 'K2_STEP4', 'K3_STEP1', 'K3_STEP2', 'IDEA_FIXED', 'K3_STEP2_REASK', 'K3_STEP2_TIME', 'K3_STEP3_LINEWIDTH', 'IDEA_FIXED_RETRY', 'IDEA_CLARIFY_H-I1_COVERAGE', 'IDEA_CLARIFY_H-I1_INTERVENTION', 'IDEA_LEVEL_DECISION', 'CLAIMS_ADD_T0'] |
+| Terminal state has no pending prompt | PASS | pending_id=CLAIMS_ADD_T0 |
+| Nonterminal state has one unasked pending prompt | PASS | pending_id=CLAIMS_ADD_T0 |
 | Selection policy provenance is present on every event | PASS | model_current=1.2 |
 | Markdown renderer parity | PASS | C:\Users\Ivanz\OneDrive\ChatGPT_workspace\Research\Academic reading training\papers\li_2026_ft_opt\sessions\2026-08-28_foundation_training.md |
-| Markdown event chronology matches state | PASS | headings=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] |
+| Markdown event chronology matches state | PASS | headings=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] |
 
 The audit covers model identity, stage disposition, event provenance/order, graph and evidence consistency, terminal recovery semantics, and deterministic Markdown parity.

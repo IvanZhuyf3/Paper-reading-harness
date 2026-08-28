@@ -1,9 +1,9 @@
-# CORE Training Session - 2026-08-28_foundation_training
+# FOUNDATION Training Session - 2026-08-28_foundation_training
 
 **Paper:** Supercontinuum Fourier-transform Overtone Photothermal Spectroscopy and Microscopy
 **Identifier:** AP-26-149008
 **Runner:** TRAINING
-**Level:** CORE (changed from FOUNDATION during KNOWLEDGE)
+**Level:** FOUNDATION (changed FOUNDATION -> CORE -> FOUNDATION)
 **Paper-model source:** compiled pending model for originating session
 **Paper-model path:** `../model/paper_model.pending.toml`
 **Paper-model version:** 0.1.0
@@ -12,10 +12,10 @@
 **Selection-policy version:** 1.2
 **Selection seed:** 2026082801
 **Human had not read paper at entry:** YES
-**Current state:** IDEA
-**Resume cursor:** `IDEA.IDEA_FIXED_RETRY.await_response`
-**Pending prompt:** `IDEA_FIXED_RETRY`
-**Stage dispositions:** knowledge=completed; idea=in_progress; claims=in_progress; evidence=in_progress; independent_reading=in_progress; delta=in_progress
+**Current state:** CLAIMS
+**Resume cursor:** `CLAIMS.CLAIMS_ADD_T0.await_response`
+**Pending prompt:** `CLAIMS_ADD_T0`
+**Stage dispositions:** knowledge=completed; idea=skipped; claims=in_progress; evidence=in_progress; independent_reading=in_progress; delta=in_progress
 
 ## Disclosure note
 
@@ -107,7 +107,46 @@ K3 verified: resolving closer peaks requires a smaller wavelength step; at fixed
 range and per-point dwell time, the added points lengthen total acquisition. A
 small scan step cannot overcome a broader source linewidth. KNOWLEDGE is completed.
 
-> 现在只做 IDEA 的最小一步：面对“逐波长扫描把带宽、分辨率和时间绑在一起”这个问题，你会优先改动哪个环节？先只说干预对象，不需要完整方案。
+### Human idea branch (withdrawn)
+
+- `H-I1` - 目标是增加可测带宽。 Status: withdrawn after the return to FOUNDATION; a concrete intervention was not supplied.
+
+Clarification recorded: expanding a serial scan at fixed step and dwell increases
+time; expanding range at fixed point count coarsens the sampling step. Simultaneous
+wide coverage does not intrinsically require sacrificing resolution because its
+resolution can be set by a separate encoding or observation parameter.
+
+The human could state the target variable but not an intervention. Further CORE
+prompting would risk turning the rollout into answer-guessing. The human explicitly
+returned to FOUNDATION, so IDEA is `skipped`; the incomplete branch is retained
+for audit but is not treated as a completed idea.
+
+## Paper title claim revealed after skipped IDEA
+
+**AUTHOR CLAIM:** "Here, we introduce Fourier-transform overtone photothermal
+(FT-OPT) spectroscopy and microscopy, a time-domain framework that retrieves
+photothermal spectra without sequential wavelength tuning. [...] By overcoming
+the bandwidth-speed trade-off while retaining high spatial resolution, FT-OPT
+provides a route toward label-free spectral flow cytometry and high-dimensional
+chemical imaging in aqueous environments."
+
+**SOURCE ANCHORS:**
+
+- PDF p.2, Abstract, paragraph beginning "Overtone photothermal (OPT) microscopy is..."
+- PDF p.4, Introduction, paragraph beginning "To address these challenges, in..."
+- PDF p.18, Discussion and Conclusion, paragraph beginning "OPT or SWIR photothermal microscopy..."
+
+**AGENT INTERPRETATION:** FT-OPT combines broadband supercontinuum excitation,
+interferometric time-domain encoding, Fourier decoding, and thermal-lens readout
+to decouple spectral bandwidth from acquisition time while retaining sensitive,
+high-resolution, aqueous-compatible spectroscopy and microscopy.
+
+## 3. CLAIMS
+
+The human claim tree is re-anchored to paper node `T0`. No paper-side major claim
+or subclaim has been revealed.
+
+> 以论文的 TITLE CLAIM（T0）为根，你认为它首先需要哪一条 major claim 才能成立？只给一条。
 
 <!-- BEGIN GENERATED EVENT TIMELINE -->
 ## Machine-generated event timeline
@@ -293,5 +332,57 @@ small scan step cannot overcome a broader source linewidth. KNOWLEDGE is complet
 **Human response:**
 
 > 不能
+
+### Event 15 — `IDEA_FIXED_RETRY`
+
+**Stage:** `idea`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 现在只做 IDEA 的最小一步：面对“逐波长扫描把带宽、分辨率和时间绑在一起”这个问题，你会优先改动哪个环节？先只说干预对象，不需要完整方案。
+
+**Human response:**
+
+> 优先改带宽
+
+### Event 16 — `IDEA_CLARIFY_H-I1_COVERAGE`
+
+**Stage:** `idea`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 你说“改带宽”，具体是想让一次测量同时覆盖更宽的频段，还是仍然逐波长扫描、只是扩大总扫描范围？
+
+**Human response:**
+
+> 不知道你要干啥，这俩不是一个在增加时间，一个在牺牲分辨率
+
+### Event 17 — `IDEA_CLARIFY_H-I1_INTERVENTION`
+
+**Stage:** `idea`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> “增加带宽”是目标。请把 idea 写成“我会____，从而增加可测带宽”；现在只填第一个空：你会具体改变什么？
+
+**Human response:**
+
+> 不懂
+
+### Event 18 — `IDEA_LEVEL_DECISION`
+
+**Stage:** `idea`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 是否把本轮退回 FOUNDATION：跳过 human IDEA rollout，由我直接展示论文的 source-anchored title claim，然后继续 CLAIMS？
+
+**Human response:**
+
+> 好
 
 <!-- END GENERATED EVENT TIMELINE -->

@@ -41,6 +41,6 @@ published version.
 - Human approval: not reviewed.
 - Curriculum status: not approved for reuse.
 - Active session: `sessions/2026-08-28_foundation_training.state.toml`.
-- Runner/level: TRAINING / CORE (changed from FOUNDATION during KNOWLEDGE).
+- Runner/level: TRAINING / FOUNDATION (changed FOUNDATION -> CORE -> FOUNDATION).
 - Session initialization audit: 38/38 checks passed.
-- Current cursor: `IDEA.IDEA_FIXED_RETRY.await_response`.
+- Current cursor: `CLAIMS.CLAIMS_ADD_T0.await_response`.
