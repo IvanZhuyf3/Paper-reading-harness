@@ -40,4 +40,7 @@ published version.
 - Semantic audit: `model/paper_model.semantic_audit.md`.
 - Human approval: not reviewed.
 - Curriculum status: not approved for reuse.
-- Session status: not started; training level still needs to be selected.
+- Active session: `sessions/2026-08-28_foundation_training.state.toml`.
+- Runner/level: TRAINING / FOUNDATION.
+- Session initialization audit: 38/38 checks passed.
+- Current cursor: `KNOWLEDGE.K1.await_response`.

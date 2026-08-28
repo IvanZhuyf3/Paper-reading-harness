@@ -42,6 +42,8 @@ The originating session may run from that validated pending model. A later sessi
 
 Before each prompt, load the pinned model and current session state from disk. After each human response, persist the response, updated human structure, asked-node history, and resume cursor before producing the next prompt.
 
+Create a new TRAINING session with `scripts/create_training_session.py`; it pins model identity, freezes result-free paper evidence designs, selects the first eligible KNOWLEDGE node, and writes the initial deterministic Markdown projection.
+
 Use two session artifacts:
 
 ```text

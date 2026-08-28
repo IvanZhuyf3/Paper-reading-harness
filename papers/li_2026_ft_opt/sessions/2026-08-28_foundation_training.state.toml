@@ -1,0 +1,113 @@
+state_version = "1.0"
+session_id = "2026-08-28_foundation_training"
+runner = "training"
+level = "foundation"
+paper_model_path = "../model/paper_model.pending.toml"
+paper_model_version = "0.1.0"
+paper_model_sha256 = "AF997481BA7FC92462E3750AC5FD14020091A25BDC02665968EF68A0F8A575B9"
+main_source_sha256 = "702F012A0C7FBA10ECDB9DC03619D3AF9CD8DFF05B288F52A31911C6142A6F6D"
+selection_policy_version = "1.2"
+selection_seed = 2026082801
+current_stage = "knowledge"
+resume_cursor = "KNOWLEDGE.K1.await_response"
+asked_ids = ["K1"]
+verified_knowledge_ids = []
+rollout_complete = false
+completed_stages = []
+revealed_paper_claim_ids = []
+revealed_paper_evidence_ids = []
+pending_prompt_id = "K1"
+pending_prompt_text = "先从基础概念开始：什么使一个振动跃迁属于 overtone 或 combination transition？与 fundamental transition 相比，它的跃迁强度和谱带拥挤程度通常怎样？"
+stage_dispositions = { knowledge = "in_progress", idea = "in_progress", claims = "in_progress", evidence = "in_progress", independent_reading = "in_progress", delta = "in_progress" }
+human_had_not_read_at_entry = true
+
+[[paper_evidence_designs]]
+id = "E1"
+target_claims = ["M1", "S1.1", "S1.2"]
+evidence_type = "analytical derivation from overtone absorption and interferometric excitation to a Fourier-recoverable photothermal spectrum"
+control_roles = ["Normalize the recovered spectrum by the measured pump spectrum", "Relate delay window and scan rate separately to resolution and acquisition speed"]
+source_anchors = ["Eqs. 1-3, PDF p.5-6", "Fig. 1a-c and 1e, PDF p.8", "PDF p.5-6, Results/Principle of FT-OPT spectroscopy and microscopy, paragraphs beginning \"Molecular anharmonicity causes deviations from...\" and \"The second term in Eq....\""]
+
+[[paper_evidence_designs]]
+id = "E2"
+target_claims = ["S1.3"]
+evidence_type = "source characterization, microscope construction, raw-signal recording, delay calibration, and resampling pipeline"
+control_roles = ["Monitor the pump autocorrelation independently", "Use a CW interferometric reference to correct nonuniform delay-stage motion", "Correct broadband power for detector response and objective transmission"]
+source_anchors = ["Fig. 1d-e, PDF p.8", "PDF p.7, Results/SWIR supercontinuum generation and experimental setup, paragraph beginning \"The FT-OPT experimental setup is...\"", "Supplementary Figs. S2-S4, PDF p.34-36"]
+
+[[paper_evidence_designs]]
+id = "E3"
+target_claims = ["M1", "M2"]
+evidence_type = "multiplex-SNR analysis and direct modulation-depth comparison between photothermal probe readout and pump absorption"
+control_roles = ["State the detector-noise-limited assumption for Fellgett scaling", "Use the same lipid absorption spectrum and interaction length for the absorption estimate", "Measure raw probe modulation under the implemented FT-OPT condition"]
+source_anchors = ["Supplementary Information, PDF p.31, section beginning \"Fellgett advantage of FT-OPT\"", "Supplementary Fig. S1 and Eqs. 2-4, PDF p.32-33"]
+
+[[paper_evidence_designs]]
+id = "E4"
+target_claims = ["S2.1", "S2.2"]
+evidence_type = "interferogram acquisition plus Fourier reconstruction on reference liquids with pump normalization and standard-spectrum comparison"
+control_roles = ["Compare the pump-normalized result with an external standard spectrum", "Use a narrow intrinsic feature to test resolution", "Report averaging and the temporal window"]
+source_anchors = ["Fig. 2a-d, PDF p.11", "PDF p.9, Results/System characteristics, paragraph beginning \"FT-OPT was first performed on...\""]
+
+[[paper_evidence_designs]]
+id = "E5"
+target_claims = ["S2.3"]
+evidence_type = "concentration series, linear calibration, repeated measurements, baseline-noise estimate, and 3-sigma detection-limit calculation"
+control_roles = ["Dilute the analyte in a chemically related matrix", "Estimate noise in a nonabsorbing spectral region", "Report zero-concentration background", "Use replicate measurements for uncertainty"]
+source_anchors = ["Fig. 2e, PDF p.11", "PDF p.9, Results/System characteristics, paragraph beginning \"To evaluate the sensitivity, 1,7-octadiene...\""]
+
+[[paper_evidence_designs]]
+id = "E6"
+target_claims = ["S2.4"]
+evidence_type = "knife-edge lateral PSF reconstruction and axial volumetric edge measurement"
+control_roles = ["Use a chemically contrasting interface with similar refractive indices", "Fit the edge-spread function to recover the PSF", "Compare measured lateral resolution with the pump-only diffraction limit"]
+source_anchors = ["Fig. 2g-j, PDF p.11", "PDF p.10, Results/System characteristics, paragraph beginning \"Capability of enhanced spatial resolution...\""]
+
+[[paper_evidence_designs]]
+id = "E7"
+target_claims = ["S3.1"]
+evidence_type = "matched PCA classification across restricted low-wavenumber, restricted high-wavenumber, and full-band spectra"
+control_roles = ["Acquire equal replicate counts for each molecule", "Use the same classifier across spectral windows", "Compare windows representing common tunable-source coverage"]
+source_anchors = ["Fig. 3a-d, PDF p.13", "PDF p.12, Results/FT-OPT for molecular identification and unmixing, paragraph beginning \"For each substance, 20 non-averaged...\""]
+
+[[paper_evidence_designs]]
+id = "E8"
+target_claims = ["S3.2"]
+evidence_type = "known-mixture LASSO unmixing across spectral windows and synthetically degraded spectral resolutions"
+control_roles = ["Use predefined mixture fractions", "Fit all candidate components rather than only present species", "Hold the unmixing algorithm fixed while varying range and resolution"]
+source_anchors = ["Fig. 3e-h, PDF p.13", "PDF p.12-13, Results/FT-OPT for molecular identification and unmixing, paragraph beginning \"We further evaluated the spectral...\""]
+
+[[paper_evidence_designs]]
+id = "E9"
+target_claims = ["S4.1"]
+evidence_type = "flow-velocity perturbation series with matched filtering of water and cyclooctane photothermal transients"
+control_roles = ["Measure both phases over the same velocity range", "Normalize the transient scale consistently", "Separate no-delay thermal-response characterization from spectral scanning"]
+source_anchors = ["Fig. 4d-f, PDF p.15", "PDF p.14, Results/Microfluidic dynamic spectral monitoring of FT-OPT, paragraph beginning \"Intuitively, the flow velocity affects...\""]
+
+[[paper_evidence_designs]]
+id = "E10"
+target_claims = ["M4", "S4.2"]
+evidence_type = "alternating-water/cyclooctane microfluidic time series with segmented interferograms and per-segment FFT spectra"
+control_roles = ["Alternate chemically distinct liquids through the same focal volume", "Acquire without averaging", "Plot repeated spectra on common axes over time"]
+source_anchors = ["Fig. 4a-c and 4g, PDF p.15", "PDF p.14-15, Results/Microfluidic dynamic spectral monitoring of FT-OPT, paragraph beginning \"The spectral refresh period was...\""]
+
+[[paper_evidence_designs]]
+id = "E11"
+target_claims = ["S5.1"]
+evidence_type = "hyperspectral imaging of a two-component liquid interface at component peaks and a silent wavenumber"
+control_roles = ["Use a silent-frequency image as a contrast control", "Extract spectra from both pure regions and the transition region", "Require both component bands at the interface"]
+source_anchors = ["Fig. 5a, PDF p.16", "PDF p.17, Results/Label-free hyperspectral and volumetric imaging of FT-OPT, paragraph beginning \"To validate the chemical selectivity...\""]
+
+[[paper_evidence_designs]]
+id = "E12"
+target_claims = ["M5", "S5.2"]
+evidence_type = "thin-tissue hyperspectral imaging plus thick-tissue volumetric and 4D imaging in PBS"
+control_roles = ["Compare photothermal images with simultaneously acquired probe-transmission images", "Use thin and thick specimens to distinguish morphology from depth sectioning", "Extract spectra from water-, lipid-, and transition-dominated regions"]
+source_anchors = ["Fig. 5b-g, PDF p.16", "PDF p.17, Results/Label-free hyperspectral and volumetric imaging of FT-OPT, paragraph beginning \"We next extended the imaging...\"", "Supplementary Figs. S5-S7, PDF p.38-40"]
+
+[[paper_evidence_designs]]
+id = "E13"
+target_claims = ["S5.3"]
+evidence_type = "two-component non-negative matrix factorization of 4D tissue data cubes"
+control_roles = ["Predeclare two interpretable components", "Inspect recovered component spectra", "Map relative component concentrations back into 3D space"]
+source_anchors = ["Fig. 5h-j, PDF p.16", "PDF p.17-18, Results/Label-free hyperspectral and volumetric imaging of FT-OPT, paragraph beginning \"To further demonstrate the utility...\""]

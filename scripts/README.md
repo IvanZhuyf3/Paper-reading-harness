@@ -24,6 +24,16 @@ The validator checks TOML parseability, graph references, anchor presence/form, 
 
 ## Session-state validation
 
+Create a model-pinned TRAINING session before its first prompt:
+
+```bat
+python scripts\create_training_session.py papers\<paper_slug>\model\paper_model.pending.toml papers\<paper_slug>\sessions\<session>.state.toml --session-id <session> --level foundation --seed <positive-integer>
+```
+
+The initializer selects the first dependency-eligible KNOWLEDGE node, freezes
+paper evidence designs without result details, writes the canonical TOML, and
+creates the initial deterministic Markdown projection.
+
 ```bat
 scripts\validate_session_state.bat papers\<paper_slug>\sessions\<session>.state.toml --report papers\<paper_slug>\sessions\<session>.state.audit.md
 ```
