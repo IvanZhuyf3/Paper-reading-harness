@@ -40,7 +40,7 @@ papers/<paper_slug>/model/paper_model.audit.md
 
 The originating session may run from that validated pending model. A later session must not automatically reuse it until human approval.
 
-Before each prompt, load the pinned model and current session state from disk. After each human response, persist the response, updated human structure, asked-node history, and resume cursor before producing the next prompt.
+At session start or recovery, load the pinned model and current session state from disk. During an uninterrupted interactive session, keep the active model and state in memory; do not re-read the full artifacts before every prompt. Disk remains the recovery authority after compaction, interruption, or restart.
 
 Create a new TRAINING session with `scripts/create_training_session.py`; it pins model identity, freezes result-free paper evidence designs, selects the first eligible KNOWLEDGE node, and writes the initial deterministic Markdown projection.
 
@@ -56,6 +56,47 @@ The TOML state is authoritative for resumption; the Markdown log preserves the i
 Events are the sole canonical interaction source. Every event records its prompt text and the selection-policy version used for that selection. Render the Markdown event timeline deterministically from the TOML with `scripts/render_session_markdown.py`; use its `--check` mode to detect drift. Keep structural narrative in the Markdown, but do not maintain a second hand-edited event timeline.
 
 After session compaction or interruption, resume from the persisted model and cursor. Do not reconstruct prior hidden state from conversational memory.
+
+## Latency-critical interactive execution
+
+TRAINING is a live dialogue. Routine turns must not block on narrative logging,
+Markdown rendering, full validation reports, audit generation, or Git commits.
+The foreground agent is responsible for scientific interaction; persistence is a
+separate single-writer responsibility.
+
+When the execution environment provides subagents or background workers, the
+foreground agent must start one persistent, fast scribe before the first
+interactive runner question. Keep the same scribe for the session rather than
+spawning a new worker on every turn.
+
+For each ordinary human response, the foreground hot path is:
+
+1. interpret the response and update the in-memory human structure;
+2. select the next prompt under the stage and disclosure rules;
+3. dispatch the prior prompt, verbatim human response, structural delta, and next
+   pending prompt/cursor to the scribe in sequence order;
+4. return the next question without waiting for routine persistence work.
+
+The scribe asynchronously:
+
+- updates the canonical TOML event/state record as the sole writer;
+- regenerates the deterministic Markdown projection from TOML;
+- runs the cheap canonical validation;
+- reports an acknowledgement or validation failure to the foreground agent.
+
+The scribe must preserve the human response verbatim, must not choose the next
+scientific question, and must not invent scientific content. Messages to the
+scribe are ordered; later turns must not overtake earlier writes.
+
+Wait for the scribe to flush and acknowledge at stage boundaries, model or policy
+changes, explicit checkpoints, session termination, and before audit reports or
+Git commits. Also wait when the scribe reports drift or failure. Full immutable
+audits and commits remain boundary operations, not ordinary-turn operations.
+
+If background execution is unavailable, use a bounded synchronous fallback:
+update the canonical event/state record, regenerate/check the deterministic
+Markdown projection, and avoid full audit reports, commits, repeated model loads,
+or hand-maintained duplicate timelines on the ordinary-turn critical path.
 
 ## Rule-governed question selection
 
@@ -210,6 +251,6 @@ Skip generative training. Present the source-anchored paper architecture directl
 
 ## Persistence
 
-The runner session state is required and must be updated after every turn. A newly compiled paper model must remain clearly unapproved until human review. Only approved records may enter `curriculum/` and the reusable index.
+The runner session state is required and must be durably updated after every turn, normally by the asynchronous single-writer scribe. A newly compiled paper model must remain clearly unapproved until human review. Only approved records may enter `curriculum/` and the reusable index.
 
 Stage dispositions are explicit: `completed`, `skipped`, or `not_applicable` (with `in_progress` allowed for an active stage). A skipped or not-applicable stage must not be represented as completed. Ordinary within-stage turns use a cheap canonical validation and deterministic Markdown render; immutable audit reports and commits are reserved for stage boundaries, failures, policy changes, or explicit checkpoints.

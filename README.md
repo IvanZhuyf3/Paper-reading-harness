@@ -104,6 +104,14 @@ Question selection also applies a transferability/reusability filter: an open hu
 
 Persistence is deliberately tiered: update canonical TOML and regenerate/check Markdown after each turn; create immutable audit reports and Git commits at stage boundaries, failures, policy changes, or explicit checkpoints. Ordinary turns within one stage may be batched.
 
+Interactive TRAINING uses a latency-sensitive foreground/background split when
+the agent environment supports it. The foreground agent keeps the active state in
+memory and handles only the scientific interaction and next-question selection. A
+persistent single-writer scribe records events, regenerates Markdown, and runs the
+cheap validation asynchronously. Stage boundaries, failures, termination, audits,
+and commits are flush barriers; ordinary questions do not wait for documentation
+work.
+
 ## Agent boundary
 
 The agent may actively verify prerequisite facts and inject concise knowledge pretraining. During IDEA, CLAIMS, EVIDENCE, and DELTA, its role is structural:
