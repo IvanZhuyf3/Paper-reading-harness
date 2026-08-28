@@ -12,10 +12,10 @@
 **Selection-policy version:** 1.2
 **Selection seed:** 2026082801
 **Human had not read paper at entry:** YES
-**Current state:** CLAIMS
-**Resume cursor:** `CLAIMS.CLAIMS_ADD_T0.await_response`
-**Pending prompt:** `CLAIMS_ADD_T0`
-**Stage dispositions:** knowledge=completed; idea=skipped; claims=in_progress; evidence=in_progress; independent_reading=in_progress; delta=in_progress
+**Current state:** EVIDENCE
+**Resume cursor:** `EVIDENCE.EVIDENCE_M1_FOURIER_RECOVERY_VALIDATION.await_response`
+**Pending prompt:** `EVIDENCE_M1_FOURIER_RECOVERY_VALIDATION`
+**Stage dispositions:** knowledge=completed; idea=skipped; claims=completed; evidence=in_progress; independent_reading=in_progress; delta=in_progress
 
 ## Disclosure note
 
@@ -146,7 +146,81 @@ high-resolution, aqueous-compatible spectroscopy and microscopy.
 The human claim tree is re-anchored to paper node `T0`. No paper-side major claim
 or subclaim has been revealed.
 
-> 以论文的 TITLE CLAIM（T0）为根，你认为它首先需要哪一条 major claim 才能成立？只给一条。
+Before proposing the first major claim, the human requested a minimal explanation
+of Fourier-transform spectroscopy and FT-OPT.
+
+### Human claim tree
+
+```text
+T0 - FT-OPT overall title claim
+├── H-C1 - 同时激发得到的混合频谱信号，可以通过 Fourier transform
+    │      解回原来的光谱。
+    ├── H-C1.1 - 可以收集到混合频谱信号。
+    └── H-C1.2 - 被收集的混合信号可以通过 Fourier transform
+                 解回原来的光谱。
+└── H-C2 - 相较传统逐波长 OPT，FT-OPT 的测量用时更短。
+```
+
+The human wrote `FDOPT`; the record normalizes this to `FT-OPT` from context.
+
+Deferred evidence candidate for the later EVIDENCE stage:
+
+```text
+H-E-C2-DURATION -> H-C2: 测量 FT-OPT 的测量时长。
+```
+
+The human explicitly ended the CLAIMS rollout and requested the paper answer. The
+human tree is closed as supplied; no missing nodes were added to it.
+
+### Descriptive structural diff
+
+- Shared: the human `H-C1` corresponds to the paper's principle branch `M1`.
+- Related but not identical: human `H-C2` asserts shorter total measurement time;
+  paper `S1.2` instead separates bandwidth, delay-scan speed, and delay-window
+  resolution, while `M4` claims demonstrated sub-second dynamic spectroscopy.
+- Paper-only branches: system performance (`M2`), molecular discrimination and
+  unmixing (`M3`), dynamic monitoring (`M4`), and aqueous hyperspectral/volumetric
+  imaging (`M5`). This is a structural difference, not a score.
+
+### Source-anchored paper claim tree
+
+```text
+T0 - FT-OPT retrieves broadband photothermal spectra without sequential tuning
+├── M1 - Broadband response is encoded in delay space and recovered by FT
+│   ├── S1.1 - Delay scan -> thermal-lens interferogram -> spectrum
+│   ├── S1.2 - Bandwidth, scan speed, and delay-window resolution are separated
+│   └── S1.3 - The optical/readout/calibration chain implements the encoding
+├── M2 - The implemented microscope establishes core system performance
+│   ├── S2.1 - Broad spectral coverage and spectral fidelity
+│   ├── S2.2 - Spectral resolution
+│   ├── S2.3 - Detection sensitivity / LOD
+│   └── S2.4 - Lateral and axial spatial resolution
+├── M3 - Broadband high-resolution spectra support identification and unmixing
+│   ├── S3.1 - Molecular classification
+│   └── S3.2 - Quantitative mixture unmixing
+├── M4 - Fast acquisition supports dynamic spectral monitoring
+│   ├── S4.1 - Flow-dependent thermal-response boundary
+│   └── S4.2 - Repeated dynamic spectra and stability
+└── M5 - The platform supports aqueous hyperspectral and volumetric imaging
+    ├── S5.1 - Chemical-selective interface imaging
+    ├── S5.2 - Thick-tissue volumetric / 4D imaging
+    └── S5.3 - Component decomposition of hyperspectral volumes
+```
+
+Source anchors by branch:
+
+- `M1/S1.x`: PDF pp.5-8, Results, paragraphs beginning "Molecular anharmonicity causes deviations from...", "The second term in Eq....", and "The FT-OPT experimental setup is..."; Fig. 1.
+- `M2/S2.x`: PDF pp.9-11, Results, paragraphs beginning "FT-OPT was first performed on...", "To evaluate the sensitivity, 1,7-octadiene...", and "Capability of enhanced spatial resolution..."; Fig. 2.
+- `M3/S3.x`: PDF pp.12-13, Results, paragraphs beginning "In addition to weak signal...", "For each substance, 20 non-averaged...", and "We further evaluated the spectral..."; Fig. 3.
+- `M4/S4.x`: PDF pp.14-15, Results, paragraphs beginning "Although microfluidic photothermal detection for...", "Intuitively, the flow velocity affects...", and "The spectral refresh period was..."; Fig. 4.
+- `M5/S5.x`: PDF pp.15-18, Results, paragraphs beginning "To the best of our knowledge,...", "To validate the chemical selectivity...", "We next extended the imaging...", and "To further demonstrate the utility..."; Fig. 5.
+
+## 4. EVIDENCE
+
+The runner is re-anchored to the revealed paper claim tree. The first selected
+node is `M1`, chosen for its transferable spectrum-recovery validation relation.
+
+> 针对论文 M1：如果要验证 FT 后恢复出的确是原来的光谱，你会选择什么独立 reference spectrum，并怎样比较二者？
 
 <!-- BEGIN GENERATED EVENT TIMELINE -->
 ## Machine-generated event timeline
@@ -384,5 +458,96 @@ or subclaim has been revealed.
 **Human response:**
 
 > 好
+
+### Event 19 — `CLAIMS_ADD_T0`
+
+**Stage:** `claims`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 以论文的 TITLE CLAIM（T0）为根，你认为它首先需要哪一条 major claim 才能成立？只给一条。
+
+**Human response:**
+
+> 先解释FT，再解释FTOPT。
+
+### Event 20 — `CLAIMS_ADD_T0_REASK`
+
+**Stage:** `claims`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 现在回到 T0：你认为 FT-OPT 的总体主张首先需要哪一条 major claim 才能成立？只给一条。
+
+**Human response:**
+
+> 需要证明同时激发的谱，可以通过Fourier transform解回原来的光谱。
+
+### Event 21 — `CLAIMS_ADD_H-C1_SUBCLAIM`
+
+**Stage:** `claims`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 要让 H-C1 成立，首先必须成立的一个 subclaim 是什么？只给一条。
+
+**Human response:**
+
+> 可以收集到混合频谱信号
+
+### Event 22 — `CLAIMS_ADD_H-C1_SIBLING`
+
+**Stage:** `claims`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 除了能够收集混合信号，要让 H-C1 成立还需要哪一条并列的 subclaim？只给一条。
+
+**Human response:**
+
+> 可以通过 Fourier transform 解回原来的光谱
+
+### Event 23 — `CLAIMS_ADD_T0_MAJOR_SIBLING`
+
+**Stage:** `claims`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 除了 H-C1 这条原理主张，T0 还需要哪一条并列的 major claim 才能成立？只给一条。
+
+**Human response:**
+
+> FDOPT比原来传统的方法用时更短。
+
+### Event 24 — `CLAIMS_ADD_H-C2_SUBCLAIM`
+
+**Stage:** `claims`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 要让 H-C2 的“用时更短”成立，首先必须成立的一个 subclaim 是什么？只给一条。
+
+**Human response:**
+
+> 测量ft opt测量时长
+
+### Event 25 — `CLAIMS_CLARIFY_H-C2_SUBCLAIM`
+
+**Stage:** `claims`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> “测量 FT-OPT 的时长”会产生一个数值；这个数值要支持的 subclaim 是什么？请写成一句可判断真假的陈述。
+
+**Human response:**
+
+> 不行我弃疗了，太菜了。你直接说答案吧
 
 <!-- END GENERATED EVENT TIMELINE -->

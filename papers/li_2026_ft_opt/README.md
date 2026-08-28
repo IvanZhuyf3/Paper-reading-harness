@@ -43,4 +43,4 @@ published version.
 - Active session: `sessions/2026-08-28_foundation_training.state.toml`.
 - Runner/level: TRAINING / FOUNDATION (changed FOUNDATION -> CORE -> FOUNDATION).
 - Session initialization audit: 38/38 checks passed.
-- Current cursor: `CLAIMS.CLAIMS_ADD_T0.await_response`.
+- Current cursor: `EVIDENCE.EVIDENCE_M1_FOURIER_RECOVERY_VALIDATION.await_response`.

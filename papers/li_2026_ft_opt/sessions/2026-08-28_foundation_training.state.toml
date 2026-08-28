@@ -8,22 +8,24 @@ paper_model_sha256 = "AF997481BA7FC92462E3750AC5FD14020091A25BDC02665968EF68A0F8
 main_source_sha256 = "702F012A0C7FBA10ECDB9DC03619D3AF9CD8DFF05B288F52A31911C6142A6F6D"
 selection_policy_version = "1.2"
 selection_seed = 2026082801
-current_stage = "claims"
-resume_cursor = "CLAIMS.CLAIMS_ADD_T0.await_response"
-asked_ids = ["K1", "K1_CHECK", "K1_NIR", "K2_STEP1", "K2_STEP1_REASK", "K2_STEP2", "K2_STEP3", "K2_STEP4", "K3_STEP1", "K3_STEP2", "IDEA_FIXED", "K3_STEP2_REASK", "K3_STEP2_TIME", "K3_STEP3_LINEWIDTH", "IDEA_FIXED_RETRY", "IDEA_CLARIFY_H-I1_COVERAGE", "IDEA_CLARIFY_H-I1_INTERVENTION", "IDEA_LEVEL_DECISION", "CLAIMS_ADD_T0"]
+current_stage = "evidence"
+resume_cursor = "EVIDENCE.EVIDENCE_M1_FOURIER_RECOVERY_VALIDATION.await_response"
+asked_ids = ["K1", "K1_CHECK", "K1_NIR", "K2_STEP1", "K2_STEP1_REASK", "K2_STEP2", "K2_STEP3", "K2_STEP4", "K3_STEP1", "K3_STEP2", "IDEA_FIXED", "K3_STEP2_REASK", "K3_STEP2_TIME", "K3_STEP3_LINEWIDTH", "IDEA_FIXED_RETRY", "IDEA_CLARIFY_H-I1_COVERAGE", "IDEA_CLARIFY_H-I1_INTERVENTION", "IDEA_LEVEL_DECISION", "CLAIMS_ADD_T0", "CLAIMS_ADD_T0_REASK", "CLAIMS_ADD_H-C1_SUBCLAIM", "CLAIMS_ADD_H-C1_SIBLING", "CLAIMS_ADD_T0_MAJOR_SIBLING", "CLAIMS_ADD_H-C2_SUBCLAIM", "CLAIMS_CLARIFY_H-C2_SUBCLAIM", "EVIDENCE_M1_FOURIER_RECOVERY_VALIDATION"]
 verified_knowledge_ids = ["K1", "K2", "K3"]
 rollout_complete = false
-completed_stages = ["knowledge"]
-revealed_paper_claim_ids = ["I1", "I2", "I3", "I4", "I5", "G1", "T0"]
+completed_stages = ["knowledge", "claims"]
+revealed_paper_claim_ids = ["I1", "I2", "I3", "I4", "I5", "G1", "T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "S2.4", "M3", "S3.1", "S3.2", "M4", "S4.1", "S4.2", "M5", "S5.1", "S5.2", "S5.3"]
 revealed_paper_evidence_ids = []
-pending_prompt_id = "CLAIMS_ADD_T0"
-pending_prompt_text = "以论文的 TITLE CLAIM（T0）为根，你认为它首先需要哪一条 major claim 才能成立？只给一条。"
-stage_dispositions = { knowledge = "completed", idea = "skipped", claims = "in_progress", evidence = "in_progress", independent_reading = "in_progress", delta = "in_progress" }
+pending_prompt_id = "EVIDENCE_M1_FOURIER_RECOVERY_VALIDATION"
+pending_prompt_text = "针对论文 M1：如果要验证 FT 后恢复出的确是原来的光谱，你会选择什么独立 reference spectrum，并怎样比较二者？"
+stage_dispositions = { knowledge = "completed", idea = "skipped", claims = "completed", evidence = "in_progress", independent_reading = "in_progress", delta = "in_progress" }
 human_had_not_read_at_entry = true
 level_change_note = "Human changed FOUNDATION to CORE during K3 and explicitly skipped the remainder of KNOWLEDGE before entering IDEA."
 stage_return_note = "Human returned from IDEA to unfinished K3 before producing an IDEA proposal; CORE level retained."
 knowledge_completion_note = "K1, K2, and K3 were verified after the return from IDEA; KNOWLEDGE is completed."
 foundation_return_note = "Human explicitly returned to FOUNDATION; IDEA was skipped after no checkable proposal formed; T0 was revealed and CLAIMS started."
+claims_clarification_note = "Before proposing the first major claim, the human requested a minimal explanation of Fourier-transform spectroscopy and FT-OPT."
+claims_completion_note = "Human explicitly ended the CLAIMS rollout and requested the paper answer; the human branch was closed without filling missing paper nodes, and the source-anchored paper tree was revealed descriptively."
 
 [[human_nodes]]
 id = "H-I1"
@@ -31,6 +33,41 @@ stage = "idea"
 parents = []
 status = "withdrawn_on_foundation_switch"
 content = "目标是增加可测带宽；具体干预动作尚未给出。"
+
+[[human_nodes]]
+id = "H-C1"
+stage = "claims"
+parents = ["T0"]
+status = "closed_at_claims_rollout_end"
+content = "同时激发得到的混合频谱信号，可以通过 Fourier transform 解回原来的光谱。"
+
+[[human_nodes]]
+id = "H-C1.1"
+stage = "claims"
+parents = ["H-C1"]
+status = "closed_at_claims_rollout_end"
+content = "可以收集到混合频谱信号。"
+
+[[human_nodes]]
+id = "H-C1.2"
+stage = "claims"
+parents = ["H-C1"]
+status = "closed_at_claims_rollout_end"
+content = "被收集的混合信号可以通过 Fourier transform 解回原来的光谱。"
+
+[[human_nodes]]
+id = "H-C2"
+stage = "claims"
+parents = ["T0"]
+status = "closed_at_claims_rollout_end"
+content = "相较传统逐波长 OPT，FT-OPT 的测量用时更短。"
+
+[[human_evidence_candidates]]
+id = "H-E-C2-DURATION"
+stage = "claims"
+target_claims = ["H-C2"]
+status = "deferred"
+content = "测量 FT-OPT 的测量时长。"
 
 [[paper_evidence_designs]]
 id = "E1"
@@ -266,3 +303,59 @@ prompt_text = "是否把本轮退回 FOUNDATION：跳过 human IDEA rollout，�
 stage = "idea"
 selection_policy_version = "1.2"
 human_response = "好"
+
+[[events]]
+sequence = 19
+prompt_id = "CLAIMS_ADD_T0"
+prompt_text = "以论文的 TITLE CLAIM（T0）为根，你认为它首先需要哪一条 major claim 才能成立？只给一条。"
+stage = "claims"
+selection_policy_version = "1.2"
+human_response = "先解释FT，再解释FTOPT。"
+
+[[events]]
+sequence = 20
+prompt_id = "CLAIMS_ADD_T0_REASK"
+prompt_text = "现在回到 T0：你认为 FT-OPT 的总体主张首先需要哪一条 major claim 才能成立？只给一条。"
+stage = "claims"
+selection_policy_version = "1.2"
+human_response = "需要证明同时激发的谱，可以通过Fourier transform解回原来的光谱。"
+
+[[events]]
+sequence = 21
+prompt_id = "CLAIMS_ADD_H-C1_SUBCLAIM"
+prompt_text = "要让 H-C1 成立，首先必须成立的一个 subclaim 是什么？只给一条。"
+stage = "claims"
+selection_policy_version = "1.2"
+human_response = "可以收集到混合频谱信号"
+
+[[events]]
+sequence = 22
+prompt_id = "CLAIMS_ADD_H-C1_SIBLING"
+prompt_text = "除了能够收集混合信号，要让 H-C1 成立还需要哪一条并列的 subclaim？只给一条。"
+stage = "claims"
+selection_policy_version = "1.2"
+human_response = "可以通过 Fourier transform 解回原来的光谱"
+
+[[events]]
+sequence = 23
+prompt_id = "CLAIMS_ADD_T0_MAJOR_SIBLING"
+prompt_text = "除了 H-C1 这条原理主张，T0 还需要哪一条并列的 major claim 才能成立？只给一条。"
+stage = "claims"
+selection_policy_version = "1.2"
+human_response = "FDOPT比原来传统的方法用时更短。"
+
+[[events]]
+sequence = 24
+prompt_id = "CLAIMS_ADD_H-C2_SUBCLAIM"
+prompt_text = "要让 H-C2 的“用时更短”成立，首先必须成立的一个 subclaim 是什么？只给一条。"
+stage = "claims"
+selection_policy_version = "1.2"
+human_response = "测量ft opt测量时长"
+
+[[events]]
+sequence = 25
+prompt_id = "CLAIMS_CLARIFY_H-C2_SUBCLAIM"
+prompt_text = "“测量 FT-OPT 的时长”会产生一个数值；这个数值要支持的 subclaim 是什么？请写成一句可判断真假的陈述。"
+stage = "claims"
+selection_policy_version = "1.2"
+human_response = "不行我弃疗了，太菜了。你直接说答案吧"
