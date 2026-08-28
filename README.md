@@ -4,6 +4,10 @@ A lightweight agent-session system for learning scientific papers before the rea
 
 The system turns a paper into a structured environment for reasoning. It is not primarily a summarizer, a figure walkthrough, or a post-reading quiz.
 
+## Platform support
+
+The harness currently supports Windows only. Support for additional platforms is planned.
+
 ## Shared infrastructure
 
 All applications use the same source-anchored paper model:
