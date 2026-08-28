@@ -12,10 +12,10 @@
 **Selection-policy version:** 1.2
 **Selection seed:** 2026082801
 **Human had not read paper at entry:** YES
-**Current state:** EVIDENCE
-**Resume cursor:** `EVIDENCE.EVIDENCE_M1_FOURIER_RECOVERY_VALIDATION.await_response`
-**Pending prompt:** `EVIDENCE_M1_FOURIER_RECOVERY_VALIDATION`
-**Stage dispositions:** knowledge=completed; idea=skipped; claims=completed; evidence=in_progress; independent_reading=in_progress; delta=in_progress
+**Current state:** COMPLETE
+**Resume cursor:** `COMPLETE.terminal`
+**Pending prompt:** none
+**Stage dispositions:** knowledge=completed; idea=skipped; claims=completed; evidence=skipped; independent_reading=not_applicable; delta=skipped
 
 ## Disclosure note
 
@@ -220,7 +220,8 @@ Source anchors by branch:
 The runner is re-anchored to the revealed paper claim tree. The first selected
 node is `M1`, chosen for its transferable spectrum-recovery validation relation.
 
-> 针对论文 M1：如果要验证 FT 后恢复出的确是原来的光谱，你会选择什么独立 reference spectrum，并怎样比较二者？
+The human explicitly ended the test at this first EVIDENCE prompt. EVIDENCE and
+DELTA are `skipped`; independent reading is `not_applicable`.
 
 <!-- BEGIN GENERATED EVENT TIMELINE -->
 ## Machine-generated event timeline
@@ -549,5 +550,18 @@ node is `M1`, chosen for its transferable spectrum-recovery validation relation.
 **Human response:**
 
 > 不行我弃疗了，太菜了。你直接说答案吧
+
+### Event 26 — `EVIDENCE_M1_FOURIER_RECOVERY_VALIDATION`
+
+**Stage:** `evidence`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 针对论文 M1：如果要验证 FT 后恢复出的确是原来的光谱，你会选择什么独立 reference spectrum，并怎样比较二者？
+
+**Human response:**
+
+> 停下来吧。测试结束。现在把这个repo上传到github：https://github.com/IvanZhuyf3/Paper-reading-harness.git
 
 <!-- END GENERATED EVENT TIMELINE -->
