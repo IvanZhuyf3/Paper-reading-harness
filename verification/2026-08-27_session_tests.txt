@@ -1,6 +1,5 @@
-.........
+............
 ----------------------------------------------------------------------
-Ran 9 tests in 0.364s
+Ran 12 tests in 0.473s
 
 OK
-Markdown is not deterministic-render parity: C:\Users\Ivanz\AppData\Local\Temp\tmp2vmz5fdb\session.md

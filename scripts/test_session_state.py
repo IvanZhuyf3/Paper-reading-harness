@@ -5,6 +5,8 @@ import shutil
 import tempfile
 import tomllib
 import unittest
+from contextlib import redirect_stdout
+from io import StringIO
 from pathlib import Path
 
 from scripts.render_session_markdown import render, render_text
@@ -50,7 +52,7 @@ class SessionStateTests(unittest.TestCase):
         rendered = render_text(state, source)
         numbers = [int(match.group(1)) for match in re.finditer(r"^### Event (\d+) —", rendered, re.MULTILINE)]
         self.assertEqual(numbers, list(range(1, 29)))
-        self.assertNotIn("^Event 24", rendered)
+        self.assertNotRegex(rendered, r"(?m)^Event \d+ —")
 
     def test_renderer_check_rejects_stale_projection(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -59,11 +61,22 @@ class SessionStateTests(unittest.TestCase):
             state_path.write_text(self.state_text, encoding="utf-8")
             markdown_path = root / "session.md"
             markdown_path.write_text("# stale\n", encoding="utf-8")
-            self.assertFalse(render(state_path, markdown_path, check=True))
+            with redirect_stdout(StringIO()):
+                self.assertFalse(render(state_path, markdown_path, check=True))
 
     def test_bad_evidence_id_is_rejected(self):
         checks = self.checks_for(lambda text: text.replace('revealed_paper_evidence_ids = ["E1"', 'revealed_paper_evidence_ids = ["BAD", "E1"'))
         self.assertIn("Revealed paper-evidence IDs resolve", self.failed_names(checks))
+
+    def test_bad_human_evidence_parent_is_rejected(self):
+        checks = self.checks_for(
+            lambda text: text.replace(
+                'parent_evidence_designs = ["H-E-M3-APPLICATION-PERFORMANCE-LINK"]',
+                'parent_evidence_designs = ["BAD-HUMAN-EVIDENCE"]',
+                1,
+            )
+        )
+        self.assertIn("Human targets resolve", self.failed_names(checks))
 
     def test_paper_evidence_drift_is_rejected(self):
         checks = self.checks_for(lambda text: text.replace('id = "E1"\ntarget_claims = ["S1.1"]\nevidence_type = "energy-deposition', 'id = "E1"\ntarget_claims = ["S1.1"]\nevidence_type = "DRIFT', 1))
@@ -89,6 +102,25 @@ class SessionStateTests(unittest.TestCase):
     def test_skipped_delta_terminal_state_passes(self):
         checks = self.checks_for()
         self.assertFalse(self.failed_names(checks), sorted(self.failed_names(checks)))
+
+    def test_complete_state_requires_every_stage_disposition(self):
+        checks = self.checks_for(
+            lambda text: text.replace(' knowledge = "completed",', "", 1)
+        )
+        self.assertIn("Stage dispositions are legal", self.failed_names(checks))
+        self.assertIn("Stage disposition order is coherent", self.failed_names(checks))
+
+    def test_complete_state_rejects_in_progress_stage(self):
+        checks = self.checks_for(
+            lambda text: text.replace('knowledge = "completed"', 'knowledge = "in_progress"', 1)
+        )
+        self.assertIn("Stage disposition order is coherent", self.failed_names(checks))
+
+    def test_terminal_flag_must_match_complete_stage(self):
+        checks = self.checks_for(
+            lambda text: text.replace("rollout_complete = true", "rollout_complete = false", 1)
+        )
+        self.assertIn("Rollout terminal flag matches current stage", self.failed_names(checks))
 
 
 if __name__ == "__main__":

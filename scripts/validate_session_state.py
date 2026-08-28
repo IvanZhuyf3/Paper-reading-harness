@@ -24,6 +24,7 @@ class Check:
 STAGE_ORDER = ["knowledge", "idea", "claims", "evidence", "independent_reading", "delta"]
 ALLOWED_STAGES = set(STAGE_ORDER) | {"complete"}
 ALLOWED_DISPOSITIONS = {"completed", "skipped", "not_applicable", "in_progress"}
+TERMINAL_DISPOSITIONS = {"completed", "skipped", "not_applicable"}
 AMBIGUOUS_STATUSES = {"open", "active", "human_designed"}
 
 
@@ -186,18 +187,43 @@ def validate_state(state_path: Path, markdown_path: Path | None = None) -> list[
     current_stage = state.get("current_stage")
     checks.append(Check("Current stage is valid", current_stage in ALLOWED_STAGES, str(current_stage)))
     dispositions = state.get("stage_dispositions", {})
-    disposition_ok = isinstance(dispositions, dict) and all(stage in STAGE_ORDER and value in ALLOWED_DISPOSITIONS for stage, value in dispositions.items())
+    disposition_ok = (
+        isinstance(dispositions, dict)
+        and set(dispositions) == set(STAGE_ORDER)
+        and all(value in ALLOWED_DISPOSITIONS for value in dispositions.values())
+    )
     checks.append(Check("Stage dispositions are legal", disposition_ok, str(dispositions)))
     completed_stages = state.get("completed_stages", [])
     expected_completed = [stage for stage in STAGE_ORDER if dispositions.get(stage) == "completed"]
     checks.append(Check("Completed stages agree with dispositions", completed_stages == expected_completed, f"completed={completed_stages}, expected={expected_completed}"))
     if current_stage == "complete":
-        order_ok = dispositions.get("independent_reading") in {"completed", "not_applicable"} and dispositions.get("delta") in {"skipped", "not_applicable"}
+        order_ok = disposition_ok and all(
+            dispositions.get(stage) in TERMINAL_DISPOSITIONS for stage in STAGE_ORDER
+        )
     elif current_stage in STAGE_ORDER:
-        order_ok = all(dispositions.get(stage) == "completed" for stage in STAGE_ORDER[: STAGE_ORDER.index(current_stage)])
+        current_index = STAGE_ORDER.index(current_stage)
+        order_ok = (
+            disposition_ok
+            and dispositions.get(current_stage) == "in_progress"
+            and all(
+                dispositions.get(stage) in TERMINAL_DISPOSITIONS
+                for stage in STAGE_ORDER[:current_index]
+            )
+            and all(
+                dispositions.get(stage) == "in_progress"
+                for stage in STAGE_ORDER[current_index + 1 :]
+            )
+        )
     else:
         order_ok = False
     checks.append(Check("Stage disposition order is coherent", order_ok, f"current={current_stage}"))
+    checks.append(
+        Check(
+            "Rollout terminal flag matches current stage",
+            bool(state.get("rollout_complete")) == (current_stage == "complete"),
+            f"current={current_stage}, rollout_complete={state.get('rollout_complete')}",
+        )
+    )
     checks.append(Check("Selection seed is persisted", isinstance(state.get("selection_seed"), int) and state.get("selection_seed") > 0, str(state.get("selection_seed"))))
 
     model_claim_ids = {node.get("id") for node in model.get("claim_nodes", [])}
@@ -217,11 +243,21 @@ def validate_state(state_path: Path, markdown_path: Path | None = None) -> list[
         for record in state.get(key, []):
             target_errors.extend(f"{record.get('id')}:{target}" for target in _target_values(record, "target_claims", "parent_claims") if target not in human_ids and target not in model_claim_ids)
     design_ids = {record.get("id") for record in state.get("human_evidence_designs", [])}
-    for record in state.get("human_control_designs", []):
-        target_errors.extend(f"{record.get('id')}:{target}" for target in _target_values(record, "target_evidence_designs", "parent_evidence_designs") if target not in design_ids)
+    for key in ("human_evidence_designs", "human_control_designs"):
+        for record in state.get(key, []):
+            target_errors.extend(
+                f"{record.get('id')}:{target}"
+                for target in _target_values(
+                    record, "target_evidence_designs", "parent_evidence_designs"
+                )
+                if target not in design_ids
+            )
     checks.append(Check("Human targets resolve", not target_errors, f"missing={target_errors}"))
     _paper_evidence_checks(checks, state, model, model_claim_ids)
-    _status_checks(checks, state, completed_stages)
+    finished_stages = [
+        stage for stage in STAGE_ORDER if dispositions.get(stage) in TERMINAL_DISPOSITIONS
+    ]
+    _status_checks(checks, state, finished_stages)
     _event_checks(checks, state, model)
     if current_stage == "complete":
         checks.append(Check("Terminal cursor is explicit", state.get("resume_cursor") == "COMPLETE.terminal", str(state.get("resume_cursor"))))

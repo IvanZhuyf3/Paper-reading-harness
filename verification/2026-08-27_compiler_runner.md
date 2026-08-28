@@ -195,13 +195,15 @@ The harness now compiles and persists an auditable paper model before runner que
 
 ## Current session checkpoint — event 28
 
-- Canonical session-state audit: PASS — 38/38 checks.
+- Canonical session-state audit: PASS — 39/39 checks after independent root review.
 - Event sequence: contiguous through event 28.
 - Current stage: `complete`.
 - Stage dispositions: `independent_reading=not_applicable`, `delta=skipped`.
 - Unique terminal cursor: `COMPLETE.terminal`.
 - Pending prompt: none.
 - Markdown renderer parity and chronology: PASS.
+- Reusable persistence regression tests: PASS — 13/13.
+- Human-evidence parent targets and full terminal disposition maps are validated.
 
 ## Code checks
 

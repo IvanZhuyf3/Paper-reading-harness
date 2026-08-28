@@ -20,7 +20,6 @@ revealed_paper_evidence_ids = ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "
 pending_prompt_id = ""
 pending_prompt_text = ""
 stage_dispositions = { knowledge = "completed", idea = "completed", claims = "completed", evidence = "completed", independent_reading = "not_applicable", delta = "skipped" }
-selection_policy_history = { "1" = "1.1", "9" = "1.1", "10" = "1.2" }
 human_is_paper_author = true
 spoiler_control_test_valid = false
 
@@ -510,7 +509,7 @@ human_response = "First prove that the SRS thermal effect exists and that its ma
 [[events]]
 sequence = 8
 prompt_id = "CLAIMS_EXPAND_H-C1.1"
-prompt_text = "先展开 H-C1.1：你会怎样把“存在性”拆成可检验的子claim？"
+prompt_text = "先展开 H-C1.1：你要把“SRS 热效应存在”写成怎样一条可验证的因果 claim？"
 stage = "claims"
 selection_policy_version = "1.1"
 human_response = "存在性，首先可以用energy diagram说明，final state是excited state，这就不像CARS。然后可以做一些simulation，从已有的数据出发，first principle算出来能产生多少热，能积累多少温度。最后可以做一个thermometer验证，比如做一个微型热电偶，1μm那么大，就测focus温度"

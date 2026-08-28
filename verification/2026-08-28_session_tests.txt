@@ -1,0 +1,27 @@
+Session persistence regression tests — 2026-08-28
+
+Python: 3.12.13
+Result: PASS
+Tests run: 13
+
+Covered failures and invariants:
+- asked/event/pending mismatch
+- unknown revealed paper evidence ID
+- unresolved human evidence parent
+- closed-parent/open-child inconsistency
+- incomplete terminal stage-disposition map
+- in-progress stage inside a terminal session
+- frozen paper-evidence drift
+- missing event policy provenance
+- stale Markdown projection
+- legacy Markdown event reorder
+- paper result-detail leakage
+- skipped DELTA terminal state
+- rollout terminal flag mismatch
+
+Command:
+python -m unittest scripts\test_session_state.py -v
+
+Observed summary:
+Ran 13 tests in 0.516s
+OK

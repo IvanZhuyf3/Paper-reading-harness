@@ -749,7 +749,7 @@ Current pending prompt:
 
 **Prompt:**
 
-> 先展开 H-C1.1：你会怎样把“存在性”拆成可检验的子claim？
+> 先展开 H-C1.1：你要把“SRS 热效应存在”写成怎样一条可验证的因果 claim？
 
 **Human response:**
 
