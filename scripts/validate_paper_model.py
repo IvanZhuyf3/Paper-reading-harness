@@ -16,6 +16,106 @@ class Check:
     detail: str
 
 
+TRANSITION_STAGES = {"idea", "claims", "evidence", "independent_reading", "delta"}
+TRANSITION_PACKET_FIELDS = (
+    "id",
+    "target_stage",
+    "eligible_levels",
+    "reveal_claim_ids",
+    "reveal_evidence_ids",
+    "source_node_ids",
+    "dynamic_slots",
+    "locale",
+    "content",
+    "prompt_id",
+    "prompt_text",
+)
+
+
+def _is_packet_model(model_version: object) -> bool:
+    try:
+        major, minor, *_ = (int(part) for part in str(model_version).split("."))
+    except (TypeError, ValueError):
+        return False
+    return (major, minor) >= (0, 2)
+
+
+def validate_transition_packets(
+    checks: list[Check],
+    model: dict,
+    node_ids: set[str],
+    claim_ids: set[str],
+    evidence_ids: set[str],
+) -> None:
+    packets = model.get("transition_packets", [])
+    requires_packets = _is_packet_model(model.get("model_version"))
+    if not packets:
+        checks.append(
+            Check(
+                "Transition packets are present",
+                not requires_packets,
+                "legacy model: not required" if not requires_packets else "missing packets for model >= 0.2",
+            )
+        )
+        if requires_packets:
+            checks.append(Check("Transition-packet audit flag is finalized", False, "compiler.transition_packet_audit is not pass"))
+        return
+
+    packet_ids = [packet.get("id", "") for packet in packets]
+    duplicate_ids = sorted({packet_id for packet_id in packet_ids if not packet_id or packet_ids.count(packet_id) > 1})
+    checks.append(Check("Transition-packet IDs are present and unique", not duplicate_ids, f"duplicates={duplicate_ids}"))
+
+    stages = [packet.get("target_stage", "") for packet in packets]
+    invalid_stages = sorted(set(stages) - TRANSITION_STAGES)
+    missing_stages = sorted(TRANSITION_STAGES - set(stages))
+    duplicate_stages = sorted({stage for stage in stages if stages.count(stage) > 1})
+    checks.append(Check("Transition-packet stages are complete and unique", not invalid_stages and not missing_stages and not duplicate_stages, f"invalid={invalid_stages}, missing={missing_stages}, duplicates={duplicate_stages}"))
+
+    allowed_levels = {"foundation", "core", "advanced"}
+    invalid_levels = sorted(
+        f"{packet.get('id')}: {level}"
+        for packet in packets
+        for level in packet.get("eligible_levels", [])
+        if level not in allowed_levels
+    )
+    checks.append(Check("Transition-packet levels are valid", not invalid_levels, f"invalid={invalid_levels}"))
+
+    invalid_references: list[str] = []
+    malformed: list[str] = []
+    missing_schema_fields: list[str] = []
+    for packet in packets:
+        packet_id = packet.get("id", "")
+        missing_schema_fields.extend(
+            f"{packet_id}:{field}"
+            for field in TRANSITION_PACKET_FIELDS
+            if field not in packet
+        )
+        if not all(packet.get(field) for field in ("target_stage", "eligible_levels", "content", "prompt_id", "prompt_text")):
+            malformed.append(packet_id)
+        invalid_references.extend(
+            f"{packet_id}:reveal_claim:{item_id}"
+            for item_id in packet.get("reveal_claim_ids", [])
+            if item_id not in claim_ids
+        )
+        invalid_references.extend(
+            f"{packet_id}:reveal_evidence:{item_id}"
+            for item_id in packet.get("reveal_evidence_ids", [])
+            if item_id not in evidence_ids
+        )
+        invalid_references.extend(
+            f"{packet_id}:source:{item_id}"
+            for item_id in packet.get("source_node_ids", [])
+            if item_id not in node_ids
+        )
+    checks.append(Check("Transition-packet content and prompts are present", not malformed, f"missing={malformed}"))
+    checks.append(Check("Transition-packet schema is complete", not missing_schema_fields, f"missing={missing_schema_fields}"))
+    checks.append(Check("Transition-packet references resolve", not invalid_references, f"missing={sorted(invalid_references)}"))
+
+    if requires_packets:
+        compiler = model.get("compiler", {})
+        checks.append(Check("Transition-packet audit flag is finalized", compiler.get("transition_packet_audit") == "pass", str(compiler.get("transition_packet_audit"))))
+
+
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as stream:
@@ -224,6 +324,8 @@ def main() -> int:
             f"missing={unresolved_view_ids}",
         )
     )
+
+    validate_transition_packets(checks, model, all_ids, claim_ids, evidence_ids)
 
     role_by_id = {item["id"]: item.get("role") for item in claims}
     idea_roles = {role_by_id.get(item_id) for item_id in views.get("idea_problem_state", [])}

@@ -1,6 +1,6 @@
 status = "pending"
 human_approved = false
-model_version = "0.1.3"
+model_version = "0.2.0"
 selection_policy_version = "1.2"
 source_sha256 = ""
 paper_slug = ""
@@ -13,6 +13,7 @@ compiled_by = "agent"
 parse_validated = false
 anchor_audit = "pending"
 visibility_audit = "pending"
+transition_packet_audit = "pending"
 
 [[knowledge_nodes]]
 id = "K1"
@@ -48,6 +49,69 @@ knowledge = []
 idea_problem_state = []
 claims_start = ["T0"]
 evidence_start = []
+
+# Prevalidated paper-side views copied into each runtime session at initialization.
+# Human-dependent diffs fill dynamic_slots during the rollout; fixed content is
+# never reconstructed on the interactive stage-transition path.
+[[transition_packets]]
+id = "TP_IDEA_START"
+target_stage = "idea"
+eligible_levels = ["core", "advanced"]
+reveal_claim_ids = []
+reveal_evidence_ids = []
+source_node_ids = []
+dynamic_slots = []
+content = ""
+prompt_id = "IDEA_FIXED"
+prompt_text = "What would you try?"
+
+[[transition_packets]]
+id = "TP_CLAIMS_START"
+target_stage = "claims"
+eligible_levels = ["foundation", "core", "advanced"]
+reveal_claim_ids = ["T0"]
+reveal_evidence_ids = []
+source_node_ids = ["T0"]
+dynamic_slots = ["human_idea_juxtaposition"]
+content = ""
+prompt_id = "CLAIMS_ADD_T0"
+prompt_text = "Which major claim must hold under the title claim?"
+
+[[transition_packets]]
+id = "TP_EVIDENCE_START"
+target_stage = "evidence"
+eligible_levels = ["foundation", "core", "advanced"]
+reveal_claim_ids = []
+reveal_evidence_ids = []
+source_node_ids = []
+dynamic_slots = ["human_claim_tree_diff", "selected_claim_id"]
+content = ""
+prompt_id = "EVIDENCE_ATTACH_SELECTED"
+prompt_text = "What evidence or proof would you attach to {claim_id}?"
+
+[[transition_packets]]
+id = "TP_INDEPENDENT_READING_START"
+target_stage = "independent_reading"
+eligible_levels = ["foundation", "core", "advanced"]
+reveal_claim_ids = []
+reveal_evidence_ids = []
+source_node_ids = []
+dynamic_slots = ["human_evidence_diff"]
+content = ""
+prompt_id = "INDEPENDENT_READING_START"
+prompt_text = "Read the paper evidence details independently, then return to this session."
+
+[[transition_packets]]
+id = "TP_DELTA_START"
+target_stage = "delta"
+eligible_levels = ["foundation", "core", "advanced"]
+reveal_claim_ids = []
+reveal_evidence_ids = []
+source_node_ids = []
+dynamic_slots = []
+content = "The paper-side architecture and the human rollout are already preserved in the session."
+prompt_id = "DELTA_FIXED"
+prompt_text = "What's the delta?"
 
 [selection]
 knowledge_policy = "seeded_dependency_eligible"

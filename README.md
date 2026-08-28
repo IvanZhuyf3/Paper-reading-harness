@@ -102,15 +102,17 @@ Question selection is rule-governed rather than purely random. KNOWLEDGE may use
 
 Question selection also applies a transferability/reusability filter: an open human node is necessary but not sufficient for default deepening. Prefer transferable measurement and claim–evidence relations. Record low-transfer, paper-specific apparatus optimization without default deep probing, unless the human requests it, clarification is required for checkability, or EFFICIENT_READING requests the expansion.
 
-Persistence is deliberately tiered: update canonical TOML and regenerate/check Markdown after each turn; create immutable audit reports and Git commits at stage boundaries, failures, policy changes, or explicit checkpoints. Ordinary turns within one stage may be batched.
+Persistence is deliberately tiered: update canonical TOML and regenerate/check Markdown after each turn, but keep runtime session records local. `papers/*/sessions/` is Git-ignored; commits are for reusable paper models, protocols, templates, validators, and code rather than individual training rollouts.
 
 Interactive TRAINING uses a latency-sensitive foreground/background split when
 the agent environment supports it. The foreground agent keeps the active state in
 memory and handles only the scientific interaction and next-question selection. A
 persistent single-writer scribe records events, regenerates Markdown, and runs the
-cheap validation asynchronously. Stage boundaries, failures, termination, audits,
-and commits are flush barriers; ordinary questions do not wait for documentation
-work.
+cheap validation asynchronously. Paper-model transition packets prefill the fixed
+paper-side disclosure for later stages, so a normal stage change only switches to
+an already validated packet. Failures, model/policy changes, explicit checkpoints,
+and termination are flush barriers; ordinary questions and stage changes do not
+wait for documentation work.
 
 ## Agent boundary
 
@@ -136,6 +138,7 @@ The FOUNDATION exception follows a simple premise: thinking searches over the gr
 ## Paper-model trust lifecycle
 
 - Newly generated models are saved inside `papers/<paper_slug>/model/` and registered in the pending pool.
+- Paper-model versions include prevalidated stage-transition packets: fixed paper-side disclosure, source-node references, and prompt templates loaded at session initialization.
 - Pending models are provisional and must not be automatically reused in later sessions.
 - The originating session may use its freshly compiled pending model after validation.
 - A human-approved record enters `curriculum/` and the approved index.

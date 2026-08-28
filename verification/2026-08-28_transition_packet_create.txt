@@ -1,0 +1,2 @@
+created C:\Users\Ivanz\OneDrive\ChatGPT_workspace\Research\Academic reading training\papers\li_2026_ft_opt\sessions\2026-08-28_packet_smoke.state.toml
+selected K1: What physical feature makes a vibrational transition an overtone or combination transition, and how do its strength and spectral congestion usually compare with a fundamental transition?

@@ -62,7 +62,9 @@ If the human explicitly declines DELTA, record its stage disposition as `skipped
 
 ## Persistence cadence
 
-Update canonical state and regenerate/check the Markdown projection after every turn. Persist immutable audits and commits at stage boundaries, failures, policy changes, or explicit checkpoints; ordinary same-stage turns may be batched.
+Update canonical state and regenerate/check the Markdown projection after every turn, normally through the asynchronous single-writer scribe. Runtime sessions are local and Git-ignored. Do not commit per turn or per stage. Commit reusable paper-model versions and harness changes instead.
+
+Load validated transition packets from the pinned paper model at session initialization. Fixed paper-side disclosures and prompts are prefilled; a normal stage change must not wait for those views to be reconstructed or committed. Human-dependent diffs remain dynamic.
 
 ## EXAM
 

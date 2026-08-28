@@ -26,21 +26,18 @@ published version.
 
 - `source/`: copied source material.
 - `model/`: pending paper model plus mechanical and semantic audits.
-- `sessions/`: future TRAINING or EFFICIENT_READING sessions.
+- `sessions/`: local TRAINING or EFFICIENT_READING runtime sessions (Git-ignored).
 - `artifacts/`: extracted text, page renders, contact sheets, and inspection metadata.
 
 ## Current status
 
 - Page-delimited text and all 43 page renders generated.
 - Eight contact sheets visually inspected; see `artifacts/inspection_manifest.md`.
-- Paper model: `model/paper_model.pending.toml`, version 0.1.0.
-- Paper-model SHA-256: `AF997481BA7FC92462E3750AC5FD14020091A25BDC02665968EF68A0F8A575B9`.
+- Paper model: `model/paper_model.pending.toml`, version 0.2.0.
+- Paper-model SHA-256: `DCC5241CE991CAB376FF0741CBC6A358B55665E3136E36657DEA7F863072E34D`.
 - Selection policy: 1.2.
-- Mechanical audit: `model/paper_model.audit.md`, 20/20 checks passed.
+- Mechanical audit: `model/paper_model.audit.md`, 27/27 checks passed.
 - Semantic audit: `model/paper_model.semantic_audit.md`.
 - Human approval: not reviewed.
 - Curriculum status: not approved for reuse.
-- Active session: `sessions/2026-08-28_foundation_training.state.toml`.
-- Runner/level: TRAINING / FOUNDATION (changed FOUNDATION -> CORE -> FOUNDATION).
-- Session initialization audit: 38/38 checks passed.
-- Current cursor: `COMPLETE.terminal`.
+- Transition packets: five prevalidated stage-start views are embedded in the model and frozen into new runtime sessions.

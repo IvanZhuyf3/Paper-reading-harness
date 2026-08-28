@@ -88,10 +88,22 @@ The scribe must preserve the human response verbatim, must not choose the next
 scientific question, and must not invent scientific content. Messages to the
 scribe are ordered; later turns must not overtake earlier writes.
 
-Wait for the scribe to flush and acknowledge at stage boundaries, model or policy
-changes, explicit checkpoints, session termination, and before audit reports or
-Git commits. Also wait when the scribe reports drift or failure. Full immutable
-audits and commits remain boundary operations, not ordinary-turn operations.
+Paper-model transition packets are precompiled and validated reusable assets.
+Load them into memory at session initialization. A normal stage transition uses
+the corresponding packet immediately and does not wait for the scribe merely to
+render disclosure text that is already present in the model. Human-dependent
+diffs remain dynamic, but the paper-side view and fixed prompt must not be rebuilt
+on the interactive path.
+
+Wait for the scribe only for model or policy changes, explicit checkpoints,
+session termination, or when it reports drift or failure. Stage changes are not
+automatic flush barriers when a validated transition packet is available.
+
+TRAINING and EFFICIENT_READING session artifacts under `papers/*/sessions/` are
+local runtime data and are Git-ignored. Do not commit them per turn, per stage, or
+at session termination. Git tracks reusable paper models, protocols, templates,
+validators, and code. Commit when a paper model is compiled, corrected, approved,
+or versioned, and when reusable harness behavior changes.
 
 If background execution is unavailable, use a bounded synchronous fallback:
 update the canonical event/state record, regenerate/check the deterministic
@@ -251,6 +263,6 @@ Skip generative training. Present the source-anchored paper architecture directl
 
 ## Persistence
 
-The runner session state is required and must be durably updated after every turn, normally by the asynchronous single-writer scribe. A newly compiled paper model must remain clearly unapproved until human review. Only approved records may enter `curriculum/` and the reusable index.
+The runner session state is required and must be durably updated after every turn, normally by the asynchronous single-writer scribe, but it remains local runtime data rather than a Git-tracked artifact. A newly compiled paper model must remain clearly unapproved until human review. Only approved records may enter `curriculum/` and the reusable index.
 
-Stage dispositions are explicit: `completed`, `skipped`, or `not_applicable` (with `in_progress` allowed for an active stage). A skipped or not-applicable stage must not be represented as completed. Ordinary within-stage turns use a cheap canonical validation and deterministic Markdown render; immutable audit reports and commits are reserved for stage boundaries, failures, policy changes, or explicit checkpoints.
+Stage dispositions are explicit: `completed`, `skipped`, or `not_applicable` (with `in_progress` allowed for an active stage). A skipped or not-applicable stage must not be represented as completed. Ordinary turns use cheap canonical validation and deterministic Markdown rendering asynchronously. Runtime session audits stay local; Git commits are reserved for reusable assets and harness changes.

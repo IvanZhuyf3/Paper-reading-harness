@@ -9,6 +9,7 @@ from contextlib import redirect_stdout
 from io import StringIO
 from pathlib import Path
 
+from scripts.create_training_session import write_state
 from scripts.render_session_markdown import render, render_text
 from scripts.validate_session_state import validate_state
 
@@ -16,6 +17,8 @@ from scripts.validate_session_state import validate_state
 ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / "papers/zhu_2023_srp_microscopy/sessions/2026-08-27_core_training.state.toml"
 MODEL = ROOT / "papers/zhu_2023_srp_microscopy/model/paper_model.pending.toml"
+FT_MODEL = ROOT / "papers/li_2026_ft_opt/model/paper_model.pending.toml"
+FT_SOURCE = ROOT / "papers/li_2026_ft_opt/source/Li_et_al_2026_FT_OPT_proof.pdf"
 
 
 class SessionStateTests(unittest.TestCase):
@@ -37,6 +40,37 @@ class SessionStateTests(unittest.TestCase):
                 state_text = mutate(state_text)
             state_path = root / "session.state.toml"
             state_path.write_text(state_text, encoding="utf-8")
+            state = tomllib.loads(state_text)
+            markdown_path = root / "session.md"
+            markdown_path.write_text(render_text(state, "# Test session\n"), encoding="utf-8")
+            return validate_state(state_path, markdown_path)
+
+    def transition_checks_for(self, mutate=None):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model_path = root / "model" / "paper_model.pending.toml"
+            model_path.parent.mkdir(parents=True)
+            shutil.copy2(FT_MODEL, model_path)
+            source_path = root / "source" / FT_SOURCE.name
+            source_path.parent.mkdir(parents=True)
+            shutil.copy2(FT_SOURCE, source_path)
+            with model_path.open("rb") as stream:
+                model = tomllib.load(stream)
+            state_path = root / "session.state.toml"
+            write_state(
+                state_path,
+                model_path,
+                model,
+                "transition_packet_test",
+                "core",
+                12345,
+                "K1",
+                "initial prompt",
+            )
+            state_text = state_path.read_text(encoding="utf-8")
+            if mutate:
+                state_text = mutate(state_text)
+                state_path.write_text(state_text, encoding="utf-8")
             state = tomllib.loads(state_text)
             markdown_path = root / "session.md"
             markdown_path.write_text(render_text(state, "# Test session\n"), encoding="utf-8")
@@ -121,6 +155,20 @@ class SessionStateTests(unittest.TestCase):
             lambda text: text.replace("rollout_complete = true", "rollout_complete = false", 1)
         )
         self.assertIn("Rollout terminal flag matches current stage", self.failed_names(checks))
+
+    def test_transition_packets_are_frozen_into_new_sessions(self):
+        checks = self.transition_checks_for()
+        self.assertFalse(self.failed_names(checks), sorted(self.failed_names(checks)))
+
+    def test_transition_packet_drift_is_rejected(self):
+        checks = self.transition_checks_for(
+            lambda text: text.replace(
+                'prompt_id = "IDEA_FIXED"\nprompt_text =',
+                'prompt_id = "IDEA_DRIFT"\nprompt_text =',
+                1,
+            )
+        )
+        self.assertIn("Session transition packets equal pinned model", self.failed_names(checks))
 
 
 if __name__ == "__main__":

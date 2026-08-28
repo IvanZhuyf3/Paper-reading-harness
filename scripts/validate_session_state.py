@@ -26,6 +26,19 @@ ALLOWED_STAGES = set(STAGE_ORDER) | {"complete"}
 ALLOWED_DISPOSITIONS = {"completed", "skipped", "not_applicable", "in_progress"}
 TERMINAL_DISPOSITIONS = {"completed", "skipped", "not_applicable"}
 AMBIGUOUS_STATUSES = {"open", "active", "human_designed"}
+PREFILLED_PACKET_FIELDS = (
+    "id",
+    "target_stage",
+    "eligible_levels",
+    "reveal_claim_ids",
+    "reveal_evidence_ids",
+    "source_node_ids",
+    "dynamic_slots",
+    "locale",
+    "content",
+    "prompt_id",
+    "prompt_text",
+)
 
 
 def sha256(path: Path) -> str:
@@ -122,6 +135,49 @@ def _paper_evidence_checks(checks: list[Check], state: dict, model: dict, model_
             drift.append(f"{evidence_id}:targets={invalid_targets}")
     checks.append(Check("Session paper-evidence designs equal frozen design fields", not drift, f"drift={drift}"))
     checks.append(Check("Session paper-evidence designs contain no result details", not leaks, f"leaks={leaks}"))
+
+
+def _transition_packet_checks(checks: list[Check], state: dict, model: dict) -> None:
+    expected_packets = model.get("transition_packets", [])
+    actual_packets = state.get("prefilled_transition_packets", [])
+    if not expected_packets:
+        checks.append(
+            Check(
+                "Session transition packets (legacy model)",
+                not actual_packets,
+                f"unexpected={len(actual_packets)}",
+            )
+        )
+        return
+
+    expected = [
+        {key: packet.get(key) for key in PREFILLED_PACKET_FIELDS}
+        for packet in expected_packets
+    ]
+    actual = [
+        {key: packet.get(key) for key in PREFILLED_PACKET_FIELDS}
+        for packet in actual_packets
+    ]
+    expected_keys = set(PREFILLED_PACKET_FIELDS)
+    schema_drift = [
+        packet.get("id", "")
+        for packet in actual_packets
+        if set(packet) != expected_keys
+    ]
+    checks.append(Check("Session transition-packet schemas are frozen", not schema_drift, f"drift={schema_drift}"))
+    checks.append(
+        Check(
+            "Session transition packets equal pinned model",
+            actual == expected,
+            f"expected_ids={[packet.get('id') for packet in expected_packets]}, actual_ids={[packet.get('id') for packet in actual_packets]}",
+        )
+    )
+    leaks = [
+        packet.get("id", "")
+        for packet in actual_packets
+        if any(key in packet for key in ("result_detail", "result_details", "result"))
+    ]
+    checks.append(Check("Session transition packets contain no result details", not leaks, f"leaks={leaks}"))
 
 
 def _event_checks(checks: list[Check], state: dict, model: dict) -> None:
@@ -254,6 +310,7 @@ def validate_state(state_path: Path, markdown_path: Path | None = None) -> list[
             )
     checks.append(Check("Human targets resolve", not target_errors, f"missing={target_errors}"))
     _paper_evidence_checks(checks, state, model, model_claim_ids)
+    _transition_packet_checks(checks, state, model)
     finished_stages = [
         stage for stage in STAGE_ORDER if dispositions.get(stage) in TERMINAL_DISPOSITIONS
     ]

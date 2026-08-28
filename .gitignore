@@ -9,3 +9,5 @@ venv/
 Thumbs.db
 desktop.ini
 
+# Runtime interaction records are local and may contain student responses.
+papers/*/sessions/

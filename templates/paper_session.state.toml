@@ -20,6 +20,70 @@ pending_prompt_id = ""
 pending_prompt_text = ""
 stage_dispositions = { knowledge = "in_progress", idea = "in_progress", claims = "in_progress", evidence = "in_progress", independent_reading = "in_progress", delta = "in_progress" }
 
+[[prefilled_transition_packets]]
+id = "TP_IDEA_START"
+target_stage = "idea"
+eligible_levels = ["core", "advanced"]
+reveal_claim_ids = []
+reveal_evidence_ids = []
+source_node_ids = []
+dynamic_slots = []
+content = ""
+prompt_id = "IDEA_FIXED"
+prompt_text = "What would you try?"
+
+[[prefilled_transition_packets]]
+id = "TP_CLAIMS_START"
+target_stage = "claims"
+eligible_levels = ["foundation", "core", "advanced"]
+reveal_claim_ids = ["T0"]
+reveal_evidence_ids = []
+source_node_ids = ["T0"]
+dynamic_slots = ["human_idea_juxtaposition"]
+locale = "en"
+content = ""
+prompt_id = "CLAIMS_ADD_T0"
+prompt_text = "Which major claim must hold under the paper's title claim?"
+
+[[prefilled_transition_packets]]
+id = "TP_EVIDENCE_START"
+target_stage = "evidence"
+eligible_levels = ["foundation", "core", "advanced"]
+reveal_claim_ids = ["T0"]
+reveal_evidence_ids = []
+source_node_ids = ["T0"]
+dynamic_slots = ["human_claim_tree_diff", "selected_claim_id"]
+locale = "en"
+content = ""
+prompt_id = "EVIDENCE_ATTACH_SELECTED"
+prompt_text = "What evidence or proof would you attach to {claim_id}?"
+
+[[prefilled_transition_packets]]
+id = "TP_INDEPENDENT_READING_START"
+target_stage = "independent_reading"
+eligible_levels = ["foundation", "core", "advanced"]
+reveal_claim_ids = ["T0"]
+reveal_evidence_ids = ["E1"]
+source_node_ids = ["T0", "E1"]
+dynamic_slots = ["human_evidence_diff"]
+locale = "en"
+content = ""
+prompt_id = "INDEPENDENT_READING_START"
+prompt_text = "Read the paper's evidence details independently, then return to this session."
+
+[[prefilled_transition_packets]]
+id = "TP_DELTA_START"
+target_stage = "delta"
+eligible_levels = ["foundation", "core", "advanced"]
+reveal_claim_ids = []
+reveal_evidence_ids = []
+source_node_ids = []
+dynamic_slots = []
+locale = "en"
+content = "The paper-side architecture and the human rollout are already preserved in the session."
+prompt_id = "DELTA_FIXED"
+prompt_text = "What's the delta?"
+
 [[human_nodes]]
 id = ""
 stage = ""

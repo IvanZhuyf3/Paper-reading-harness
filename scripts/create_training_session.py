@@ -11,7 +11,10 @@ import random
 import tomllib
 from pathlib import Path
 
-from render_session_markdown import render
+try:
+    from .render_session_markdown import render
+except ImportError:
+    from render_session_markdown import render
 
 
 LEVELS = {"foundation", "core", "advanced"}
@@ -116,6 +119,23 @@ def write_state(
         lines.extend(["", "[[paper_evidence_designs]]"])
         for key in ("id", "target_claims", "evidence_type", "control_roles", "source_anchors"):
             lines.append(f"{key} = {toml_value(evidence[key])}")
+    packet_fields = (
+        "id",
+        "target_stage",
+        "eligible_levels",
+        "reveal_claim_ids",
+        "reveal_evidence_ids",
+        "source_node_ids",
+        "dynamic_slots",
+        "locale",
+        "content",
+        "prompt_id",
+        "prompt_text",
+    )
+    for packet in model.get("transition_packets", []):
+        lines.extend(["", "[[prefilled_transition_packets]]"])
+        for key in packet_fields:
+            lines.append(f"{key} = {toml_value(packet[key])}")
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 

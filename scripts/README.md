@@ -56,4 +56,4 @@ set PYTHONIOENCODING=utf-8
 python -m unittest scripts\test_session_state.py
 ```
 
-The standard-library tests cover renderer chronology and validator checks for IDs, evidence drift/leaks, status consistency, prompt provenance, and skipped terminal stages. Ordinary turns need only the cheap validator and renderer check; immutable audit reports and commits are reserved for stage boundaries, failures, policy changes, or explicit checkpoints.
+The standard-library tests cover renderer chronology and validator checks for IDs, evidence drift/leaks, frozen transition packets, status consistency, prompt provenance, and skipped terminal stages. Runtime session files under `papers/*/sessions/` are local and Git-ignored. Ordinary turns use the cheap validator and renderer check asynchronously; commits are for reusable paper-model and harness changes.

@@ -1,6 +1,6 @@
 status = "pending"
 human_approved = false
-model_version = "0.1.0"
+model_version = "0.2.0"
 selection_policy_version = "1.2"
 paper_slug = "li_2026_ft_opt"
 title = "Supercontinuum Fourier-transform Overtone Photothermal Spectroscopy and Microscopy"
@@ -22,6 +22,7 @@ compiled_by = "agent"
 parse_validated = true
 anchor_audit = "pass"
 visibility_audit = "pass"
+transition_packet_audit = "pass"
 approval_note = "PENDING - NOT HUMAN APPROVED - DO NOT AUTO-REUSE"
 
 [[knowledge_nodes]]
@@ -539,6 +540,110 @@ reveal_design_after = "evidence_rollout_complete"
 reveal_result_after = "independent_reading_started"
 default_followup_eligible = true
 transferability = "high"
+
+[[transition_packets]]
+id = "TP_IDEA_START"
+target_stage = "idea"
+eligible_levels = ["core", "advanced"]
+reveal_claim_ids = ["I1", "I2", "I3", "I4", "I5", "G1"]
+reveal_evidence_ids = []
+source_node_ids = ["I1", "I2", "I3", "I4", "I5", "G1"]
+dynamic_slots = []
+locale = "en"
+content = """
+I1 — AGENT INTERPRETATION: Molecular vibrations provide intrinsic, label-free chemical specificity.
+SOURCE ANCHOR: PDF p.3, Introduction, paragraph beginning "Vibrational spectroscopy and imaging, revealing..."
+
+I2 — AGENT INTERPRETATION: MIR photothermal methods require specialized sources and components, while water absorption creates background, attenuation, and depth limitations.
+SOURCE ANCHOR: PDF p.3, Introduction, paragraph beginning "Vibrational spectroscopy and imaging, revealing..."
+
+I3 — AGENT INTERPRETATION: SWIR overtone excitation suppresses water absorption and supports aqueous, deeper volumetric imaging.
+SOURCE ANCHOR: PDF p.3, Introduction, paragraph beginning "Vibrational spectroscopy and imaging, revealing..."
+
+I4 — AGENT INTERPRETATION: Conventional OPT obtains spectra by sequential pump-wavelength tuning, coupling source bandwidth, resolution, and acquisition time.
+SOURCE ANCHOR: PDF p.3, Introduction, paragraph beginning "Although demonstrating outstanding imaging ability,..."
+
+I5 — AGENT INTERPRETATION: Existing time-domain photothermal routes remain proof-of-concept, label-dependent, or slow.
+SOURCE ANCHOR: PDF p.4, Introduction, paragraph beginning "Inspired by FTIR and dual-comb spectroscopy,..."
+
+G1 — AGENT INTERPRETATION: The missing capability is rapid, broadband, high-resolution, sensitive, label-free, aqueous-compatible photothermal spectromicroscopy.
+SOURCE ANCHOR: PDF p.4, Introduction, paragraph beginning "Inspired by FTIR and dual-comb spectroscopy,..."
+"""
+prompt_id = "IDEA_FIXED"
+prompt_text = "What would you try? Give one concise idea without apparatus detail."
+
+[[transition_packets]]
+id = "TP_CLAIMS_START"
+target_stage = "claims"
+eligible_levels = ["foundation", "core", "advanced"]
+reveal_claim_ids = ["T0"]
+reveal_evidence_ids = []
+source_node_ids = ["T0"]
+dynamic_slots = ["human_idea_juxtaposition"]
+locale = "en"
+content = """
+AUTHOR CLAIM: Here, we introduce Fourier-transform overtone photothermal (FT-OPT) spectroscopy and microscopy, a time-domain framework that retrieves photothermal spectra without sequential wavelength tuning. [...] By overcoming the bandwidth-speed trade-off while retaining high spatial resolution, FT-OPT provides a route toward label-free spectral flow cytometry and high-dimensional chemical imaging in aqueous environments.
+SOURCE ANCHORS: PDF p.2, Abstract, paragraph beginning "Overtone photothermal (OPT) microscopy is..."; PDF p.4, Introduction, paragraph beginning "To address these challenges, in..."; PDF p.18, Discussion and Conclusion, paragraph beginning "OPT or SWIR photothermal microscopy..."
+AGENT INTERPRETATION: FT-OPT combines broadband supercontinuum excitation, interferometric time-domain encoding, Fourier decoding, and thermal-lens readout to separate spectral bandwidth from sequential wavelength-scanning time while retaining sensitive, high-resolution, aqueous-compatible spectroscopy and microscopy.
+"""
+prompt_id = "CLAIMS_ADD_T0"
+prompt_text = "Which major claim must hold under the paper's title claim? Give one."
+
+[[transition_packets]]
+id = "TP_EVIDENCE_START"
+target_stage = "evidence"
+eligible_levels = ["foundation", "core", "advanced"]
+reveal_claim_ids = ["T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "S2.4", "M3", "S3.1", "S3.2", "M4", "S4.1", "S4.2", "M5", "S5.1", "S5.2", "S5.3"]
+reveal_evidence_ids = []
+source_node_ids = ["T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "S2.4", "M3", "S3.1", "S3.2", "M4", "S4.1", "S4.2", "M5", "S5.1", "S5.2", "S5.3"]
+dynamic_slots = ["human_claim_tree_diff", "selected_claim_id"]
+locale = "en"
+content = """
+T0 — FT-OPT retrieves broadband photothermal spectra without sequential wavelength tuning.
+├── M1 — Delay-domain encoding and Fourier recovery establish the measurement principle. [PDF pp.5-8; Fig. 1]
+├── M2 — Spectral fidelity, resolution, sensitivity, and spatial resolution establish system performance. [PDF pp.9-11; Fig. 2]
+├── M3 — Broadband high-resolution spectra support molecular classification and mixture unmixing. [PDF pp.12-13; Fig. 3]
+├── M4 — Sub-second repeated spectroscopy supports dynamic monitoring. [PDF pp.14-15; Fig. 4]
+└── M5 — The platform supports aqueous hyperspectral and volumetric chemical imaging. [PDF pp.15-18; Fig. 5]
+
+All lines above are AGENT INTERPRETATION summaries. Exact AUTHOR CLAIM wording and reader-locatable anchors remain attached to T0, M1-M5, and their subclaims in this model.
+"""
+prompt_id = "EVIDENCE_ATTACH_SELECTED"
+prompt_text = "What evidence or proof would you attach to {claim_id}?"
+
+[[transition_packets]]
+id = "TP_INDEPENDENT_READING_START"
+target_stage = "independent_reading"
+eligible_levels = ["foundation", "core", "advanced"]
+reveal_claim_ids = ["T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "S2.4", "M3", "S3.1", "S3.2", "M4", "S4.1", "S4.2", "M5", "S5.1", "S5.2", "S5.3"]
+reveal_evidence_ids = ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "E10", "E11", "E12", "E13"]
+source_node_ids = ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "E10", "E11", "E12", "E13"]
+dynamic_slots = ["human_evidence_diff"]
+locale = "en"
+content = """
+E1-E3 — Analytical derivation, calibrated implementation, and noise/modulation-depth comparison support the encoding and sensitivity mechanism.
+E4-E6 — Reference spectra, concentration series, and spatial-resolution measurements characterize core system performance.
+E7-E8 — Matched classification and known-mixture unmixing tests isolate the value of spectral range and resolution.
+E9-E10 — Flow perturbation and alternating-sample time series test dynamic monitoring.
+E11-E13 — Interface, tissue-volume, and component-factorization experiments establish hyperspectral and volumetric imaging.
+
+This packet exposes proof architecture and control roles only. Plot interpretation, numerical outcomes, images, and whether the evidence is convincing remain for independent human reading. Reader-locatable anchors are attached to E1-E13 in this model.
+"""
+prompt_id = "INDEPENDENT_READING_START"
+prompt_text = "Read the paper's evidence details independently, then return to this session."
+
+[[transition_packets]]
+id = "TP_DELTA_START"
+target_stage = "delta"
+eligible_levels = ["foundation", "core", "advanced"]
+reveal_claim_ids = []
+reveal_evidence_ids = []
+source_node_ids = []
+dynamic_slots = []
+locale = "en"
+content = "The paper-side architecture and the human rollout are already preserved in the session."
+prompt_id = "DELTA_FIXED"
+prompt_text = "What's the delta?"
 
 [disclosure_views]
 knowledge = ["K1", "K2", "K3"]

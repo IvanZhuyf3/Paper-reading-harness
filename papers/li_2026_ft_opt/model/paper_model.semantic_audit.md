@@ -26,6 +26,7 @@ trajectory is correct or normatively optimal.
 - Paper claim branches are withheld until CLAIMS rollout completion.
 - Evidence designs are withheld until EVIDENCE rollout completion, and every `result_detail` remains hidden until independent reading starts.
 - Paper-specific optical construction and calibration nodes (`S1.3`, `E2`) are marked low-transfer and ineligible for default deep follow-up.
+- Version 0.2.0 includes prevalidated transition packets for IDEA, CLAIMS, EVIDENCE, independent reading, and DELTA. Fixed paper-side disclosure is cached; human-dependent comparisons remain explicit dynamic slots.
 
 ## Known source limitations
 
