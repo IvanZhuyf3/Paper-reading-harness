@@ -1,0 +1,572 @@
+status = "pending"
+human_approved = false
+model_version = "0.1.0"
+selection_policy_version = "1.2"
+paper_slug = "li_2026_ft_opt"
+title = "Supercontinuum Fourier-transform Overtone Photothermal Spectroscopy and Microscopy"
+authors = ["Geng Li", "Rui Hao", "Jinyi Jia", "Minjian Lu", "Xinhang Lyu", "Ran An", "Taoran Le", "Xiaoyang Lin", "Yan Li", "Haoyun Wei"]
+journal = "Advanced Photonics"
+year = 2026
+manuscript_id = "AP-26-149008"
+doi = ""
+source_path = "../source/Li_et_al_2026_FT_OPT_proof.pdf"
+source_sha256 = "702F012A0C7FBA10ECDB9DC03619D3AF9CD8DFF05B288F52A31911C6142A6F6D"
+pdf_pages = 43
+article_pages = 28
+supplement_embedded = true
+supplement_pdf_pages = [30, 43]
+
+[compiler]
+compiled_at = "2026-08-28T13:37:18-04:00"
+compiled_by = "agent"
+parse_validated = true
+anchor_audit = "pass"
+visibility_audit = "pass"
+approval_note = "PENDING - NOT HUMAN APPROVED - DO NOT AUTO-REUSE"
+
+[[knowledge_nodes]]
+id = "K1"
+concept = "Vibrational fundamentals, overtones, and combination transitions"
+prerequisites = []
+required_levels = ["foundation", "core"]
+visibility = "pre_idea"
+priority = 10
+question_eligible = true
+prompt = "What physical feature makes a vibrational transition an overtone or combination transition, and how do its strength and spectral congestion usually compare with a fundamental transition?"
+source_anchors = ["PDF p.5, Results/Principle of FT-OPT spectroscopy and microscopy, paragraph beginning \"Molecular anharmonicity causes deviations from...\""]
+
+[[knowledge_nodes]]
+id = "K2"
+concept = "Photothermal transduction and pump-probe thermal-lens readout"
+prerequisites = []
+required_levels = ["foundation", "core"]
+visibility = "pre_idea"
+priority = 20
+question_eligible = true
+prompt = "How can optical absorption be converted into a probe-beam signal through nonradiative relaxation, heating, and refractive-index change?"
+source_anchors = ["PDF p.5, Results/Principle of FT-OPT spectroscopy and microscopy, paragraph beginning \"Molecular anharmonicity causes deviations from...\""]
+
+[[knowledge_nodes]]
+id = "K3"
+concept = "Spectral acquisition trade-offs in wavelength-scanned spectroscopy"
+prerequisites = ["K1"]
+required_levels = ["foundation", "core"]
+visibility = "pre_idea"
+priority = 30
+question_eligible = true
+prompt = "In a spectrum acquired by sequentially tuning a source, how are usable bandwidth, wavelength-step time, total acquisition time, and source linewidth coupled?"
+source_anchors = ["PDF p.3, Introduction, paragraph beginning \"Although demonstrating outstanding imaging ability,...\""]
+
+[[knowledge_nodes]]
+id = "K4"
+concept = "Fourier-transform spectroscopy: interferogram, delay window, bandwidth, and resolution"
+prerequisites = ["K1", "K3"]
+required_levels = ["foundation", "core"]
+visibility = "post_idea"
+priority = 40
+question_eligible = true
+prompt = "How does scanning optical delay create an interferogram, and what determines the recovered spectrum's bandwidth and resolution after a Fourier transform?"
+source_anchors = ["PDF p.5-6, Results/Principle of FT-OPT spectroscopy and microscopy, paragraphs beginning \"Molecular anharmonicity causes deviations from...\" and \"The second term in Eq....\""]
+
+[[knowledge_nodes]]
+id = "K5"
+concept = "Supercontinuum generation and spectral power density"
+prerequisites = ["K1"]
+required_levels = ["foundation"]
+visibility = "post_idea"
+priority = 50
+question_eligible = true
+prompt = "What does a supercontinuum source provide for broadband excitation, and why must its spectral power distribution be measured or normalized?"
+source_anchors = ["PDF p.7, Results/SWIR supercontinuum generation and experimental setup, paragraph beginning \"The FT-OPT experimental setup is...\""]
+
+[[knowledge_nodes]]
+id = "K6"
+concept = "Multiplex or Fellgett advantage and its noise assumptions"
+prerequisites = ["K4"]
+required_levels = ["foundation", "core"]
+visibility = "post_idea"
+priority = 60
+question_eligible = true
+prompt = "When can simultaneous acquisition of many spectral elements improve SNR over sequential acquisition, and which noise regime is required for the usual square-root scaling?"
+source_anchors = ["Supplementary Information, PDF p.31, section beginning \"Fellgett advantage of FT-OPT\""]
+
+[[knowledge_nodes]]
+id = "K7"
+concept = "Pump-probe spatial resolution and PSF measurement"
+prerequisites = ["K2"]
+required_levels = ["foundation"]
+visibility = "post_idea"
+priority = 70
+question_eligible = true
+prompt = "In a pump-probe microscope, how do the two beams jointly determine the point-spread function, and how can lateral and axial resolution be measured?"
+source_anchors = ["PDF p.6, Results/Principle of FT-OPT spectroscopy and microscopy, paragraph beginning \"A major advantage of photothermal imaging...\"", "PDF p.10, Results/System characteristics, paragraph beginning \"Capability of enhanced spatial resolution...\""]
+
+[[knowledge_nodes]]
+id = "K8"
+concept = "Spectral classification, unmixing, and information-content controls"
+prerequisites = ["K3"]
+required_levels = ["foundation"]
+visibility = "post_idea"
+priority = 80
+question_eligible = true
+prompt = "How would you separate the effects of spectral range and spectral resolution when testing molecular classification or mixture unmixing?"
+source_anchors = ["PDF p.12-13, Results/FT-OPT for molecular identification and unmixing, paragraphs beginning \"In addition to weak signal...\" and \"For each substance, 20 non-averaged...\""]
+
+[[claim_nodes]]
+id = "I1"
+role = "background"
+parents = []
+author_claim = "Vibrational spectroscopy and imaging, revealing intrinsic signatures of molecular structure, are indispensable tools for label-free and chemically specific detection."
+agent_interpretation = "Molecular vibrations provide an intrinsic chemical-contrast basis for label-free spectroscopy and imaging."
+source_anchors = ["PDF p.3, Introduction, paragraph beginning \"Vibrational spectroscopy and imaging, revealing...\""]
+reveal_after = "knowledge_start"
+
+[[claim_nodes]]
+id = "I2"
+role = "limitation"
+parents = ["I1"]
+author_claim = "MIR-based methods require tunable and broadband sources [...] as well as other specialized optical materials and components, which substantially increase system complexity and cost. More critically, the strong absorption of water leads to severe signal background and attenuation."
+agent_interpretation = "MIR photothermal microscopy is capable but source complexity and water absorption constrain aqueous and deep-tissue use."
+source_anchors = ["PDF p.3, Introduction, paragraph beginning \"Vibrational spectroscopy and imaging, revealing...\""]
+reveal_after = "knowledge_start"
+
+[[claim_nodes]]
+id = "I3"
+role = "background"
+parents = ["I2"]
+author_claim = "Exciting overtone transitions with a SWIR source dramatically suppresses water absorption, which not only reduces system cost but also enables 3D imaging of biological samples at millimeter depths."
+agent_interpretation = "SWIR overtone photothermal microscopy retains photothermal contrast while reducing the water and hardware penalties of MIR excitation."
+source_anchors = ["PDF p.3, Introduction, paragraph beginning \"Vibrational spectroscopy and imaging, revealing...\""]
+reveal_after = "knowledge_start"
+
+[[claim_nodes]]
+id = "I4"
+role = "limitation"
+parents = ["I3"]
+author_claim = "Photothermal detection cannot obtain spectra via a normal spectrometer; instead, spectra are acquired by tuning the pump wavelength. This frequency-domain excitation approach introduces a series of constraints in spectral performance due to the limitations of mainstream tunable SWIR sources."
+agent_interpretation = "Conventional OPT ties spectral coverage and resolution to sequential source tuning, so broader or finer spectra cost acquisition time and depend on source capabilities."
+source_anchors = ["PDF p.3, Introduction, paragraph beginning \"Although demonstrating outstanding imaging ability,...\""]
+reveal_after = "idea_start"
+
+[[claim_nodes]]
+id = "I5"
+role = "existing_routes"
+parents = ["I4"]
+author_claim = "Time-domain excitation schemes have recently been explored in photothermal microscopy as a tentative approach to overcome the above trade-offs, but most remain at the proof-of-concept stage. [...] Existing demonstrations require thermosensitive fluorescent labeling and long integration (~10 min per spectrum)."
+agent_interpretation = "Prior time-domain photothermal work does not yet deliver a fast, label-free, aqueous-compatible spectromicroscopy platform."
+source_anchors = ["PDF p.4, Introduction, paragraph beginning \"Inspired by FTIR and dual-comb spectroscopy,...\""]
+reveal_after = "idea_start"
+
+[[claim_nodes]]
+id = "G1"
+role = "gap"
+parents = ["I4", "I5"]
+author_claim = "This performance not only cannot accommodate dynamic spectral monitoring or hyperspectral imaging, but also preserve the above limitations of MIR-based approaches. This may critically underestimate the potential of time-domain excitation in photothermal spectroscopy and microscopy."
+agent_interpretation = "The missing capability is rapid, broadband, high-resolution and sensitive photothermal spectroscopy that remains label-free and usable for aqueous microscopy."
+source_anchors = ["PDF p.4, Introduction, paragraph beginning \"Inspired by FTIR and dual-comb spectroscopy,...\""]
+reveal_after = "idea_start"
+
+[[claim_nodes]]
+id = "T0"
+role = "title"
+parents = ["G1"]
+author_claim = "Here, we introduce Fourier-transform overtone photothermal (FT-OPT) spectroscopy and microscopy, a time-domain framework that retrieves photothermal spectra without sequential wavelength tuning. [...] By overcoming the bandwidth-speed trade-off while retaining high spatial resolution, FT-OPT provides a route toward label-free spectral flow cytometry and high-dimensional chemical imaging in aqueous environments."
+agent_interpretation = "FT-OPT combines broadband supercontinuum excitation, interferometric time-domain encoding, Fourier decoding, and thermal-lens readout to decouple spectral bandwidth from acquisition time while retaining sensitive, high-resolution, aqueous-compatible spectroscopy and microscopy."
+source_anchors = ["PDF p.2, Abstract, paragraph beginning \"Overtone photothermal (OPT) microscopy is...\"", "PDF p.4, Introduction, paragraph beginning \"To address these challenges, in...\"", "PDF p.18, Discussion and Conclusion, paragraph beginning \"OPT or SWIR photothermal microscopy...\""]
+reveal_after = "idea_rollout_complete"
+
+[[claim_nodes]]
+id = "M1"
+role = "major"
+parents = ["T0"]
+author_claim = "In FT-OPT, two identical broadband SWIR pulses with a controlled relative delay are used as the pump-pair. [...] Ultimately, the interferogram concurrently encodes all vibrational states that can be excited within the pump spectrum."
+agent_interpretation = "The FT-OPT measurement chain can encode a broadband overtone response in delay space and recover it as a spectrum through Fourier transformation."
+source_anchors = ["PDF p.5-6, Results/Principle of FT-OPT spectroscopy and microscopy, paragraphs beginning \"Molecular anharmonicity causes deviations from...\" and \"The second term in Eq....\"", "Fig. 1, PDF p.8"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[claim_nodes]]
+id = "S1.1"
+role = "subclaim"
+parents = ["M1"]
+author_claim = "By scanning the relative delay, the thermal lens effect is probed and recorded, forming an interferogram. [...] A subsequent Fourier transform [...] yields the spectral information."
+agent_interpretation = "Delay-dependent constructive and destructive excitation maps vibrational frequencies into an interferogram whose Fourier transform recovers the molecular response after pump normalization."
+source_anchors = ["PDF p.5-6, Results/Principle of FT-OPT spectroscopy and microscopy, paragraphs beginning \"Molecular anharmonicity causes deviations from...\" and \"The second term in Eq....\"", "Eqs. 1-3, PDF p.5-6"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[claim_nodes]]
+id = "S1.2"
+role = "subclaim"
+parents = ["M1"]
+author_claim = "The spectral bandwidth of FT-OPT is determined by the pump spectrum, while the acquisition speed is governed by the scanning speed of the relative delay."
+agent_interpretation = "The time-domain formulation separates the spectral span from sequential wavelength tuning and ties resolution to the measured delay window."
+source_anchors = ["PDF p.6, Results/Principle of FT-OPT spectroscopy and microscopy, paragraph beginning \"The second term in Eq....\""]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[claim_nodes]]
+id = "S1.3"
+role = "subclaim"
+parents = ["M1"]
+author_claim = "The FT-OPT experimental setup is schematically shown in Fig. 1(d). [...] For signal acquisition, FT-OPT employs a classical photothermal microscopy approach in which the pump is modulated with a square wave and the probe is demodulated using a lock-in amplifier."
+agent_interpretation = "A supercontinuum source, scanning Michelson interferometer, delay reference, probe readout, and calibrated processing pipeline implement the proposed encoding."
+source_anchors = ["PDF p.7, Results/SWIR supercontinuum generation and experimental setup, paragraph beginning \"The FT-OPT experimental setup is...\"", "Fig. 1d-e, PDF p.8", "Supplementary Fig. S4, PDF p.36"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = false
+transferability = "low"
+
+[[claim_nodes]]
+id = "M2"
+role = "major"
+parents = ["T0"]
+author_claim = "FT-OPT was first performed on pure ethanol and 1-octyne samples to evaluate the spectral performance."
+agent_interpretation = "The implemented system establishes broadband spectral fidelity, near-linewidth resolution, millimolar sensitivity, and submicrometer three-dimensional resolution."
+source_anchors = ["PDF p.9-10, Results/System characteristics, paragraphs beginning \"FT-OPT was first performed on...\" and \"FT-OPT further demonstrates strong molecular...\"", "Fig. 2, PDF p.11"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[claim_nodes]]
+id = "S2.1"
+role = "subclaim"
+parents = ["M2"]
+author_claim = "The spectral coverage spans approximately 6000-9000 cm^-1, substantially exceeding the typical spectral bandwidth accessible with conventional tunable sources. Pump-normalized spectrum shows excellent agreement with standard spectrum."
+agent_interpretation = "FT-OPT recovers a broad and faithful overtone spectrum from a single delay scan."
+source_anchors = ["PDF p.9, Results/System characteristics, paragraph beginning \"FT-OPT was first performed on...\"", "Fig. 2a-c, PDF p.11"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[claim_nodes]]
+id = "S2.2"
+role = "subclaim"
+parents = ["M2"]
+author_claim = "FT-OPT is capable of recovering this lifetime-limited linewidth. In this case, the 4 ps temporal rectangular window corresponds to a spectral resolution of 10 cm^-1."
+agent_interpretation = "The delay window supports spectral resolution close to an intrinsic narrow overtone linewidth rather than the pump pulse linewidth."
+source_anchors = ["PDF p.9, Results/System characteristics, paragraph beginning \"FT-OPT was first performed on...\"", "Fig. 2d, PDF p.11"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[claim_nodes]]
+id = "S2.3"
+role = "subclaim"
+parents = ["M2"]
+author_claim = "The system limit of detection (LOD) was estimated to be 3.4 mM (0.044% v/v) using the 3-sigma criterion."
+agent_interpretation = "A concentration series and baseline-noise estimate establish millimolar detection sensitivity."
+source_anchors = ["PDF p.9, Results/System characteristics, paragraph beginning \"To evaluate the sensitivity, 1,7-octadiene...\"", "Fig. 2e, PDF p.11"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[claim_nodes]]
+id = "S2.4"
+role = "subclaim"
+parents = ["M2"]
+author_claim = "The lateral spatial resolution was determined to be approximately 885 nm from the FWHM of the PSF. [...] Volumetric imaging [...] yielded an axial spatial resolution of approximately 6.79 µm."
+agent_interpretation = "Knife-edge and volumetric measurements establish lateral and axial imaging resolution, including lateral resolution beyond the pump-only diffraction limit through joint pump-probe localization."
+source_anchors = ["PDF p.10, Results/System characteristics, paragraph beginning \"Capability of enhanced spatial resolution...\"", "Fig. 2g-j, PDF p.11"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[claim_nodes]]
+id = "M3"
+role = "major"
+parents = ["T0"]
+author_claim = "FT-OPT addresses this issue by using the supercontinuum spectral coverage to access multiple overtone vibrational modes, combined with high spectral resolution."
+agent_interpretation = "Broad spectral coverage and adequate resolution provide useful molecular discrimination and quantitative mixture unmixing despite overlapping overtone bands."
+source_anchors = ["PDF p.12-13, Results/FT-OPT for molecular identification and unmixing, paragraph beginning \"In addition to weak signal...\"", "Fig. 3, PDF p.13"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[claim_nodes]]
+id = "S3.1"
+role = "subclaim"
+parents = ["M3"]
+author_claim = "The full spectral range achieves clear clustering for all species, demonstrating the strong advantage of broadband coverage for molecular classification."
+agent_interpretation = "Matched PCA comparisons across low, high, and full spectral ranges isolate the classification value of broadband coverage."
+source_anchors = ["PDF p.12, Results/FT-OPT for molecular identification and unmixing, paragraph beginning \"For each substance, 20 non-averaged...\"", "Fig. 3a-d, PDF p.13"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[claim_nodes]]
+id = "S3.2"
+role = "subclaim"
+parents = ["M3"]
+author_claim = "The full spectral range consistently achieves the lowest error across all mixtures. In most cases, the error increases significantly as the spectral resolution degrades."
+agent_interpretation = "Known-mixture LASSO tests map how spectral range and resolution affect quantitative unmixing error."
+source_anchors = ["PDF p.12-13, Results/FT-OPT for molecular identification and unmixing, paragraph beginning \"We further evaluated the spectral...\"", "Fig. 3e-h, PDF p.13"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[claim_nodes]]
+id = "M4"
+role = "major"
+parents = ["T0"]
+author_claim = "FT-OPT enables sensitive overtone spectroscopy within a few hundred milliseconds, thereby supporting dynamic spectral monitoring."
+agent_interpretation = "FT-OPT can repeatedly acquire overtone fingerprints fast enough to monitor changing microfluidic samples."
+source_anchors = ["PDF p.14-15, Results/Microfluidic dynamic spectral monitoring of FT-OPT, paragraphs beginning \"Although microfluidic photothermal detection for...\" and \"The spectral refresh period was...\"", "Fig. 4, PDF p.15"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[claim_nodes]]
+id = "S4.1"
+role = "subclaim"
+parents = ["M4"]
+author_claim = "The photothermal modulation depth [decreases] for both substances with increasing flow velocity."
+agent_interpretation = "Flow-rate controls characterize when advective heat removal begins to perturb the thermal-lens measurement."
+source_anchors = ["PDF p.14, Results/Microfluidic dynamic spectral monitoring of FT-OPT, paragraph beginning \"Intuitively, the flow velocity affects...\"", "Fig. 4d-f, PDF p.15"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[claim_nodes]]
+id = "S4.2"
+role = "subclaim"
+parents = ["M4"]
+author_claim = "Dynamic FT-OPT spectra were obtained over a 59 s period [...] comprising 35 spectra of water and 35 spectra of cyclooctane, and demonstrating excellent repeatability and stability."
+agent_interpretation = "Repeated alternating-sample acquisition establishes temporal fingerprint tracking and measurement repeatability at the demonstrated refresh period."
+source_anchors = ["PDF p.14-15, Results/Microfluidic dynamic spectral monitoring of FT-OPT, paragraph beginning \"The spectral refresh period was...\"", "Fig. 4b-c and 4g, PDF p.15"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[claim_nodes]]
+id = "M5"
+role = "major"
+parents = ["T0"]
+author_claim = "FT-OPT combines excellent spectroscopic capability with intrinsic photothermal imaging, offering distinct advantages for high-dimensional imaging in aqueous environments."
+agent_interpretation = "The platform performs label-free hyperspectral and volumetric chemical imaging of interfaces and thick aqueous tissues."
+source_anchors = ["PDF p.15-18, Results/Label-free hyperspectral and volumetric imaging of FT-OPT, paragraph beginning \"To the best of our knowledge,...\"", "Fig. 5, PDF p.16"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[claim_nodes]]
+id = "S5.1"
+role = "subclaim"
+parents = ["M5"]
+author_claim = "Distinct chemical contrast between [glycerol and olive oil] is clearly observed, with both overtone peaks simultaneously detected in the interfacial transition region."
+agent_interpretation = "A two-component interface test connects spatial contrast to simultaneously recovered O-H and C-H spectra."
+source_anchors = ["PDF p.17, Results/Label-free hyperspectral and volumetric imaging of FT-OPT, paragraph beginning \"To validate the chemical selectivity...\"", "Fig. 5a, PDF p.16"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[claim_nodes]]
+id = "S5.2"
+role = "subclaim"
+parents = ["M5"]
+author_claim = "The system achieves a penetration depth of approximately 100 µm in aqueous environments. [...] FT-OPT further enables 4D hyperspectral imaging."
+agent_interpretation = "Thick liver and brain specimens establish volumetric penetration and spatially resolved spectra in aqueous tissue."
+source_anchors = ["PDF p.17, Results/Label-free hyperspectral and volumetric imaging of FT-OPT, paragraph beginning \"We next extended the imaging...\"", "Fig. 5b-g, PDF p.16", "Supplementary Figs. S5-S7, PDF p.38-40"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[claim_nodes]]
+id = "S5.3"
+role = "subclaim"
+parents = ["M5"]
+author_claim = "To further demonstrate the utility of hyperspectral data, we performed non-negative matrix factorization on the above 4D data cubes, assuming two principal spectral components: water and organic constituents."
+agent_interpretation = "Factorization of the hyperspectral volume separates water-like and organic-like components and localizes their three-dimensional distributions."
+source_anchors = ["PDF p.17-18, Results/Label-free hyperspectral and volumetric imaging of FT-OPT, paragraph beginning \"To further demonstrate the utility...\"", "Fig. 5h-j, PDF p.16"]
+reveal_after = "claims_rollout_complete"
+default_followup_eligible = true
+transferability = "high"
+
+[[evidence_nodes]]
+id = "E1"
+target_claims = ["M1", "S1.1", "S1.2"]
+evidence_type = "analytical derivation from overtone absorption and interferometric excitation to a Fourier-recoverable photothermal spectrum"
+control_roles = ["Normalize the recovered spectrum by the measured pump spectrum", "Relate delay window and scan rate separately to resolution and acquisition speed"]
+source_anchors = ["Eqs. 1-3, PDF p.5-6", "Fig. 1a-c and 1e, PDF p.8", "PDF p.5-6, Results/Principle of FT-OPT spectroscopy and microscopy, paragraphs beginning \"Molecular anharmonicity causes deviations from...\" and \"The second term in Eq....\""]
+result_detail = "The derivation predicts that all pump-addressable vibrations are encoded at their vibrational frequencies in the delay-domain thermal-lens signal and recovered by Fourier transformation after pump normalization."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+default_followup_eligible = true
+transferability = "high"
+
+[[evidence_nodes]]
+id = "E2"
+target_claims = ["S1.3"]
+evidence_type = "source characterization, microscope construction, raw-signal recording, delay calibration, and resampling pipeline"
+control_roles = ["Monitor the pump autocorrelation independently", "Use a CW interferometric reference to correct nonuniform delay-stage motion", "Correct broadband power for detector response and objective transmission"]
+source_anchors = ["Fig. 1d-e, PDF p.8", "PDF p.7, Results/SWIR supercontinuum generation and experimental setup, paragraph beginning \"The FT-OPT experimental setup is...\"", "Supplementary Figs. S2-S4, PDF p.34-36"]
+result_detail = "The source spans approximately 1100-1600 nm at about 21 mW on sample; the recorded reference phase is unwrapped and used to resample the photothermal signal onto a linear delay grid."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+default_followup_eligible = false
+transferability = "low"
+
+[[evidence_nodes]]
+id = "E3"
+target_claims = ["M1", "M2"]
+evidence_type = "multiplex-SNR analysis and direct modulation-depth comparison between photothermal probe readout and pump absorption"
+control_roles = ["State the detector-noise-limited assumption for Fellgett scaling", "Use the same lipid absorption spectrum and interaction length for the absorption estimate", "Measure raw probe modulation under the implemented FT-OPT condition"]
+source_anchors = ["Supplementary Information, PDF p.31, section beginning \"Fellgett advantage of FT-OPT\"", "Supplementary Fig. S1 and Eqs. 2-4, PDF p.32-33"]
+result_detail = "The supplement reports a lipid absorption modulation estimate of 0.075% and an FT-OPT probe modulation depth of 6.5%, corresponding to an approximately 86-fold enhancement; it notes that the ideal multiplex scaling assumes detector-noise-limited operation."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+default_followup_eligible = true
+transferability = "high"
+
+[[evidence_nodes]]
+id = "E4"
+target_claims = ["S2.1", "S2.2"]
+evidence_type = "interferogram acquisition plus Fourier reconstruction on reference liquids with pump normalization and standard-spectrum comparison"
+control_roles = ["Compare the pump-normalized result with an external standard spectrum", "Use a narrow intrinsic feature to test resolution", "Report averaging and the temporal window"]
+source_anchors = ["Fig. 2a-d, PDF p.11", "PDF p.9, Results/System characteristics, paragraph beginning \"FT-OPT was first performed on...\""]
+result_detail = "A 300 ms ethanol delay scan covers approximately 6000-9000 cm^-1 and agrees with a standard spectrum; a 4 ps window resolves an approximately 29 cm^-1 1-octyne feature with a nominal 10 cm^-1 spectral resolution."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+default_followup_eligible = true
+transferability = "high"
+
+[[evidence_nodes]]
+id = "E5"
+target_claims = ["S2.3"]
+evidence_type = "concentration series, linear calibration, repeated measurements, baseline-noise estimate, and 3-sigma detection-limit calculation"
+control_roles = ["Dilute the analyte in a chemically related matrix", "Estimate noise in a nonabsorbing spectral region", "Report zero-concentration background", "Use replicate measurements for uncertainty"]
+source_anchors = ["Fig. 2e, PDF p.11", "PDF p.9, Results/System characteristics, paragraph beginning \"To evaluate the sensitivity, 1,7-octadiene...\""]
+result_detail = "The 1,7-octadiene calibration uses 18 measurements per concentration and reports R^2 = 0.9998 and a 3.4 mM (0.044% v/v) LOD; the nonzero zero-concentration signal is attributed to background and n-octane baseline absorption."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+default_followup_eligible = true
+transferability = "high"
+
+[[evidence_nodes]]
+id = "E6"
+target_claims = ["S2.4"]
+evidence_type = "knife-edge lateral PSF reconstruction and axial volumetric edge measurement"
+control_roles = ["Use a chemically contrasting interface with similar refractive indices", "Fit the edge-spread function to recover the PSF", "Compare measured lateral resolution with the pump-only diffraction limit"]
+source_anchors = ["Fig. 2g-j, PDF p.11", "PDF p.10, Results/System characteristics, paragraph beginning \"Capability of enhanced spatial resolution...\""]
+result_detail = "Error-function fits report approximately 885 nm lateral and 6.79 µm axial resolution; the lateral value is below the stated pump-only diffraction limit."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+default_followup_eligible = true
+transferability = "high"
+
+[[evidence_nodes]]
+id = "E7"
+target_claims = ["S3.1"]
+evidence_type = "matched PCA classification across restricted low-wavenumber, restricted high-wavenumber, and full-band spectra"
+control_roles = ["Acquire equal replicate counts for each molecule", "Use the same classifier across spectral windows", "Compare windows representing common tunable-source coverage"]
+source_anchors = ["Fig. 3a-d, PDF p.13", "PDF p.12, Results/FT-OPT for molecular identification and unmixing, paragraph beginning \"For each substance, 20 non-averaged...\""]
+result_detail = "Twenty nonaveraged spectra per C8 compound show poorest PCA separation in the low region, partial overlap in the high region, and clear clustering across the full range."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+default_followup_eligible = true
+transferability = "high"
+
+[[evidence_nodes]]
+id = "E8"
+target_claims = ["S3.2"]
+evidence_type = "known-mixture LASSO unmixing across spectral windows and synthetically degraded spectral resolutions"
+control_roles = ["Use predefined mixture fractions", "Fit all candidate components rather than only present species", "Hold the unmixing algorithm fixed while varying range and resolution"]
+source_anchors = ["Fig. 3e-h, PDF p.13", "PDF p.12-13, Results/FT-OPT for molecular identification and unmixing, paragraph beginning \"We further evaluated the spectral...\""]
+result_detail = "The full range generally gives the lowest absolute unmixing error; degrading resolution usually increases error, with explicitly discussed cases where shorter windows improve SNR enough to offset resolution loss."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+default_followup_eligible = true
+transferability = "high"
+
+[[evidence_nodes]]
+id = "E9"
+target_claims = ["S4.1"]
+evidence_type = "flow-velocity perturbation series with matched filtering of water and cyclooctane photothermal transients"
+control_roles = ["Measure both phases over the same velocity range", "Normalize the transient scale consistently", "Separate no-delay thermal-response characterization from spectral scanning"]
+source_anchors = ["Fig. 4d-f, PDF p.15", "PDF p.14, Results/Microfluidic dynamic spectral monitoring of FT-OPT, paragraph beginning \"Intuitively, the flow velocity affects...\""]
+result_detail = "The thermal response changes substantially at flow velocities on the order of hundreds of millimeters per second; 30 mm/s is selected for subsequent dynamic spectra."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+default_followup_eligible = true
+transferability = "high"
+
+[[evidence_nodes]]
+id = "E10"
+target_claims = ["M4", "S4.2"]
+evidence_type = "alternating-water/cyclooctane microfluidic time series with segmented interferograms and per-segment FFT spectra"
+control_roles = ["Alternate chemically distinct liquids through the same focal volume", "Acquire without averaging", "Plot repeated spectra on common axes over time"]
+source_anchors = ["Fig. 4a-c and 4g, PDF p.15", "PDF p.14-15, Results/Microfluidic dynamic spectral monitoring of FT-OPT, paragraph beginning \"The spectral refresh period was...\""]
+result_detail = "The implemented refresh period is approximately 0.842 s with about 51% duty cycle; the 59 s record contains 35 water and 35 cyclooctane spectra without averaging."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+default_followup_eligible = true
+transferability = "high"
+
+[[evidence_nodes]]
+id = "E11"
+target_claims = ["S5.1"]
+evidence_type = "hyperspectral imaging of a two-component liquid interface at component peaks and a silent wavenumber"
+control_roles = ["Use a silent-frequency image as a contrast control", "Extract spectra from both pure regions and the transition region", "Require both component bands at the interface"]
+source_anchors = ["Fig. 5a, PDF p.16", "PDF p.17, Results/Label-free hyperspectral and volumetric imaging of FT-OPT, paragraph beginning \"To validate the chemical selectivity...\""]
+result_detail = "The glycerol O-H and olive-oil C-H contrasts localize to their respective regions, while the transition region contains both bands."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+default_followup_eligible = true
+transferability = "high"
+
+[[evidence_nodes]]
+id = "E12"
+target_claims = ["M5", "S5.2"]
+evidence_type = "thin-tissue hyperspectral imaging plus thick-tissue volumetric and 4D imaging in PBS"
+control_roles = ["Compare photothermal images with simultaneously acquired probe-transmission images", "Use thin and thick specimens to distinguish morphology from depth sectioning", "Extract spectra from water-, lipid-, and transition-dominated regions"]
+source_anchors = ["Fig. 5b-g, PDF p.16", "PDF p.17, Results/Label-free hyperspectral and volumetric imaging of FT-OPT, paragraph beginning \"We next extended the imaging...\"", "Supplementary Figs. S5-S7, PDF p.38-40"]
+result_detail = "The paper reports approximately 100 µm penetration in thick liver and comparable depth in brain tissue; transmission controls lack the photothermal lipid localization or axial sectioning shown by FT-OPT."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+default_followup_eligible = true
+transferability = "high"
+
+[[evidence_nodes]]
+id = "E13"
+target_claims = ["S5.3"]
+evidence_type = "two-component non-negative matrix factorization of 4D tissue data cubes"
+control_roles = ["Predeclare two interpretable components", "Inspect recovered component spectra", "Map relative component concentrations back into 3D space"]
+source_anchors = ["Fig. 5h-j, PDF p.16", "PDF p.17-18, Results/Label-free hyperspectral and volumetric imaging of FT-OPT, paragraph beginning \"To further demonstrate the utility...\""]
+result_detail = "The recovered components are assigned to water-like and organic-like spectra; the corresponding 3D maps reduce the water background around organic structures."
+reveal_design_after = "evidence_rollout_complete"
+reveal_result_after = "independent_reading_started"
+default_followup_eligible = true
+transferability = "high"
+
+[disclosure_views]
+knowledge = ["K1", "K2", "K3"]
+post_idea_knowledge = ["K4", "K5", "K6", "K7", "K8"]
+idea_problem_state = ["I1", "I2", "I3", "I4", "I5", "G1"]
+claims_start = ["T0"]
+claims_reference = ["T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "S2.4", "M3", "S3.1", "S3.2", "M4", "S4.1", "S4.2", "M5", "S5.1", "S5.2", "S5.3"]
+evidence_start = ["T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "S2.4", "M3", "S3.1", "S3.2", "M4", "S4.1", "S4.2", "M5", "S5.1", "S5.2", "S5.3"]
+evidence_reference_design = ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "E10", "E11", "E12", "E13"]
+independent_reading = ["all_claim_nodes", "all_evidence_nodes", "result_detail"]
+
+[selection]
+knowledge_policy = "seeded_dependency_eligible"
+idea_policy = "complete_problem_state_fixed_prompt_minimal_checkability_gate"
+claims_policy = "human_tree_open_nodes_only_transferability_filtered"
+evidence_policy = "revealed_claims_only_transferability_filtered"
+transferability_filter = "default_reusable_reasoning_primitives"
+delta_policy = "fixed_prompt"
+
+[prompt_templates]
+idea_fixed = "What would you try?"
+idea_clarify = "Normally challenge or clarify one ambiguous intervention, mechanism relation, or expected observable; stop once the proposal is checkable."
+idea_finish = "Are you ready to end this IDEA rollout?"
+claims_add = "Which major claim do you want to add under the current root?"
+claims_expand = "Which human-created node should be expanded next?"
+claims_decompose = "What immediate subclaim belongs under this human-created node?"
+claims_finish = "Are you ready to end this CLAIMS rollout?"
+evidence_attach = "What evidence or proof would you attach to this revealed claim?"
+evidence_control = "What control role is required for this human-designed evidence?"
+evidence_finish = "Are you ready to end this EVIDENCE rollout?"
+delta_fixed = "What's the delta?"

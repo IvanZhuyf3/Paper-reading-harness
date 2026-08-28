@@ -83,6 +83,7 @@ Do not reconstruct the hidden paper structure turn by turn. Before the first run
 
 ```text
 source PDF
+→ extract and visually inspect source artifacts
 → compile complete paper model
 → persist model + audit report
 → validate anchors, visibility, and parseability

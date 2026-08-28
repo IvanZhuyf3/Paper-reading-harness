@@ -1,0 +1,3836 @@
+===== PDF PAGE 1 =====
+For Review Only
+Supercontinuum Fourier-transform Overtone Photothermal 
+Spectroscopy and Microscopy
+Journal: Advanced Photonics
+Manuscript ID AP-26-149008
+Manuscript Type: Original Paper
+Date Submitted by the 
+Author: 22-Aug-2026
+Complete List of Authors: Li, Geng; Tsinghua University Department of Precision Instrument
+Hao, Rui; Tsinghua University Department of Precision Instrument
+Jia, Jinyi; Tsinghua University, Weiyang College
+Lu, Minjian; Tsinghua University Department of Precision Instrument
+Lyu, Xinhang; Tsinghua University Department of Precision Instrument
+An, Ran; Tsinghua University Department of Precision Instrument
+Le, Taoran; Tsinghua University Department of Precision Instrument
+Lin, Xiaoyang; Tsinghua University Department of Precision Instrument
+Li, Yan; Tsinghua University Department of Precision Instrument
+Wei, Haoyun; Tsinghua University Department of Precision Instrument
+Keywords: Supercontinuum, Fourier-transform spectroscopy, Overtone vibration, 
+Photothermal spectroscopy, Photothermal microscopy
+Subject Category: Imaging and Sensing
+ 
+http://advphoton.cn
+Advanced Photonics
+
+===== PDF PAGE 2 =====
+For Review Only
+ 1 / 28 
+ 
+Supercontinuum Fourier-transform Overtone Photothermal 1 
+Spectroscopy and Microscopy 2 
+ 
+Geng Lia, Rui Haoa, Jinyi Jiab, Minjian Lua, Xinhang Lyua, Ran Ana, Taoran Lea, 3 
+Xiaoyang Lina, Yan Lia and Haoyun Weia,* 4 
+aState Key Laboratory of Precision Measurement Technology and Instruments, Department of Precision Instrument, 5 
+Tsinghua University, Beijing 100084, China 6 
+bWeiyang College, Tsinghua University, Beijing 100084, China 7 
+ 
+Abstract: Overtone photothermal (OPT) microscopy is a promising modality for vibrational volumetric imaging in 8 
+aqueous samples, owing to reduced water absorption and increased penetration depth. However, the wavelength-9 
+scanned, frequency-domain implementations impose a trade-off among spectral bandwidth, acquisition speed, and 10 
+spectral resolution, limiting rapid and information-rich chemical fingerprinting. Here, we introduce Fourier-transform 11 
+overtone photothermal (FT-OPT) spectroscopy and microscopy, a time-domain framework that retrieves photothermal 12 
+spectra without sequential wavelength tuning. In FT-OPT, interferometric modulation of a supercontinuum pump 13 
+excites broadband overtone transitions, and the resulting local thermal lens simultaneously encodes the vibrations into 14 
+a temporal interferogram. This signal is sensitively read out by a shorter-wavelength probe beam, thereby preserving 15 
+KLJKHU VSDWLDO UHVROXWLRQ )RXULHU WUDQVIRUPDWLRQ RI WKH LQWHUIHURJUDP HQDEOHV VSHFWUD VSDQQLQJ  FPqï ZLWK16 
+VSHFWUDOUHVROXWLRQDSSURDFKLQJWKHLQWULQVLFPROHFXODUOLQHZLGWKVPLOOLPRODUVHQVLWLYLW\DQG)RUGHUV)RI)PDJQLWXGH17 
+faster spectral acquisition than wavelength-scanned OPT. Using FT-OPT, we discriminate molecules with closely 18 
+related overtone signatures, demonstrate time-resolved overtone fingerprinting in a microfluidic platform, and perform 19 
+label-free 4D (3D spatial and spectral) imaging of thick tissues. By overcoming the bandwidth-speed trade-off while 20 
+retaining high spatial resolution, FT-OPT provides a route toward label-free spectral flow cytometry and high-21 
+dimensional chemical imaging in aqueous environments. 22 
+ 
+Keywords: Supercontinuum, Fourier-transform spectroscopy, Overtone vibration, Photothermal spectroscopy, 23 
+Photothermal microscopy 24 
+ 
+*Corresponding author: luckiwei@mail.tsinghua.edu.cn 
+25 
+  
+Page 1 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 3 =====
+For Review Only
+ 2 / 28 
+ 
+1 Introduction 26 
+Vibrational spectroscopy and imaging1±4, revealing intrinsic signatures of molecular structure, are 27 
+indispensable tools for label-free and chemically specific detection across environmental science, 28 
+biology, medicine, chemistry, and materials science. In particular, owing to its ultrahigh sensitivity, 29 
+enhanced spatial resolution and optical sectioning capability, mid-infrared (MIR) photothermal 30 
+microscopy5 has attracted increasing attention over the past decade6±10. By using a shortwave beam 31 
+to detect the local thermal lens effect11 induced by MIR absorption under high numerical aperture 32 
+(NA) conditions, this approach achieves micromolar sensitivity and submicron spatial resolution. 33 
+Nevertheless, MIR-based methods require tunable and broadband sources such as quantum 34 
+cascade lasers (QCLs), optical parametric oscillators (OPOs), or synchrotron radiation 12, as well 35 
+as other specialized optical materials and components, which substantially increase system 36 
+complexity and cost. More critically, the strong absorption of water leads to severe signal 37 
+background and attenuation, often necessitating measurements under dry or dehydrated 38 
+conditions13±15. This effect constrains applications in aqueous environments and restricts 39 
+penetration depth in complex biological tissues 5. Recently, researchers proposed overtone 40 
+photothermal (OPT) microscopy16,17 based on shortwave infrared (SWIR, 1000±×QP While 41 
+preserving the advantages of photothermal microscopy, exciting overtone transitions with a SWIR 42 
+source dramatically suppresses water absorption 17, which not only reduces system cost but also 43 
+enables 3D imaging of biological samples at millimeter depths16. 44 
+Although demonstrating outstanding imaging ability, photothermal detection cannot obtain spectra 45 
+via a normal spectrometer; instead, spectra are acquired by tuning the pump wavelength. This 46 
+frequency-domain excitation approach introduces a series of constraints in spectral performance 47 
+due to the limitations of mainstream tunable SWIR sources3,18. On the one hand, the tuning range 48 
+is difficult to cover several hundred nanometers or more 19. As a result, existing OPT microscopy 49 
+typically covers only a portion of the C ±H overtone region17. Due to the notable spectral overlap 50 
+of overtone and combination transitions, a broader spectral range is required to extract more 51 
+chemically specific information20. On the other hand, prevailing SWIR sources (e.g., OPOs) also 52 
+suffer from limited tuning speeds: manual adjustment typically requires a few seconds17, and even 53 
+most automated tunable sources operate on timescales of tens to hundreds of milliseconds per 54 
+wavelength step. Owing to the positive coupling between acquisition time and spectral bandwidth, 55 
+it is necessary to spend several seconds or minutes to acquire a spectrum, which is unsuitable for 56 
+Page 2 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 4 =====
+For Review Only
+ 3 / 28 
+ 
+dynamic spectral applications. Additionally, because most of these sources operate as ultrafast 57 
+pulses19, their short durations fundamentally lead to spectral broadening due to the time ±energy 58 
+uncertainty principle17. While the broad linewidths in overtone regions reduce the requirement for 59 
+spectral resolution, high spectral resolution remains advantageous for distinguishing similar 60 
+molecules. 61 
+Inspired by FTIR and dual-comb spectroscopy 21, time-domain excitation schemes have recently 62 
+been explored in photothermal microscopy 12,22 as a tentative approach to overcome the above 63 
+trade-offs, but most remain at the proof-of-concept stage. Even in strong fundamental MIR 64 
+absorption bands, their photothermal signals remain weak, hindering label-free detection. 65 
+Therefore, existing demonstrations require thermosensitive fluorescent labeling and long 66 
+integration (~10 min per spectrum). This performance not only cannot accommodate dynamic 67 
+spectral monitoring or hyperspectral imaging, but also preserve the above limitations of MIR-68 
+based approaches. This may critically underestimate the potential of time-domain excitation in 69 
+photothermal spectroscopy and microscopy. 70 
+To address these challenges, in this work, we present Fourier-transform overtone photothermal 71 
+(FT-OPT) spectroscopy and microscopy, which replaces the conventional frequency-domain 72 
+excitation with a time-domain interference strategy. To realize this concept, we employed a 73 
+femtosecond laser and photonic crystal fiber (PCF) to generate a high-power supercontinuum as 74 
+SWIR pump, enabling intense photothermal signals without the need for labeling or long 75 
+integration times. By encoding and Fourier-transform decoding the local thermal lens dynamic, 76 
+FT-OPT decouples the trade-off between spectral bandwidth and acquisition time, obtaining 77 
+spectra with ultimate spectral resolution within hundreds of milliseconds. The parallel and 78 
+photothermal measurement23 also endows it with high sensitivity. The supercontinuum bandwidth 79 
+encompasses the C ±H 2nd and O ±H 1st overtone regions, enabling clear discrimination and 80 
+unmixing of C8 hydrocarbons, even in overtone regions with severe spectral overlap. We further 81 
+develop the first microfluidic overtone spectroscopy for dynamic spectral monitoring. Moreover, 82 
+we demonstrate hyperspectral (4D) photothermal imaging for the first time within a time-domain 83 
+excitation framework. 84 
+ 
+Page 3 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 5 =====
+For Review Only
+ 4 / 28 
+ 
+2 Results 85 
+2.1 Principle of FT-OPT spectroscopy and microscopy 86 
+Molecular anharmonicity causes deviations from an ideal harmonic potential, giving rise to 87 
+overtone and combination transitions that carry chemical specificity20,24, as illustrated in Fig. 1(a). 88 
+When a wavelength-matched SWIR pump is focused onto the sample by objective, these 89 
+transitions are excited and subsequently relax non-radiatively, generating local heat. The resulting 90 
+temperature rise produces a refractive-index gradient 11. Under the small-temperature-rise 91 
+approximation, the refractive-index change ûQ near the focal volume can be written as Eq. (1). 92 
+2
+( ) ( ) pumpn k E dZ Z Z' v³  (1) 93 
+He
+re, & is the pump frequency, k(&) is the molecular response coefficient, which directly 94 
+corresponds to the overtone intensity spectrum, and |Epump(&)|2 represents the pump spectrum 95 
+(spectral power density). Then, the thermal lens induced by ûQ is detected by a separate shortwave 96 
+probe that is collinear with the pump but slightly defocused. Conventional photothermal 97 
+microscopy employs a single-wavelength pump 3 and acquires spectra k(&) by tuning the pump 98 
+wavelength. In FT-OPT, two identical broadband SWIR pulses with a controlled relative delay 2 99 
+are used as the pump-pair. Under this scheme, the refractive-index change ûQ(2) can be expressed 100 
+by Eq. (2). 101 
+2
+2 21 1
+( ) ( ) ( ) ( )
+{ ( ) ( ) } { ( ) ( ) }
+i
+pump pump
+k pump pump
+n k E E e d
+C F k E F k E
+ZWW Z Z Z Z
+Z
+Z Z Z 
+' v 
+    
+³  (2) 102 
+He
+re, F-1{} denotes the inverse Fourier transform, Ck N&_(pump&_2G& is a constant. 103 
+By scanning the relative delay 2, the thermal lens effect is probed and ûQ(2) is recorded, forming 104 
+an interferogram ,2IprobeûQ2. For a specific vibrational transition frequency, Figs. 1(b) and 105 
+1(c) illustrate two representative cases of 2. In Fig. 1(b), 2c corresponds to constructive interference, 106 
+yielding a pump-pair spectrum distribution that maximally excites the transitions, and the thermal 107 
+lens response reaches a local maximum. In Fig. 1(c), 2d corresponds to destructive interference, 108 
+and the signal reaches a local minimum. The interval between every adjacent 2c and 2d corresponds 109 
+to half a vibrational period. Ultimately, ,2 concurrently encodes all vibrational states that can be 110 
+excited within the pump spectrum, with each state modulating the photothermal signal at its 111 
+Page 4 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 6 =====
+For Review Only
+ 5 / 28 
+ 
+vibrational frequency, and the resulting FT-OPT interferogram ,2 is shown by the red curve in 112 
+Fig. 1(e). A subsequent Fourier transform F{} of ,2) then yields Eq. (3). 113 
+2 2
+{ ( )} [ (0) ( ) ( ) ( ) ( ) ]probe k pump pumpF I I C k E k EW G Z Z Z Zv      (3) 114 
+T
+he second term in Eq. (3) corresponds to the spectral information as shown by the blue curve in 115 
+Fig. 1(e), which can be converted into the spectrum k(&) by normalizing with the pump spectrum 116 
+|Epump(&)|2. The reasoning presented above is general, and holds for both SWIR overtone and MIR 117 
+fundamental transitions12. Therefore, the spectral bandwidth of FT-OPT is determined by the pump 118 
+VSHFWUXPZKLOHWKHDFTXLVLWLRQVSHHGLVJRYHUQHGE\WKHVFDQQLQJVSHHGRIWKHUHODWLYHGHOD\ 2 119 
+Additionally, as long as the scanning range of 2 is sufficient, FT-OPT can record the molecular 120 
+vibrational lifetimes25,26, and in principle, obtain the spectral features near the natural linewidth 121 
+limit. 122 
+A major advantage of photothermal imaging is that it operates as a pump ±probe ³two-photon´ 123 
+process, inherently providing axial optical sectioning capability 5,17. Moreover, the lateral point 124 
+spread function (PSF) is jointly determined by the pump and probe beams, allowing the use of a 125 
+shorter-wavelength probe to further enhance spatial resolution. 4D hyperspectral images can be 126 
+obtained by performing point-by-point scanning in the X±Y-Z volume based on the above pump-127 
+probe processes. Another advantage is that, particularly in overtone applications, photothermal 128 
+microscopy offers a significant sensitivity advantage over Beer ±Lambert±based methods. This is 129 
+because overtone transitions are several orders of magnitude weaker than fundamental transitions, 130 
+and the light±matter interaction length is extremely short (several micrometers), making the pump 131 
+intensity modulation depth inherently limited. Photothermal detection improves sensitivity by 132 
+converting weak absorption into a measurable thermal response, while time-domain excitation 133 
+introduces a multiplex (Fellgett) advantage23 that further enhances the signal. Taking lipids as an 134 
+example, the present FT-OPT system achieves ~86-fold enhancement in signal modulation depth 135 
+(0.075% vs 6.5%). A detailed analysis is provided in the Supplementary Information and Fig. S1. 136 
+ 
+2.2 SWIR supercontinuum generation and experimental setup 137 
+The FT-OPT experimental setup is schematically shown in Fig. 1(d), with detailed specifications 138 
+and component models provided in the Methods section. Specifically, the output of a commercial 139 
+fiber femtosecond laser was coupled into a segment of PCF. The intensity autocorrelation of the 140 
+Page 5 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 7 =====
+For Review Only
+ 6 / 28 
+ 
+injected pulse and the PCF coupling setup is shown in Fig. S2. Due to the extremely high peak 141 
+power of the femtosecond pulses and the strong nonlinear effects in the PCF, the pulses broadened 142 
+spectrally27±29, and the duration was stretched to the picosecond range by PCF dispersion to reduce 143 
+optical damage to the sample. This process produced a high-power (~21 mW at the sample after 144 
+50% duty cycle modulation), spectrally flat source spanning 1100 ±1600 nm (6250 ±FPqï145 
+covering the entire C±H 2nd and O±H 1st overtone regions, where most organic molecules exhibit 146 
+pronounced transitions and rich chemical specificity 20,24. The flat pump spectrum also ensures 147 
+uniform and efficient excitation of all vibrational states within this range. The first-order 148 
+autocorrelation of the pump, as well as the pump spectrum and the PCF input spectrum, are shown 149 
+in Figs. 2(a) and 2(b), respectively. The broadband power calculation procedure, as well as the 150 
+objective transmission and detector response curves, are provided in the Supplementary 151 
+Information (Fig. S3). 152 
+As shown in Fig. 1(d), the pump was then directed into a Michelson interferometer (MI) for beam 153 
+splitting and relative delay scanning. A 1 mW continuous-wave He±Ne laser (632.8 nm) was split 154 
+1:1 to serve as the probe beam and the relative delay reference beam, respectively. For detection, 155 
+two identical objectives (NA = 0.65) were used to focus and collect the beams. An avalanche 156 
+photodiode (APD) was used to measure the photothermal signal ,2, while two photodetectors 157 
+(PDs) monitored the relative delay 2 and the first-order autocorrelation of the pump (with 158 
+compensation for half-wave loss), respectively. 159 
+For signal acquisition, FT-OPT employs a classical photothermal microscopy approach in which 160 
+the pump is modulated with a square wave and the probe is demodulated using a lock-in amplifier 161 
+(LIA); the overall signal processing workflow of the system is shown in Fig. 1(e). The pump was 162 
+modulated by a chopper at fm=10kHz with a 50% duty cycle, and the relative delay 2 was 163 
+continuously and bidirectionally scanned at 2000 fs/s by a motorized scanning stage. Additionally, 164 
+XY±Z scanning was performed using motorized translation stages at the sample and objective to 165 
+enable volumetric imaging. The raw time-domain signals and the relative delay calibration 166 
+procedure are provided in the Supplementary Information (Fig. S4). 167 
+Page 6 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 8 =====
+For Review Only
+ 7 / 28 
+ 
+ 168 
+Fig. 1 Principle and setup of FT-OPT. (a) Schematic of SWIR overtone transitions, nonradiative relaxation, and heat release, where 169 
+0 and 1 denote the ground and fundamental vibrational states, respectively. (b, c) Pump-probe processes of FT-OPT. Two 170 
+representative relative delays of the pump-pair for a specific vibrational state are shown, illustrating the thermal lens response with 171 
+a local maximum or minimum in time-domain. (d) Experimental setup of FT-OPT. HWP: half-wave plate; PBS: polarizing beam 172 
+splitter; PCF: photonic crystal fiber; F: filter; M: mirror; BS: beam splitter; DM: dichroic mirror; L: lens; OBJ: objective; Con: 173 
+condenser; P: pupil; PD: photodetector; APD: avalanche photodiode. (e) Signal processing workflow of FT-OPT. CW: continuous-174 
+wave; fm: pump modulation frequency. 175 
+Page 7 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 9 =====
+For Review Only
+ 8 / 28 
+ 
+2.3 System characteristics 176 
+FT-OPT was first performed on pure ethanol and 1-octyne samples to evaluate the spectral 177 
+performance. In ethanol PHDVXUHPHQWWKHUHODWLYHGHOD\ZDVVFDQQHGIURPíIVWRIVZLWKLQ178 
+300 ms, capturing almost all effective encoded information (AC components). A non-averaged 179 
+photothermal interferogram is shown in Fig. 2(a), exhibiting a clean, low-noise baseline and clear 180 
+broadband vibrational features. Performing an FFT on the interferogram in Fig. 2(a) yields the FT-181 
+OPT spectrum of ethanol, as shown in Fig. 2(c). The spectral coverage spans approximately 6000±182 
+FPqïsubstantially exceeding the typical spectral bandwidth (~1000 FPqï) accessible with 183 
+conventional tunable sources. Pump-normalized spectrum shows excellent agreement with 184 
+standard spectrum30 (Fig. 2(c)). Ethanol exhibits three dominant C ±H overtone peaks at ~8718, 185 
+aDQGaFPq ïDORQJZLWKDVWURQJ2±+RYHUWRQHDEVRUSWLRQEDQGEHORZaFPq ï 186 
+The C±H overtone features are accurately preserved even without normalization due to the flat 187 
+SXPS VSHFWUDO SURILOH 0LQRU GHYLDWLRQV EHORZ  FPqï PD\ RULJLQDWH IURP SXPS VSHFWUDO188 
+nonuniformity and polarization-dependent spectral response variations. Fig. 2(d) shows the FT-189 
+OPT interferogram of 1-octyne. The overtone vibration at ~  FPqï H[KLELWV D long lifetime, 190 
+corresponding to a narrow spectral feature (FWHM ~ FPqï FT-OPT is capable of recovering 191 
+this lifetime-limited linewidth. In this case, the 4 ps temporal rectangular window corresponds to 192 
+a spectral resolution of FPqï This combination of spectral performance is difficult to achieve 193 
+using frequency-domain excitation. 194 
+To evaluate the sensitivity, 1,7-octadiene was diluted in n-octane, and FT-OPT spectra (with a 4 195 
+ps temporal rectangular window) of solutions at different concentrations were measured in the 196 
+low-concentration regime. The linear fit of the spectral peak intensity of 1,7-octadiene at ~6534 197 
+FPqïversus concentration is shown in Fig. 2(e), with inset spectra at different concentrations. The 198 
+nonzero signal at zero concentration (pure n-octane) is likely attributed to system background and 199 
+the weak absorption baseline of n-octane. 7KHVWDQGDUGGHYLDWLRQ1RIWKHVLJQDOZDVFDOFXODWHGLQ200 
+a non-absorbing spectral region, and the system limit of detection (LOD) was estimated to be 3.4 201 
+mM (0.044% v/v) XVLQJ WKH 1 FULWHULRQ 31. By employing photothermal detection, FT-OPT 202 
+effectively overcomes the challenge of weak overtone signals. This sensitivity is comparable to 203 
+previously reported OPT and coherent Raman scattering (CRS) microscopy 16, demonstrating the 204 
+high sensitivity of the system. The current LOD is primarily limited by the noise of the probe and 205 
+the pump power.  206 
+Page 8 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 10 =====
+For Review Only
+ 9 / 28 
+ 
+FT-OPT further demonstrates strong molecular specificity across different chemical species. 207 
+Pump-normalized spectra of alcohols and representative organic compounds reveal distinct 208 
+broadband fingerprints, as shown in Fig. 2(f). Alcohols show characteristic O ±H overtone 209 
+absorption band with C ±H features, while dimethyl sulfoxide (DMSO) and lipid-based samples 210 
+exhibit distinct C ±H signatures reflecting differences in carbon-chain structure. In Fig. 2(f), 211 
+methanol, isopropanol (and also ethanol), DMSO, and oil exhibit closely spaced main peaks at 212 
+~8364, ~8432, ~8497, and ~8267 FPqï, respectively, demonstrating high spectral discrimination 213 
+capability. Weak shoulder peaks around 8500~8700 FPqïIURP the three different oil samples are 214 
+clearly resolved, rather than being masked or smoothed by the broad and strong main peak. This 215 
+feature corresponds to the overtone vibration of unsaturated C ±H bonds32,33, a spectral detail that 216 
+was not accessible in previous OPT microscopy17. 217 
+Capability of enhanced spatial resolution and volumetric imaging are further demonstrated. We 218 
+evaluated the lateral resolution using a knife-edge imaging method at the interface between 219 
+Olympus oil and glass (Fig. 2(g)), while simultaneously showing chemical contrast between 220 
+materials with similar refractive indices. Assuming a Gaussian PSF, the FT-OPT signal profile 221 
+along the dashed line was fitted with an error function to reconstruct the PSF as shown in Fig. 2(i). 222 
+The lateral spatial resolution was determined to be ~885 nm from the FWHM of the PSF. The 223 
+diffraction-limited spatial resolution determined by the pump, calculated using its average 224 
+wavelength, is îQP§QP. Therefore, the system is capable of imaging with a 225 
+spatial resolution surpassing the pump-wavelength diffraction-limited optical resolution. Using the 226 
+same method, volumetric imaging of the interface was performed to estimate the axial resolution, 227 
+as shown in Figs. 3(h) and 3(j)  \LHOGLQJ DQ D[LDO VSDWLDO UHVROXWLRQ RI DSSUR[LPDWHO\ ×P, 228 
+which is FRQVLVWHQWZLWKWKHSXPS¶VGHSWKRIIRFXV. 229 
+Page 9 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 11 =====
+For Review Only
+ 10 / 28 
+ 
+ 230 
+Fig. 2 Spectral and microscopic performance of FT-OPT. (a) First-order autocorrelation of the SWIR supercontinuum pump and 231 
+FT-OPT interferogram of ethanol. (b) Pump spectrum retrieved from (a) by FFT, along with the PCF input spectrum. (c) FT-OPT 232 
+spectrum of ethanol, compared with the reference spectrum. (d) FT-OPT interferogram of 1-octene; insets show a zoomed 233 
+LQWHUIHURJUDPDQGWKHVKDUSSHDNDWaFPqï (e) Linear fit of the FT-OPT signal versus 1,7-octadiene concentration in n-octane 234 
+(R² = 0.9998) and system LOD evaluation. Each data point and its error bar represent the mean and standard deviation of 18 235 
+measurements, respectively. (f) pump-normalized FT-OPT spectra of alcohols and representative organic compounds. (g) FT-OPT 236 
+XY-2D imaging of a knife edge (oil ±glass interface). (h) FT-OPT XYZ-3D imaging of an oil ±glass interface. (i, j) Error function 237 
+fitting (R² = 0.9968 and 0.9976) for PSF extraction, yielding the system lateral and axial spatial resolutions. Except (d): 20 coherent 238 
+averages; others: no averaging. 239 
+Page 10 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 12 =====
+For Review Only
+ 11 / 28 
+ 
+2.4 FT-OPT for molecular identification and unmixing 240 
+In addition to weak signal intensity, broad linewidths and severe spectral overlap in the overtone 241 
+region are commonly considered to limit chemical specificity. Previous studies have used 242 
+sophisticated algorithms to improve molecular discrimination 34, but concerns remain about their 243 
+stability and generalizability. FT-OPT addresses this issue by using the supercontinuum spectral 244 
+coverage to access multiple overtone vibrational modes, combined with high spectral resolution. 245 
+To evaluate these advantages, C8 hydrocarbons were selected as a representative system. As key 246 
+feedstocks and intermediates in fuels, organic materials, and biomolecules, hydrocarbons are of 247 
+significant scientific interest. Fig. 3(a) shows the FT-OPT spectra of seven molecules (n-octane, 248 
+isooctane, cyclooctane, 1-octene, 1,7-octadiene, 1-octyne, and ethylbenzene), which exhibit 249 
+overall similar spectra but distinguishable local variations. The spectra are further divided into a 250 
+low-wavenumber red region (6300~7750cm -1) and a high-wavenumber yellow region 251 
+(7750~9000cm-1), corresponding to the spectral coverage of two common tunable SWIR systems 252 
+(Er- and Yb-doped). 253 
+For each substance, 20 non-averaged FT-OPT spectra ZLWKDVSHFWUDOUHVROXWLRQRIFPq ï were 254 
+acquired and subjected to principal component analysis (PCA). The 3D projection results are 255 
+shown in Fig. 3(b ±d), corresponding to the low-wavenumber region, high-wavenumber region, 256 
+and full spectral range, respectively. The low-wavenumber region yields the poorest classification 257 
+performance, with most species showing no clear separation in PCA space except isooctane and 258 
+1-octyne. The high-wavenumber region improves discrimination due to stronger spectral features, 259 
+but partial overlap remains. In contrast, the full spectral range achieves clear clustering for all 260 
+species, demonstrating the strong advantage of broadband coverage for molecular classification. 261 
+We further evaluated the spectral unmixing capability of FT-OPT. Three hydrocarbons were 262 
+selected from the seven C8 species (including structurally similar alkane/alkene combinations) and 263 
+mixed at predefined volume ratios. The FT-OPT spectra of the mixtures were then acquired and 264 
+analyzed using the least absolute shrinkage and selection operator (LASSO) algorithm to 265 
+determine the volume fractions of all seven candidate components. The corresponding unmixing 266 
+absolute errors (at FPqïVSHFWUDOUHVROXWLRQ) for the above three spectral ranges are shown in Fig. 267 
+3(e±h). The right panels illustrate the evolution of the error for each mixture as the spectral 268 
+resolution degrades (10cm-1 to 100cm-1) with decreasing temporal rectangular window length. The 269 
+low- and high-wavenumber regions exhibit complementary performance depending on the mixture 270 
+Page 11 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 13 =====
+For Review Only
+ 12 / 28 
+ 
+composition, whereas the full spectral range consistently achieves the lowest error across all 271 
+mixtures. In most cases, the error increases significantly as the spectral resolution degrades. 272 
+However, in a few cases such as Fig. 3(g), where the spectral differences among the mixture 273 
+components (1,7-octadiene, 1-octyne, and ethylbenzene) are sufficiently large, higher spectral 274 
+resolution is no longer necessary. Instead, shortening the temporal window to improve the signal-275 
+to-noise ratio (SNR) leads to more accurate unmixing results. 276 
+ 277 
+Fig. 3 Discrimination and unmixing of C8 hydrocarbons by FT-OPT. (a) FT-OPT spectra of several C8 hydrocarbons, where 1 ±7 278 
+correspond to n-octane, isooctane, cyclooctane, 1-octene, 1,7-octadiene, 1-octyne, and ethylbenzene. (b±d) PCA projections using 279 
+spectral data from the red-shaded low-wavenumber region (b), yellow-shaded high-wavenumber region (c), and the full spectral 280 
+range (d) in (a). (e±f) Unmixing errors of four mixture solutions using LASSO. Blue numbers indicate the dominant component in 281 
+each mixture. Each mixture was unmixed using three spectral ranges in (a). Dependence of spectral unmixing error on degrading 282 
+spectral resolution is shown on the right. FT-OPT spectral data were obtained with 20 coherent averages, except for PCA results 283 
+(b-d) without averaging. 284 
+Page 12 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 14 =====
+For Review Only
+ 13 / 28 
+ 
+2.5 Microfluidic dynamic spectral monitoring of FT-OPT 285 
+Although microfluidic photothermal detection for liquids or particles has been demonstrated 35, it 286 
+has so far been restricted to single-wavelength or spectrally discrete multi-wavelength operation. 287 
+To date, the integration with continuous broadband photothermal spectroscopy or overtone 288 
+spectroscopy remains unrealized. This is because the two spectroscopic techniques each impose 289 
+stringent requirements: rapid spectral acquisition or high sensitivity, respectively. FT-OPT enables 290 
+sensitive overtone spectroscopy within a few hundred milliseconds, thereby supporting dynamic 291 
+spectral monitoring. This provides a foundation for label-free spectral flow cytometry 36, which is 292 
+challenging to achieve with MIR approaches due to strong water absorption in aqueous 293 
+environments of cytometers. To verify this, we constructed a simple microfluidic system and used 294 
+a solenoid three-way valve to alternately switch water and cyclooctane through the focal volume 295 
+for dynamic FT-OPT tests. As shown in Fig. 4(a), water and cyclooctane form a distinct crescent-296 
+shaped two-phase interface within the outer tubing and microchannel. 297 
+Intuitively, the flow velocity affects the modulation depth of the photothermal signal. An 298 
+excessively high velocity rapidly removes heat from the focal region, thereby limiting the 299 
+maximum temperature rise and accelerating thermal dissipation. To evaluate this effect, we 300 
+measured the photothermal responses under different flow velocities. Without relative delay 301 
+scanning, the APD signals were processed using match filtering 37 and normalized to a maximum 302 
+value of 3 V. The results are shown in Fig. 4(d,e), corresponding to water and cyclooctane, 303 
+respectively. This effect becomes pronounced when the velocity exceeds the order of hundreds of 304 
+millimeters per second. The thermal lens response exhibits a tendency toward saturation, with both 305 
+faster heating and accelerated thermal relaxation. Fig. 3(f) shows a decreasing photothermal 306 
+modulation depth for both substances with increasing flow velocity, further supporting this 307 
+conclusion. Since a flow velocity of 100 mm/s is already higher than that required for most 308 
+microfluidic applications, a velocity of 30 mm/s was adopted in the following experiments. 309 
+The spectral refresh period was set to ~0.842 s, yielding an effective duty cycle of ~51%, as the 310 
+relative delay scanning and stage turnaround each occupied nearly half of a cycle. The refresh rate 311 
+is currently limited by the stage reversal time and the optical chopper modulation frequency, the 312 
+latter constraining the maximum allowable relative delay scanning speed according to the Nyquist 313 
+sampling theorem. These limitations arise from the present hardware implementation rather than 314 
+the fundamental FT-OPT mechanism. Fig. 4(c) presents the spectral monitoring results acquired 315 
+Page 13 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 15 =====
+For Review Only
+ 14 / 28 
+ 
+over a period of ~10 s. Magnified views of two consecutive interferograms in Fig. 4 (c) are shown 316 
+in Figs. 4(b). By segmenting the interferograms and performing FFT on each segment, dynamic 317 
+FT-OPT spectra were obtained over a 59 s period, as shown in Fig. 4(g), comprising 35 spectra of 318 
+water and 35 spectra of cyclooctane, and demonstrating excellent repeatability and stability. These 319 
+results highlight the great potential of FT-OPT for high-throughput spectral identification. 320 
+ 321 
+Fig. 4 Microfluidic molecular fingerprint monitoring using FT-OPT. (a) Experimental configuration and the oil ±water interface 322 
+within the microfluidic channel. (b) Magnified views of two FT-OPT interferograms in (c). The cyclooctane interferogram is offset 323 
+along both the horizontal and vertical axes for clarity. (c) FT-OPT spectral monitoring over a 10 s period. (d, e) Photothermal 324 
+modulation signals of water (d, solid lines) and cyclooctane (e, dashed lines) measured at different flow velocities. (f) Dependence 325 
+of the photothermal modulation depth on flow velocity for water and cyclooctane. (g) Dynamic FT-OPT spectra acquired over 59 326 
+s, including 35 spectra of water and 35 spectra of cyclooctane. All spectra are plotted on the same axes; colorbar represents time. 327 
+All data were obtained without averaging. 328 
+2.6 Label-free hyperspectral and volumetric imaging of FT-OPT 329 
+To the best of our knowledge, genuine time-domain excitation photothermal imaging has not been 330 
+demonstrated. Existing approaches 12,22 obtain high-resolution images by integrating all 331 
+photothermal responses across the full broadband pump spectrum. FTIR is then applied to acquire 332 
+spectra only at pixels of potential interest. Additionally, these techniques rely on thermosensitive 333 
+fluorescent labels and cannot realize label-free detection. )7)237 FRPELQHV H[FHOOHQW334 
+spectroscopic capability with intrinsic photothermal imaging, offering distinct advantages for 335 
+KLJK)GLPHQVLRQDOLPDJLQJLQDTXHRXVHQYLURQPHQWV  336 
+Page 14 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 16 =====
+For Review Only
+ 15 / 28 
+ 
+ 337 
+Fig. 5 Hyperspectral and Volumetric FT-OPT imaging. (a) FT-OPT hyperspectral imaging of the glycerol±olive oil interface. The 338 
+blue, green and red arrows denote glycerol, olive oil and the transition region, respectively. (b) OPT image of a thin liver tissue 339 
+and FT-OPT hyperspectral image of the region indicated. (c) OPT volumetric image of a thick liver tissue. (d) FT-OPT 4D 340 
+hyperspectral image of the blue marked region in (c). The blue, red, and green arrows indicate regions dominated by water, lipids, 341 
+and a mixture, respectively. (e) OPT volumetric image of a thick brain tissue. (f) FT-OPT 4D hyperspectral image of the blue 342 
+marked region in (e). (g) FT-OPT spectra at arrows marked in (d). (h) Spectra of the two principal components obtained by applying 343 
+NNMF to the 4D matrix in (d). (i) 3D concentration distributions of the liver tissue (d). (j) 3D concentration distributions of the 344 
+brain tissue (f). )RUFODULW\DOO'LPDJHVDUHGLVSOD\HGZLWKWKH=)D[LVGRZQVFDOHGE\DIDFWRURI All data were obtained without 345 
+averaging.  346 
+Page 15 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 17 =====
+For Review Only
+ 16 / 28 
+ 
+To validate the chemical selectivity of FT-OPT imaging, hyperspectral imaging was implemented 347 
+at the glycerol±olive oil interface (Fig. 5a). The three panels from left to right correspond to 6490, 348 
+DQGFPqïSUHVHQWLQJLPDJHVRIWKHJO\FHUROovertone peak (O-H), silent wavenumber, 349 
+and olive oil overtone peak (C-H), respectively. The FT-OPT spectra at the three arrow-indicated 350 
+positions are shown in the inset below. Distinct chemical contrast between them is clearly observed, 351 
+with both overtone peaks simultaneously detected in the interfacial transition region (green arrow 352 
+3). We next extended the imaging to biological tissues immersed in a PBS buffer layer. Fig. 5(b) 353 
+shows a non-spectrally resolved OPT image of a thin mouse liver tissue (a×P), which integrates 354 
+the photothermal response of broadband pump. Tissue morphology and sparse micron-scale bright 355 
+lipid droplets are observed. The right panel shows a hyperspectral image of the boxed region, 356 
+revealing distinct spectral differences between the C±H and O±H overtone regions, corresponding 357 
+to organic- and water-dominated distributions, respectively. 358 
+Fig.5(c) displays a 3D view of a non-spectrally resolved OPT volumetric image of a thick liver 359 
+tissue (~2×PFOHDUO\ visualizing the distribution of lipid droplets. Although the lipid droplets 360 
+a
+ppear axially elongated due to the mismatch between lateral and axial PSFs, the system achieves 361 
+a penetration depth of ~100 µm in aqueous environments. In contrast, this remains significantly 362 
+challenging for MIR methods5. In the current system, the penetration depth is limited by the high 363 
+NA of the objective and the short probe wavelength. FT-OPT further enables 4D hyperspectral 364 
+imaging. Fig. 5(d) presents 4D imaging results of the blue-marked region in Fig. 5(c), with 365 
+volumetric slices displayed at three selected wavenumbers. Blue, red, and green arrows indicate 366 
+ZDWHU)GRPLQDWHGOLSLG)GRPLQDWHGDQGWUDQVLWLRQUHJLRQVUHVSHFWLYHO\DQGWKHLU)7)237VSHFWUD367 
+are shown in Fig. 5(g). The 3D and 4D imaging were also performed on a thick mouse brain tissue 368 
+(~2×P), and the corresponding results are shown in Figs. 5(e) and 5(f), respectively. The 3D 369 
+image achieves a penetration depth comparable to that in the liver tissue. The 4D imaging was 370 
+performed on the blue-marked region in Fig. 5(e), which corresponds to an organic-rich droplet 371 
+embedded in an aqueous environment. Besides, probe transmission images reflecting light 372 
+scattering of the above tissues are provided in Figs. S5 ±S7. Although the thin liver sample yields 373 
+comparable morphological features via transmission, it cannot localize lipid droplet distributions. 374 
+Meanwhile, the two thick tissues lack depth resolution owing to the single-photon interactions. 375 
+To further demonstrate the utility of hyperspectral data, we performed non-negative matrix 376 
+factorization (NNMF) on the above 4D data cubes, assuming two principal spectral components: 377 
+Page 16 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 18 =====
+For Review Only
+ 17 / 28 
+ 
+water and organic constituents. Fig. 5(h) shows the spectra of the two components extracted from 378 
+the liver tissue by the NNMF, while Fig. 5(i) displays the corresponding 3D distributions of their 379 
+relative concentrations. Fig. 5(j) presents the algorithm results for the brain tissue, where the water 380 
+background surrounding the droplet is effectively removed compared with Fig. 5(f).  381 
+ 
+3 Discussion and Conclusion 382 
+OPT or SWIR photothermal microscopy 16,17 has recently been proposed to overcome the 383 
+drawbacks of MIR photothermal approaches in aqueous environments and penetration depth, 384 
+achieving remarkable success in biological and chemical imaging. Nevertheless, wavelength-385 
+scanned spectral acquisition limits its spectroscopic applications. Very recently, time-domain 386 
+excitation has also been explored in MIR photothermal microscopy 12,22. However, its reliance on 387 
+fluorescence labeling and extremely long integration times fails to exploit the advantages of 388 
+WLPH)GRPDLQ H[FLWDWLRQ ZKLOH VWLOO LQKHULWLQJ WKHrestrictions RI 0,5)EDVHG DSSURDFKHV In this 389 
+work, leveraging supercontinuum generation, we introduce FT-OPT to enable rapid, broadband, 390 
+and high spectral resolution photothermal spectromicroscopy. FT-OPT also preserves the benefits 391 
+of conventional OPT microscopy, including label-free detection, high sensitivity, submicrometer 392 
+spatial resolution, volumetric imaging and compatibility with aqueous environments. Additionally, 393 
+overtone spectroscopy has long been criticized for weak signals and poor specificity caused by 394 
+spectral overlap. Here, we greatly enhance these signals by photothermal detection and obtain 395 
+richer specificity information from the supercontinuum bandwidth ²together lending greater 396 
+confidence to overtone applications. We decouple spectral bandwidth from acquisition time, 397 
+breaking a long-standing fundamental trade-off in photothermal field. Enabled by this advance, 398 
+we demonstrate time-resolved microfluidic photothermal spectroscopy and ODEHO)IUHH '399 
+photothermal imaging. These capabilities offer new tools for label-free molecular fingerprinting 400 
+flow cytometry36 DQGKLJK)GLPHQVLRQDOchemical imaging. 401 
+$OWKRXJK)7)237VKRZVJUHDWDSSOLFDWLRQSRWHQWLDOFRQVLGHUDEOHURRPUHPDLQVIRULPSURYLQJWKH402 
+current system. The current FT- 237 V\VWHP KDV D VSHFWUDO UHIUHVK WLPH RI a×V  which 403 
+constrains its applicability to rapid hyperspectral imaging and dynamic microscopy. In fact, 404 
+)7)237FDQSURYLGHVXEVWDQWLDOO\KLJKHUWKURXJKSXWIRUSKRWRWKHUPDOVSHFWURPLFURVFRS\DQGWKH405 
+present spectral throughput remains far from the limit set by the thermal response. According to 406 
+the Nyquist sampling theorem, the relative delay scanning within one pump modulation period 407 
+Page 17 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 19 =====
+For Review Only
+ 18 / 28 
+ 
+must not exceed half the period of the highest-frequency component in the time-domain 408 
+interferogram. Therefore, a higher modulation frequency permits faster relative delay scanning. In 409 
+practice, the thermal response time of typical samples is on the microsecond scale3, indicating that 410 
+the modulation frequency could reach the MHz range. The duty cycle of the relative delay scanning 411 
+in the current system is ~51%, meaning nearly half the acquisition time yields no useful 412 
+photothermal encoding. Employing high-speed galvanometers 38 or polygon scanners 39 would 413 
+increase the delay scanning speed and improve the duty cycle toward ~100%, thereby enhancing 414 
+acquisition efficiency. By replacing the LIA with advanced photothermal signal acquisition, such 415 
+as single-pulse digitization 40, the estimated spectral refresh time could be reduced to ~464 V²416 
+nearly 2000 times faster than the present implementation. A detailed analysis of this projection is 417 
+provided in the Supplementary Information. 418 
+Furthermore, in the current system, all spectral and spatial information is mapped exclusively onto 419 
+the time axis, leading to an explosion in imaging time as dimensionality increases. It should be 420 
+DFNQRZOHGJHG WKDW WKLV LV D FRPPRQ OLPLWDWLRQ RI WLPH) GRPDLQ SRLQW )E\)SRLQW VFDQQLQJ421 
+approaches for hyperspectral imaging. Nevertheless, wide-field approaches in MIR photothermal 422 
+microscopy41±46 have effectively accelerated imaging, with beyond video-rate performance already 423 
+demonstrated. A natural next step LVWRFRPELQH)7)237ZLWKWKHVHVFKHPHV DQGKLJK)VSHHGDUUD\424 
+detectors, so that a hyperspectral data cube could be acquired in a single relative delay scan. This 425 
+could reduce the time for dynamic molecular fingerprint imaging to an unprecedented level. 426 
+Another key aspect of this work is the integration of SWIR supercontinuum generation with FT-427 
+OPT. This combination not only addresses the challenge of obtaining a broadband, high-brightness, 428 
+and spectrally flat SWIR source, but also leverages the Fellgett advantage 23, thereby extending 429 
+supercontinuum sources to photothermal field for the first time. Furthermore, due to the decoupling 430 
+enabled by the time-domain excitation, the spectral coverage can be readily expanded without 431 
+additional acquisition time. By increasing the pulse peak power coupled into the PCF or extending 432 
+the PCF length28,29, the pump spectral bandwidth could be further broadened, potentially covering 433 
+the entire SWIR region and accessing a wider range of functional group vibrations20,24. Combined 434 
+with appropriate spectral unmixing or analysis algorithms 17,39, this would further enhance the 435 
+PROHFXODUILQJHUSULQWLQWHUSUHWDWLRQFDSDELOLW\RI)7)237 436 
+The sensitivity of FT-OPT can also be further improved. Using a probe source with lower shot 437 
+noise, or exciting the first overtone regions 16 can further increase the sensitivity by several fold. 438 
+Page 18 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 20 =====
+For Review Only
+ 19 / 28 
+ 
+0RUHRYHU QXPHURXV VHQVLWLYLW\)HQKDQFHPHQW VWUDWHJLHV  have been demonstrated, such as 439 
+thermosensitive fluorescent labeling 47,48, nano-photothermal sensing 49,50, and metasurface-440 
+enhanced photothermal detection51. Additionally, contrast and spatial resolution can be enhanced 441 
+by demodulating higher-order harmonics of the photothermal response37,52. Regarding penetration 442 
+depth, previous reports 16 show that a probe beam with a lower NA and a longer wavelength can 443 
+effectively suppress optical scattering in complex samples, enabling millimeter-scale penetration 444 
+depths for OPT microscopy in biological tissues. Taken together, these compatible advancements 445 
+position FT-OPT as a powerful label-free platform for high-throughput molecular fingerprinting 446 
+dynamics, as well as complex biological and chemical imaging. 447 
+ 
+4 Materials and methods 448 
+4.1 SWIR supercontinuum generation 449 
+PXOVHVIURPDPRGH)ORFNHG\WWHUELXP)GRSHGILEHUODVHU×0+]UHSHWLWLRQUDWH×QPFHQWHU450 
+ZDYHOHQJWK×IVSXOVHGXUDWLRQwere modulated at 10 kHz with a 50% duty cycle by a chopper 451 
+(MC2000B, Thorlabs), expanded and shaped by a telescope, and then passed through an HWP ±452 
+PBS±HWP configuration to control the power and polarization state. The beam (~175×mW after 453 
+the chopper) was subsequently FRXSOHGLQWRWKH3&)6&)))301.73KRWRQLFV×P 454 
+The generated supercontinuum was collimated by an off-axis parabolic mirror (RFCAG-3.9-PC, 455 
+Lbtek), and a long-pass filter (OFE1LP-1100, Jcoptix) was applied to isolate the SWIR portion of 456 
+the spectrum as the pump source IRUGHWDLOVVHH)LJ×62). 457 
+ 
+4.2 FT-OPT spectroscopy and microscopy 458 
+The pump beam was combined with a CW beam using a DM (DMLP950, Thorlabs) and directed 459 
+into a MI. A 1:1 BS (BSW29R, Thorlabs) divided the beam into a reference arm and a 460 
+measurement arm. The reference arm remained stationary, while the measurement arm was 461 
+mounted on a motorized scanning stage (UTS150PP, Newport) for relative delay scanning. At the 462 
+MI output, one portion of the beam was sent to the microscopy module, and the other to PD1 463 
+(Model 1801, New Focus) and PD2 (PDA05CF2, Thorlabs), which provided the relative delay 464 
+UHIHUHQFHVLJQDODQGWKHSXPSILUVW)RUGHUDXWRFRUUHODWLRQUHVSHFWLYHO\ The raw signals from PD1 465 
+Page 19 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 21 =====
+For Review Only
+ 20 / 28 
+ 
+and PD2, along with the relative delay calibration, are provided in the Supplementary Information 466 
+(Fig.×S4). 467 
+Another CW beam was expanded by a telescope and served as the probe. The probe beam was 468 
+combined with the MI output via a DM (DMLP650, Thorlabs). The relative defocus between the 469 
+probe and pump beams at the sample was adjusted by varying the telescope lens separation to 470 
+optimize the photothermal signal. The pump and probe beams were focused onto the sample using 471 
+an objective (LCPLN50XIR, NA = 0.65, Olympus) to excite and detect the thermal lens effect. 472 
+The transmitted probe beam was collected and collimated by a condenser (LCPLN50XIR, NA = 473 
+0.65, Olympus), passed through an adjustable aperture at the pupil plane, and then filtered by a 474 
+short-pass and a band-pass filter (FESH0950 and FLH635-10, Thorlabs) to remove all wavelength 475 
+components other than the probe. The resulting probe signal was detected using an APD 476 
+(APD120A/M, Thorlabs). XY and Z scanning were performed using motorized translation stages 477 
+(MLS203-1 and PLSZ, Thorlabs) at the sample plane and at the objective, respectively. The 478 
+imaging parameters are listed in Tab. 1. 479 
+ 
+Tab. 1 FT-OPT imaging parameters 480 
+Imaging mode Knife-edge OPT  Hyperspectral  4D  
+XY pixel step 0.1 P 0.4 P 0.2 P 0.4 P 
+Z pixel step 0.45 P 3 P \ 3 P 
+Pixel dwell time 1 ms 0.5 ms 842 ms 842 ms 
+ 
+4.3 Data ac
+quisition and processing 481 
+The photothermal signal from the APD was demodulated using a LIA (LI 5640, NF) in external 482 
+reference mode, with the reference signal provided by the chopper. The LIA output was filtered 483 
+by an electronic low-pass filter (BLP-1.9+, Mini-circuits), displayed, and recorded by a 10-bit 484 
+oscilloscope. The oscilloscope signal was then input into a computer program, where relative delay 485 
+calibration and band-pass filtering were applied before FFT to obtain the spectrum. The raw APD 486 
+and LIA outputs are shown in Fig.×S4. 487 
+All FFTs were performed with a rectangular window (spectral resolution ~1.2 / windowing time). 488 
+=HUR)SDGGLQJZDVDSSOLHGRQERWKVLGHVRIWKHWLPH)GRPDLQLQWHUIHURJUDPVXSWR×SVWRREWDLQ489 
+smooth spectral representations. With the exception of the C8 hydrocarbon analysis, windowing 490 
+WLPHVDVVKRUWDVSRVVLEOH\HWFDSDEOHRIFDSWXULQJDOPRVWDOOWLPH) GRPDLQHQFRGHGVLJQDOVZHUH491 
+Page 20 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 22 =====
+For Review Only
+ 21 / 28 
+ 
+assigned to different samples: methanol, ±WR×IVHWKDQRO±WR×IVLVRSURSDQRO±492 
+WR×IV'062±WR×IVDQGWKUHHYHJHWDEOHRLOV±WR×IV)RU microfluidic 493 
+spectral monitoring, a window of ±400 to 40×IVZDVXVHGZKLOHIRUK\SHUVSHFWUDODQG'LPDJLQJ494 
+the window was set to ±WR×IV 495 
+ 
+4.4 LOD measurement  496 
+The LOD is defined as the molar concentration at which the signal intensity reaches three times 497 
+the standard deviation of the background. Assuming a linear relationship between signal and 498 
+concentration, the LOD can be calculated as 16ZKHUH 1 represents the standard deviation of the 499 
+background and S is the slope obtained from a linear fit of signal versus concentration. All spectra 500 
+for LOD assessment in this work were acquired without any averaging. 501 
+ 
+4.5 Liquid samples 502 
+With the exception of microfluidic spectral monitoring, all liquid samples were confined to a ~120 503 
+P layer using circular-aperture double-sided tape sandwiched between two standard coverslips. 504 
+For knife-edge resolution testing, a sharp boundary was created by stacking two coverslips and 505 
+securing them with transparent tape; the edge of the upper coverslip served as the sharp interface. 506 
+To prepare the glycerol±olive oil interface, circular-aperture double-sided tape was attached to the 507 
+first coverslip. Two small droplets of glycerol and olive oil were deposited on opposite sides of 508 
+the circular hole, and a second coverslip was immediately overlaid. The sample was laid flat and 509 
+left undisturbed for several hours until the interface stabilized. The volume mixing ratios of the 510 
+four C8 hydrocarbon mixtures shown in Fig. 3 are listed in Tab. 2. 511 
+ 
+Tab. 2 Volume fractions of C8 hydrocarbon mixtures 512 
+Mixture (Fig. 3) Volume fraction 
+Fig. 3(e) n-octane, isooctane, ethylbenzene : [158, 645, 199]/1002 
+Fig. 3(f) n-octane, isooctane, cyclooctane : [580, 160, 260]/1000 
+Fig. 3(g) 1,7-octadiene, 1-octyne, ethylbenzene : [330, 220, 455]/1005 
+Fig. 3(h) 1-octene, 1,7-octadiene, 1-octyne : [615, 290, 96]/1001 
+ 
+Page 21 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 23 =====
+For Review Only
+ 22 / 28 
+ 
+4.6 Microfluidic photothermal spectroscopy 513 
+7KHPLFURIOXLGLFFKLSZDVPDGHRIIXVHGVLOLFD×PP×î××PP×î× ×PPDQGFRQWDLQHGDVLQJOH514 
+FKDQQHO ×PP ORQJ ×PP ZLGH DQG ×PP KLJK $ ×9 WKUHH )ZD\ VROHQRLG YDOYH515 
+(LXRA2401000B, The Lee Company) was driven by a square wave to switch water and 516 
+cyclooctane alternately into the channel in synchronization with the relative delay scan reversals. 517 
+)OXLGGHOLYHU\DQGIORZYHORFLW\ZHUHFRQWUROOHGE\DV\ULQJHSXPS/63)%/RQJHUSXPS 518 
+ 
+4.7 Mouse tissue samples 519 
+Mouse tissue sections were obtained from Wuhan Servicebio Technology Co., Ltd. For thin slices, 520 
+the tissues were fixed in 4% PFA for at least 24 h. After fixation, the samples were dehydrated 521 
+using a programmed sucrose series (total dehydration time: 12.5 h) as follows: 4 h in 4% PFA, 0.5 522 
+h in 15% sucrose solution, 1 h in 15% sucrose solution, 3 h in 30% sucrose solution, and 4 h in 523 
+40% sucrose solution. After dehydration, the tissue surfaces were briefly blotted to remove excess 524 
+liquid, embedded in OCT compound, and rapidly frozen on a cryostat stage at -80 °C. Tissue 525 
+sections of 1 P WKLFNQHVV ZHUH FXW XVLQJ D FU\RVWDW ZLWK HDFK VHFWLRQ SODFHG RQ D VHSDUDWH526 
+microscope slide and stored at -80 °C until use. For thick slices, the processing steps were the same 527 
+as for thin slices, with samples sectioned to 2×PWKLFNQHVVXVLQJDYLEUDWRPH 528 
+For imaging, tissue sections were thawed to room temperature and washed three times in PBS to 529 
+remove residual PFA and OCT. The sections were then mounted using double-sided adhesive tape 530 
+with circular openings and covered with a coverslip, resulting in tissue sections confined within a 531 
+PBS layer between the slide and coverslip. 532 
+ 
+Disclosures 533 
+The authors declare no conflicts of interest. 534 
+ 
+Author contributions 535 
+G.L. conceived the idea, built the system, performed experiments and data analysis, and drafted 536 
+the manuscript. R.H. and J.J. conducted the literature review and assisted with the experiments. 537 
+Page 22 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 24 =====
+For Review Only
+ 23 / 28 
+ 
+M.L. proposed using PCF for spectral broadening in a previous study and offered suggestions for 538 
+the system development. X.Lyu., R.A., and X.Lin. assisted with figure preparation and manuscript 539 
+revision. T.L. provided suggestions on photothermal detection. Y.L. provided technical support. 540 
+H.W. refined the concept, supervised and guided all aspects of the study. 541 
+ 
+Data availability 542 
+The data and code used in this research are available from the corresponding author upon 543 
+reasonable request. 544 
+ 
+Acknowledgements 545 
+This work is supported by National Natural Science Foundation of China (62275138). 546 
+  
+Page 23 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 25 =====
+For Review Only
+ 24 / 28 
+ 
+References 547 
+1.  Cheng, J.-X. et al. Advanced vibrational microscopes for life science. Nat. Methods 22, 912±548 
+927 (2025). 549 
+2.  Min, W., Cheng, J.-X. & Ozeki, Y. Theory, innovations and applications of stimulated Raman 550 
+scattering microscopy. Nat. Photonics 19, 803±816 (2025). 551 
+3.  Yin, J. et al.  Vibrational photothermal imaging: theory, instrumentation, and applications. 552 
+Optica 12, 1367 (2025). 553 
+4.  Cheng, J.-X. & Xie, X. S. Vibrational spectroscopic imaging of living systems: An emerging 554 
+platform for biology and medicine. Science 350, aaa8870 (2015). 555 
+5.  Zhang, D. et al.  Depth-resolved mid-infrared photothermal imaging of living cells and 556 
+organisms with submicrometer spatial resolution. Sci. Adv. 2, e1600521 (2016). 557 
+6.  Castillo, H. B., Shuster, S. O., Tarekegn, L. H. & Davis, C. M. Oleic acid differentially affects 558 
+lipid droplet storage of de novo  synthesized lipids in hepatocytes and adipocytes. Chem. 559 
+Commun. 60, 3138±3141 (2024). 560 
+7.  He, H. et al. Mapping enzyme activity in living systems by real-time mid-infrared photothermal 561 
+imaging of nitrile chameleons. Nat. Methods 21, 342±352 (2024). 562 
+8.  Xia, Q. et al.  Click-free imaging of carbohydrate trafficking in live cells using an azido 563 
+photothermal probe. Sci. Adv. (2024). 564 
+9.  Park, C., Lim, J. M., Hong, S.-C. & Cho, M. Monitoring the synthesis of neutral lipids in lipid 565 
+droplets of living human cancer cells using two-color infrared photothermal microscopy. Chem. 566 
+Sci. 15, 1237±1247 (2024). 567 
+10.  Shuster, S. O., Burke, M. J. & Davis, C. M. Spatiotemporal Heterogeneity of De Novo 568 
+Lipogenesis in Fixed and Living Single Cells. J. Phys. Chem. B 127, 2918±2926 (2023). 569 
+Page 24 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 26 =====
+For Review Only
+ 25 / 28 
+ 
+11.  Uchiyama, K., Hibara, A., Kimura, H., Sawada, T. & Kitamori, T. Thermal Lens 570 
+Microscope. Jpn. J. Appl. Phys. 39, 5316 (2000). 571 
+12.  Razumtcev, A. et al.  Broadband Fourier-Transform Optical Photothermal Infrared 572 
+Spectroscopy and Imaging. Anal. Chem. 97, 20117±20126 (2025). 573 
+13.  Dazzi, A. & Prater, C. B. AFM-IR: Technology and Applications in Nanoscale Infrared 574 
+Spectroscopy and Chemical Imaging. Chem. Rev. 117, 5146±5173 (2017). 575 
+14.  Furstenberg, R., Kendziora, C. A., Papantonakis, M. R., Nguyen, V. & McGill, R. A. 576 
+Chemical imaging using infrared photothermal microspectroscopy. in (eds Druy, M. A. & 577 
+Crocombe, R. A.) 837411 (Baltimore, Maryland, USA, 2012). doi:10.1117/12.919574. 578 
+15.  Khanal, D. et al.  Optical photothermal infrared spectroscopy for nanochemical analysis of 579 
+pharmaceutical dry powder aerosols. Int. J. Pharm. 632, 122563 (2023). 580 
+16.  Ni, H. et al.  Millimetre-deep micrometre-resolution vibrational imaging by shortwave 581 
+infrared photothermal microscopy. Nat. Photonics https://doi.org/10.1038/s41566-024-01463-582 
+6 (2024) doi:10.1038/s41566-024-01463-6. 583 
+17.  Wang, L. et al. Overtone photothermal microscopy for high-resolution and high-sensitivity 584 
+vibrational imaging. Nat. Commun. 15, 5374 (2024). 585 
+18.  Adhikari, S. et al. Photothermal Microscopy: Imaging the Optical Absorption of Single 586 
+Nanoparticles and Single Molecules. ACS Nano 14, 16414±16445 (2020). 587 
+19.  Chang, G. & Wei, Z. Ultrafast Fiber Lasers: An Expanding Versatile Toolbox. iScience 23, 588 
+101101 (2020). 589 
+20.  Manley, M. Near-infrared spectroscopy and hyperspectral imaging: non-destructive 590 
+analysis of biological materials. Chem Soc Rev 43, 8200±8214 (2014). 591 
+21.  Wang, Q. et al. Dual-comb photothermal spectroscopy. Nat. Commun. 13, 2181 (2022). 592 
+Page 25 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 27 =====
+For Review Only
+ 26 / 28 
+ 
+22.  Turner, G. et al.  Dual-Comb Mid-Infrared Spectromicroscopy with Photothermal 593 
+Fluorescence Detection. Preprint at https://doi.org/10.26434/chemrxiv-2024-r2hng (2024). 594 
+23.  Fellgett, P. B. Theory of infrared sensitivities and its application to investigations of stellar 595 
+radiation in the near infrared. (1951). 596 
+24.  Wilson, R. H., Nadeau, K. P., Jaworski, F. B., Tromberg, B. J. & Durkin, A. J. Review of 597 
+short-wave infrared spectroscopy and imaging methods for biological tissue characterization. J. 598 
+Biomed. Opt. 20, 030901 (2015). 599 
+25.  Hübner, H.-J., Wörner, M., Kaiser, W. & Seilmeier, A. Subpicosecond vibrational 600 
+relaxation of skeletal modes in polyatomic molecules. Chem. Phys. Lett. 182, 315±320 (1991). 601 
+26.  Pollard, W. T. & Mathies, R. A. Analysis of femtosecond dynamic absorption spectra of 602 
+nonstationary states. Annu. Rev. Phys. Chem. 43, 497±523 (1992). 603 
+27.  Lu, M., Zhang, Y., Chen, X., Li, Y. & Wei, H. Interpulse stimulation Fourier-transform 604 
+coherent anti-Stokes Raman spectroscopy. Photonics Res. 11, 357 (2023). 605 
+28.  Coluccelli, N. et al. Broadband Fourier-transform coherent Raman spectroscopy with an 606 
+ytterbium fiber laser. Opt. Express 26, 18855 (2018). 607 
+29.  Lei, H. et al. Intense three-octave spanning full-spectrum fiber source. Adv. Photonics 8, 608 
+(2026). 609 
+30.  ZHANG, Z. et al. Rapid Identification of Alcohol-Based Gasoline Types Using Modelling 610 
+of Effective Chemical Information from Near-Infrared Spectroscopy. Metrol. Sci. Technol. 67, 611 
+(2023). 612 
+31.  MacDougall, Daniel., Crummett, W. B. & Et Al., . Guidelines for data acquisition and data 613 
+quality evaluation in environmental chemistry. Anal. Chem. 52, 2242±2249 (1980). 614 
+Page 26 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 28 =====
+For Review Only
+ 27 / 28 
+ 
+32.  Amat Sairin, M., Abd Aziz, S., Yoke Mun, C., Khaled, A. Y. & Rokhani, F. Z. Analysis 615 
+and prediction of the major fatty acids in vegetable oils using dielectric spectroscopy at 5 ±30 616 
+MHz. PLOS ONE 17, e0268827 (2022). 617 
+33.  Cao, Q., Zhegalova, N. G., Wang, S. T., Akers, W. J. & Berezin, M. Y. Multispectral 618 
+imaging in the extended near-infrared window based on endogenous chromophores. J. Biomed. 619 
+Opt. 18, 101318 (2013). 620 
+34.  %Hü.%*UDEVND-	+XFN&:,QWHUSUHWDELOLW\LQQHDU-infrared (NIR) spectroscopy: 621 
+Current pathways to the long-standing challenge. TrAC Trends Anal. Chem. 189, 118254 (2025). 622 
+35.  Maceiczyk, R., Shimizu, H., Müller, D., Kitamori, T. & deMello, A. A Photothermal 623 
+Spectrometer for Fast and Background-Free Detection of Individual Nanoparticles in Flow. 624 
+Anal. Chem. 89, 1994±1999 (2017). 625 
+36.  Hiramatsu, K. et al. High-throughput label-free molecular fingerprinting flow cytometry. 626 
+Sci. Adv. 5, eaau0241 (2019). 627 
+37.  Yin, J. et al. Nanosecond-resolution photothermal dynamic imaging via MHZ digitization 628 
+and match filtering. Nat. Commun. 12, 7097 (2021). 629 
+38.  Hashimoto, K., Takahashi, M., Ideguchi, T. & Goda, K. Broadband coherent Raman 630 
+spectroscopy running at 24,000 spectra per second. Sci. Rep. 6, 21036 (2016). 631 
+39.  Lin, H. et al. Microsecond fingerprint stimulated Raman spectroscopic imaging by ultrafast 632 
+tuning and spatial-spectral learning. Nat. Commun. 12, 3052 (2021). 633 
+40.  Yin, J. et al. Video-rate mid-infrared photothermal imaging by single-pulse photothermal 634 
+detection per pixel. Sci. Adv. 635 
+41.  Paiva, E. M. & Schmidt, F. M. Ultrafast Widefield Mid-Infrared Photothermal Heterodyne 636 
+Imaging. Anal. Chem. 94, 14242±14250 (2022). 637 
+Page 27 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 29 =====
+For Review Only
+ 28 / 28 
+ 
+42.  Bai, Y. et al. Ultrafast chemical imaging by widefield photothermal sensing of infrared 638 
+absorption. Sci. Adv. 5, eaav7127 (2019). 639 
+43.  Ishigane, G. et al. Label-free mid-infrared photothermal live-cell imaging beyond video 640 
+rate. Light Sci. Appl. 12, 174 (2023). 641 
+44.  Tamamitsu, M. et al. Label-free biochemical quantitative phase imaging with mid-infrared 642 
+photothermal effect. Optica 7, 359 (2020). 643 
+45.  Zhang, D. et al.  Bond-selective transient phase imaging via sensing of the infrared 644 
+photothermal effect. Light Sci. Appl. 8, 116 (2019). 645 
+46.  Fu, P. et al. Breaking the diffraction limit in molecular imaging by structured illumination 646 
+mid-infrared photothermal microscopy. Adv. Photonics 7, (2025). 647 
+47.  Zhou, J., Del Rosal, B., Jaque, D., Uchiyama, S. & Jin, D. Advances and challenges for 648 
+fluorescence nanothermometry. Nat. Methods 17, 967±980 (2020). 649 
+48.  Li, M. et al. Fluorescence-Detected Mid-Infrared Photothermal Microscopy. J. Am. Chem. 650 
+Soc. 143, 10809±10815 (2021). 651 
+49.  Chien, M.-H., Brameshuber, M., Rossboth, B. K., Schütz, G. J. & Schmid, S. Single-652 
+molecule optical absorption imaging by nanomechanical photothermal sensing. Proc. Natl. 653 
+Acad. Sci. 115, 11150±11155 (2018). 654 
+50.  Brites, C. D. S. et al. Thermometry at the nanoscale. Nanoscale 4, 4799 (2012). 655 
+51.  Jia, D. et al.  Metasurface-enhanced infrared photothermal microscopy toward 656 
+ultrasensitive chemical analysis. Adv. Photonics 7, (2025). 657 
+52.  Fu, P. et al.  Super-resolution imaging of non-fluorescent molecules by photothermal 658 
+relaxation localization microscopy. Nat. Photonics 17, 330±337 (2023). 659 
+ 
+Page 28 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 30 =====
+For Review Only
+ 1 / 14 
+ 
+Supplementary Information for 1 
+Supercontinuum Fourier-transform Overtone Photothermal 2 
+Spectroscopy and Microscopy 3 
+Geng Lia, Rui Haoa, Jinyi Jiab, Minjian Lua, Xinhang Lyua, Ran Ana, Taoran Lea, 4 
+Xiaoyang Lina, Yan Lia and Haoyun Weia,* 5 
+aState Key Laboratory of Precision Measurement Technology and Instruments, Department of Precision Instrument, 6 
+Tsinghua University, Beijing 100084, China 7 
+bWeiyang College, Tsinghua University, Beijing 100084, China 8 
+*Corresponding author: luckiwei@mail.tsinghua.edu.cn 9 
+ 
+This file contains the following contents: 10 
+F
+igures S1-S7 11 
+Fellgett advantage of FT-OPT 12 
+Comparison of signal intensity between photothermal and absorption spectroscopy 13 
+PCF coupling setup 14 
+Broadband pump power calculation 15 
+Raw signal and relative delay calibration 16 
+Probe transmission and OPT imaging of the thin liver tissue 17 
+Probe transmission and OPT imaging of the thick liver tissue 18 
+Probe transmission and OPT imaging of the thick brain tissue 19 
+Estimated optimization of spectral acquisition speed 20 
+ 
+21 
+Page 29 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 31 =====
+For Review Only
+ 2 / 14 
+ 
+Fellgett advantage of FT-OPT  22 
+The Fellgett advantage1, also known as the multiplex advantage refers to the improvement in SNR 23 
+that arises when multiple spectral elements are measured simultaneously rather than sequentially. 24 
+In FT-OPT, all vibrational states are encoded and detected by thermal lens sensing at once; 25 
+therefore, it inherently benefits from the Fellgett advantage. 26 
+Formally, under detector-noise-limited conditions, the SNR improves proportionally to the square 27 
+root of the number of spectral elements N measured: 28 
+SNR Nv  (1) 29 
+F
+or the system demonstrated in this work, the total pump power at the sample within the 6000 ±30 
+FPqïUDQJHLV ~21 mW. For the LOD measurement of 1,7-octadiene in n-octane, a relative 31 
+GHOD\ZLQGRZRIí2000 to +2000 fs was applied, corresponding to a spectral unit width of ~8.33 32 
+FPqïLQWKHIUHTXHQF\GRPDLQ  (360 spectral units over the ~ FPqïUDQJH). Accordingly, the 33 
+average pump power allocated to each spectral unit is 21mW/360 § 58.3: Under a frequency-34 
+domain excitation scheme ²employing the same supercontinuum source with a tunable 35 
+narrowband filter ²WKH SXPS SRZHU RI : LV LQDGHTXDWH WR SURGXFH DQ DSSUHFLDEOH36 
+photothermal signal, owing to the overtone transitions being several orders of magnitude weaker 37 
+than the fundamental transitions. 38 
+It is worth noting that Eq. (1) is derived under detector-noise-limited conditions. In the present 39 
+system, the shot noise of the probe beam (CW) has not been rigorously optimized or controlled; 40 
+therefore, the SNR, or LOD, still has room for further improvement. 41 
+  
+Page 30 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 32 =====
+For Review Only
+ 3 / 14 
+ 
+Comparison of signal between photothermal and absorption spectroscopy 42 
+ 43 
+Fig. S1  (a) Absorption coefficient .& of lipids 2. (b) Pump power spectral density and lipid absorption percentage. (c) Raw 44 
+photothermal signal of olive oil measured by the APD. 45 
+ 
+In addition to enabling optical sectioning capability, another major advantage of photothermal 46 
+spectroscopy is its high sensitivity, particularly in spectromicroscopy applications. In these 47 
+contexts, the interaction length between light and matter is extremely short (on the micrometer 48 
+scale). Moreover, overtone transitions are several orders of magnitude weaker than fundamental 49 
+transitions. According to the Beer ±Lambert law, the fraction of incident light absorbed by the 50 
+sample is therefore very limited, resulting in insufficient sensitivity for conventional spectroscopic 51 
+methods. Let the absorption coefficient be .(&), the interaction length be din, and the power 52 
+spectral density of the pump light be S(&). Then, the fraction of the total energy remaining after 53 
+the pump light interacts with the material is: 54 
+( )
+( 10 ( ) ) / ( ( ) )ind
+T S d S dD Z Z Z Z Z
+
+ ³ ³  (2) 55 
+Ta
+king lipid samples as an example, the absorption coefficient .(&) in the SWIR band is shown 56 
+in Fig. S1(a), while S(&) is provided in Fig. S1(b). The din is set to 6.79×10 -4 cm (corresponding 57 
+to the axial resolution of the system). The resulting signal intensity (modulation depth) is given by: 58 
+1 1 0.075%MI T   |  (3) 59 
+Page 31 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 33 =====
+For Review Only
+ 4 / 14 
+ 
+The raw photothermal signal of the lipid sample (olive oil) measured by FT-OPT is shown in Fig. 60 
+S1(c), and its signal intensity (modulation depth) is: 61 
+2 / 6.5%M pump off pump on pump offI I I I     |  (4) 62 
+The
+refore, the photothermal detection in this system enhances the signal modulation depth by 63 
+approximately 86-fold, approaching two orders of magnitude. This enhancement can be further 64 
+increased by raising the pump power.  65 
+Furthermore, conventional spectroscopic methods directly measure relative pump attenuation; 66 
+hence, absorbance recovery is highly sensitive to fluctuations in pump spectral power. In contrast, 67 
+photothermal approach relies on detecting variations in the probe beam, with the pump acting 68 
+solely as an excitation source, thereby relaxing the stability requirements for the pump. 69 
+  
+Page 32 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 34 =====
+For Review Only
+ 5 / 14 
+ 
+PCF coupling setup 70 
+ 71 
+Fig. S2 Temporal and spectral characteristics of the pulses injected into the PCF and the coupling setup. (a) Spectrum of the injected 72 
+pulses. (b) Intensity autocorrelation of the injected pulses. (c) PCF coupling setup.  73 
+ 
+The PCF was coupled using a gradient-index (GRIN) lens integrated in a single-mode fiber 74 
+collimator, and a telescope system was employed to shape the beam. By carefully adjusting the 75 
+lateral (XY) position of the GRIN lens and the axial (Z) position of the telescope system lens, 76 
+optimal coupling efficiency can be achieved. HWP2 was adjusted to set the polarization state of 77 
+pulses launched into the PCF, maximizing spectral broadening. 78 
+   
+Page 33 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 35 =====
+For Review Only
+ 6 / 14 
+ 
+Broadband pump power calculation 79 
+ 80 
+Fig. S3 Pump spectrum correction and power calculation. (a) Response curve of PD2. (b) Transmission curve of the objective. (c) 81 
+Corrected pump spectrum at the sample, obtained by dividing the objective transmission curve by the PD2 response curve. (d) 82 
+Calculation of the pump power, with the red-VKDGHGDUHDLQGLFDWLQJWKHWUDQVPLWWHGSRUWLRQXVLQJD×QPORQJ-pass filter. 83 
+ 
+A standard optical power meter cannot directly measure broadband power. Before the objective, a 84 
+×QPORQJ-pass filter (FELH1500, Thorlabs) was used to cut off the pump, and the transmitted 85 
+SRUWLRQZDVPHDVXUHGWREH×P:7KHREMHFWLYHWUDQVPLVVLRQQHDU×QPLVDSSUR[LPDWHO\86 
+VRWKHFRUUHVSRQGLQJSRZHUDWWKHVDPSOHLVî×P: ×P:FRUUHVSRQGLQJWRWKHUHG -87 
+shaded area in Fig. S3(d). The ratio of the integral of the entire curve in Fig. S3(d) to the red-88 
+shaded portion is 6.84; therefore, the total pump power at the sample is approximately 6.84 × 89 
+×mW = 21.204×mW. 90 
+  
+Page 34 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 36 =====
+For Review Only
+ 7 / 14 
+ 
+Raw signal and relative delay calibration 91 
+ 92 
+Fig. S4 Original signal and relative delay calibration (ethanol sample). (a) Raw signal from the APD. (b) Raw output from the LIA, 93 
+demodulated from (a) using the external reference mode. (c) Raw signal from PD1, corresponding to the interference of the CW. 94 
+(d) Raw signal from PD2. (e) Band-pass filtered version of the signal in (b). (f) Relative delay signal obtained by applying the 95 
+Hilbert transform to (c) and performing phase unwrapping. 96 
+ 
+Due to the non-uniform motion of the motorized stage, jitter in the relative delay scanning can 97 
+affect the accuracy of spectral reconstruction. By applying a Hilbert transform to the interference 98 
+signal from PD1, the temporal variation of its phase can be extracted ( 3(t)), allowing this jitter to 99 
+be monitored and compensated. The resulting relative delay 2(t) is expressed in Eq. (5). 100 
+0
+( )( ) 2 CW
+tt MW W SX   (5) 101 
+Page 35 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 37 =====
+For Review Only
+ 8 / 14 
+ 
+Here, #CW represents the frequency of the CW, and 20 denotes the offset, with the zero-delay point 102 
+chosen at the maximum of the photothermal signal. After obtaining 2(t), a linear relative delay grid 103 
+is reconstructed, and the time-domain signals are resampled onto this grid using interpolation. 104 
+  
+Page 36 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 38 =====
+For Review Only
+ 9 / 14 
+ 
+Probe transmission and OPT imaging of the thin liver tissue 105 
+ 106 
+Fig. S5 | Comparison between probe transmission imaging (a) and photothermal imaging (b) of the thin liver tissue. The two exhibit 107 
+similar histomorphological features. Yellow boxes denote regions with sparse distribution of lipid droplets, which cannot be 108 
+ZHOO)UHVROYHGLQWUDQVPLVVLRQLPDJLQJ (a). 109 
+ 
+Fig. S5(b) (same as Fig. 5(b)) shows the OPT image of the thin liver tissue, while Fig. S5(a) is the 110 
+corresponding probe transmission image. The APD and photothermal signals are acquired 111 
+V\QFKURQRXVO\SL[HOE\SL[HO/RZ)SDVVILOWHULQJWKH$3'VLJQDOUHPRYHVWKHFKRSSHUIUHTXHQF\112 
+WKHUHVXOWLQJTXDVL)'&VLJQDOIRUPVWKHSUREHWUDQVPLVVLRQLPDJH2ZLQJWRWKHWKLQVDPSOHVLQJOH113 
+or few cell layers), the transmission image provides refractive index/scattering contrast. The 114 
+morphologies in Figs. S5(a) and S5(b) agree well, with the photothermal image showing a sparse 115 
+distribution of lipid droplets.  116 
+Page 37 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 39 =====
+For Review Only
+ 10 / 14 
+ 
+Probe transmission and OPT imaging of the thick liver tissue 117 
+ 118 
+Fig. S6 Comparison between probe transmission imaging and photothermal imaging of the thick liver tissue. (a) Probe transmission 119 
+volumetric imaging of a thick liver tissue sample, where axial resolution cannot be achieved. (b) and (c) Top-view images of 120 
+photothermal and probe transmission volumetric imaging of the same region, respectively. 121 
+  
+Page 38 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 40 =====
+For Review Only
+ 11 / 14 
+ 
+Probe transmission and OPT imaging of the thick brain tissue 122 
+ 123 
+Fig. S7 Comparison between probe transmission imaging and photothermal imaging of the thick brain tissue. (a) Probe transmission 124 
+volumetric imaging of a thick brain tissue sample, where axial resolution cannot be achieved. (b) and (c) Top-view images of 125 
+photothermal and probe transmission volumetric imaging of the same region, respectively. 126 
+  
+Page 39 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 41 =====
+For Review Only
+ 12 / 14 
+ 
+Estimated optimization of spectral acquisition speed 127 
+Here, we assume that the relative delay changes linearly over time. Currently, the spectral 128 
+acquisition rate is limited by the chopper modulation frequency ( fm = 10 KHz). By the Nyquist 129 
+sampling theorem, the maximum frequency fmax1 of the FT-OPT time-domain interferogram is 130 
+given by: 131 
+max1 50002
+mff Hz   (6) 132 
+$VVXPL
+QJWKDWWKHKLJKHVWZDYHQXPEHUWREHGHWHFWHGLVFPqïWKHFRUUHVSRQGLQJPD[LPXP133 
+allowable relative delay scanning speed is: 134 
+max1
+max1 1
+0
+18519 /9000 100
+fV fs scm c
+W  |u
+ (7) 135 
+He
+re, c0 denotes the speed of light in vacuum. Thus, increasing the modulation frequency fm can 136 
+effectively accelerate the relative delay scanning speed. However, the above inference assumes 137 
+ideal conditions. In practical applications, the demodulated signal from the LIA is typically used. 138 
+While this effectively suppresses noise, it further constrains the maximum achievable relative 139 
+delay scanning speed. The current LIA time constant is set to 2LIA = 0.1 ms (one period of the 140 
+modulation frequency  f m), corresponding to an upper frequency limit fmax2 of the signal to be 141 
+demodulated and a maximum relative delay scanning speed given by: 142 
+max 2
+max 2
+max 2 1
+0
+1 1 5912
+5892 /9000 100
+LIA
+f Hz
+fV
+fs scm c
+W
+SW
+ 
+ |
+ 
+|u
+ (8) 143 
+I
+n the FT-OPT system presented in this work, the relative delay scanning speed is set to 2000 fs/s, 144 
+providing a conservative margin (  = 5892/2000 = 2.946) to avoid potential spectral leakage 145 
+caused by noise and the nonlinearity of the relative delay scanning. 146 
+In summary, there are two approaches to further increase the spectral acquisition speed. The first 147 
+is to increase the pump modulation frequency and the duty cycle of the relative delay scanning. 148 
+Assuming that an AOM or EOM is used to modulate the pump at fm1 = 1 MHz²approaching the 149 
+upper limit of the photothermal response speed of typical samples 3²and a high duty-cycle 150 
+(D1~100%) relative delay scanning scheme (e.g., galvanometric mirrors4 or polygon scanners5) is 151 
+employed, the resulting acceleration factor 1 in spectral acquisition rate, compared to the current 152 
+system configuration (fm = 10 KHz, D~51% ), can be expressed as: 153 
+Page 40 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 42 =====
+For Review Only
+ 13 / 14 
+ 
+1 1
+1 196m
+m
+f D
+f
+DE  |  (9) 154 
+The
+ second is using a more advanced demodulation technique instead of the LIA. In the field of 155 
+MIR photothermal microscopy, fast digitization has already been used to detect the transient 156 
+photothermal signal induced by a single modulated pulse 6. When applied to FT-OPT, this 157 
+technique allows the maximum frequency of the time-domain interferogram to revert to the 158 
+expression in Eq.×(6), yielding an acceleration factor 2 given by: 159 
+2
+2 3 .14( 1)2
+LIA m
+L
+IA m
+f fSWE W |   (10) 160 
+As a
+ result, under ideal conditions, the overall acceleration factor is: 161 
+1 2 1813E KE E |  (11) 162 
+C
+ompared with the current single VSHFWUXPUHIUHVKWLPHRIa×VWKHDFFHOHUDWHGYDOXHLV163 
+reduced to ~464×µs. 164 
+  
+Page 41 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+
+===== PDF PAGE 43 =====
+For Review Only
+ 14 / 14 
+ 
+References: 165 
+1.  Fellgett, P. B. Theory of infrared sensitivities and its application to investigations of stellar 166 
+radiation in the near infrared. (1951). 167 
+2.  Salinas, C. M., Reichel, E., Gupta, A. & Witte, R. S. Heavy water coupling gel for short-wave 168 
+infrared photoacoustic imaging. J. Biomed. Opt. 28, (2023). 169 
+3.  Yin, J. et al.  Vibrational photothermal imaging: theory, instrumentation, and applications. 170 
+Optica 12, 1367 (2025). 171 
+4.  Hashimoto, K., Takahashi, M., Ideguchi, T. & Goda, K. Broadband coherent Raman 172 
+spectroscopy running at 24,000 spectra per second. Sci. Rep. 6, 21036 (2016). 173 
+5.  Lin, H. et al. Microsecond fingerprint stimulated Raman spectroscopic imaging by ultrafast 174 
+tuning and spatial-spectral learning. Nat. Commun. 12, 3052 (2021). 175 
+6.  Yin, J. et al.  Video-rate mid-infrared photothermal imaging by single-pulse photothermal 176 
+detection per pixel. Sci. Adv. 177 
+ 
+Page 42 of 42
+http://advphoton.cn
+Advanced Photonics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60

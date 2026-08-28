@@ -29,6 +29,8 @@ Models in `paper_models/pending/` are unapproved. Do not automatically reuse the
 
 Never rely on a paper structure that exists only in transient conversation context. Follow `protocols/model_compilation.md`.
 
+For a local PDF, use `scripts/prepare_pdf_artifacts.py` to produce page-delimited text, full-page renders, contact sheets, and source metadata under the paper workspace. Visually inspect the complete contact-sheet set before treating extraction as sufficient for compilation; damaged PDF text layers must be checked against page renders.
+
 If no approved model exists, compile a pending model into:
 
 ```text

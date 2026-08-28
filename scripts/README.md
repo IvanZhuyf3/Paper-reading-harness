@@ -1,5 +1,17 @@
 # Scripts
 
+## PDF inspection artifacts
+
+`prepare_pdf_artifacts.py` extracts page-delimited UTF-8 text, renders every PDF
+page to JPEG, builds six-page contact sheets, and records source identity in
+`artifact_metadata.json`. Run it with the bundled PDF runtime so `pypdf`, Pillow,
+and Poppler are available:
+
+```bat
+set PYTHONIOENCODING=utf-8
+python scripts\prepare_pdf_artifacts.py source.pdf papers\<paper_slug>\artifacts
+```
+
 ## Paper-model validation
 
 `validate_paper_model.py` uses only the Python 3.12 standard library. Run it through the portable Windows launcher:
