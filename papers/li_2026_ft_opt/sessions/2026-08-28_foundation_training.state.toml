@@ -1,25 +1,28 @@
 state_version = "1.0"
 session_id = "2026-08-28_foundation_training"
 runner = "training"
-level = "foundation"
+level = "core"
 paper_model_path = "../model/paper_model.pending.toml"
 paper_model_version = "0.1.0"
 paper_model_sha256 = "AF997481BA7FC92462E3750AC5FD14020091A25BDC02665968EF68A0F8A575B9"
 main_source_sha256 = "702F012A0C7FBA10ECDB9DC03619D3AF9CD8DFF05B288F52A31911C6142A6F6D"
 selection_policy_version = "1.2"
 selection_seed = 2026082801
-current_stage = "knowledge"
-resume_cursor = "KNOWLEDGE.K1.await_response"
-asked_ids = ["K1"]
-verified_knowledge_ids = []
+current_stage = "idea"
+resume_cursor = "IDEA.IDEA_FIXED_RETRY.await_response"
+asked_ids = ["K1", "K1_CHECK", "K1_NIR", "K2_STEP1", "K2_STEP1_REASK", "K2_STEP2", "K2_STEP3", "K2_STEP4", "K3_STEP1", "K3_STEP2", "IDEA_FIXED", "K3_STEP2_REASK", "K3_STEP2_TIME", "K3_STEP3_LINEWIDTH", "IDEA_FIXED_RETRY"]
+verified_knowledge_ids = ["K1", "K2", "K3"]
 rollout_complete = false
-completed_stages = []
-revealed_paper_claim_ids = []
+completed_stages = ["knowledge"]
+revealed_paper_claim_ids = ["I1", "I2", "I3", "I4", "I5", "G1"]
 revealed_paper_evidence_ids = []
-pending_prompt_id = "K1"
-pending_prompt_text = "先从基础概念开始：什么使一个振动跃迁属于 overtone 或 combination transition？与 fundamental transition 相比，它的跃迁强度和谱带拥挤程度通常怎样？"
-stage_dispositions = { knowledge = "in_progress", idea = "in_progress", claims = "in_progress", evidence = "in_progress", independent_reading = "in_progress", delta = "in_progress" }
+pending_prompt_id = "IDEA_FIXED_RETRY"
+pending_prompt_text = "现在只做 IDEA 的最小一步：面对“逐波长扫描把带宽、分辨率和时间绑在一起”这个问题，你会优先改动哪个环节？先只说干预对象，不需要完整方案。"
+stage_dispositions = { knowledge = "completed", idea = "in_progress", claims = "in_progress", evidence = "in_progress", independent_reading = "in_progress", delta = "in_progress" }
 human_had_not_read_at_entry = true
+level_change_note = "Human changed FOUNDATION to CORE during K3 and explicitly skipped the remainder of KNOWLEDGE before entering IDEA."
+stage_return_note = "Human returned from IDEA to unfinished K3 before producing an IDEA proposal; CORE level retained."
+knowledge_completion_note = "K1, K2, and K3 were verified after the return from IDEA; KNOWLEDGE is completed."
 
 [[paper_evidence_designs]]
 id = "E1"
@@ -111,3 +114,115 @@ target_claims = ["S5.3"]
 evidence_type = "two-component non-negative matrix factorization of 4D tissue data cubes"
 control_roles = ["Predeclare two interpretable components", "Inspect recovered component spectra", "Map relative component concentrations back into 3D space"]
 source_anchors = ["Fig. 5h-j, PDF p.16", "PDF p.17-18, Results/Label-free hyperspectral and volumetric imaging of FT-OPT, paragraph beginning \"To further demonstrate the utility...\""]
+
+[[events]]
+sequence = 1
+prompt_id = "K1"
+prompt_text = "先从基础概念开始：什么使一个振动跃迁属于 overtone 或 combination transition？与 fundamental transition 相比，它的跃迁强度和谱带拥挤程度通常怎样？"
+stage = "knowledge"
+selection_policy_version = "1.2"
+human_response = "我这些基础概念一点都不懂"
+
+[[events]]
+sequence = 2
+prompt_id = "K1_CHECK"
+prompt_text = "请用自己的话补全：fundamental 通常对应什么跃迁？overtone 对应什么跃迁？combination transition 又是什么？后两类相对 fundamental 通常更强还是更弱、谱带更容易分开还是重叠？"
+stage = "knowledge"
+selection_policy_version = "1.2"
+human_response = "fundamental就是一个能级的跃迁，over tone就是多个能级的跃迁，combination transition对应不同的模式的跃迁，后两者相对fundamental更弱，频谱更容易重叠"
+
+[[events]]
+sequence = 3
+prompt_id = "K1_NIR"
+prompt_text = "为什么这些跃迁会在近红外出现呢？"
+stage = "knowledge"
+selection_policy_version = "1.2"
+human_response = "为什么这些跃迁会在近红外出现？什么意思。我的意思就是，用交互式的。"
+
+[[events]]
+sequence = 4
+prompt_id = "K2_STEP1"
+prompt_text = "先只走一步：分子吸收光以后，如果激发能没有以荧光等形式发出去，而是发生 nonradiative relaxation，它最直接会转化成什么？"
+stage = "knowledge"
+selection_policy_version = "1.2"
+human_response = "你的意思是说能量低，所以它越加更复杂？"
+
+[[events]]
+sequence = 5
+prompt_id = "K2_STEP1_REASK"
+prompt_text = "先只走一步：分子吸收光以后，如果激发能没有以荧光等形式发出去，而是发生 nonradiative relaxation，它最直接会转化成什么？"
+stage = "knowledge"
+selection_policy_version = "1.2"
+human_response = "直接会转化成热。"
+
+[[events]]
+sequence = 6
+prompt_id = "K2_STEP2"
+prompt_text = "这些热使焦点附近温度升高后，通常会改变样品的哪个光学参数？"
+stage = "knowledge"
+selection_policy_version = "1.2"
+human_response = "会改变光的折射率。"
+
+[[events]]
+sequence = 7
+prompt_id = "K2_STEP3"
+prompt_text = "如果焦点中心与周围的折射率不同，这个局域折射率分布对穿过它的 probe beam 会像什么光学元件？"
+stage = "knowledge"
+selection_policy_version = "1.2"
+human_response = "会像一个光学透镜。"
+
+[[events]]
+sequence = 8
+prompt_id = "K2_STEP4"
+prompt_text = "热透镜改变了 probe beam 的会聚或发散状态；如果探测端通过光阑或有限 NA 只收集其中一部分光，这种变化最终会转化成什么可测量量？"
+stage = "knowledge"
+selection_policy_version = "1.2"
+human_response = "最终变成光强度强弱变化。"
+
+[[events]]
+sequence = 9
+prompt_id = "K3_STEP1"
+prompt_text = "如果光源每次只能调到一个波长并完成一次测量，那么为了覆盖更多波长点、获得更宽的光谱，最直接需要付出什么代价？"
+stage = "knowledge"
+selection_policy_version = "1.2"
+human_response = "需要花更多时间。"
+
+[[events]]
+sequence = 10
+prompt_id = "K3_STEP2"
+prompt_text = "如果还想把两个相邻的窄谱峰分开，逐波长扫描时通常要怎样改变波长步长？这会怎样影响总测量时间？"
+stage = "knowledge"
+selection_policy_version = "1.2"
+human_response = "我发现好像这些比较简单，咱们可以上调一个难度等级，调到core模式。然后跳过知识阶段，直接进入第二个阶段，idea generation。"
+
+[[events]]
+sequence = 11
+prompt_id = "IDEA_FIXED"
+prompt_text = "在这个问题状态下，你会尝试什么路线？先给出一个 concise idea，不需要展开设备细节。"
+stage = "idea"
+selection_policy_version = "1.2"
+human_response = "不行太难了怂了，退回K3继续向我提问"
+
+[[events]]
+sequence = 12
+prompt_id = "K3_STEP2_REASK"
+prompt_text = "要把两个相邻的窄谱峰分开，逐波长扫描的波长步长应该变大还是变小？"
+stage = "knowledge"
+selection_policy_version = "1.2"
+human_response = "变小"
+
+[[events]]
+sequence = 13
+prompt_id = "K3_STEP2_TIME"
+prompt_text = "在扫描范围和每个波长点的测量时间都不变时，步长变小以后，总测量时间会怎样变化？"
+stage = "knowledge"
+selection_policy_version = "1.2"
+human_response = "变长"
+
+[[events]]
+sequence = 14
+prompt_id = "K3_STEP3_LINEWIDTH"
+prompt_text = "假设两个谱峰相距 2 cm^-1，但光源本身每个波长点的线宽是 10 cm^-1：即使把扫描步长调到 0.1 cm^-1，还能真正把这两个峰分开吗？"
+stage = "knowledge"
+selection_policy_version = "1.2"
+human_response = "不能"

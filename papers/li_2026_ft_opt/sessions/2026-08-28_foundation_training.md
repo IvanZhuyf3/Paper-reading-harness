@@ -1,9 +1,9 @@
-# FOUNDATION Training Session - 2026-08-28_foundation_training
+# CORE Training Session - 2026-08-28_foundation_training
 
 **Paper:** Supercontinuum Fourier-transform Overtone Photothermal Spectroscopy and Microscopy
 **Identifier:** AP-26-149008
 **Runner:** TRAINING
-**Level:** FOUNDATION
+**Level:** CORE (changed from FOUNDATION during KNOWLEDGE)
 **Paper-model source:** compiled pending model for originating session
 **Paper-model path:** `../model/paper_model.pending.toml`
 **Paper-model version:** 0.1.0
@@ -12,9 +12,10 @@
 **Selection-policy version:** 1.2
 **Selection seed:** 2026082801
 **Human had not read paper at entry:** YES
-**Current state:** KNOWLEDGE
-**Resume cursor:** `KNOWLEDGE.K1.await_response`
-**Pending prompt:** `K1`
+**Current state:** IDEA
+**Resume cursor:** `IDEA.IDEA_FIXED_RETRY.await_response`
+**Pending prompt:** `IDEA_FIXED_RETRY`
+**Stage dispositions:** knowledge=completed; idea=in_progress; claims=in_progress; evidence=in_progress; independent_reading=in_progress; delta=in_progress
 
 ## Disclosure note
 
@@ -22,11 +23,275 @@ The title and supplied filename may expose terminology from the author solution.
 KNOWLEDGE prompts must be selected from prerequisite concepts and must not use
 the hidden paper claim tree to steer the human.
 
+## Knowledge node K1
+
+**Status:** verified after concise pretraining.
+
+The minimal relation to retain is:
+
+- `fundamental`: usually the first vibrational step, from `v=0` to `v=1`.
+- `overtone`: a larger step in the same vibrational mode, such as `v=0` to `v=2` or higher.
+- `combination transition`: two or more vibrational modes are excited together.
+- Molecular anharmonicity makes overtone and combination transitions possible, but they are usually much weaker than fundamentals.
+- Many weak overtone and combination bands occupy nearby spectral regions, so they overlap and create spectral congestion.
+
+The follow-up about why these bands occur in the near-infrared was abandoned: it
+was not necessary to verify K1 and increased interaction granularity. Subsequent
+FOUNDATION teaching uses one minimal relation per turn.
+
+**Correction:** an incomplete realtime explanation reversed the energy ordering.
+Near-infrared photons have higher energy than mid-infrared photons. Spectral
+congestion is not caused by lower photon energy; it arises because many overtone
+and combination transitions occupy nearby regions and their broad bands overlap.
+
 ## Pending interaction
 
-> 先从基础概念开始：什么使一个振动跃迁属于 overtone 或 combination transition？与 fundamental transition 相比，它的跃迁强度和谱带拥挤程度通常怎样？
+K2 relations verified so far: absorbed excitation energy can become heat through
+nonradiative relaxation, and the resulting temperature rise changes the sample
+medium's refractive index. The localized refractive-index distribution acts as a
+thermal lens; its converging or diverging sign depends on the medium's `dn/dT`.
+Finite collection converts the changed probe-beam propagation into a measurable
+intensity change. K2 is verified.
+
+K3 relation verified so far: sequential coverage of more wavelength points costs
+more total acquisition time. The human then changed the level to CORE and
+explicitly skipped the remainder of KNOWLEDGE. K1 and K2 remain verified; K3 is
+partial and the KNOWLEDGE stage is `skipped`, not `completed`.
+
+## 2. IDEA
+
+### Source-anchored problem state exposed before rollout
+
+```text
+I1 - Vibrational spectroscopy and imaging provide intrinsic, label-free,
+     chemically specific information.
+     AUTHOR CLAIM: "Vibrational spectroscopy and imaging, revealing intrinsic
+     signatures of molecular structure, are indispensable tools for label-free
+     and chemically specific detection."
+     SOURCE ANCHOR: PDF p.3, Introduction, paragraph beginning
+     "Vibrational spectroscopy and imaging, revealing..."
+
+I2 - MIR photothermal microscopy offers sensitivity and resolution, but its
+     specialized sources/components add complexity and water absorption creates
+     background, attenuation, and depth limitations.
+     SOURCE ANCHOR: PDF p.3, Introduction, paragraph beginning
+     "Vibrational spectroscopy and imaging, revealing..."
+
+I3 - SWIR overtone excitation suppresses water absorption and supports aqueous,
+     deeper volumetric imaging with a simpler source regime.
+     SOURCE ANCHOR: PDF p.3, Introduction, paragraph beginning
+     "Vibrational spectroscopy and imaging, revealing..."
+
+I4 - Conventional OPT obtains spectra by sequential pump-wavelength tuning, so
+     available source bandwidth, tuning speed, acquisition time, and resolution
+     remain coupled.
+     SOURCE ANCHOR: PDF p.3, Introduction, paragraph beginning
+     "Although demonstrating outstanding imaging ability,..."
+
+I5 - Existing time-domain photothermal routes remain proof-of-concept, with weak
+     signals, thermosensitive fluorescent labels, and approximately 10-minute
+     integration per spectrum while retaining MIR restrictions.
+     SOURCE ANCHOR: PDF p.4, Introduction, paragraph beginning
+     "Inspired by FTIR and dual-comb spectroscopy,..."
+
+G1 - Missing capability: rapid, broadband, high-resolution and sensitive
+     photothermal spectroscopy that remains label-free and usable for aqueous
+     microscopy.
+     AGENT INTERPRETATION of the source-anchored problem state.
+```
+
+The human returned to K3 before supplying an IDEA proposal. CORE level is
+retained, and IDEA resumes after the missing knowledge relation was verified.
+
+K3 verified: resolving closer peaks requires a smaller wavelength step; at fixed
+range and per-point dwell time, the added points lengthen total acquisition. A
+small scan step cannot overcome a broader source linewidth. KNOWLEDGE is completed.
+
+> 现在只做 IDEA 的最小一步：面对“逐波长扫描把带宽、分辨率和时间绑在一起”这个问题，你会优先改动哪个环节？先只说干预对象，不需要完整方案。
 
 <!-- BEGIN GENERATED EVENT TIMELINE -->
 ## Machine-generated event timeline
+
+### Event 1 — `K1`
+
+**Stage:** `knowledge`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 先从基础概念开始：什么使一个振动跃迁属于 overtone 或 combination transition？与 fundamental transition 相比，它的跃迁强度和谱带拥挤程度通常怎样？
+
+**Human response:**
+
+> 我这些基础概念一点都不懂
+
+### Event 2 — `K1_CHECK`
+
+**Stage:** `knowledge`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 请用自己的话补全：fundamental 通常对应什么跃迁？overtone 对应什么跃迁？combination transition 又是什么？后两类相对 fundamental 通常更强还是更弱、谱带更容易分开还是重叠？
+
+**Human response:**
+
+> fundamental就是一个能级的跃迁，over tone就是多个能级的跃迁，combination transition对应不同的模式的跃迁，后两者相对fundamental更弱，频谱更容易重叠
+
+### Event 3 — `K1_NIR`
+
+**Stage:** `knowledge`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 为什么这些跃迁会在近红外出现呢？
+
+**Human response:**
+
+> 为什么这些跃迁会在近红外出现？什么意思。我的意思就是，用交互式的。
+
+### Event 4 — `K2_STEP1`
+
+**Stage:** `knowledge`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 先只走一步：分子吸收光以后，如果激发能没有以荧光等形式发出去，而是发生 nonradiative relaxation，它最直接会转化成什么？
+
+**Human response:**
+
+> 你的意思是说能量低，所以它越加更复杂？
+
+### Event 5 — `K2_STEP1_REASK`
+
+**Stage:** `knowledge`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 先只走一步：分子吸收光以后，如果激发能没有以荧光等形式发出去，而是发生 nonradiative relaxation，它最直接会转化成什么？
+
+**Human response:**
+
+> 直接会转化成热。
+
+### Event 6 — `K2_STEP2`
+
+**Stage:** `knowledge`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 这些热使焦点附近温度升高后，通常会改变样品的哪个光学参数？
+
+**Human response:**
+
+> 会改变光的折射率。
+
+### Event 7 — `K2_STEP3`
+
+**Stage:** `knowledge`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 如果焦点中心与周围的折射率不同，这个局域折射率分布对穿过它的 probe beam 会像什么光学元件？
+
+**Human response:**
+
+> 会像一个光学透镜。
+
+### Event 8 — `K2_STEP4`
+
+**Stage:** `knowledge`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 热透镜改变了 probe beam 的会聚或发散状态；如果探测端通过光阑或有限 NA 只收集其中一部分光，这种变化最终会转化成什么可测量量？
+
+**Human response:**
+
+> 最终变成光强度强弱变化。
+
+### Event 9 — `K3_STEP1`
+
+**Stage:** `knowledge`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 如果光源每次只能调到一个波长并完成一次测量，那么为了覆盖更多波长点、获得更宽的光谱，最直接需要付出什么代价？
+
+**Human response:**
+
+> 需要花更多时间。
+
+### Event 10 — `K3_STEP2`
+
+**Stage:** `knowledge`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 如果还想把两个相邻的窄谱峰分开，逐波长扫描时通常要怎样改变波长步长？这会怎样影响总测量时间？
+
+**Human response:**
+
+> 我发现好像这些比较简单，咱们可以上调一个难度等级，调到core模式。然后跳过知识阶段，直接进入第二个阶段，idea generation。
+
+### Event 11 — `IDEA_FIXED`
+
+**Stage:** `idea`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 在这个问题状态下，你会尝试什么路线？先给出一个 concise idea，不需要展开设备细节。
+
+**Human response:**
+
+> 不行太难了怂了，退回K3继续向我提问
+
+### Event 12 — `K3_STEP2_REASK`
+
+**Stage:** `knowledge`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 要把两个相邻的窄谱峰分开，逐波长扫描的波长步长应该变大还是变小？
+
+**Human response:**
+
+> 变小
+
+### Event 13 — `K3_STEP2_TIME`
+
+**Stage:** `knowledge`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 在扫描范围和每个波长点的测量时间都不变时，步长变小以后，总测量时间会怎样变化？
+
+**Human response:**
+
+> 变长
+
+### Event 14 — `K3_STEP3_LINEWIDTH`
+
+**Stage:** `knowledge`
+**Selection policy:** `1.2`
+
+**Prompt:**
+
+> 假设两个谱峰相距 2 cm^-1，但光源本身每个波长点的线宽是 10 cm^-1：即使把扫描步长调到 0.1 cm^-1，还能真正把这两个峰分开吗？
+
+**Human response:**
+
+> 不能
 
 <!-- END GENERATED EVENT TIMELINE -->
