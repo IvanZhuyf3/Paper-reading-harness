@@ -14,7 +14,8 @@ and validated stage-start packets are available for fast interactive transitions
 - Human-dependent comparisons remain dynamic slots; transition packets contain
   no paper result details.
 - `papers/*/sessions/` is Git-ignored. Existing session files were removed from
-  the Git index but retained on the local filesystem for inspection or resumption.
+  the Git index but retained on the local filesystem for inspection. Sessions
+  pinned to the pre-0.2.0 model require an explicit migration before resumption.
 - Git commits are reserved for reusable models, protocols, templates, validators,
   and code rather than individual training rollouts.
 
