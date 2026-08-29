@@ -33,6 +33,27 @@ Trust order:
 
 Models in `paper_models/pending/` are unapproved. Do not automatically reuse them as reference models.
 
+## Paper-asset maintenance boundary
+
+Harness rules, schemas, and validators apply prospectively to newly compiled
+paper models and are maintained retroactively only for human-verified papers.
+Here, `verified` means a human-approved record in `curriculum/` or the approved
+reusable index; a mechanical audit marked `pass` does not make a pending model
+verified.
+
+Treat existing pending or otherwise unapproved paper models as frozen,
+provisional outputs. Do not migrate them, regenerate their audits, add new
+mode-specific assets, or otherwise keep them current merely because the harness
+rules changed. Do not use an arbitrary pending paper as the fixture that proves
+a new harness feature. Use templates and dedicated test fixtures instead.
+
+If a later request needs an old pending model that the current runner cannot
+read, treat the paper as newly encountered and recompile it from its immutable
+source under the current protocol. Do not migrate the old pending artifact in
+place unless the human explicitly asks for that paper to be corrected or
+upgraded. The originating session may still correct its fresh pending model
+before that work unit ends.
+
 ## Compile before run
 
 Never rely on a paper structure that exists only in transient conversation context. Follow `protocols/model_compilation.md`.
@@ -114,9 +135,11 @@ automatic flush barriers when a validated transition packet is available.
 
 TRAINING and EFFICIENT_READING session artifacts under `papers/*/sessions/` are
 local runtime data and are Git-ignored. Do not commit them per turn, per stage, or
-at session termination. Git tracks reusable paper models, protocols, templates,
-validators, and code. Commit when a paper model is compiled, corrected, approved,
-or versioned, and when reusable harness behavior changes.
+at session termination. Git tracks protocols, templates, validators, code,
+verified reusable paper models, and the initial provenance artifacts produced
+when a new paper is compiled. Commit pending-model corrections only within their
+originating work unit or when the human explicitly requests them. Never sweep
+historical pending models into a protocol/schema migration.
 
 If background execution is unavailable, use a bounded synchronous fallback:
 update the canonical event/state record, regenerate/check the deterministic

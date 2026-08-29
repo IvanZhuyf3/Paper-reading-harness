@@ -148,6 +148,9 @@ normative runner specification is in `protocols/babysitting_training.md`.
 - Newly generated models are saved inside `papers/<paper_slug>/model/` and registered in the pending pool.
 - Paper-model versions include prevalidated stage-transition packets: fixed paper-side disclosure, source-node references, and prompt templates loaded at session initialization.
 - Pending models are provisional and must not be automatically reused in later sessions.
+- A passing mechanical audit does not make a pending model verified. Protocol and schema changes do not retroactively migrate historical pending models or regenerate their audits.
+- New paper compilations use the current protocol. Human-approved curriculum records are maintained across compatible protocol changes.
+- If an old pending model is incompatible when its paper is requested again, recompile from the immutable source as a new ingestion instead of maintaining the old artifact in place.
 - The originating session may use its freshly compiled pending model after validation.
 - A human-approved record enters `curriculum/` and the approved index.
 - An approved record has priority over a fresh agent reconstruction.

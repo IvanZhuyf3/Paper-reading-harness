@@ -49,6 +49,19 @@ An audit checks traceability and protocol consistency. It does not judge whether
 
 A validated pending model can drive the session for which it was compiled. It cannot become an automatic cross-session reference until human approval.
 
+Mechanical validation and human verification are distinct. A pending model
+whose audit passes is still provisional. Harness policy and schema changes are
+applied to newly compiled models and to human-approved curriculum records; they
+do not trigger migration or audit regeneration across historical pending
+models.
+
+An incompatible historical pending model is not upgraded in place by default.
+When that paper is next requested, compile it again from the immutable source as
+a newly encountered paper under the current protocol. Only an explicit human
+request to correct or upgrade that particular pending paper overrides this
+rule. Harness feature tests should use templates or dedicated fixtures rather
+than converting an unrelated pending paper into a maintained asset.
+
 ## Compaction recovery
 
 The runner must be reconstructible from files alone:
