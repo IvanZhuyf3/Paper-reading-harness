@@ -7,7 +7,7 @@ The default human has not read the paper. The agent may inspect the full paper i
 1. Identify the paper and its source.
 2. Use a human-approved curriculum record if available; otherwise compile and persist a pending model before asking training questions.
 3. Validate the model and pin its path/version/source hash in the session record.
-4. Ask explicitly for `FOUNDATION`, `CORE`, or `ADVANCED`.
+4. Ask explicitly for `BABYSITTING`, `FOUNDATION`, `CORE`, or `ADVANCED`. BABYSITTING is a guided TRAINING mode, not a difficulty rank.
 5. Store a selection seed and persist the session cursor after every turn.
 6. Do not treat a pending, unapproved model as reusable reference material in later sessions.
 
@@ -121,6 +121,12 @@ After the EVIDENCE structural diff, ask the human to read the paper details inde
 Do not offer a taxonomy or analyze the answer.
 
 ## Training levels
+
+`BABYSITTING` is a separate guided path that stays in KNOWLEDGE: disclose the
+complete source-anchored claim tree, label each logical edge, expose the
+terminology inventory, and let the learner select one unclear item at a time.
+It requires a validated model-side `BABYSITTING_START` packet and does not
+expose evidence results.
 
 | Level | KNOWLEDGE | IDEA | CLAIMS | EVIDENCE |
 |---|---|---|---|---|

@@ -1,11 +1,12 @@
 status = "pending"
 human_approved = false
-model_version = "0.2.0"
+model_version = "0.3.0"
 selection_policy_version = "1.2"
 source_sha256 = ""
 paper_slug = ""
 title = ""
 doi = ""
+babysitting_supported = false
 
 [compiler]
 compiled_at = ""
@@ -14,6 +15,7 @@ parse_validated = false
 anchor_audit = "pending"
 visibility_audit = "pending"
 transition_packet_audit = "pending"
+babysitting_audit = "not_applicable"
 
 [[knowledge_nodes]]
 id = "K1"
@@ -44,8 +46,29 @@ result_detail = ""
 reveal_design_after = "evidence_rollout_complete"
 reveal_result_after = "independent_reading_started"
 
+# Optional BABYSITTING assets. Set babysitting_supported = true only after
+# terminology_nodes, logical_edges, and exactly one BABYSITTING_START packet
+# have been compiled and mechanically validated.
+[[terminology_nodes]]
+id = "TERM_EXAMPLE"
+term = ""
+aliases = []
+definition = ""
+prerequisites = []
+related_claim_ids = ["T0"]
+source_anchors = []
+
+[[logical_edges]]
+id = "EDGE_EXAMPLE"
+source_claim_ids = ["T0"]
+target_claim_id = "T0"
+relation = "supports"
+explanation = ""
+source_anchors = []
+
 [disclosure_views]
 knowledge = []
+babysitting = []
 idea_problem_state = []
 claims_start = ["T0"]
 evidence_start = []
@@ -113,6 +136,25 @@ content = "The paper-side architecture and the human rollout are already preserv
 prompt_id = "DELTA_FIXED"
 prompt_text = "What's the delta?"
 
+# BABYSITTING is a TRAINING mode, not a fourth difficulty rank. The packet is
+# required only when babysitting_supported = true and must expose claims,
+# terminology, and logical relations without evidence results.
+[[transition_packets]]
+id = "BABYSITTING_START"
+target_stage = "knowledge"
+eligible_levels = ["babysitting"]
+reveal_claim_ids = []
+reveal_evidence_ids = []
+source_node_ids = []
+display_claim_ids = []
+terminology_ids = []
+logical_edge_ids = []
+dynamic_slots = ["learner_selected_item"]
+locale = "en"
+content = ""
+prompt_id = "BABYSITTING_START_PROMPT"
+prompt_text = "Which term or logical relation is unclear? Pick one."
+
 [selection]
 knowledge_policy = "seeded_dependency_eligible"
 idea_policy = "complete_problem_state_fixed_prompt_minimal_checkability_gate"
@@ -120,3 +162,4 @@ claims_policy = "human_tree_open_nodes_only_transferability_filtered"
 evidence_policy = "revealed_claims_only_transferability_filtered"
 transferability_filter = "default_reusable_reasoning_primitives"
 delta_policy = "fixed_prompt"
+babysitting_policy = "learner_selected_visible_items_local_check"

@@ -20,7 +20,7 @@ python scripts\prepare_pdf_artifacts.py source.pdf papers\<paper_slug>\artifacts
 scripts\validate_paper_model.bat papers\<paper_slug>\model\paper_model.pending.toml --report papers\<paper_slug>\model\paper_model.audit.md
 ```
 
-The validator checks TOML parseability, graph references, anchor presence/form, disclosure views, selection-policy invariants, and source-file SHA-256. It does not judge scientific quality or visually verify that prose anchors point to the intended paragraphs.
+The validator checks TOML parseability, graph references, anchor presence/form, disclosure views, selection-policy invariants, and source-file SHA-256. For model version 0.3+, it also validates the optional BABYSITTING terminology inventory, logical edges, and single evidence-detail-free disclosure packet. It does not judge scientific quality or visually verify that prose anchors point to the intended paragraphs.
 
 ## Session-state validation
 
@@ -33,6 +33,12 @@ python scripts\create_training_session.py papers\<paper_slug>\model\paper_model.
 The initializer selects the first dependency-eligible KNOWLEDGE node, freezes
 paper evidence designs without result details, writes the canonical TOML, and
 creates the initial deterministic Markdown projection.
+
+Use `--level babysitting` only with a model that declares
+`babysitting_supported = true` and contains a validated `BABYSITTING_START`
+packet. This guided TRAINING mode stays in the knowledge stage, freezes its
+terminology and logical-edge assets, and starts with the fixed prompt:
+`Which term or logical relation is unclear? Pick one.`
 
 ```bat
 scripts\validate_session_state.bat papers\<paper_slug>\sessions\<session>.state.toml --report papers\<paper_slug>\sessions\<session>.state.audit.md

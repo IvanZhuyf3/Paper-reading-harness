@@ -1,6 +1,8 @@
 # Papers
 
-Each paper uses an isolated workspace:
+Each paper uses an isolated workspace. A model may additionally opt into the
+guided TRAINING mode `BABYSITTING` with validated terminology, logical-edge,
+and evidence-detail-free disclosure assets:
 
 ```text
 papers/<paper_slug>/

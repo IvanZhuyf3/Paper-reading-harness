@@ -27,6 +27,10 @@ published version.
 - `source/`: copied source material.
 - `model/`: pending paper model plus mechanical and semantic audits.
 - `sessions/`: local TRAINING or EFFICIENT_READING runtime sessions (Git-ignored).
+- The pending model also contains an evidence-detail-free BABYSITTING disclosure packet,
+  source-anchored terminology inventory, and logical claim-tree edges. This
+  guided mode is available only when initialized from that validated packet and
+  does not expose evidence results.
 - `artifacts/`: extracted text, page renders, contact sheets, and inspection metadata.
 
 ## Current status

@@ -21,6 +21,14 @@ The session records a selection-policy version, seed, selected IDs, current curs
 
 Human-open-node eligibility is necessary but not sufficient for default follow-up. During CLAIMS and EVIDENCE, prefer transferable measurement and claim–evidence relations. Low-transfer, paper-specific apparatus optimization should normally be recorded and left closed rather than deepened. Select such a node only when the human explicitly requests it, when clarification is necessary to make the claim checkable, or when EFFICIENT_READING asks for that expansion.
 
+## BABYSITTING
+
+`BABYSITTING` is learner-directed rather than seeded. Its frozen start packet
+discloses the complete source-anchored claim tree, terminology inventory, and
+logical edges. The learner selects one visible unresolved term or relation;
+the runner teaches and checks only that item, then returns the fixed selection
+prompt. No hidden node is sampled and no evidence result is disclosed.
+
 ## KNOWLEDGE
 
 Eligible nodes must:

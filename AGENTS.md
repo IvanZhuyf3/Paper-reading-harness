@@ -11,13 +11,21 @@ At session start:
 1. identify the paper;
 2. look for a human-approved record in `curriculum/`;
 3. ask the human to select `TRAINING` or `EFFICIENT_READING` unless already specified;
-4. for TRAINING, ask for `FOUNDATION`, `CORE`, or `ADVANCED`;
+4. for TRAINING, ask for `BABYSITTING`, `FOUNDATION`, `CORE`, or `ADVANCED`; BABYSITTING is a guided mode, not a fourth difficulty rank;
 5. load an approved model or compile the full paper model before asking the first runner question;
 6. persist the model and its audit report under the paper workspace;
 7. validate model parseability, source-anchor coverage, and stage visibility;
 8. create a session record that pins the model path, version, source hash, and selection seed.
 
 `EXAM` is reserved for a future protocol. Do not invent assessment rules.
+
+`BABYSITTING` may be selected only from a pinned model with validated
+terminology nodes, logical edges, and one evidence-detail-free `BABYSITTING_START`
+packet. It keeps the `knowledge` stage active, discloses the complete
+source-anchored claim tree and its logical relations, and lets the learner
+choose which displayed item to learn next. It does not expose evidence results
+or replace independent figure/result reading.
+Follow `protocols/babysitting_training.md` for its interaction loop, state, and completion rules.
 
 Trust order:
 
@@ -39,6 +47,11 @@ papers/<paper_slug>/model/paper_model.audit.md
 ```
 
 The originating session may run from that validated pending model. A later session must not automatically reuse it until human approval.
+
+For BABYSITTING, the originating session must freeze the validated disclosure
+packet and its referenced terminology/logical-edge assets into canonical state
+before the first learner question; missing assets are an initialization error,
+not a reason to compile content during the live turn.
 
 At session start or recovery, load the pinned model and current session state from disk. During an uninterrupted interactive session, keep the active model and state in memory; do not re-read the full artifacts before every prompt. Disk remains the recovery authority after compaction, interruption, or restart.
 

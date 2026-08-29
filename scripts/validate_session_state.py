@@ -39,6 +39,11 @@ PREFILLED_PACKET_FIELDS = (
     "prompt_id",
     "prompt_text",
 )
+BABYSITTING_PACKET_FIELDS = PREFILLED_PACKET_FIELDS + (
+    "display_claim_ids",
+    "terminology_ids",
+    "logical_edge_ids",
+)
 
 
 def sha256(path: Path) -> str:
@@ -150,19 +155,21 @@ def _transition_packet_checks(checks: list[Check], state: dict, model: dict) -> 
         )
         return
 
+    def fields_for(packet: dict) -> tuple[str, ...]:
+        return BABYSITTING_PACKET_FIELDS if packet.get("id") == "BABYSITTING_START" else PREFILLED_PACKET_FIELDS
+
     expected = [
-        {key: packet.get(key) for key in PREFILLED_PACKET_FIELDS}
+        {key: packet.get(key) for key in fields_for(packet)}
         for packet in expected_packets
     ]
     actual = [
-        {key: packet.get(key) for key in PREFILLED_PACKET_FIELDS}
+        {key: packet.get(key) for key in fields_for(packet)}
         for packet in actual_packets
     ]
-    expected_keys = set(PREFILLED_PACKET_FIELDS)
     schema_drift = [
         packet.get("id", "")
         for packet in actual_packets
-        if set(packet) != expected_keys
+        if set(packet) != set(fields_for(packet))
     ]
     checks.append(Check("Session transition-packet schemas are frozen", not schema_drift, f"drift={schema_drift}"))
     checks.append(
@@ -178,6 +185,95 @@ def _transition_packet_checks(checks: list[Check], state: dict, model: dict) -> 
         if any(key in packet for key in ("result_detail", "result_details", "result"))
     ]
     checks.append(Check("Session transition packets contain no result details", not leaks, f"leaks={leaks}"))
+
+
+def _babysitting_checks(checks: list[Check], state: dict, model: dict) -> None:
+    """Validate resumable BABYSITTING state and its frozen reusable assets."""
+    packets = [
+        packet for packet in model.get("transition_packets", [])
+        if packet.get("id") == "BABYSITTING_START"
+    ]
+    if not state.get("babysitting_supported", model.get("babysitting_supported", False)):
+        checks.append(Check("BABYSITTING model support is declared", False, "state/model does not declare support"))
+    if len(packets) != 1:
+        checks.append(Check("BABYSITTING_START packet is available for session", False, f"count={len(packets)}"))
+        return
+    packet = packets[0]
+    state_terms = state.get("babysitting_terminology_nodes", [])
+    state_edges = state.get("babysitting_logical_edges", [])
+    model_terms = model.get("terminology_nodes", [])
+    model_edges = model.get("logical_edges", [])
+    term_fields = ("id", "term", "aliases", "definition", "prerequisites", "related_claim_ids", "source_anchors")
+    edge_fields = ("id", "source_claim_ids", "target_claim_id", "relation", "explanation", "source_anchors")
+    term_by_id = {item.get("id"): item for item in model_terms}
+    edge_by_id = {item.get("id"): item for item in model_edges}
+    expected_term_ids = packet.get("terminology_ids", [])
+    expected_edge_ids = packet.get("logical_edge_ids", [])
+    expected_terms = [{key: term_by_id[item_id].get(key) for key in term_fields} for item_id in expected_term_ids if item_id in term_by_id]
+    actual_terms = [{key: item.get(key) for key in term_fields} for item in state_terms]
+    expected_edges = [{key: edge_by_id[item_id].get(key) for key in edge_fields} for item_id in expected_edge_ids if item_id in edge_by_id]
+    actual_edges = [{key: item.get(key) for key in edge_fields} for item in state_edges]
+    checks.append(Check("Session BABYSITTING terminology assets are frozen", actual_terms == expected_terms, f"expected={len(expected_terms)}, actual={len(actual_terms)}"))
+    checks.append(Check("Session BABYSITTING logical-edge assets are frozen", actual_edges == expected_edges, f"expected={len(expected_edges)}, actual={len(actual_edges)}"))
+
+    session_packet = next((item for item in state.get("prefilled_transition_packets", []) if item.get("id") == "BABYSITTING_START"), None)
+    packet_keys = set(BABYSITTING_PACKET_FIELDS)
+    packet_match = session_packet is not None and {key: session_packet.get(key) for key in BABYSITTING_PACKET_FIELDS} == {key: packet.get(key) for key in BABYSITTING_PACKET_FIELDS}
+    checks.append(Check("Session BABYSITTING disclosure packet is frozen", packet_match, f"packet_present={session_packet is not None}"))
+    term_ids = set(expected_term_ids)
+    edge_ids = set(expected_edge_ids)
+    claim_ids = {item.get("id") for item in model.get("claim_nodes", [])}
+    checks.append(Check("Session BABYSITTING display claim list is exact", state.get("babysitting_display_claim_ids", []) == packet.get("display_claim_ids", []), "display claims equal packet"))
+    checks.append(Check("Session BABYSITTING display terminology list is exact", state.get("babysitting_display_terminology_ids", []) == expected_term_ids, "display terminology equal packet"))
+    checks.append(Check("Session BABYSITTING display logical-edge list is exact", state.get("babysitting_display_logical_edge_ids", []) == expected_edge_ids, "display edges equal packet"))
+    checks.append(Check("Session BABYSITTING display references resolve", set(state.get("babysitting_display_claim_ids", [])) <= claim_ids and set(state.get("babysitting_display_terminology_ids", [])) <= term_ids and set(state.get("babysitting_display_logical_edge_ids", [])) <= edge_ids, "display references checked"))
+    checks.append(Check("BABYSITTING disclosure contains no evidence IDs", packet.get("reveal_evidence_ids") == [] and state.get("revealed_paper_evidence_ids", []) == [], f"packet={packet.get('reveal_evidence_ids')}, state={state.get('revealed_paper_evidence_ids')}"))
+
+    all_term_ids = set(packet.get("terminology_ids", []))
+    all_edge_ids = set(packet.get("logical_edge_ids", []))
+    explained_terms = set(state.get("explained_terminology_ids", []))
+    explained_edges = set(state.get("explained_relation_ids", []))
+    verified_terms = set(state.get("verified_terminology_ids", []))
+    verified_edges = set(state.get("verified_relation_ids", []))
+    unresolved_terms = set(state.get("unresolved_terminology_ids", []))
+    unresolved_edges = set(state.get("unresolved_relation_ids", []))
+    inventory_ok = (
+        (verified_terms | unresolved_terms) == all_term_ids
+        and (verified_edges | unresolved_edges) == all_edge_ids
+        and not (verified_terms & unresolved_terms)
+        and not (verified_edges & unresolved_edges)
+        and explained_terms <= all_term_ids
+        and explained_edges <= all_edge_ids
+    )
+    checks.append(Check("BABYSITTING item inventories cover and partition", inventory_ok, f"terms={sorted(all_term_ids)}, edges={sorted(all_edge_ids)}"))
+    active_id = state.get("active_item_id", "")
+    active_kind = state.get("active_item_kind", "")
+    valid_active = not active_id or (active_kind == "terminology" and active_id in all_term_ids) or (active_kind == "relation" and active_id in all_edge_ids)
+    checks.append(Check("BABYSITTING active item and kind resolve", valid_active, f"id={active_id}, kind={active_kind}"))
+    if active_id:
+        active_unresolved = (active_kind == "terminology" and active_id in unresolved_terms) or (active_kind == "relation" and active_id in unresolved_edges)
+        expected_cursor = f"BABYSITTING.check.{active_id}.await_response"
+        checks.append(Check("BABYSITTING active item remains unresolved", active_unresolved, f"id={active_id}, kind={active_kind}"))
+        checks.append(Check("BABYSITTING active item has an exact check cursor", bool(state.get("pending_prompt_id")) and state.get("resume_cursor") == expected_cursor, f"expected={expected_cursor}, actual={state.get('resume_cursor')}"))
+        checks.append(Check("BABYSITTING active check matches pending prompt", bool(state.get("current_check_prompt")) and state.get("current_check_prompt") == state.get("pending_prompt_text"), "current_check_prompt must equal pending_prompt_text"))
+    elif state.get("current_stage") == "complete":
+        checks.append(Check("BABYSITTING terminal cursor is explicit", state.get("resume_cursor") == "COMPLETE.terminal", str(state.get("resume_cursor"))))
+    else:
+        checks.append(Check("BABYSITTING empty active item has empty kind", not active_kind, f"kind={active_kind}"))
+        checks.append(Check("BABYSITTING selection cursor is explicit", state.get("resume_cursor") == "BABYSITTING.select_item.await_response", str(state.get("resume_cursor"))))
+    checks.append(Check("BABYSITTING verified items are explained", verified_terms <= explained_terms and verified_edges <= explained_edges, "verified subset of explained"))
+    if state.get("current_stage") == "complete":
+        checks.append(Check("BABYSITTING terminal inventory is resolved", not unresolved_terms and not unresolved_edges and verified_terms == all_term_ids and verified_edges == all_edge_ids, f"unresolved_terms={sorted(unresolved_terms)}, unresolved_edges={sorted(unresolved_edges)}"))
+        terminal_dispositions = {
+            "knowledge": "completed",
+            "idea": "not_applicable",
+            "claims": "not_applicable",
+            "evidence": "not_applicable",
+            "independent_reading": "not_applicable",
+            "delta": "not_applicable",
+        }
+        checks.append(Check("BABYSITTING terminal dispositions are exact", state.get("stage_dispositions") == terminal_dispositions and state.get("completed_stages") == ["knowledge"], f"dispositions={state.get('stage_dispositions')}, completed={state.get('completed_stages')}"))
+        checks.append(Check("BABYSITTING terminal active item is cleared", not state.get("active_item_id") and not state.get("active_item_kind") and not state.get("current_check_prompt"), f"active={state.get('active_item_id')}, check={bool(state.get('current_check_prompt'))}"))
 
 
 def _event_checks(checks: list[Check], state: dict, model: dict) -> None:
@@ -252,7 +348,14 @@ def validate_state(state_path: Path, markdown_path: Path | None = None) -> list[
     completed_stages = state.get("completed_stages", [])
     expected_completed = [stage for stage in STAGE_ORDER if dispositions.get(stage) == "completed"]
     checks.append(Check("Completed stages agree with dispositions", completed_stages == expected_completed, f"completed={completed_stages}, expected={expected_completed}"))
-    if current_stage == "complete":
+    babysitting = state.get("level") == "babysitting"
+    if babysitting and current_stage == "knowledge":
+        order_ok = (
+            disposition_ok
+            and dispositions.get("knowledge") == "in_progress"
+            and all(dispositions.get(stage) == "not_applicable" for stage in STAGE_ORDER[1:])
+        )
+    elif current_stage == "complete":
         order_ok = disposition_ok and all(
             dispositions.get(stage) in TERMINAL_DISPOSITIONS for stage in STAGE_ORDER
         )
@@ -311,6 +414,8 @@ def validate_state(state_path: Path, markdown_path: Path | None = None) -> list[
     checks.append(Check("Human targets resolve", not target_errors, f"missing={target_errors}"))
     _paper_evidence_checks(checks, state, model, model_claim_ids)
     _transition_packet_checks(checks, state, model)
+    if babysitting:
+        _babysitting_checks(checks, state, model)
     finished_stages = [
         stage for stage in STAGE_ORDER if dispositions.get(stage) in TERMINAL_DISPOSITIONS
     ]

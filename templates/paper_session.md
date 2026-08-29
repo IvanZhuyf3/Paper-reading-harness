@@ -3,7 +3,7 @@
 **Paper:**
 **Identifier / source:**
 **Runner:** TRAINING
-**Level:** FOUNDATION / CORE / ADVANCED
+**Level:** FOUNDATION / CORE / ADVANCED / BABYSITTING (BABYSITTING is a guided mode, not a difficulty rank)
 **Paper-model source:** approved record / compiled pending model for originating session
 **Paper-model path:**
 **Paper-model version:**

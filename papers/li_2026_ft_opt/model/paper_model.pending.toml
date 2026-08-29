@@ -1,6 +1,7 @@
 status = "pending"
 human_approved = false
-model_version = "0.2.0"
+model_version = "0.3.0"
+babysitting_supported = true
 selection_policy_version = "1.2"
 paper_slug = "li_2026_ft_opt"
 title = "Supercontinuum Fourier-transform Overtone Photothermal Spectroscopy and Microscopy"
@@ -23,6 +24,7 @@ parse_validated = true
 anchor_audit = "pass"
 visibility_audit = "pass"
 transition_packet_audit = "pass"
+babysitting_audit = "pass"
 approval_note = "PENDING - NOT HUMAN APPROVED - DO NOT AUTO-REUSE"
 
 [[knowledge_nodes]]
@@ -385,6 +387,332 @@ reveal_after = "claims_rollout_complete"
 default_followup_eligible = true
 transferability = "high"
 
+[[terminology_nodes]]
+id = "TERM_VIBRATIONAL_OVERTONE"
+term = "vibrational overtone"
+aliases = ["overtone transition"]
+definition = "A transition to a higher vibrational level whose frequency is an integer multiple, often with anharmonic corrections, of a fundamental vibration; it is usually weaker than the fundamental."
+prerequisites = []
+related_claim_ids = ["I1", "I3", "M1"]
+source_anchors = ["PDF p.5, Results/Principle of FT-OPT spectroscopy and microscopy, paragraph beginning \"Molecular anharmonicity causes deviations from...\""]
+
+[[terminology_nodes]]
+id = "TERM_PHOTOTHERMAL"
+term = "photothermal detection"
+aliases = ["OPT", "photothermal microscopy"]
+definition = "Detection of absorption through nonradiative heating and the resulting change in the probe beam, commonly mediated by a local refractive-index gradient."
+prerequisites = []
+related_claim_ids = ["I2", "I3", "I4", "T0"]
+source_anchors = ["PDF p.3, Introduction, paragraph beginning \"Vibrational spectroscopy and imaging, revealing...\"", "PDF p.6, Results/Principle of FT-OPT spectroscopy and microscopy, paragraph beginning \"A major advantage of photothermal imaging...\""]
+
+[[terminology_nodes]]
+id = "TERM_MIR_SWIR"
+term = "MIR and SWIR"
+aliases = ["mid-infrared", "short-wave infrared"]
+definition = "MIR denotes mid-infrared excitation; SWIR denotes short-wave infrared excitation. The paper uses SWIR overtone absorption to reduce water absorption relative to MIR operation."
+prerequisites = ["TERM_VIBRATIONAL_OVERTONE"]
+related_claim_ids = ["I2", "I3"]
+source_anchors = ["PDF p.3, Introduction, paragraph beginning \"Vibrational spectroscopy and imaging, revealing...\""]
+
+[[terminology_nodes]]
+id = "TERM_TIME_DOMAIN"
+term = "time-domain excitation"
+aliases = ["delay-domain excitation"]
+definition = "Encoding spectral information in how the measured signal changes with a controlled temporal delay, rather than by tuning one wavelength after another."
+prerequisites = []
+related_claim_ids = ["I4", "I5", "G1", "T0"]
+source_anchors = ["PDF p.4, Introduction, paragraph beginning \"Inspired by FTIR and dual-comb spectroscopy,...\""]
+
+[[terminology_nodes]]
+id = "TERM_INTERFEROGRAM"
+term = "interferogram"
+aliases = ["delay scan"]
+definition = "The measured signal as a function of relative optical delay; oscillatory contributions from different vibrational frequencies are later separated by a Fourier transform."
+prerequisites = ["TERM_TIME_DOMAIN"]
+related_claim_ids = ["M1", "S1.1"]
+source_anchors = ["PDF p.5-6, Results/Principle of FT-OPT spectroscopy and microscopy, paragraphs beginning \"Molecular anharmonicity causes deviations from...\" and \"The second term in Eq....\""]
+
+[[terminology_nodes]]
+id = "TERM_FOURIER_TRANSFORM"
+term = "Fourier transform"
+aliases = ["FFT", "Fourier decoding"]
+definition = "A mathematical change of representation that resolves the frequency components encoded in the delay-dependent interferogram into a spectrum."
+prerequisites = ["TERM_INTERFEROGRAM"]
+related_claim_ids = ["T0", "S1.1"]
+source_anchors = ["PDF p.6, Results/Principle of FT-OPT spectroscopy and microscopy, paragraph beginning \"The second term in Eq....\""]
+
+[[terminology_nodes]]
+id = "TERM_BANDWIDTH_RESOLUTION"
+term = "spectral bandwidth and resolution"
+aliases = ["pump spectrum", "delay window"]
+definition = "Bandwidth is the span of frequencies recovered; resolution is the separation scale that can be distinguished. In FT-OPT, the pump spectrum sets span while the sampled delay window sets resolution."
+prerequisites = ["TERM_FOURIER_TRANSFORM"]
+related_claim_ids = ["I4", "S1.2", "M2"]
+source_anchors = ["PDF p.6, Results/Principle of FT-OPT spectroscopy and microscopy, paragraph beginning \"The second term in Eq....\""]
+
+[[terminology_nodes]]
+id = "TERM_SUPERCONTINUUM"
+term = "supercontinuum source"
+aliases = ["broadband SWIR source"]
+definition = "A source with broad optical spectral coverage used here to excite many overtone frequencies in a single broadband pump spectrum."
+prerequisites = ["TERM_MIR_SWIR"]
+related_claim_ids = ["T0", "S1.3", "M3"]
+source_anchors = ["PDF p.7, Results/SWIR supercontinuum generation and experimental setup, paragraph beginning \"The FT-OPT experimental setup is...\""]
+
+[[terminology_nodes]]
+id = "TERM_PUMP_PROBE"
+term = "pump-probe thermal-lens readout"
+aliases = ["probe demodulation", "thermal lens"]
+definition = "A pump beam deposits modulated energy and a probe beam senses the resulting refractive-index change; lock-in demodulation extracts the periodic probe modulation."
+prerequisites = ["TERM_PHOTOTHERMAL"]
+related_claim_ids = ["I3", "S1.3"]
+source_anchors = ["PDF p.6-7, Results/Principle of FT-OPT spectroscopy and microscopy, paragraphs beginning \"A major advantage of photothermal imaging...\" and \"The FT-OPT experimental setup is...\""]
+
+[[terminology_nodes]]
+id = "TERM_MULTIPLEX"
+term = "multiplex (Fellgett) advantage"
+aliases = ["Fellgett advantage"]
+definition = "A potential signal-to-noise benefit from measuring many spectral elements together, which has the usual square-root scaling only under detector-noise-limited assumptions."
+prerequisites = ["TERM_FOURIER_TRANSFORM"]
+related_claim_ids = ["M1"]
+source_anchors = ["Supplementary Information, PDF p.31, section beginning \"Fellgett advantage of FT-OPT\""]
+
+[[terminology_nodes]]
+id = "TERM_POINT_SPREAD"
+term = "point-spread function"
+aliases = ["PSF", "lateral and axial resolution"]
+definition = "The measured spatial response of an imaging system to a localized feature; its width is used to quantify spatial resolution."
+prerequisites = ["TERM_PUMP_PROBE"]
+related_claim_ids = ["M2", "S2.4"]
+source_anchors = ["PDF p.10, Results/System characteristics, paragraph beginning \"Capability of enhanced spatial resolution...\""]
+
+[[terminology_nodes]]
+id = "TERM_SPECTRAL_UNMIXING"
+term = "spectral classification and unmixing"
+aliases = ["PCA", "LASSO"]
+definition = "Classification separates samples using spectral patterns; unmixing estimates the component contributions in a mixture from measured spectra."
+prerequisites = ["TERM_BANDWIDTH_RESOLUTION"]
+related_claim_ids = ["M3", "S3.1", "S3.2"]
+source_anchors = ["PDF p.12-13, Results/FT-OPT for molecular identification and unmixing, paragraphs beginning \"In addition to weak signal...\" and \"For each substance, 20 non-averaged...\""]
+
+[[terminology_nodes]]
+id = "TERM_SPECTRAL_FLOW"
+term = "dynamic spectral monitoring"
+aliases = ["spectral refresh period", "microfluidic monitoring"]
+definition = "Repeatedly acquiring spectra while a sample changes or flows, so chemical identity can be tracked over time."
+prerequisites = ["TERM_INTERFEROGRAM"]
+related_claim_ids = ["M4", "S4.1", "S4.2"]
+source_anchors = ["PDF p.14-15, Results/Microfluidic dynamic spectral monitoring of FT-OPT, paragraphs beginning \"Intuitively, the flow velocity affects...\" and \"The spectral refresh period was...\""]
+
+[[terminology_nodes]]
+id = "TERM_HYPERSPECTRAL"
+term = "hyperspectral and volumetric imaging"
+aliases = ["4D hyperspectral imaging", "chemical imaging"]
+definition = "Imaging that records a spectrum at each spatial location, including depth, to form chemically resolved two- or three-dimensional data."
+prerequisites = ["TERM_PUMP_PROBE", "TERM_SPECTRAL_UNMIXING"]
+related_claim_ids = ["M5", "S5.1", "S5.2", "S5.3"]
+source_anchors = ["PDF p.15-18, Results/Label-free hyperspectral and volumetric imaging of FT-OPT, paragraph beginning \"To the best of our knowledge,...\""]
+
+[[logical_edges]]
+id = "EDGE_I1_I2"
+source_claim_ids = ["I1"]
+target_claim_id = "I2"
+relation = "creates_tension"
+explanation = "The established value of vibrational contrast is followed by limitations in the MIR implementation."
+source_anchors = ["PDF p.3, Introduction, paragraph beginning \"Vibrational spectroscopy and imaging, revealing...\""]
+
+[[logical_edges]]
+id = "EDGE_I2_I3"
+source_claim_ids = ["I2"]
+target_claim_id = "I3"
+relation = "motivates_significance"
+explanation = "The MIR limitations make the lower-water-absorption overtone route relevant to the paper's problem."
+source_anchors = ["PDF p.3, Introduction, paragraph beginning \"Vibrational spectroscopy and imaging, revealing...\""]
+
+[[logical_edges]]
+id = "EDGE_I3_I4"
+source_claim_ids = ["I3"]
+target_claim_id = "I4"
+relation = "creates_tension"
+explanation = "The SWIR overtone route retains a spectral-acquisition constraint because photothermal spectra require pump tuning."
+source_anchors = ["PDF p.3, Introduction, paragraph beginning \"Although demonstrating outstanding imaging ability,...\""]
+
+[[logical_edges]]
+id = "EDGE_I4_I5"
+source_claim_ids = ["I4"]
+target_claim_id = "I5"
+relation = "establishes_context"
+explanation = "The sequential-tuning constraint sets the context for considering time-domain alternatives."
+source_anchors = ["PDF p.3-4, Introduction, paragraphs beginning \"Although demonstrating outstanding imaging ability,...\" and \"Inspired by FTIR and dual-comb spectroscopy,...\""]
+
+[[logical_edges]]
+id = "EDGE_I4_I5_G1"
+source_claim_ids = ["I4", "I5"]
+target_claim_id = "G1"
+relation = "defines_gap"
+explanation = "The tuning trade-off and limited prior time-domain demonstrations together define the missing capability."
+source_anchors = ["PDF p.4, Introduction, paragraph beginning \"Inspired by FTIR and dual-comb spectroscopy,...\""]
+
+[[logical_edges]]
+id = "EDGE_G1_T0"
+source_claim_ids = ["G1"]
+target_claim_id = "T0"
+relation = "resolves_gap"
+explanation = "The title claim names the proposed FT-OPT framework as the response to the stated missing capability."
+source_anchors = ["PDF p.4, Introduction, paragraph beginning \"To address these challenges, in...\""]
+
+[[logical_edges]]
+id = "EDGE_T0_M1"
+source_claim_ids = ["T0"]
+target_claim_id = "M1"
+relation = "decomposes"
+explanation = "The first major claim specifies the time-domain encoding and Fourier recovery mechanism within FT-OPT."
+source_anchors = ["PDF p.5-6, Results/Principle of FT-OPT spectroscopy and microscopy, paragraphs beginning \"Molecular anharmonicity causes deviations from...\" and \"The second term in Eq....\""]
+
+[[logical_edges]]
+id = "EDGE_M1_S11"
+source_claim_ids = ["M1"]
+target_claim_id = "S1.1"
+relation = "decomposes"
+explanation = "This subclaim spells out the delay scan, interferogram, and Fourier-transform portion of the mechanism."
+source_anchors = ["Eqs. 1-3, PDF p.5-6"]
+
+[[logical_edges]]
+id = "EDGE_M1_S12"
+source_claim_ids = ["M1"]
+target_claim_id = "S1.2"
+relation = "decomposes"
+explanation = "This subclaim spells out how pump bandwidth and delay scanning govern distinct spectral properties."
+source_anchors = ["PDF p.6, Results/Principle of FT-OPT spectroscopy and microscopy, paragraph beginning \"The second term in Eq....\""]
+
+[[logical_edges]]
+id = "EDGE_M1_S13"
+source_claim_ids = ["M1"]
+target_claim_id = "S1.3"
+relation = "operationalizes"
+explanation = "This subclaim connects the abstract encoding mechanism to the implemented source, interferometer, and probe readout."
+source_anchors = ["Fig. 1d-e, PDF p.8"]
+
+[[logical_edges]]
+id = "EDGE_T0_M2"
+source_claim_ids = ["T0"]
+target_claim_id = "M2"
+relation = "decomposes"
+explanation = "The second major claim describes the system-level spectroscopic and spatial capabilities assessed in reference samples."
+source_anchors = ["PDF p.9-10, Results/System characteristics, paragraphs beginning \"FT-OPT was first performed on...\" and \"FT-OPT further demonstrates strong molecular...\""]
+
+[[logical_edges]]
+id = "EDGE_M2_S21"
+source_claim_ids = ["M2"]
+target_claim_id = "S2.1"
+relation = "decomposes"
+explanation = "This subclaim identifies broadband spectral coverage and agreement with a standard spectrum as one system property."
+source_anchors = ["Fig. 2a-c, PDF p.11"]
+
+[[logical_edges]]
+id = "EDGE_M2_S22"
+source_claim_ids = ["M2"]
+target_claim_id = "S2.2"
+relation = "decomposes"
+explanation = "This subclaim identifies delay-window-limited spectral resolution as another system property."
+source_anchors = ["Fig. 2d, PDF p.11"]
+
+[[logical_edges]]
+id = "EDGE_M2_S23"
+source_claim_ids = ["M2"]
+target_claim_id = "S2.3"
+relation = "decomposes"
+explanation = "This subclaim identifies concentration sensitivity as a separate system property."
+source_anchors = ["Fig. 2e, PDF p.11"]
+
+[[logical_edges]]
+id = "EDGE_M2_S24"
+source_claim_ids = ["M2"]
+target_claim_id = "S2.4"
+relation = "decomposes"
+explanation = "This subclaim identifies lateral and axial spatial resolution as the imaging property of the system."
+source_anchors = ["Fig. 2g-j, PDF p.11"]
+
+[[logical_edges]]
+id = "EDGE_T0_M3"
+source_claim_ids = ["T0"]
+target_claim_id = "M3"
+relation = "decomposes"
+explanation = "The third major claim addresses molecular discrimination and mixture analysis enabled by the recovered spectra."
+source_anchors = ["PDF p.12-13, Results/FT-OPT for molecular identification and unmixing, paragraph beginning \"In addition to weak signal...\""]
+
+[[logical_edges]]
+id = "EDGE_M3_S31"
+source_claim_ids = ["M3"]
+target_claim_id = "S3.1"
+relation = "decomposes"
+explanation = "This subclaim isolates the role of broad spectral coverage in classification."
+source_anchors = ["Fig. 3a-d, PDF p.13"]
+
+[[logical_edges]]
+id = "EDGE_M3_S32"
+source_claim_ids = ["M3"]
+target_claim_id = "S3.2"
+relation = "decomposes"
+explanation = "This subclaim isolates how spectral range and resolution enter quantitative mixture unmixing."
+source_anchors = ["Fig. 3e-h, PDF p.13"]
+
+[[logical_edges]]
+id = "EDGE_T0_M4"
+source_claim_ids = ["T0"]
+target_claim_id = "M4"
+relation = "decomposes"
+explanation = "The fourth major claim addresses repeated acquisition for dynamic monitoring."
+source_anchors = ["PDF p.14-15, Results/Microfluidic dynamic spectral monitoring of FT-OPT, paragraph beginning \"The spectral refresh period was...\""]
+
+[[logical_edges]]
+id = "EDGE_M4_S41"
+source_claim_ids = ["M4"]
+target_claim_id = "S4.1"
+relation = "decomposes"
+explanation = "This subclaim describes the flow-rate relation that conditions dynamic photothermal measurement."
+source_anchors = ["Fig. 4d-f, PDF p.15"]
+
+[[logical_edges]]
+id = "EDGE_M4_S42"
+source_claim_ids = ["M4"]
+target_claim_id = "S4.2"
+relation = "decomposes"
+explanation = "This subclaim describes repeated alternating-sample acquisition as the dynamic-monitoring demonstration."
+source_anchors = ["Fig. 4a-c and 4g, PDF p.15"]
+
+[[logical_edges]]
+id = "EDGE_T0_M5"
+source_claim_ids = ["T0"]
+target_claim_id = "M5"
+relation = "decomposes"
+explanation = "The fifth major claim addresses chemical imaging in aqueous environments."
+source_anchors = ["PDF p.15-18, Results/Label-free hyperspectral and volumetric imaging of FT-OPT, paragraph beginning \"To the best of our knowledge,...\""]
+
+[[logical_edges]]
+id = "EDGE_M5_S51"
+source_claim_ids = ["M5"]
+target_claim_id = "S5.1"
+relation = "decomposes"
+explanation = "This subclaim describes chemical contrast at a two-component interface."
+source_anchors = ["Fig. 5a, PDF p.16"]
+
+[[logical_edges]]
+id = "EDGE_M5_S52"
+source_claim_ids = ["M5"]
+target_claim_id = "S5.2"
+relation = "decomposes"
+explanation = "This subclaim describes penetration depth and spatially resolved hyperspectral imaging."
+source_anchors = ["Fig. 5b-g, PDF p.16", "Supplementary Figs. S5-S7, PDF p.38-40"]
+
+[[logical_edges]]
+id = "EDGE_M5_S53"
+source_claim_ids = ["M5"]
+target_claim_id = "S5.3"
+relation = "operationalizes"
+explanation = "This subclaim describes factorization as an analysis that turns the hyperspectral volume into component maps."
+source_anchors = ["Fig. 5h-j, PDF p.16"]
+
 [[evidence_nodes]]
 id = "E1"
 target_claims = ["M1", "S1.1", "S1.2"]
@@ -645,6 +973,95 @@ content = "The paper-side architecture and the human rollout are already preserv
 prompt_id = "DELTA_FIXED"
 prompt_text = "What's the delta?"
 
+[[transition_packets]]
+id = "BABYSITTING_START"
+target_stage = "knowledge"
+eligible_levels = ["babysitting"]
+reveal_claim_ids = ["I1", "I2", "I3", "I4", "I5", "G1", "T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "S2.4", "M3", "S3.1", "S3.2", "M4", "S4.1", "S4.2", "M5", "S5.1", "S5.2", "S5.3"]
+reveal_evidence_ids = []
+source_node_ids = ["I1", "I2", "I3", "I4", "I5", "G1", "T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "S2.4", "M3", "S3.1", "S3.2", "M4", "S4.1", "S4.2", "M5", "S5.1", "S5.2", "S5.3"]
+display_claim_ids = ["I1", "I2", "I3", "I4", "I5", "G1", "T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "S2.4", "M3", "S3.1", "S3.2", "M4", "S4.1", "S4.2", "M5", "S5.1", "S5.2", "S5.3"]
+terminology_ids = ["TERM_VIBRATIONAL_OVERTONE", "TERM_PHOTOTHERMAL", "TERM_MIR_SWIR", "TERM_TIME_DOMAIN", "TERM_INTERFEROGRAM", "TERM_FOURIER_TRANSFORM", "TERM_BANDWIDTH_RESOLUTION", "TERM_SUPERCONTINUUM", "TERM_PUMP_PROBE", "TERM_MULTIPLEX", "TERM_POINT_SPREAD", "TERM_SPECTRAL_UNMIXING", "TERM_SPECTRAL_FLOW", "TERM_HYPERSPECTRAL"]
+logical_edge_ids = ["EDGE_I1_I2", "EDGE_I2_I3", "EDGE_I3_I4", "EDGE_I4_I5", "EDGE_I4_I5_G1", "EDGE_G1_T0", "EDGE_T0_M1", "EDGE_M1_S11", "EDGE_M1_S12", "EDGE_M1_S13", "EDGE_T0_M2", "EDGE_M2_S21", "EDGE_M2_S22", "EDGE_M2_S23", "EDGE_M2_S24", "EDGE_T0_M3", "EDGE_M3_S31", "EDGE_M3_S32", "EDGE_T0_M4", "EDGE_M4_S41", "EDGE_M4_S42", "EDGE_T0_M5", "EDGE_M5_S51", "EDGE_M5_S52", "EDGE_M5_S53"]
+dynamic_slots = ["learner_selected_item"]
+locale = "en"
+content = """
+# Source-anchored claim tree (evidence-detail-free)
+
+I1 [background] — AUTHOR CLAIM: Vibrational spectroscopy and imaging reveal intrinsic molecular signatures for label-free, chemically specific detection. [PDF p.3, Introduction, paragraph beginning \"Vibrational spectroscopy and imaging, revealing...\"]
+└─ EDGE_I1_I2 / creates_tension → I2: MIR complexity and water absorption limit the established contrast route.
+   I2 [limitation] — AUTHOR CLAIM: MIR methods require specialized sources and components, and water absorption causes background and attenuation. [PDF p.3, Introduction, paragraph beginning \"Vibrational spectroscopy and imaging, revealing...\"]
+   └─ EDGE_I2_I3 / motivates_significance → I3: the limitations make a SWIR overtone route relevant.
+      I3 [background] — AUTHOR CLAIM: SWIR overtone excitation suppresses water absorption and enables deeper aqueous imaging. [PDF p.3, Introduction, paragraph beginning \"Vibrational spectroscopy and imaging, revealing...\"]
+      └─ EDGE_I3_I4 / creates_tension → I4: photothermal spectra still require sequential pump tuning.
+         I4 [limitation] — AUTHOR CLAIM: Frequency-domain excitation imposes spectral-performance constraints through tunable-SWIR-source limitations. [PDF p.3, Introduction, paragraph beginning \"Although demonstrating outstanding imaging ability,...\"]
+         ├─ EDGE_I4_I5 / establishes_context → I5: the tuning constraint motivates time-domain alternatives.
+         │  I5 [existing_routes] — AUTHOR CLAIM: Prior time-domain photothermal demonstrations remain proof-of-concept, label-dependent, or slow. [PDF p.4, Introduction, paragraph beginning \"Inspired by FTIR and dual-comb spectroscopy,...\"]
+         └─ EDGE_I4_I5_G1 / defines_gap → G1: the tuning trade-off and limited prior routes define the missing capability.
+            G1 [gap] — AGENT INTERPRETATION: Rapid, broadband, high-resolution, sensitive, label-free aqueous photothermal spectromicroscopy is missing. [PDF p.4, Introduction, paragraph beginning \"Inspired by FTIR and dual-comb spectroscopy,...\"]
+            └─ EDGE_G1_T0 / resolves_gap → T0: the proposed FT-OPT framework responds to that gap.
+               T0 [title claim] — AUTHOR CLAIM: FT-OPT retrieves photothermal spectra without sequential wavelength tuning and provides a route to label-free spectral flow cytometry and high-dimensional aqueous chemical imaging. [PDF p.2 Abstract; PDF p.4 Introduction; PDF p.18 Discussion and Conclusion]
+               ├─ EDGE_T0_M1 / decomposes → M1: measurement principle.
+               │  M1 [major] — AUTHOR CLAIM: Two delayed broadband SWIR pulses encode all pump-addressable vibrational states in an interferogram. [PDF p.5-6, Results/Principle; Fig. 1, PDF p.8]
+               │  ├─ EDGE_M1_S11 / decomposes → S1.1: delay scan, interferogram, and Fourier recovery.
+               │  │  S1.1 [subclaim] — AUTHOR CLAIM: Scanning relative delay records an interferogram and Fourier transformation yields spectral information. [Eqs. 1-3, PDF p.5-6]
+               │  ├─ EDGE_M1_S12 / decomposes → S1.2: bandwidth and acquisition-speed separation.
+               │  │  S1.2 [subclaim] — AUTHOR CLAIM: Pump spectrum determines bandwidth while relative-delay scan speed governs acquisition speed. [PDF p.6, Results/Principle]
+               │  └─ EDGE_M1_S13 / operationalizes → S1.3: implemented source, interferometer, and lock-in probe readout.
+               │     S1.3 [subclaim] — AUTHOR CLAIM: The FT-OPT setup uses broadband SWIR pulses, a controlled delay, square-wave pump modulation, and lock-in probe demodulation. [PDF p.7, Results/Setup; Fig. 1d-e, PDF p.8]
+               ├─ EDGE_T0_M2 / decomposes → M2: system characteristics.
+               │  M2 [major] — AUTHOR CLAIM: Reference samples evaluate FT-OPT spectral performance. [PDF p.9-10, Results/System characteristics; Fig. 2, PDF p.11]
+               │  ├─ EDGE_M2_S21 / decomposes → S2.1: broadband coverage and standard-spectrum agreement.
+               │  │  S2.1 [subclaim] — AUTHOR CLAIM: The recovered spectrum spans a broad range and agrees with a standard spectrum. [PDF p.9; Fig. 2a-c, PDF p.11]
+               │  ├─ EDGE_M2_S22 / decomposes → S2.2: delay-window resolution.
+               │  │  S2.2 [subclaim] — AUTHOR CLAIM: FT-OPT recovers a lifetime-limited linewidth using a finite temporal window. [PDF p.9; Fig. 2d, PDF p.11]
+               │  ├─ EDGE_M2_S23 / decomposes → S2.3: concentration sensitivity.
+               │  │  S2.3 [subclaim] — AUTHOR CLAIM: A concentration series estimates the system detection limit by a 3-sigma criterion. [PDF p.9; Fig. 2e, PDF p.11]
+               │  └─ EDGE_M2_S24 / decomposes → S2.4: lateral and axial spatial resolution.
+               │     S2.4 [subclaim] — AUTHOR CLAIM: Lateral and axial resolution are determined from point-spread and volumetric measurements. [PDF p.10; Fig. 2g-j, PDF p.11]
+               ├─ EDGE_T0_M3 / decomposes → M3: molecular identification and mixture analysis.
+               │  M3 [major] — AUTHOR CLAIM: Supercontinuum coverage accesses multiple overtone modes together with high spectral resolution. [PDF p.12-13, Results/Identification and unmixing; Fig. 3, PDF p.13]
+               │  ├─ EDGE_M3_S31 / decomposes → S3.1: classification.
+               │  │  S3.1 [subclaim] — AUTHOR CLAIM: Full spectral range gives clear clustering for molecular classification. [PDF p.12; Fig. 3a-d, PDF p.13]
+               │  └─ EDGE_M3_S32 / decomposes → S3.2: quantitative unmixing.
+               │     S3.2 [subclaim] — AUTHOR CLAIM: Full range and higher resolution reduce mixture-unmixing error. [PDF p.12-13; Fig. 3e-h, PDF p.13]
+               ├─ EDGE_T0_M4 / decomposes → M4: dynamic monitoring.
+               │  M4 [major] — AUTHOR CLAIM: FT-OPT enables sensitive overtone spectroscopy on a sub-second scale for dynamic monitoring. [PDF p.14-15, Results/Microfluidic monitoring; Fig. 4, PDF p.15]
+               │  ├─ EDGE_M4_S41 / decomposes → S4.1: flow-rate relation.
+               │  │  S4.1 [subclaim] — AUTHOR CLAIM: Photothermal modulation depth decreases with increasing flow velocity. [PDF p.14; Fig. 4d-f, PDF p.15]
+               │  └─ EDGE_M4_S42 / decomposes → S4.2: repeated alternating-sample acquisition.
+               │     S4.2 [subclaim] — AUTHOR CLAIM: Repeated water and cyclooctane spectra demonstrate dynamic monitoring and repeatability. [PDF p.14-15; Fig. 4b-c and 4g, PDF p.15]
+               └─ EDGE_T0_M5 / decomposes → M5: aqueous chemical imaging.
+                  M5 [major] — AUTHOR CLAIM: FT-OPT combines spectroscopy and photothermal imaging for high-dimensional aqueous imaging. [PDF p.15-18, Results/Imaging; Fig. 5, PDF p.16]
+                  ├─ EDGE_M5_S51 / decomposes → S5.1: interfacial chemical contrast.
+                  │  S5.1 [subclaim] — AUTHOR CLAIM: Distinct component contrast and simultaneous overtone peaks are observed at an interface. [PDF p.17; Fig. 5a, PDF p.16]
+                  ├─ EDGE_M5_S52 / decomposes → S5.2: penetration and hyperspectral volume.
+                  │  S5.2 [subclaim] — AUTHOR CLAIM: Aqueous penetration and 4D hyperspectral imaging are demonstrated. [PDF p.17; Fig. 5b-g, PDF p.16; Supplementary Figs. S5-S7, PDF p.38-40]
+                  └─ EDGE_M5_S53 / operationalizes → S5.3: matrix factorization converts hyperspectral data into component maps.
+                     S5.3 [subclaim] — AUTHOR CLAIM: Non-negative matrix factorization separates principal water and organic components in 4D data. [PDF p.17-18; Fig. 5h-j, PDF p.16]
+
+# Terminology inventory (all selectable terms retain their stable IDs)
+TERM_VIBRATIONAL_OVERTONE — vibrational overtone
+TERM_PHOTOTHERMAL — photothermal detection
+TERM_MIR_SWIR — MIR and SWIR
+TERM_TIME_DOMAIN — time-domain excitation
+TERM_INTERFEROGRAM — interferogram
+TERM_FOURIER_TRANSFORM — Fourier transform
+TERM_BANDWIDTH_RESOLUTION — spectral bandwidth and resolution
+TERM_SUPERCONTINUUM — supercontinuum source
+TERM_PUMP_PROBE — pump-probe thermal-lens readout
+TERM_MULTIPLEX — multiplex (Fellgett) advantage
+TERM_POINT_SPREAD — point-spread function
+TERM_SPECTRAL_UNMIXING — spectral classification and unmixing
+TERM_SPECTRAL_FLOW — dynamic spectral monitoring
+TERM_HYPERSPECTRAL — hyperspectral and volumetric imaging
+
+# Learner control
+Select one displayed TERM_* item or EDGE_* relation to receive a concise explanation and one local check. Evidence IDs and numerical/plot results are deliberately not disclosed.
+"""
+prompt_id = "BABYSITTING_START_PROMPT"
+prompt_text = "Which term or logical relation is unclear? Pick one."
+
 [disclosure_views]
 knowledge = ["K1", "K2", "K3"]
 post_idea_knowledge = ["K4", "K5", "K6", "K7", "K8"]
@@ -652,6 +1069,7 @@ idea_problem_state = ["I1", "I2", "I3", "I4", "I5", "G1"]
 claims_start = ["T0"]
 claims_reference = ["T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "S2.4", "M3", "S3.1", "S3.2", "M4", "S4.1", "S4.2", "M5", "S5.1", "S5.2", "S5.3"]
 evidence_start = ["T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "S2.4", "M3", "S3.1", "S3.2", "M4", "S4.1", "S4.2", "M5", "S5.1", "S5.2", "S5.3"]
+babysitting = ["I1", "I2", "I3", "I4", "I5", "G1", "T0", "M1", "S1.1", "S1.2", "S1.3", "M2", "S2.1", "S2.2", "S2.3", "S2.4", "M3", "S3.1", "S3.2", "M4", "S4.1", "S4.2", "M5", "S5.1", "S5.2", "S5.3", "TERM_VIBRATIONAL_OVERTONE", "TERM_PHOTOTHERMAL", "TERM_MIR_SWIR", "TERM_TIME_DOMAIN", "TERM_INTERFEROGRAM", "TERM_FOURIER_TRANSFORM", "TERM_BANDWIDTH_RESOLUTION", "TERM_SUPERCONTINUUM", "TERM_PUMP_PROBE", "TERM_MULTIPLEX", "TERM_POINT_SPREAD", "TERM_SPECTRAL_UNMIXING", "TERM_SPECTRAL_FLOW", "TERM_HYPERSPECTRAL", "EDGE_I1_I2", "EDGE_I2_I3", "EDGE_I3_I4", "EDGE_I4_I5", "EDGE_I4_I5_G1", "EDGE_G1_T0", "EDGE_T0_M1", "EDGE_M1_S11", "EDGE_M1_S12", "EDGE_M1_S13", "EDGE_T0_M2", "EDGE_M2_S21", "EDGE_M2_S22", "EDGE_M2_S23", "EDGE_M2_S24", "EDGE_T0_M3", "EDGE_M3_S31", "EDGE_M3_S32", "EDGE_T0_M4", "EDGE_M4_S41", "EDGE_M4_S42", "EDGE_T0_M5", "EDGE_M5_S51", "EDGE_M5_S52", "EDGE_M5_S53"]
 evidence_reference_design = ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "E10", "E11", "E12", "E13"]
 independent_reading = ["all_claim_nodes", "all_evidence_nodes", "result_detail"]
 
@@ -662,6 +1080,7 @@ claims_policy = "human_tree_open_nodes_only_transferability_filtered"
 evidence_policy = "revealed_claims_only_transferability_filtered"
 transferability_filter = "default_reusable_reasoning_primitives"
 delta_policy = "fixed_prompt"
+babysitting_policy = "learner_selected_visible_items_local_check"
 
 [prompt_templates]
 idea_fixed = "What would you try?"

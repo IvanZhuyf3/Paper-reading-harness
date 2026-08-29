@@ -17,6 +17,16 @@ class Check:
 
 
 TRANSITION_STAGES = {"idea", "claims", "evidence", "independent_reading", "delta"}
+BABYSITTING_RELATIONS = {
+    "establishes_context",
+    "creates_tension",
+    "defines_gap",
+    "motivates_significance",
+    "resolves_gap",
+    "decomposes",
+    "supports",
+    "operationalizes",
+}
 TRANSITION_PACKET_FIELDS = (
     "id",
     "target_stage",
@@ -40,6 +50,14 @@ def _is_packet_model(model_version: object) -> bool:
     return (major, minor) >= (0, 2)
 
 
+def _is_babysitting_model(model_version: object) -> bool:
+    try:
+        major, minor, *_ = (int(part) for part in str(model_version).split("."))
+    except (TypeError, ValueError):
+        return False
+    return (major, minor) >= (0, 3)
+
+
 def validate_transition_packets(
     checks: list[Check],
     model: dict,
@@ -49,6 +67,8 @@ def validate_transition_packets(
 ) -> None:
     packets = model.get("transition_packets", [])
     requires_packets = _is_packet_model(model.get("model_version"))
+    babysitting_packets = [packet for packet in packets if packet.get("id") == "BABYSITTING_START"]
+    ordinary_packets = [packet for packet in packets if packet.get("id") != "BABYSITTING_START"]
     if not packets:
         checks.append(
             Check(
@@ -65,7 +85,7 @@ def validate_transition_packets(
     duplicate_ids = sorted({packet_id for packet_id in packet_ids if not packet_id or packet_ids.count(packet_id) > 1})
     checks.append(Check("Transition-packet IDs are present and unique", not duplicate_ids, f"duplicates={duplicate_ids}"))
 
-    stages = [packet.get("target_stage", "") for packet in packets]
+    stages = [packet.get("target_stage", "") for packet in ordinary_packets]
     invalid_stages = sorted(set(stages) - TRANSITION_STAGES)
     missing_stages = sorted(TRANSITION_STAGES - set(stages))
     duplicate_stages = sorted({stage for stage in stages if stages.count(stage) > 1})
@@ -74,7 +94,7 @@ def validate_transition_packets(
     allowed_levels = {"foundation", "core", "advanced"}
     invalid_levels = sorted(
         f"{packet.get('id')}: {level}"
-        for packet in packets
+        for packet in ordinary_packets
         for level in packet.get("eligible_levels", [])
         if level not in allowed_levels
     )
@@ -83,7 +103,7 @@ def validate_transition_packets(
     invalid_references: list[str] = []
     malformed: list[str] = []
     missing_schema_fields: list[str] = []
-    for packet in packets:
+    for packet in ordinary_packets:
         packet_id = packet.get("id", "")
         missing_schema_fields.extend(
             f"{packet_id}:{field}"
@@ -115,6 +135,134 @@ def validate_transition_packets(
         compiler = model.get("compiler", {})
         checks.append(Check("Transition-packet audit flag is finalized", compiler.get("transition_packet_audit") == "pass", str(compiler.get("transition_packet_audit"))))
 
+    validate_babysitting_assets(checks, model, claim_ids, node_ids, babysitting_packets)
+
+
+def validate_babysitting_assets(
+    checks: list[Check],
+    model: dict,
+    claim_ids: set[str],
+    node_ids: set[str],
+    packets: list[dict] | None = None,
+) -> None:
+    """Validate the reusable, evidence-detail-free disclosure assets for BABYSITTING.
+
+    This is deliberately independent of the ordinary transition packet checks so
+    0.1/0.2 models remain valid and simply report that BABYSITTING is unavailable.
+    """
+    terminology = model.get("terminology_nodes", [])
+    edges = model.get("logical_edges", [])
+    model_claims = set(claim_ids)
+    model_claim_order = [item.get("id", "") for item in model.get("claim_nodes", [])]
+    term_ids = {item.get("id") for item in terminology if item.get("id")}
+    edge_ids = {item.get("id") for item in edges if item.get("id")}
+    term_order = [item.get("id", "") for item in terminology]
+    edge_order = [item.get("id", "") for item in edges]
+    supports = bool(model.get("babysitting_supported", False))
+    packets = packets if packets is not None else [
+        packet for packet in model.get("transition_packets", [])
+        if packet.get("id") == "BABYSITTING_START"
+    ]
+    schema_requires = _is_babysitting_model(model.get("model_version"))
+
+    if not supports and not packets:
+        checks.append(Check("BABYSITTING assets (legacy model)", True, "not declared; unavailable by design"))
+        return
+
+    checks.append(Check("BABYSITTING support declaration is valid", supports and schema_requires, f"supported={supports}, model_version={model.get('model_version')}"))
+    checks.append(Check("Terminology-node IDs are present and unique", unique_ids(terminology, "Terminology-node").passed, f"count={len(terminology)}"))
+    checks.append(Check("Logical-edge IDs are present and unique", unique_ids(edges, "Logical-edge").passed, f"count={len(edges)}"))
+
+    missing_terms: list[str] = []
+    invalid_term_refs: list[str] = []
+    weak_asset_anchors: list[str] = []
+    anchor_pattern = re.compile(r"(PDF p\.|Fig\.|Figs\.|Eq\.|Eqs\.|Supplementary)")
+    for item in terminology:
+        item_id = item.get("id", "")
+        if not item.get("term") or not item.get("definition") or not item.get("source_anchors"):
+            missing_terms.append(item_id)
+        invalid_term_refs.extend(
+            f"{item_id}:prerequisite:{ref}"
+            for ref in item.get("prerequisites", [])
+            if ref not in term_ids
+        )
+        invalid_term_refs.extend(
+            f"{item_id}:claim:{ref}"
+            for ref in item.get("related_claim_ids", [])
+            if ref not in model_claims
+        )
+        weak_asset_anchors.extend(
+            f"{item_id}: {anchor}"
+            for anchor in item.get("source_anchors", [])
+            if not anchor_pattern.search(anchor)
+        )
+    checks.append(Check("Terminology definitions and anchors are present", not missing_terms, f"missing={missing_terms}"))
+    checks.append(Check("Terminology prerequisites and related claims resolve", not invalid_term_refs, f"missing={sorted(invalid_term_refs)}"))
+
+    invalid_edges: list[str] = []
+    malformed_edges: list[str] = []
+    for edge in edges:
+        edge_id = edge.get("id", "")
+        if (
+            not edge.get("source_claim_ids")
+            or not edge.get("target_claim_id")
+            or edge.get("relation") not in BABYSITTING_RELATIONS
+            or not edge.get("explanation")
+            or not edge.get("source_anchors")
+        ):
+            malformed_edges.append(edge_id)
+        invalid_edges.extend(
+            f"{edge_id}:source:{ref}"
+            for ref in edge.get("source_claim_ids", [])
+            if ref not in model_claims
+        )
+        if edge.get("target_claim_id") not in model_claims:
+            invalid_edges.append(f"{edge_id}:target:{edge.get('target_claim_id')}")
+        weak_asset_anchors.extend(
+            f"{edge_id}: {anchor}"
+            for anchor in edge.get("source_anchors", [])
+            if not anchor_pattern.search(anchor)
+        )
+    checks.append(Check("Logical-edge schema and relation labels are valid", not malformed_edges, f"malformed={malformed_edges}"))
+    checks.append(Check("Logical-edge claim references resolve", not invalid_edges, f"missing={sorted(invalid_edges)}"))
+    checks.append(Check("BABYSITTING asset anchors are reader-locatable", not weak_asset_anchors, f"weak={weak_asset_anchors}"))
+
+    duplicate_packets = len(packets) != 1
+    checks.append(Check("Exactly one BABYSITTING_START packet exists", not duplicate_packets, f"count={len(packets)}"))
+    if duplicate_packets:
+        return
+    packet = packets[0]
+    required_fields = {
+        "id", "target_stage", "eligible_levels", "reveal_claim_ids",
+        "reveal_evidence_ids", "source_node_ids", "dynamic_slots", "locale",
+        "content", "prompt_id", "prompt_text", "display_claim_ids",
+        "terminology_ids", "logical_edge_ids",
+    }
+    missing_fields = sorted(required_fields - set(packet))
+    checks.append(Check("BABYSITTING_START packet schema is complete", not missing_fields, f"missing={missing_fields}"))
+    checks.append(Check("BABYSITTING_START packet target and level are fixed", packet.get("target_stage") == "knowledge" and packet.get("eligible_levels") == ["babysitting"], f"target={packet.get('target_stage')}, levels={packet.get('eligible_levels')}"))
+    display_claims = packet.get("display_claim_ids", [])
+    packet_refs = []
+    packet_refs.extend(f"claim:{ref}" for ref in display_claims if ref not in model_claims)
+    packet_refs.extend(f"reveal_claim:{ref}" for ref in packet.get("reveal_claim_ids", []) if ref not in model_claims)
+    packet_refs.extend(f"term:{ref}" for ref in packet.get("terminology_ids", []) if ref not in term_ids)
+    packet_refs.extend(f"edge:{ref}" for ref in packet.get("logical_edge_ids", []) if ref not in edge_ids)
+    packet_refs.extend(f"source:{ref}" for ref in packet.get("source_node_ids", []) if ref not in node_ids)
+    checks.append(Check("BABYSITTING_START packet references resolve", not packet_refs, f"missing={sorted(packet_refs)}"))
+    declared_view = model.get("disclosure_views", {}).get("babysitting", [])
+    expected_view = display_claims + packet.get("terminology_ids", []) + packet.get("logical_edge_ids", [])
+    checks.append(Check("BABYSITTING disclosure view matches packet", declared_view == expected_view, f"view_count={len(declared_view)}, packet_count={len(expected_view)}"))
+    complete_claims = display_claims == model_claim_order and packet.get("reveal_claim_ids") == display_claims and packet.get("source_node_ids") == display_claims
+    complete_terms = packet.get("terminology_ids") == term_order
+    complete_edges = packet.get("logical_edge_ids") == edge_order
+    checks.append(Check("BABYSITTING packet claim disclosure is complete", complete_claims, f"display={len(display_claims)}, model={len(model_claim_order)}"))
+    checks.append(Check("BABYSITTING packet terminology disclosure is complete", complete_terms, f"packet={len(packet.get('terminology_ids', []))}, model={len(term_order)}"))
+    checks.append(Check("BABYSITTING packet logical-edge disclosure is complete", complete_edges, f"packet={len(packet.get('logical_edge_ids', []))}, model={len(edge_order)}"))
+    checks.append(Check("BABYSITTING_START does not reveal evidence", packet.get("reveal_evidence_ids") == [], f"revealed={packet.get('reveal_evidence_ids')}"))
+    checks.append(Check("BABYSITTING_START fixed prompt is present", packet.get("prompt_id") == "BABYSITTING_START_PROMPT" and packet.get("prompt_text") == "Which term or logical relation is unclear? Pick one.", f"prompt_id={packet.get('prompt_id')}, prompt_text={packet.get('prompt_text')}"))
+    compiler = model.get("compiler", {})
+    checks.append(Check("BABYSITTING audit flag is finalized", compiler.get("babysitting_audit") == "pass", str(compiler.get("babysitting_audit"))))
+
 
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
@@ -134,6 +282,15 @@ def unique_ids(items: list[dict], label: str) -> Check:
         passed,
         f"count={len(ids)}, missing={missing}, duplicates={duplicates}",
     )
+
+
+def cross_type_duplicates(collections: dict[str, set[str]]) -> set[str]:
+    """Return IDs shared by any two model node/asset collections."""
+    all_values: dict[str, set[str]] = {}
+    for name, values in collections.items():
+        for value in values:
+            all_values.setdefault(value, set()).add(name)
+    return {value for value, owners in all_values.items() if len(owners) > 1}
 
 
 def render_report(model_path: Path, checks: list[Check], counts: dict[str, int]) -> str:
@@ -211,10 +368,18 @@ def main() -> int:
     knowledge_ids = {item["id"] for item in knowledge if item.get("id")}
     claim_ids = {item["id"] for item in claims if item.get("id")}
     evidence_ids = {item["id"] for item in evidence if item.get("id")}
+    terminology_ids = {item["id"] for item in model.get("terminology_nodes", []) if item.get("id")}
+    logical_edge_ids = {item["id"] for item in model.get("logical_edges", []) if item.get("id")}
 
-    all_ids = knowledge_ids | claim_ids | evidence_ids
-    cross_duplicates = (
-        (knowledge_ids & claim_ids) | (knowledge_ids & evidence_ids) | (claim_ids & evidence_ids)
+    all_ids = knowledge_ids | claim_ids | evidence_ids | terminology_ids | logical_edge_ids
+    cross_duplicates = cross_type_duplicates(
+        {
+            "knowledge": knowledge_ids,
+            "claims": claim_ids,
+            "evidence": evidence_ids,
+            "terminology": terminology_ids,
+            "logical_edges": logical_edge_ids,
+        }
     )
     checks.append(
         Check(

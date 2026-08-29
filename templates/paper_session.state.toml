@@ -1,11 +1,12 @@
 state_version = "1.0"
 session_id = ""
 runner = "training"
-level = "core"
+level = "core" # foundation, core, advanced, or babysitting (babysitting is not a difficulty rank)
 paper_model_path = ""
 paper_model_version = ""
 paper_model_sha256 = ""
 main_source_sha256 = ""
+babysitting_supported = false
 supplement_sha256 = ""
 selection_policy_version = "1.2"
 selection_seed = 0
@@ -19,6 +20,39 @@ revealed_paper_claim_ids = []
 pending_prompt_id = ""
 pending_prompt_text = ""
 stage_dispositions = { knowledge = "in_progress", idea = "in_progress", claims = "in_progress", evidence = "in_progress", independent_reading = "in_progress", delta = "in_progress" }
+
+# BABYSITTING-only state. Its active loop remains in knowledge; all other
+# dispositions are not_applicable. The initializer fills these from the frozen
+# BABYSITTING_START packet and copies the reusable assets below.
+active_item_id = ""
+active_item_kind = ""
+explained_terminology_ids = []
+explained_relation_ids = []
+verified_terminology_ids = []
+verified_relation_ids = []
+unresolved_terminology_ids = []
+unresolved_relation_ids = []
+current_check_prompt = ""
+babysitting_display_claim_ids = []
+babysitting_display_terminology_ids = []
+babysitting_display_logical_edge_ids = []
+
+[[babysitting_terminology_nodes]]
+id = "TERM_EXAMPLE"
+term = ""
+aliases = []
+definition = ""
+prerequisites = []
+related_claim_ids = []
+source_anchors = []
+
+[[babysitting_logical_edges]]
+id = "EDGE_EXAMPLE"
+source_claim_ids = []
+target_claim_id = ""
+relation = "supports"
+explanation = ""
+source_anchors = []
 
 [[prefilled_transition_packets]]
 id = "TP_IDEA_START"

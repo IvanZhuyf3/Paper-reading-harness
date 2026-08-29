@@ -15,6 +15,7 @@ All applications use the same source-anchored paper model:
 ```text
 PAPER MODEL
 ├── TRAINING
+│   ├── BABYSITTING
 │   ├── FOUNDATION
 │   ├── CORE
 │   └── ADVANCED
@@ -23,6 +24,7 @@ PAPER MODEL
 ```
 
 - **TRAINING:** the human generates first; the paper is a reality-tested verifier trajectory.
+- **BABYSITTING:** a guided TRAINING mode that discloses the source-anchored claim tree, logical edge explanations, and terminology inventory. The learner chooses one unclear item at a time; it is not a fourth difficulty rank.
 - **EFFICIENT_READING:** the agent presents the paper architecture first and expands requested branches.
 - **EXAM:** a future runner for measuring the human's independent capability. It shares the paper model but requires separate disclosure and scoring rules.
 
@@ -134,6 +136,12 @@ The human explicitly selects a level at session start.
 - **ADVANCED:** knowledge only when needed; multiple independent concise IDEA attempts; full CLAIMS and EVIDENCE rollouts.
 
 The FOUNDATION exception follows a simple premise: thinking searches over the graph of the mind; the graph must exist before productive idea search is possible.
+
+BABYSITTING keeps the existing `knowledge` stage active for its entire loop. It
+requires a model version 0.3+ with a validated `BABYSITTING_START` packet and
+frozen terminology/logical-edge assets. It discloses no evidence result details;
+completion means only that the displayed items were locally checked. The
+normative runner specification is in `protocols/babysitting_training.md`.
 
 ## Paper-model trust lifecycle
 
